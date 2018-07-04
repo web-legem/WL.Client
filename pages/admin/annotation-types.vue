@@ -1,13 +1,15 @@
 <template>
     <div>
-        <h1>Annotation Types Module</h1>
+        <h1>{{ $t("admin.annotation-types.module-name") }}</h1>
     </div>
 </template>
 
 <script>
 export default {
-  head: {
-      title: 'Annotation Types'
+  head() {
+    return {
+      title: this.$t("admin.annotation-types.module-name")
+    }
   }
 }
 </script>

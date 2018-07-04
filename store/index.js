@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import Vue from 'vue'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -15,6 +16,8 @@ const createStore = () => {
     },
     actions: {
       changeLanguage (context, lang) {        
+        console.log(context)
+        Vue.i18n.locale = lang
         context.commit('SET_LANG', lang )
       }
     }

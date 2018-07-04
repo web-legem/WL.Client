@@ -33,7 +33,8 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    vendor: ['vue-i18n']
   },  
   plugins: [ '@/plugins/i18n.js' ], 
 }
