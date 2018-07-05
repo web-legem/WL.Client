@@ -1,11 +1,11 @@
 <template>
   <div>
     <div>Menu</div>        
-    <nuxt-link to="/">Home</nuxt-link> &nbsp;
-    <nuxt-link :to="{name: 'admin'}">{{ $t("admin.module-name") }}</nuxt-link>
+    <nuxt-link :to="localePath({name: 'index'})">Home</nuxt-link> &nbsp;
+    <nuxt-link :to="localePath({name:'admin'})">{{ $t("admin.module-name") }}</nuxt-link>
     <div>
-        <p @click="changeLanguage('es')">Español</p>
-        <p @click="changeLanguage('en')">English</p>
+        <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
+        <nuxt-link :to="switchLocalePath('es')">Español</nuxt-link>
     </div>
   </div>
 </template>
@@ -14,7 +14,6 @@
 export default {
   methods: {
     changeLanguage (lang) {
-      // this.$i18n.locale = lang
       this.$store.dispatch('changeLanguage', lang)
     }
   }

@@ -13,8 +13,9 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.1",
     "nuxt": "^1.0.0",
-    "vue-i18n": "^7.7.0"
+    "nuxt-i18n": "^4.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

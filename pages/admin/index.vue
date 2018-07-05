@@ -1,7 +1,7 @@
 <script>
 export default {
-  fetch ({redirect}) {
-    redirect(301, {name: 'admin-doc-types'})
+  fetch ({ redirect, app }) {
+    redirect(301, app.localePath({name: 'admin-doc-types'}))
   }
 }
 </script>

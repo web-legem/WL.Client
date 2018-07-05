@@ -34,7 +34,23 @@ module.exports = {
         })
       }
     },
-    vendor: ['vue-i18n']
   },  
-  plugins: [ '@/plugins/i18n.js' ], 
+  modules: [
+    [ 'nuxt-i18n', {  
+      locales: [ 
+        { code: 'en', iso: 'en-US', file: 'en.js'},
+        { code: 'es', iso: 'es-CO', file: 'es.js'}
+      ],
+      defaultLocale: 'es',
+      lazy: true,
+      langDir: 'locales/'
+    }],
+    '@nuxtjs/axios'
+  ],
+  axios: {
+    // proxyHeaders: false,
+    host: 'localhost',
+    port: '54037',
+    retry: {  retries: 2 }
+  }
 }

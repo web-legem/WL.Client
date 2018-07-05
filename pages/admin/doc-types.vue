@@ -2,14 +2,18 @@
     <div>
         <h1>{{ $t("admin.doc-types.module-name") }}</h1>
         <div>
-            <nuxt-link :to="{ name: 'admin-doc-types-new' }">New</nuxt-link> &nbsp;
-            <nuxt-link :to="{ name: 'admin-doc-types-id', params: { id: 1 } }">Edit</nuxt-link>
+            <nuxt-link :to="localePath({ name: 'admin-doc-types-new' })">New</nuxt-link> &nbsp;
         </div>
 
         <master-detail-layout>
-            <li><h2>This is the doc-type</h2></li>
+            <li v-for="documentType in documentTypes" v-bind:key="documentType.id">
+                <nuxt-link :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
+                    {{documentType.name}}
+                </nuxt-link>
+            </li>
+
             <div slot="details">
-                <nuxt-child></nuxt-child>
+              <nuxt-child></nuxt-child>
             </div>
         </master-detail-layout>
     </div>
@@ -17,15 +21,29 @@
 
 <script>
 import MasterDetailLayout from '~/components/master-detail-layout.vue'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   head() {
-      return {
-          title: this.$t('admin.doc-types.module-name')
-      }
+    return {
+      title: this.$t('admin.doc-types.module-name')
+    }
   },
   components: {
-      MasterDetailLayout
+    MasterDetailLayout
+  },
+  computed: {
+    ...mapGetters('admin/document-types', {
+      documentTypes: 'docTypes'
+    })
+  },
+  methods: {
+    ...mapActions('admin/document-types', [
+      'loadData'
+    ])
+  },
+  fetch({store, params}){
+    return store.dispatch('admin/document-types/loadData') 
   }
 }
 </script>
