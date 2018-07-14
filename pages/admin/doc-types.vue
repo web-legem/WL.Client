@@ -8,7 +8,9 @@
         <master-detail-layout>
             <li v-for="documentType in documentTypes" v-bind:key="documentType.id">
                 <nuxt-link :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
+                  <div class="algo">
                     {{documentType.name}}
+                  </div>
                 </nuxt-link>
             </li>
 
@@ -47,3 +49,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.algo {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>

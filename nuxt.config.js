@@ -35,6 +35,9 @@ module.exports = {
       }
     },
   },  
+  plugins: [
+    '~/plugins/vee-validate.js'
+  ],
   modules: [
     [ 'nuxt-i18n', {  
       locales: [ 
@@ -52,5 +55,5 @@ module.exports = {
     host: 'localhost',
     port: '54037',
     retry: {  retries: 2 }
-  }
+  },
 }
