@@ -11,9 +11,11 @@
       {{ $t('persons.module-name') }}
     </nuxt-link>
 
-    {{ $store.state['high-contrast'] }}
     <button @click="changeTheme()">{{ $t("changeTheme") }}</button>
 
+    <button v-for="(size, index) in $store.state.fontSizes" 
+      :key="index"
+      @click="setFontSize(size)">{{size}}%</button>
     <div>
         <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
         <nuxt-link :to="switchLocalePath('es')">Español</nuxt-link>
@@ -30,8 +32,16 @@ export default {
       this.$store.dispatch('changeLanguage', lang)
     }
     , ...mapActions([ 
-      'changeTheme'
+      'changeTheme',
+      'changeFontSize'
     ])
+    , setFontSize(fontSize) {
+      document.documentElement.style.fontSize = fontSize + "%"
+      this.changeFontSize(fontSize)
+    }
+  }
+  , mounted(){
+    this.setFontSize(100)
   }
 }
 </script>

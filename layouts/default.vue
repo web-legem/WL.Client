@@ -1,5 +1,5 @@
 <template>
-  <div :class=" { 'high-contrast': $store.state['high-contrast'] }">
+  <div :class=" { 'high-contrast': $store.state.highContrast }">
     <menu-component></menu-component>
     <nuxt/>
   </div>
