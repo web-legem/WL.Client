@@ -1,20 +1,24 @@
 
 export const state = () => ({
-  counter: 0,
-  'high-contrast': false
+  highContrast : false
+  , fontSize: 100
+  , fontSizes: [ 100, 150, 200 ]
 })
 
 export const mutations = {
-  increment(state) {
-    state.counter++
-  },
   changeTheme(state) {
-    state['high-contrast'] = !state['high-contrast']
+    state.highContrast = !state.highContrast
+  }
+  , changeFontSize(state, fontSize) {
+    state.fontSize = fontSize
   }
 }
 
 export const actions = {
   changeTheme({commit}) {
     commit('changeTheme')   
+  }
+  , changeFontSize({commit}, payload) {
+    commit('changeFontSize', payload)
   }
 }
