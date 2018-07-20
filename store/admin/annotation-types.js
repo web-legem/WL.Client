@@ -7,11 +7,11 @@ export const state = () => ({
 })
 
 export const getters = {
-  docTypes: (state) => state.list
+  annotationTypes: (state) => state.list
 }
 
 export const mutations = {
-  loading(state){
+  loading(state) {
     state.loading = true
     state.loaded = false
     state.list = []
@@ -34,7 +34,7 @@ export const mutations = {
 export const actions = {
   loadData({commit}) {
     commit('loading')
-    return this.$axios.get('/api/DocumentType')
+    return this.$axios.get('/api/AnnotationType')
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', 'Error'))
   }

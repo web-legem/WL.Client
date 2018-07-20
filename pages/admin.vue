@@ -13,7 +13,7 @@
             {{ $t("admin.entities.module-name") }}
         </nuxt-link>
 
-        <nuxt-child />
+        <nuxt-child></nuxt-child>
     </div>
 </template>
 

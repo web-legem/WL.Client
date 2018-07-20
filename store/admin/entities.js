@@ -7,7 +7,7 @@ export const state = () => ({
 })
 
 export const getters = {
-  docTypes: (state) => state.list
+  entities: (state) => state.list
 }
 
 export const mutations = {
@@ -17,7 +17,7 @@ export const mutations = {
     state.list = []
     state.error = null
   }
-  , loadingSuccess(state, payload) {
+  , loadingSuccess(state,payload) {
     state.loading = false
     state.loaded = true
     state.list = payload
@@ -34,7 +34,7 @@ export const mutations = {
 export const actions = {
   loadData({commit}) {
     commit('loading')
-    return this.$axios.get('/api/DocumentType')
+    return this.$axios.get('/api/Entity')
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', 'Error'))
   }
