@@ -1,5 +1,6 @@
 export default {
   'home': 'Home'
+  , 'changeTheme': 'Change Theme'
   
   , 'admin': {
     'module-name': 'Administration'
