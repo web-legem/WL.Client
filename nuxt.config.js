@@ -13,6 +13,10 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  css: [
+    '@/assets/colors.css'
+    , '@/assets/colors-hc.css'
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -50,10 +54,15 @@ module.exports = {
     }],
     '@nuxtjs/axios'
   ],
+  // axios: {
+  //   // proxyHeaders: false,
+  //   host: 'localhost'
+  //   , port: '54037'
+  //   , retry: {  retries: 2 }
+  // },
   axios: {
-    // proxyHeaders: false,
-    host: 'localhost',
-    port: '54037',
-    retry: {  retries: 2 }
-  },
+    host: '192.168.0.6'
+    , port: '54037'
+    , retry: { retries: 2 }
+  }
 }

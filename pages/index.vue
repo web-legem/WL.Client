@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div>
+    <div class="test">
       {{ $t("home") }}
     </div>
   </section>
@@ -9,3 +9,9 @@
 <script>
 export default {}
 </script>
+
+<style>
+.test {
+  color: var(--button-disabled);
+}
+</style>
