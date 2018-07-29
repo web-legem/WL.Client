@@ -14,8 +14,10 @@ module.exports = {
     ]
   },
   css: [
-    '@/assets/colors.css'
-    , '@/assets/colors-hc.css'
+    '@/assets/colors.css',
+    '@/assets/colors-hc.css',
+    '@/assets/iconos-legem1/styles.css',
+    '@/assets/iconos-legem2/style.css'
   ],
   /*
   ** Customize the progress bar color
@@ -28,7 +30,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -38,15 +40,15 @@ module.exports = {
         })
       }
     },
-  },  
+  },
   plugins: [
     '~/plugins/vee-validate.js'
   ],
   modules: [
-    [ 'nuxt-i18n', {  
-      locales: [ 
-        { code: 'en', iso: 'en-US', file: 'en.js'},
-        { code: 'es', iso: 'es-CO', file: 'es.js'}
+    ['nuxt-i18n', {
+      locales: [
+        { code: 'en', iso: 'en-US', file: 'en.js' },
+        { code: 'es', iso: 'es-CO', file: 'es.js' }
       ],
       defaultLocale: 'es',
       lazy: true,
