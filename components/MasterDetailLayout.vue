@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style>
+.master-detail-layout {
 
+}
 </style>

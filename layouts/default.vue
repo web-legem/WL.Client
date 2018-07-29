@@ -1,16 +1,24 @@
 <template>
-  <div :class=" { 'high-contrast': $store.state.highContrast }">
-    <menu-component></menu-component>
-    <nuxt/>
+<div :class="{'high-contrast': $store.state.highContrast }">
+  <wl-menu></wl-menu>
+  <div class="nuxt">
+    <nuxt />
   </div>
+</div>
 </template>
 
 <script>
-import MenuComponent from '@/components/menu'
+import WlMenu from '@/components/WlMenu.vue'
 
 export default {
   components: {
-    MenuComponent
+    WlMenu
   }
 }
 </script>
+
+<style>
+.nuxt {
+  padding-top: calc(25px + 4.5vh);
+}
+</style>

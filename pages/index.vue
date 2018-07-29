@@ -1,17 +1,16 @@
 <template>
-  <section class="container">
-    <div class="test">
-      {{ $t("home") }}
-    </div>
-  </section>
+  <div class="index">
+    {{ $t("home") }}
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+}
 </script>
 
 <style>
-.test {
+.index {
   color: var(--button-disabled);
 }
 </style>

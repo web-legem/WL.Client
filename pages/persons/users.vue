@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import MasterDetailLayout from '~/components/master-detail-layout.vue'
+import MasterDetailLayout from '~/components/MasterDetailLayout.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {

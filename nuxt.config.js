@@ -16,6 +16,7 @@ module.exports = {
   css: [
     '@/assets/colors.css'
     , '@/assets/colors-hc.css'
+    , '@/assets/base.css'
   ],
   /*
   ** Customize the progress bar color
