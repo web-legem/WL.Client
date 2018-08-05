@@ -1,10 +1,11 @@
 <template>
-<div :class="{'high-contrast': $store.state.highContrast }">
-  <wl-menu></wl-menu>
-  <div class="nuxt">
-    <nuxt />
+  <div :class="{'high-contrast': $store.state.highContrast }">
+    <wl-menu />
+
+    <div class="nuxt">
+      <nuxt />
+    </div>
   </div>
-</div>
 </template>
 
 <script>

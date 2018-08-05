@@ -1,25 +1,28 @@
 <template>
-<div>
-  <h1>{{ $t("admin.annotation-types.module-name") }}</h1>
   <div>
-    <nuxt-link :to="localePath({ name: 'admin-annotation-types-new' })">
-      New
-    </nuxt-link>
-  </div>
-
-  <master-detail-layout>
-    <li v-for="annotationType in annotationTypes" :key="annotationType.id">
-      <nuxt-link :to="localePath({ name: 'admin-annotation-types-id', 
-              params: { id: annotationType.id} })">
-        <div>{{ annotationType.name }}</div>
+    <h1>{{ $t("admin.annotation-types.module-name") }}</h1>
+    <div>
+      <nuxt-link :to="localePath({ name: 'admin-annotation-types-new' })">
+        New
       </nuxt-link>
-    </li>
-
-    <div slot="details">
-      <nuxt-child></nuxt-child>
     </div>
-  </master-detail-layout>
-</div>
+
+    <master-detail-layout>
+      <li 
+        v-for="annotationType in annotationTypes" 
+        :key="annotationType.id">
+        <nuxt-link 
+          :to="localePath({ name: 'admin-annotation-types-id', 
+                            params: { id: annotationType.id} })">
+          <div>{{ annotationType.name }}</div>
+        </nuxt-link>
+      </li>
+
+      <div slot="details">
+        <nuxt-child />
+      </div>
+    </master-detail-layout>
+  </div>
 </template>
 
 <script>

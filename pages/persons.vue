@@ -7,7 +7,7 @@
       {{ $t("persons.permissions.module-name") }}
     </nuxt-link>
 
-    <nuxt-child></nuxt-child>
+    <nuxt-child />
   </div>
 </template>
 

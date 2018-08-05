@@ -1,24 +1,26 @@
 <template>
-<div>
-  <h1>{{ $t("admin.doc-types.module-name") }}</h1>
   <div>
-    <nuxt-link :to="localePath({ name: 'admin-doc-types-new' })">New</nuxt-link> &nbsp;
-  </div>
-
-  <master-detail-layout>
-    <li v-for="documentType in documentTypes" v-bind:key="documentType.id">
-      <nuxt-link :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
-        <div class="algo">
-          {{documentType.name}}
-        </div>
-      </nuxt-link>
-    </li>
-
-    <div slot="details">
-      <nuxt-child></nuxt-child>
+    <h1>{{ $t("admin.doc-types.module-name") }}</h1>
+    <div>
+      <nuxt-link :to="localePath({ name: 'admin-doc-types-new' })">New</nuxt-link> &nbsp;
     </div>
-  </master-detail-layout>
-</div>
+
+    <master-detail-layout>
+      <li
+        v-for="documentType in documentTypes" 
+        :key="documentType.id">
+        <nuxt-link :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
+          <div class="algo">
+            {{ documentType.name }}
+          </div>
+        </nuxt-link>
+      </li>
+
+      <div slot="details">
+        <nuxt-child />
+      </div>
+    </master-detail-layout>
+  </div>
 </template>
 
 <script>

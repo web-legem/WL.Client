@@ -6,14 +6,16 @@
     </div>
 
     <master-detail-layout>
-      <li v-for="user in users" :key="user.id">
+      <li 
+        v-for="user in users" 
+        :key="user.id">
         <nuxt-link :to="localePath({ name: 'persons-users-id', params: { id: user.id} })">
           <div>{{ user.name }}</div>
         </nuxt-link>
       </li>
-      
+
       <div slot="details">
-        <nuxt-child></nuxt-child>
+        <nuxt-child />
       </div>
     </master-detail-layout>
   </div>
@@ -21,7 +23,10 @@
 
 <script>
 import MasterDetailLayout from '~/components/MasterDetailLayout.vue'
-import {mapGetters, mapActions} from 'vuex'
+import {
+  mapGetters
+  , mapActions
+} from 'vuex'
 
 export default {
   head() {
@@ -42,7 +47,10 @@ export default {
       loadData: 'loadData'
     })
   }
-  , fetch({store, params}) {
+  , fetch({
+    store
+    , params
+  }) {
     return store.dispatch('persons/users/loadData')
   }
 }

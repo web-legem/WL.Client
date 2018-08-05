@@ -1,22 +1,24 @@
 <template>
-   <div>
-       <h1>{{ $t('admin.entity-types.module-name') }}</h1>
-       <div>
-         <nuxt-link :to="localePath({ name: 'admin-entity-types-new' })">New</nuxt-link>
-       </div>
+  <div>
+    <h1>{{ $t('admin.entity-types.module-name') }}</h1>
+    <div>
+      <nuxt-link :to="localePath({ name: 'admin-entity-types-new' })">New</nuxt-link>
+    </div>
 
-       <master-detail-layout>
-         <li v-for="entityType in entityTypes" :key="entityType.id">
-           <nuxt-link :to="localePath({ name: 'admin-entity-types-id', params: {id: entityType.id} })">
-             <div>{{ entityType.name }}</div>
-           </nuxt-link>
-         </li>
-         
-         <div slot="details">
-           <nuxt-child></nuxt-child>
-         </div>
-       </master-detail-layout>
-   </div> 
+    <master-detail-layout>
+      <li
+        v-for="entityType in entityTypes"
+        :key="entityType.id">
+        <nuxt-link :to="localePath({ name: 'admin-entity-types-id', params: {id: entityType.id} })">
+          <div>{{ entityType.name }}</div>
+        </nuxt-link>
+      </li>
+      
+      <div slot="details">
+        <nuxt-child />
+      </div>
+    </master-detail-layout>
+  </div> 
 </template>
 
 <script>

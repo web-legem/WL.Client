@@ -6,14 +6,16 @@
     </div>
 
     <master-detail-layout>
-      <li v-for="user in users" :key="user.id">
+      <li
+        v-for="user in users"
+        :key="user.id">
         <nuxt-link :to="localePath({ name: 'persons-permissions-id', params: { id: user.id} })">
           <div>{{ user.name }}</div>
         </nuxt-link>
       </li>
       
       <div slot="details">
-        <nuxt-child></nuxt-child>
+        <nuxt-child />
       </div>
     </master-detail-layout>
   </div>
