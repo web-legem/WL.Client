@@ -18,7 +18,7 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss">
 .module-layout {
   margin: calc(20px + 1vmin);
   border-top: var(--border-test);
