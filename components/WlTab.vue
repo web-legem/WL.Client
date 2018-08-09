@@ -27,9 +27,9 @@ export default {
 <style>
 .tab {
   background-color: #fff;
-  padding: 15px 25px;
+  padding: .8em 1.6em;
   margin: 0;
-  border-top: 2px solid #eee;
+  border-top: 3px solid white;
   border-right: 1px solid #eee;
   border-left: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -41,23 +41,42 @@ export default {
   font-family: "Lato-Bold", Arial, Helvetica, sans-serif;
   font-size: .75rem;
   justify-content: center;
-  transition: ease-out .3s;
+  display: flex;
+  flex-direction: row;
+  min-width: 10em;
+  max-width: 12.5em;
+}
+
+.tab:first-child {
+  flex-grow: 1;
 }
 
 .tab:hover {
   background-color: rgba(0, 0, 0, .01);
-  box-shadow: inset 0 1px 0 0 #ccc, inset -1px 0 0 0 #ccc;
   color: #2dbf85;
+  border-top: 3px solid rgba(0, 0, 0, .01);
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  transition: ease-out .3s;
 }
 
-.tab.nuxt-link-exact-active {
+.tab.nuxt-link-active {
   color: #2dbf85;
-  border-top: solid #2dbf85;
-  border-top-width: 2px;
+  border-top: 3px solid #2dbf85;
   border-bottom: 1px solid #fff;
+  /* border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc; */
 }
 
 .ico {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  align-self: center;
+  margin: auto 8px;
+
+}
+
+.tab-name {
+  align-self: center;
+  text-align: start;
 }
 </style>

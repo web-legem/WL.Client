@@ -21,5 +21,6 @@ export default {
 <style>
 .nuxt {
   padding-top: calc(25px + 4.5vh);
+  height: calc(100vh - 25px - 4.5vh);
 }
 </style>
