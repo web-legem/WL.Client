@@ -10,7 +10,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {}
     ]
   },
   css: [
