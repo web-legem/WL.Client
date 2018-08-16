@@ -4,8 +4,7 @@
       v-for="documentType in documentTypes" 
       :key="documentType.id">
       <wl-list-item
-        :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})"
-        class="list-item-doc">
+        :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
         {{ documentType.name }}
       </wl-list-item>
     </li>

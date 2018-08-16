@@ -1,12 +1,14 @@
 <template>
   <div class="module-layout">
-    <nav class="tabs-container">
-      <slot name="tabs" />
-      <div class="space" />
-    </nav>
+    <div>
+      <nav class="tabs-container">
+        <slot name="tabs" />
+        <div class="space" />
+      </nav>
 
-    <div class="content">
-      <slot />
+      <div class="content">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -18,10 +20,15 @@ export default {
 
 <style lang="scss">
 .module-layout {
+  height: 100%;
+  padding-top: calc(25px + 4.5vh);
+  background: #e1e3e9;
+}
+.module-layout > div {
   margin: calc(20px + 1vmin);
   border: 1px solid #ccc;
   // box-shadow: 0 0 0 1px rgba($color: #000000, $alpha: 0.05), 0 1px 2px rgba($color: #000000, $alpha: 0.3);
-  height: 100%;
+  height: calc(100% - 25px - 4.5vh);
   display: flex;
   flex-direction: column;
 }
@@ -42,5 +49,6 @@ export default {
   flex-grow: 1;
   height: 100%;
   position: relative;
+  background: white;
 }
 </style>

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>Annotation Type to Edit</h1>
-  </div>
+  <h1>Search</h1>
 </template>
 
 <script>
