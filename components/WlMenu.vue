@@ -1,5 +1,8 @@
 <template>
   <div class="menu">
+
+    <wl-cinta-logo />
+
     <nav class="nav">
       <ul class="modules">
         <li 
@@ -18,40 +21,34 @@
           </nuxt-link>
         </li>
       </ul>
+
+      <button
+        class="accesibility"
+        @mouseenter="toggleA11yPanel"
+      >
+        <span class="ico ico-wheelchair" />
+      </button> 
+
+      <transition name="slide-fade-vertical">
+        <wl-a11y-controls
+          v-if="$store.state.showA11yPanel"
+        />
+      </transition>
     </nav>
-    <!-- <nuxt-link
-      :to="localePath({name: 'index'})">
-      Home
-    </nuxt-link>
-    &nbsp;
-    <nuxt-link :to="localePath({name: 'admin'})">
-      {{ $t('admin.module-name') }}
-    </nuxt-link>
-    &nbsp;
-    <nuxt-link :to="localePath({name: 'persons'})">
-      {{ $t('persons.module-name') }}
-    </nuxt-link>
-
-    <button @click="changeTheme()">{{ $t("changeTheme") }}</button>
-
-    <button
-      v-for="(size, index) in $store.state.fontSizes"
-      :key="index"
-      @click="setFontSize(size)">
-      {{ size }}%
-    </button>
-    <div>
-      <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
-      <nuxt-link :to="switchLocalePath('es')">Español</nuxt-link>
-    </div> -->
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex'
+import WlCintaLogo from '~/components/WlCintaLogo.vue'
+import WlA11yControls from '~/components/WlA11yControls.vue'
 
 export default {
-  data() {
+  components: {
+    WlCintaLogo
+    , WlA11yControls
+  }
+  , data() {
     return {
       menuItems: [
         {
@@ -61,38 +58,30 @@ export default {
           , show: 'true'
         }
         , {
-          label: "Busqueda"
-          , icon: "ico-search"
-          , link: "search"
-          , show: "true"
+          label: 'Busqueda'
+          , icon: 'ico-search'
+          , link: 'search'
+          , show: 'true'
         }
         , {
-          label: "Inicio"
-          , icon: "ico-home"
-          , link: "index"
-          , show: "true"
+          label: 'Inicio'
+          , icon: 'ico-home'
+          , link: 'index'
+          , show: 'true'
         }
         , {
-          label: "Ingresar"
-          , icon: "ico-sign-in"
-          , link: "login"
-          , show: "!vm.session.loggeado"
+          label: 'Ingresar'
+          , icon: 'ico-sign-in'
+          , link: 'login'
+          , show: '!vm.session.loggeado'
         }
       ]
     };
   }
-  , mounted() {
-    this.setFontSize(100);
-  }
   , methods: {
-    changeLanguage(lang) {
-      this.$store.dispatch("changeLanguage", lang);
-    },
-    ...mapActions(["changeTheme", "changeFontSize"]),
-    setFontSize(fontSize) {
-      document.documentElement.style.fontSize = fontSize + "%";
-      this.changeFontSize(fontSize);
-    }
+    ...mapActions([
+      'toggleA11yPanel'
+    ])
   }
 };
 </script>
@@ -133,7 +122,7 @@ ul.modules > li {
   display: flex;
   height: inherit;
   font-family: "Lato", sans-serif;
-  font-size: medium;
+  font-size: 1em;
   color: #fff;
   text-decoration: none;
   align-items: center;
@@ -145,4 +134,31 @@ ul.modules > li {
   margin: 0;
 }
 
+.module:focus,
+.module:hover {
+  border-top: 3px solid rgba(0, 0, 0, 0);
+  border-bottom: 3px solid white;
+}
+
+button.accesibility {
+  width: var(--header-height);
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+}
+
+button:focus,
+button:hover {
+  background: #23948a;
+}
+
+button .ico-wheelchair {
+  width: var(--header-height);
+  height: var(--header-height);
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 16px;
+  position: relative;
+  cursor: pointer;
+}
 </style>

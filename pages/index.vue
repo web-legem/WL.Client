@@ -27,7 +27,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -93,7 +92,7 @@ export default {}
 }
 
 .mini_search input {
-  font-size: x-large;
+  font-size: 2em;
   padding: 17px;
   border: none;
   color: #444;
@@ -134,23 +133,23 @@ export default {}
 }
 
 @media only screen and (max-width : 320px) {/* < 320*/
-    .contenedor_mini_search{
-          width:95%;
-      } 
+  .contenedor_mini_search{
+    width:95%;
+  } 
 }
 
 @media only screen and (min-width : 320px) {/* > 320*/
-      .contenedor_mini_search{
-          width:90%;
-      } 
+  .contenedor_mini_search{
+    width:90%;
+  } 
 }
 
 @media only screen and (min-width : 480px) {
-    .contenedor_mini_search{width:60%;}
+  .contenedor_mini_search{width:60%;}
 }
 
 @media only screen and (min-width : 768px) {
-     .contenedor_mini_search{width:50%;}
+  .contenedor_mini_search{width:50%;}
 }
 
 .contenedor_simbolos {
@@ -166,40 +165,19 @@ export default {}
   justify-content: space-around;
 }
 
-/* Custom, iPhone Retina */ 
 @media only screen and (max-width : 320px) {/* < 320*/
+  .contenedor_simbolos > div  > div:first-child,
+  .contenedor_simbolos > div  > div:last-child
+  {display:none;}
 
-    .contenedor_simbolos > div  > div:first-child,
-    .contenedor_simbolos > div  > div:last-child
-    {display:none;}
-
-    .contenedor_simbolos div div img{height:70px;}
-    .site-name {font-size:70px;}
-    .logo-wl1 img{display:none;}
-    .logo-wl1 p{margin-left:10px;}
+  .contenedor_simbolos div div img{height:70px;}
+  .site-name {font-size:5em;}
+  .logo-wl1 img{display:none;}
+  .logo-wl1 p{margin-left:10px;}
 }
 
 @media only screen and (min-width : 320px) {/* > 320*/
-    
-    .contenedor_simbolos div div img{height:70px;}
-    .site-name {font-size:70px;}
-
-}
-
-/* Extra Small Devices, Phones */ 
-@media only screen and (min-width : 480px) {
-    .site-name {font-size:100px;}
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
+  .contenedor_simbolos div div img{height:70px;}
+  .site-name {font-size:5em;}
 }
 </style>

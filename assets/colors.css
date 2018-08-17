@@ -1,4 +1,4 @@
-/* html {
-  --button-disabled: rgba(255, 0, 0, 1);
-} */
+html {
+  --button-disabled: lightblue;
+}
 

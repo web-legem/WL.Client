@@ -49,8 +49,8 @@ module.exports = {
   modules: [
     ['nuxt-i18n', {
       locales: [
-        { code: 'en', iso: 'en-US', file: 'en.js' },
-        { code: 'es', iso: 'es-CO', file: 'es.js' }
+        { code: 'es', name: 'Español', iso: 'es-CO', file: 'es.js' }
+        , { code: 'en', name: 'English', iso: 'en-US', file: 'en.js' }
       ],
       defaultLocale: 'es',
       lazy: true,
