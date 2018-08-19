@@ -1,5 +1,5 @@
 <template>
-  <master-detail-layout :has-detail="false">
+  <wl-master-detail-layout :has-detail="false">
     <li
       v-for="documentType in documentTypes" 
       :key="documentType.id">
@@ -12,11 +12,11 @@
     <template slot="details">
       <nuxt-child />
     </template>
-  </master-detail-layout>
+  </wl-master-detail-layout>
 </template>
 
 <script>
-import MasterDetailLayout from '~/components/MasterDetailLayout.vue'
+import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
 import {
   mapActions
@@ -30,7 +30,7 @@ export default {
     }
   }
   , components: {
-    MasterDetailLayout
+    WlMasterDetailLayout
     , WlListItem
   }
   , data() {

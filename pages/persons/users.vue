@@ -1,5 +1,5 @@
 <template>
-  <master-detail-layout>
+  <wl-master-detail-layout>
     <li 
       v-for="user in users" 
       :key="user.id">
@@ -11,11 +11,11 @@
     <div slot="details">
       <nuxt-child />
     </div>
-  </master-detail-layout>
+  </wl-master-detail-layout>
 </template>
 
 <script>
-import MasterDetailLayout from '~/components/MasterDetailLayout.vue'
+import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
 import {
   mapGetters
@@ -29,7 +29,7 @@ export default {
     }
   }
   , components: {
-    MasterDetailLayout
+    WlMasterDetailLayout
     , WlListItem
   }
   , data() {

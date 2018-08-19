@@ -1,5 +1,5 @@
 <template>
-  <module-layout>
+  <wl-module-layout>
     <template slot="tabs">
       <wl-tab
         :to="localePath({ name: 'persons-users' })"
@@ -16,16 +16,16 @@
 
     <nuxt-child />
     
-  </module-layout>
+  </wl-module-layout>
 </template>
 
 <script>
-import ModuleLayout from "~/components/ModuleLayout.vue";
+import WlModuleLayout from "~/components/WlModuleLayout.vue";
 import WlTab from "~/components/WlTab.vue";
 
 export default {
   components: {
-    ModuleLayout,
+    WlModuleLayout,
     WlTab
   }
 };
