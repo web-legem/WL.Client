@@ -5,13 +5,13 @@ export default {
   , 'admin': {
     'module-name': 'Administración'
     , 'doc-types': {
-      'module-name': 'Tipos Documento'
+      'module-name': 'Tipos de Documento'
     }
     , 'annotation-types': {
-      'module-name': 'Tipos Anotaciones'
+      'module-name': 'Tipos de Anotación'
     }
     , 'entity-types': {
-      'module-name': 'Tipos Entidades'
+      'module-name': 'Tipos de Entidades'
     }
     , 'entities': {
       'module-name': 'Entidades'

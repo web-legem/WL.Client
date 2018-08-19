@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Annotation Type to Create</h1>
+    <h1>Annotation Type to Edit</h1>
   </div>
 </template>
 

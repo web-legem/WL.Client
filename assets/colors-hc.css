@@ -1,4 +1,5 @@
 .high-contrast {
+<<<<<<< HEAD
   --button-disabled: rgba(0,255,0, 1);
   --Anegro-noche:rgba(0,0,0,0.59);
   --Anegro-piso:rgba(0,0,0,.08);
@@ -93,3 +94,7 @@
   --Aamarillo:rgb(253, 191, 67);
   
 }
+=======
+  --button-disabled: blue;
+}
+>>>>>>> 3c69907484ac9bf5b965897137b31738bfd25fdd

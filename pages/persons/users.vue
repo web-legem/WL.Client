@@ -1,27 +1,26 @@
 <template>
-  <div>
-    <h1>{{ $t( "persons.users.module-name" ) }}</h1>
-    <div>
-      <nuxt-link :to="localePath({ name: 'persons-users-new' })">New</nuxt-link>
-    </div>
+  <master-detail-layout>
+    <li 
+      v-for="user in users" 
+      :key="user.id">
+      <wl-list-item :to="localePath({ name: 'persons-users-id', params: { id: user.id} })">
+        {{ user.name }}
+      </wl-list-item>
+    </li>
 
-    <master-detail-layout>
-      <li v-for="user in users" :key="user.id">
-        <nuxt-link :to="localePath({ name: 'persons-users-id', params: { id: user.id} })">
-          <div>{{ user.name }}</div>
-        </nuxt-link>
-      </li>
-      
-      <div slot="details">
-        <nuxt-child></nuxt-child>
-      </div>
-    </master-detail-layout>
-  </div>
+    <div slot="details">
+      <nuxt-child />
+    </div>
+  </master-detail-layout>
 </template>
 
 <script>
-import MasterDetailLayout from '~/components/master-detail-layout.vue'
-import {mapGetters, mapActions} from 'vuex'
+import MasterDetailLayout from '~/components/MasterDetailLayout.vue'
+import WlListItem from '~/components/WlListItem.vue'
+import {
+  mapGetters
+  , mapActions
+} from 'vuex'
 
 export default {
   head() {
@@ -31,6 +30,17 @@ export default {
   }
   , components: {
     MasterDetailLayout
+    , WlListItem
+  }
+  , data() {
+    return {
+      users: [ 
+        {id: 1, name: 'Mario Flórez'}
+        , {id: 2, name: 'Felipe Delgado'}
+        , {id: 3, name: 'Homero Simpson'}
+        , {id: 4, name: 'Bart Simpson'}
+      ]
+    }
   }
   , computed: {
     ...mapGetters('persons/users', {
@@ -42,8 +52,11 @@ export default {
       loadData: 'loadData'
     })
   }
-  , fetch({store, params}) {
-    return store.dispatch('persons/users/loadData')
-  }
+  // , fetch({
+  //   store
+  //   , params
+  // }) {
+  //   return store.dispatch('persons/users/loadData')
+  // }
 }
 </script>

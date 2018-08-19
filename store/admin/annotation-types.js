@@ -8,6 +8,7 @@ export const state = () => ({
 
 export const getters = {
   annotationTypes: (state) => state.list
+  , selected: (state) => state.selected
 }
 
 export const mutations = {

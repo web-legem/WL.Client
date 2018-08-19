@@ -1,4 +1,5 @@
 html {
+<<<<<<< HEAD
   --button-disabled: rgba(255, 0, 0, 1);
   --fondo-tapiz-contenido:#fff;
   --negro-puro:rgba(0,0,0,.01);
@@ -103,4 +104,8 @@ html {
   --naranja:orangered;
   }
 
+=======
+  --button-disabled: lightblue;
+}
+>>>>>>> 3c69907484ac9bf5b965897137b31738bfd25fdd
 
