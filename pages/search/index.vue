@@ -1,13 +1,36 @@
 <template>
-  <h1>Search</h1>
+  <div class="search">
+    <wl-master-detail-layout>
+      <template 
+        slot="master"
+      >
+        Controles Busqueda Avanzada
+      </template>
+
+      <template
+        slot="details"
+      >
+        Resultado Busqueda
+      </template>
+    </wl-master-detail-layout>
+  </div>
 </template>
 
 <script>
-export default {
+import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 
+export default {
+  components: {
+    WlMasterDetailLayout
+  }
 }
 </script>
 
 <style>
-
+.search {
+  width: 100%;
+  padding-top: calc(25px + 4.5vh);
+  height: calc(95.5vh - 25px);
+  position: relative;
+}
 </style>

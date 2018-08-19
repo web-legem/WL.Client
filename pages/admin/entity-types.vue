@@ -1,12 +1,14 @@
 <template>
   <wl-master-detail-layout :has-detail="false">
-    <li
-      v-for="entityType in entityTypes"
-      :key="entityType.id">
-      <wl-list-item :to="localePath({ name: 'admin-entity-types-id', params: {id: entityType.id} })">
-        {{ entityType.name }}
-      </wl-list-item>
-    </li>
+    <wl-filtered-list slot="master">
+      <li
+        v-for="entityType in entityTypes"
+        :key="entityType.id">
+        <wl-list-item :to="localePath({ name: 'admin-entity-types-id', params: {id: entityType.id} })">
+          {{ entityType.name }}
+        </wl-list-item>
+      </li>
+    </wl-filtered-list>
     
     <div slot="details">
       <nuxt-child />
@@ -17,6 +19,7 @@
 <script>
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
+import WlFilteredList from '~/components/WlFilteredList.vue'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
@@ -28,6 +31,7 @@ export default {
   , components: {
     WlMasterDetailLayout
     , WlListItem
+    , WlFilteredList
   }
   , data() {
     return {
