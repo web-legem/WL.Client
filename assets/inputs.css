@@ -157,13 +157,8 @@
 /*menesajes de validacion*/
 .msj-error {
     color: orangered;
-    font-family: "OpenSans";
-    font-size: .8rem;
+    font-family: "Lato";
+    font-size: .7rem;
     line-height: 4px;
     margin-bottom: 4px;
-  }
-  
-  .msj-error.select {
-    margin-top: 8px;
-    margin-bottom: 8px;
   }
