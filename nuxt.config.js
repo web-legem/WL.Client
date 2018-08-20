@@ -20,6 +20,7 @@ module.exports = {
     , '@/assets/base.css'
     , '@/assets/iconos-legem1/styles.css' 
     , '@/assets/iconos-legem2/style.css'
+    , '@/assets/inputs.css'
   ],
   /*
   ** Customize the progress bar color

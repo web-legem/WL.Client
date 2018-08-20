@@ -1,30 +1,53 @@
 <template>
-<div>
-    <div class="controles_box_right">
-        <wl-button :ico="'ico-pencil'" v-show="showMod == true" :disable="disableBtn"
-        @click.native="edit()">editar</wl-button>
-        <wl-button :ico="'ico-trash'" v-show="showDel == true" :disable="disableBtn"
-         @click.native="remove()">eliminar</wl-button>
-        <wl-button :ico="'ico-plus'" v-show="showNew == true" :disable="disableBtn"
-         @click.native="create()">nuevo</wl-button>
+  <div>
+    <div class="controles_box_right">        
+      <wl-button 
+        v-show="showMod == true" 
+        :ico="'ico-pencil'"         
+        :disable="disableBtn"
+        @click.native="edit()">editar
+      </wl-button>
+      
+      <wl-button 
+        v-show="showDel == true" 
+        :ico="'ico-trash'"         
+        :disable="disableBtn"
+        @click.native="remove()">eliminar
+      </wl-button>
+      
+      <wl-button 
+        v-show="showNew == true" 
+        :ico="'ico-plus'"         
+        :disable="disableBtn"
+        @click.native="create()">nuevo
+      </wl-button>
     </div>
 
-    este es el obj : {{objSelect != null ? objSelect.name: "aun esta null"}}
+    este es el obj : {{ objSelect != null ? objSelect.name: "aun esta null" }}
     <br>
-    este es el resultado: {{showMod}}
+    este es el resultado: {{ showMod }}
     <br>
-    este es el obj : {{curObject != null ? curObject.name: "aun esta null el nuevo objecto"}}
+    este es el obj : {{ curObject != null ? curObject.name: "aun esta null el nuevo objecto" }}
 
 
-    <slot name="wl-form"></slot>
+    <slot name="wl-form"/>
 
     <div class="controles_box_right down">
-        <wl-button :ico="'ico-floppy-o'" v-show ="isEdit" :disable="disableBtn"
-        @click.native="ok()">Aceptar</wl-button>
-        <wl-button :ico="'ico-times'" v-show="isEdit" :disable="disableBtn"
-        @click.native="cancel()">Cancelar</wl-button>
+      <wl-button 
+        v-show ="isEdit"           
+        :ico="'ico-floppy-o'" 
+        :disable="disableBtn"
+        @click.native="ok()">Aceptar
+      </wl-button>
+      
+      <wl-button 
+        v-show="isEdit"
+        :ico="'ico-times'"  
+        :disable="disableBtn"
+        @click.native="cancel()">Cancelar
+      </wl-button>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -34,7 +57,17 @@ export default {
   components: {
     WlButton
   },
-
+  props: {
+    objSelect: {
+      type: Object,
+      default: function() {
+        return {
+          id: -1,
+          name: "elemento"
+        };
+      }
+    }
+  },
   data() {
     return {
       isNew: false,
@@ -48,51 +81,6 @@ export default {
     this.curObject = this.objSelect;
   },
 
-  props: {
-    objSelect: {
-      type: Object,
-      default: function() {
-        return {
-          id: -1,
-          name: "elemento"
-        };
-      }
-    }
-  },
-  computed: {
-    showMod() {
-      return this.objSelect != null && this.objSelect.id && !this.isEdit;
-    },
-    showDel() {
-      return (
-        this.objSelect != null &&
-        this.objSelect.id &&
-        (!this.isEdit || !this.isNew)
-      );
-    },
-    showNew() {
-      return !this.isEdit;
-    },
-    disableBtn() {
-      return this.isProcess || this.hasError;
-    }
-  },
-  methods: {
-    edit() {
-      this.isEdit = true;
-    },
-    remove() {},
-    create() {
-      this.isNew = true;
-    },
-    ok() {
-      this.isNew = true;
-    },
-    cancel() {
-      this.isEdit = false;
-      this.objSelect = null;
-    }
-  }
 };
 </script>
 

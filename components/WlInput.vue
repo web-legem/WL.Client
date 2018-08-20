@@ -1,35 +1,46 @@
 <template>
-<div>
-    <label class="texto_labels" :for="name">{{title}}</label>
+  <div>
+    <label 
+      :for="name" 
+      class="texto_labels" >{{ title }}
+    </label>
 
-    <input class="a_input" :disabled="disable == true" :type="'text'" :name="name" :id="id" :placeholder="placeholder" :maxlength="max" />
+    <input 
+      :disabled="disable == true"             
+      :type="'text'" 
+      :name="name" 
+      :id="id" 
+      :placeholder="placeholder" 
+      :maxlength="max"
+      class="a_input"><input>
 
-    <div v-show="error" class="msj-error">
-        <label>{{errorMsg}}</label>
+    <div 
+      v-show="error" 
+      class="msj-error">
+      <label>{{ errorMsg }}</label>
     </div>
-</div>
+  </div>
 <!-- v-validate="(isRequired?'required|email':'')" -->
 </template>
 
 <script>
 export default {
   props: {
-    title: String,
-    name: String,
-    placeholder: String,
-    inverso: Boolean,
-    id: String,
-    isRequired: Boolean,
-    type: String,
-    max: Number,
-    disable: false,
-    error: false,
-    errorMsg: String
+    title: { type: String, default: "" },
+    name: { type: String, default: "" },
+    placeholder: { type: String, default: "" },
+    inverso: { type: Boolean, default: false },
+    id: { type: String, default: "" },
+    isRequired: { type: Boolean, default: false },
+    type: { type: String, default: "" },
+    max: { type: Number, required: true },
+    disable: { type: Boolean, default: false },
+    error: { type: Boolean, default: false },
+    errorMsg: { type: String, default: "" }
   },
   computed: {}
 };
 </script>
 
 <style>
-
 </style>
