@@ -1,12 +1,14 @@
 <template>
   <wl-master-detail-layout>
-    <li 
-      v-for="user in users" 
-      :key="user.id">
-      <wl-list-item :to="localePath({ name: 'persons-users-id', params: { id: user.id} })">
-        {{ user.name }}
-      </wl-list-item>
-    </li>
+    <wl-filtered-list slot="master">
+      <li 
+        v-for="user in users" 
+        :key="user.id">
+        <wl-list-item :to="localePath({ name: 'persons-users-id', params: { id: user.id} })">
+          {{ user.name }}
+        </wl-list-item>
+      </li>
+    </wl-filtered-list>
 
     <div slot="details">
       <nuxt-child />
@@ -17,6 +19,7 @@
 <script>
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
+import WlFilteredList from '~/components/WlFilteredList.vue'
 import {
   mapGetters
   , mapActions
@@ -31,6 +34,7 @@ export default {
   , components: {
     WlMasterDetailLayout
     , WlListItem
+    , WlFilteredList
   }
   , data() {
     return {

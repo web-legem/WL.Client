@@ -25,10 +25,10 @@ export default {
   background: #e1e3e9;
 }
 .module-layout > div {
-  margin: calc(20px + 1vmin);
+  // margin: calc(20px + 1vmin);
   border: 1px solid #ccc;
   // box-shadow: 0 0 0 1px rgba($color: #000000, $alpha: 0.05), 0 1px 2px rgba($color: #000000, $alpha: 0.3);
-  height: calc(100% - 25px - 4.5vh);
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

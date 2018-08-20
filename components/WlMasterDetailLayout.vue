@@ -1,17 +1,14 @@
 <template>
   <div class="master-detail-layout">
-    <nav
+    <div
       :class="[hideList]"
-      class="items-list">
-      <div>buscador</div>
-      <ul>
-        <slot />
-      </ul>
-    </nav>
+      class="master">
+      <slot name="master"/>
+    </div>
 
     <div
       :class="[hideDetails]"
-      class="form">
+      class="detail">
       <slot
         name="details" />
     </div>
@@ -46,7 +43,7 @@ export default {
   height: 100%;
 }
 
-.items-list {
+.master {
   width: 33%;
   display: flex;
   flex-direction: column;
@@ -61,13 +58,13 @@ export default {
 }
 
 @media screen and(max-width: 992px) {
-  .items-list.hide
-  , .form.hide {
+  .master.hide
+  , .detail.hide {
     display: none;
   }
 }
 
-.form {
+.detail {
   width: 66%;
   display: flex;
   flex-direction: column;
@@ -82,12 +79,5 @@ export default {
   @media screen and (min-width: 992px) {
     border-left: 1px solid #ccc;
   }
-}
-
-.items-list ul {
-  list-style-type: none;
-  padding: 0 0;
-  flex-grow: 1;
-  overflow-y: auto;
 }
 </style>

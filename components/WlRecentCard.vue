@@ -58,7 +58,7 @@ export default {
 
 .card_contents {
   color: #222;
-  font-size: small;
+  font-size: .8rem;
   font-family: 'OpenSans';
   text-align: justify;
 }
@@ -66,7 +66,7 @@ export default {
 .card_footer {
   padding-top: 5px;
   color: #666;
-  font-size: small;
+  font-size: .8rem;
   font-family: 'OpenSans';
   text-align: justify;
 }
@@ -100,7 +100,7 @@ export default {
   color: #0f745b;
   text-decoration: none;
   cursor: pointer;
-  font-size: small;
+  font-size: .8rem;
   font-family: "Lato";
   position: relative;
   padding-left: 5px;

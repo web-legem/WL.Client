@@ -158,7 +158,7 @@
 .msj-error {
     color: orangered;
     font-family: "OpenSans";
-    font-size: small;
+    font-size: .8rem;
     line-height: 4px;
     margin-bottom: 4px;
   }

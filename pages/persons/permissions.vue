@@ -1,12 +1,14 @@
 <template>
   <wl-master-detail-layout>
-    <li
-      v-for="permission in permissions"
-      :key="permission.id">
-      <wl-list-item :to="localePath({ name: 'persons-permissions-id', params: { id: permission.id} })">
-        {{ permission.name }}
-      </wl-list-item>
-    </li>
+    <wl-filtered-list slot="master">
+      <li
+        v-for="permission in permissions"
+        :key="permission.id">
+        <wl-list-item :to="localePath({ name: 'persons-permissions-id', params: { id: permission.id} })">
+          {{ permission.name }}
+        </wl-list-item>
+      </li>
+    </wl-filtered-list>
     
     <div slot="details">
       <nuxt-child />
@@ -17,6 +19,7 @@
 <script>
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
+import WlFilteredList from '~/components/WlFilteredList.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
@@ -28,6 +31,7 @@ export default {
   , components: {
     WlMasterDetailLayout
     , WlListItem
+    , WlFilteredList
   }
   , data() {
     return {
