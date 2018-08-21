@@ -39,7 +39,7 @@ export default {
     id: { type: String, default: "" },
     isRequired: { type: Boolean, default: false },
     disable: { type: Boolean, default: false },
-    error: { type: Boolean, default: false },
+    error: { type: Boolean, default: false, required: false },
     errorMsg: { type: String, default: "" },
     emptyMsg: { type: String, default: "Seleccione una Opción" }
   },

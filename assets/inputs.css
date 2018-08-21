@@ -7,7 +7,6 @@
     display: flex;
     height: 35px;
     margin-bottom: 8px;
-    margin-top: 2px;
     padding: 0
 }
 
@@ -155,10 +154,29 @@
 /***************************************************************************************************************/
 
 /*menesajes de validacion*/
+
 .msj-error {
     color: orangered;
     font-family: "Lato";
     font-size: .7rem;
     line-height: 4px;
     margin-bottom: 4px;
-  }
+}
+
+/*TEXTO PARA LOS LABELS*/
+
+.texto_labels {
+    display: block;
+    color: #434e58;
+    font-size: 1em;
+    font-family: 'Lato';
+    margin-bottom: 2px;
+}
+
+.texto_labels.green {
+    color: #0f745b;
+}
+
+.texto_labels.bold {
+    font-family: "Lato-Bold";
+}
