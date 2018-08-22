@@ -40,7 +40,7 @@ export default {
 
 .btn-normal {
   position: relative;
-  background-color: #0f745b;
+  background-color:var(--btn);
   font-family: "Century Gothic";
   font-size: 0.7em;
   font-weight: 600;
