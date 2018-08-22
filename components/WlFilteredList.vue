@@ -40,7 +40,6 @@ export default {
 
 .filtered-list ul {
   list-style-type: none;
-  overflow-y: auto;
 }
 
 .filter {
@@ -58,6 +57,7 @@ export default {
 .link-list {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   border: 1px solid #ccc;
   height: calc(100% - 43px);
 }
