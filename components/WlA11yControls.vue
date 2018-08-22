@@ -76,6 +76,7 @@ export default {
   background: rgba(0, 0, 0, 0.75);
   color: white;
   padding: 1em;
+  overflow: hidden;
 }
 
 .btn-a11y {
