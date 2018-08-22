@@ -1,19 +1,22 @@
 <template>
-<div>
-    <button :class="[btnStyle,btnInverso]" :disabled="disable == true" :title="title">
-        <span :class="[ico,size,icoInverso]"></span> <slot></slot>
+  <div>
+    <button 
+      :disabled="disable == true" 
+      :class="[btnStyle,btnInverso]" 
+      :title="title">
+      <span :class="[ico,size,icoInverso]"/> <slot/>
     </button>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
-    title: String,
-    ico: String,
-    onlyIcon: Boolean,
-    disable: false,
-    inverso: Boolean
+    title: { type: String, default: "" },
+    ico: { type: String, default: "" },
+    onlyIcon: { type: Boolean, default: false },
+    disable: { type: Boolean, default: false },
+    inverso: { type: Boolean, default: false },
   },
   computed: {
     btnInverso() {
@@ -25,7 +28,7 @@ export default {
     btnStyle() {
       return this.onlyIcon ? "btn-only-ico" : "btn-normal";
     },
-    size(){
+    size() {
       return this.onlyIcon ? "" : "tamano_botones_1";
     }
   }

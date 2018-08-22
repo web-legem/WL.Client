@@ -1,13 +1,15 @@
 <template>
   <wl-master-detail-layout :has-detail="false">
-    <li
-      v-for="documentType in documentTypes" 
-      :key="documentType.id">
-      <wl-list-item
-        :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
-        {{ documentType.name }}
-      </wl-list-item>
-    </li>
+    <wl-filtered-list slot="master">
+      <li
+        v-for="documentType in documentTypes" 
+        :key="documentType.id">
+        <wl-list-item
+          :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
+          {{ documentType.name }}
+        </wl-list-item>
+      </li>
+    </wl-filtered-list>
 
     <template slot="details">
       <nuxt-child />
@@ -18,6 +20,7 @@
 <script>
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
+import WlFilteredList from '~/components/WlFilteredList.vue'
 import {
   mapActions
   , mapGetters
@@ -32,6 +35,7 @@ export default {
   , components: {
     WlMasterDetailLayout
     , WlListItem
+    , WlFilteredList
   }
   , data() {
     return {

@@ -1,14 +1,16 @@
 <template>
   <wl-master-detail-layout :has-detail="false">
-    <li 
-      v-for="annotationType in annotationTypes" 
-      :key="annotationType.id">
-      <wl-list-item
-        :to="localePath({ name: 'admin-annotation-types-id', 
-                          params: { id: annotationType.id} })">
-        {{ annotationType.name }}
-      </wl-list-item>
-    </li>
+    <wl-filtered-list slot="master">
+      <li 
+        v-for="annotationType in annotationTypes" 
+        :key="annotationType.id">
+        <wl-list-item
+          :to="localePath({ name: 'admin-annotation-types-id', 
+                            params: { id: annotationType.id} })">
+          {{ annotationType.name }}
+        </wl-list-item>
+      </li>
+    </wl-filtered-list>
 
     <div slot="details">
       <nuxt-child />
@@ -19,6 +21,7 @@
 <script>
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
+import WlFilteredList from '~/components/WlFilteredList.vue'
 import {
   mapGetters
   , mapActions
@@ -33,6 +36,7 @@ export default {
   , components: {
     WlMasterDetailLayout
     , WlListItem
+    , WlFilteredList
   }
   , data() {
     return {
