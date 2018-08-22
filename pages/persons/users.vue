@@ -1,13 +1,13 @@
 <template>
   <wl-master-detail-layout>
     <wl-filtered-list slot="master">
-      <li 
+      <wl-list-item 
         v-for="user in users" 
-        :key="user.id">
-        <wl-list-item :to="localePath({ name: 'persons-users-id', params: { id: user.id} })">
-          {{ user.name }}
-        </wl-list-item>
-      </li>
+        :key="user.id"
+        :to="localePath({ name: 'persons-users-id', params: { id: user.id} })"
+      >
+        {{ user.name }}
+      </wl-list-item>
     </wl-filtered-list>
 
     <div slot="details">

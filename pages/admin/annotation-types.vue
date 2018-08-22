@@ -1,15 +1,13 @@
 <template>
   <wl-master-detail-layout :has-detail="false">
     <wl-filtered-list slot="master">
-      <li 
+      <wl-list-item
         v-for="annotationType in annotationTypes" 
-        :key="annotationType.id">
-        <wl-list-item
-          :to="localePath({ name: 'admin-annotation-types-id', 
-                            params: { id: annotationType.id} })">
-          {{ annotationType.name }}
-        </wl-list-item>
-      </li>
+        :key="annotationType.id"
+        :to="localePath({ name: 'admin-annotation-types-id', 
+                          params: { id: annotationType.id} })">
+        {{ annotationType.name }}
+      </wl-list-item>
     </wl-filtered-list>
 
     <div slot="details">

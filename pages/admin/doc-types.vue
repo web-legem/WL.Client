@@ -1,14 +1,12 @@
 <template>
   <wl-master-detail-layout :has-detail="false">
     <wl-filtered-list slot="master">
-      <li
+      <wl-list-item
         v-for="documentType in documentTypes" 
-        :key="documentType.id">
-        <wl-list-item
-          :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
-          {{ documentType.name }}
-        </wl-list-item>
-      </li>
+        :key="documentType.id"
+        :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
+        {{ documentType.name }}
+      </wl-list-item>
     </wl-filtered-list>
 
     <template slot="details">
