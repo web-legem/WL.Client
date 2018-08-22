@@ -1,6 +1,15 @@
 <template>
   <nav class="filtered-list">
-    <div>buscador</div>
+    <label class="texto_labels">buscador</label>
+    <div class="filter-add">
+      <wl-input-filter />
+      <wl-button 
+        :disable="disable"
+        :ico="'ico-plus'" 
+        :only-icon="true" 
+        :title="'Nuevo'"
+        class="btn-filter-add"/>
+    </div>
     <ul>
       <slot />
     </ul>
@@ -8,9 +17,15 @@
 </template>
 
 <script>
-export default {
+import WlInputFilter from "~/components/WlInputFilter.vue";
+import WlButton from "~/components/WlButton.vue";
 
-}
+export default {
+  components: {
+    WlInputFilter,
+    WlButton
+  }
+};
 </script>
 
 <style>
@@ -26,4 +41,13 @@ export default {
   flex-grow: 1;
   overflow-y: auto;
 }
+
+.filter-add {
+  display: flex;
+}
+
+.btn-filter-add{
+  margin-left: 4px;
+}
+
 </style>

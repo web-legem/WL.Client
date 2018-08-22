@@ -12,7 +12,7 @@
       :id="id" 
       :placeholder="placeholder" 
       :maxlength="max"
-      class="a_input"><input>
+      class="a_input">
 
     <div 
       v-show="error" 

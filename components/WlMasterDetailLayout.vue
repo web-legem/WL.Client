@@ -68,6 +68,7 @@ export default {
   width: 66%;
   display: flex;
   flex-direction: column;
+  padding: calc(1em + .5vw);
 
   @media screen and(max-width: 992px) {
     width: 100%;
