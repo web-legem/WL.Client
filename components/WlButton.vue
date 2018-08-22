@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  
   props: {
     title: { type: String, default: "" },
     ico: { type: String, default: "" },
