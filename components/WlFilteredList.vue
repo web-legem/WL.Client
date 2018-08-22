@@ -1,18 +1,21 @@
 <template>
   <nav class="filtered-list">
-    <label class="texto_labels">buscador</label>
-    <div class="filter-add">
-      <wl-input-filter />
-      <wl-button 
-        :disable="disable"
-        :ico="'ico-plus'" 
-        :only-icon="true" 
-        :title="'Nuevo'"
-        class="btn-filter-add"/>
+    <div class="box-filter">
+      <div class="filter-add">
+        <wl-input-filter class="filter" />
+        <wl-button 
+          :disable="disable"
+          :ico="'ico-plus'" 
+          :only-icon="true" 
+          :title="'Nuevo'"
+          class="btn-filter-add"/>
+      </div>
     </div>
-    <ul>
-      <slot />
-    </ul>
+    <div class="link-list">
+      <ul>
+        <slot />
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -38,16 +41,32 @@ export default {
 .filtered-list ul {
   list-style-type: none;
   padding: 0 0;
-  flex-grow: 1;
   overflow-y: auto;
+}
+
+.filter {
+  width: 100%;
 }
 
 .filter-add {
   display: flex;
+  height: 100%;
+}
+
+.box-filter {
+  flex-wrap: wrap;
 }
 
 .btn-filter-add{
   margin-left: 4px;
+  margin: 0;
+  padding-left: 4px;
+  height: 100%;
 }
 
+.link-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+}
 </style>

@@ -23,7 +23,7 @@ export default {
 .list-item {
   background-color: white;
   color: #555;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   min-height: 2.5em;
   margin: auto 0;
   text-decoration: none;
