@@ -1,11 +1,13 @@
 <template>
-  <nuxt-link
-    :to="to"
-    class="list-item">
-    <div>
-      <slot />
-    </div>
-  </nuxt-link>
+  <li class="list-item-container">
+    <nuxt-link
+      :to="to"
+      class="list-item">
+      <div>
+        <slot />
+      </div>
+    </nuxt-link>
+  </li>
 </template>
 
 <script>
@@ -20,6 +22,10 @@ export default {
 </script>
 
 <style lang="scss">
+.list-item-container {
+  display: block;
+}
+
 .list-item {
   background-color: white;
   color: #555;

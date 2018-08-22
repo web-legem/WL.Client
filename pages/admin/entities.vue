@@ -1,16 +1,16 @@
 <template>
   <wl-master-detail-layout :has-detail="false">
     <wl-filtered-list slot="master">
-      <li
+      <wl-list-item
         v-for="entity in entities" 
-        :key="entity.id">
-        <wl-list-item :to="localePath({ name: 'admin-entities-id', params: {id: entity.id} })">
-          <div>
-            {{ entity.name }}
-          </div>
-          <div class="entity-type-label">{{ entity.entityTypeId }}</div>
-        </wl-list-item>
-      </li>
+        :to="localePath({ name: 'admin-entities-id', params: {id: entity.id} })"
+        :key="entity.id"
+      >
+        <div>
+          {{ entity.name }}
+        </div>
+        <div class="entity-type-label">{{ entity.entityTypeId }}</div>
+      </wl-list-item>
     </wl-filtered-list>
 
     <div slot="details">

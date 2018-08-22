@@ -40,7 +40,6 @@ export default {
 
 .filtered-list ul {
   list-style-type: none;
-  padding: 0 0;
   overflow-y: auto;
 }
 
@@ -50,23 +49,16 @@ export default {
 
 .filter-add {
   display: flex;
-  height: 100%;
-}
-
-.box-filter {
-  flex-wrap: wrap;
 }
 
 .btn-filter-add{
-  margin-left: 4px;
-  margin: 0;
   padding-left: 4px;
-  height: 100%;
 }
 
 .link-list {
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
+  height: calc(100% - 43px);
 }
 </style>
