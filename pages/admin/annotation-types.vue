@@ -1,5 +1,5 @@
 <template>
-  <wl-master-detail-layout :has-detail="false">
+  <wl-master-detail-layout :has-detail="isSelected">
     <wl-filtered-list slot="master">
       <wl-list-item
         v-for="annotationType in annotationTypes" 
@@ -36,22 +36,19 @@ export default {
     , WlListItem
     , WlFilteredList
   }
-  , data() {
-    return {
-      annotationTypes: [
-        { id: 1, name: 'Deroga', root: 'der' }
-        , { id: 2, name: 'Modifica', root: 'mod' }
-        , { id: 3, name: 'Reglamenta', root: 'reglamen' }
-      ]
-    }
-  }
   , computed: {
     ...mapGetters('admin/annotation-types', {
       annotationTypes: 'annotationTypes'
+      , isSelected: 'isSelected'
     })
   }
-  // , fetch({store, params}) {
-  //   return store.dispatch('admin/annotation-types/loadData')
-  // }
+  , methods: {
+    ...mapActions('admin/annotation-types', [
+      'loadData'
+    ])
+  }
+  , fetch({ store, params }) {
+    return store.dispatch('admin/annotation-types/loadData')
+  }
 }
 </script>

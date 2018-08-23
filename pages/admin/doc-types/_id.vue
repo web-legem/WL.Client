@@ -7,7 +7,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import {
+  mapActions
+  , mapGetters
+} from 'vuex';
 
 export default {
   computed: {
@@ -24,11 +27,12 @@ export default {
     this.selectDocType(this.$route.params.id)
   }
   , beforeDestroy() {
-    this.selectDocType(null)
+    this.clearSelection()
   }
   , methods: {
     ...mapActions('admin/document-types', [
       'selectDocType'
+      , 'clearSelection'
     ])
   }
 }

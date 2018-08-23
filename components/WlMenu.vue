@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
 
-    <wl-cinta-logo />
+    <!-- <wl-cinta-logo /> -->
 
     <nav class="nav">
       <ul class="modules">

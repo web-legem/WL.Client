@@ -28,6 +28,11 @@ export default {
     WlInputFilter,
     WlButton
   }
+  , data() {
+    return {
+      disable: false
+    }
+  }
 };
 </script>
 
