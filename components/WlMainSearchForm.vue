@@ -1,7 +1,9 @@
 <template>
   <div class="contenido_nombre_buscador">
     <div class="site-name">
-      <p>Legem</p>
+      <p>
+        <!-- Legem  -->
+        {{ $mq }}</p>
     </div>
     <div class="contenedor_mini_search">
       <form class="mini_search">

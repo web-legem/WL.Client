@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
 
-    <!-- <wl-cinta-logo /> -->
+    <wl-cinta-logo />
 
     <nav class="nav">
       <ul class="modules">
@@ -13,11 +13,13 @@
             :to="localePath({ name: menuItem.link })"
             class="module" 
           >
-            <span
-              :class="[ menuItem.icon ]"
-              class="ico"
-            />
-            {{ menuItem.label }}
+            <div>
+              <span
+                :class="[ menuItem.icon ]"
+                class="ico"
+              />
+              {{ menuItem.label }}
+            </div>
           </nuxt-link>
         </li>
       </ul>
@@ -120,28 +122,46 @@ ul.modules > li {
 
 .module {
   display: flex;
+  flex-direction: column;
   height: inherit;
   font-family: "Lato", sans-serif;
   font-size: 1em;
   color: #fff;
   text-decoration: none;
   align-items: center;
+}
+
+.module > div {
+  display: flex;
+  flex-grow: 1;
+  align-content: center;
+  vertical-align: center;
+  align-items: center;
   padding: 0 10px;
 }
 
-.module > .ico {
+.module .ico {
   padding: 5px 10px 0 0;
   margin: 0;
 }
 
-.module:focus,
-.module:hover {
-  border-top: 3px solid rgba(0, 0, 0, 0);
-  border-bottom: 3px solid white;
+.module:after {
+  content: "";
+  width: 0;
+  height: 4px;
+  background: white;
+  left: 50%;
+  bottom: 0;
+  transition: all .5s;
+}
+
+.module:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 button.accesibility {
-  width: var(--header-height);
+  min-width: var(--header-height);
   background: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
