@@ -1,3 +1,4 @@
+import mock from '~/mock'
 
 export const state = () => ({
   highContrast : false

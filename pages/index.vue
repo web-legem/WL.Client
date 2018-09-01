@@ -1,7 +1,9 @@
 <template>
   <div>
     <wl-landing-page
-      :src="vipriImg">
+      :src="vipriImg"
+      background-color="#5b789e"
+    >
       <wl-main-search-form />
     </wl-landing-page>
     <wl-footer />

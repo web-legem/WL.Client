@@ -4,7 +4,8 @@
       <wl-list-item
         v-for="documentType in documentTypes" 
         :key="documentType.id"
-        :to="localePath({name: 'admin-doc-types-id', params: {id: documentType.id }})">
+        :to="localePath({ name: 'admin-doc-types-id',
+                          params: { id: documentType.id }})">
         {{ documentType.name }}
       </wl-list-item>
     </wl-filtered-list>
@@ -46,10 +47,7 @@ export default {
       'loadData'
     ])
   }
-  , fetch({
-    store
-    , params
-  }) {
+  , fetch({ store, params }) {
     return store.dispatch('admin/document-types/loadData')
   }
 }

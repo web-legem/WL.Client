@@ -2,6 +2,7 @@
   <div>
     <wl-landing-page
       :src="img"
+      background-color="#8f956f"
     >
       <wl-login-form />
     </wl-landing-page>

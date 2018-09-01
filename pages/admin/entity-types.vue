@@ -1,5 +1,5 @@
 <template>
-  <wl-master-detail-layout :has-detail="false">
+  <wl-master-detail-layout :has-detail="isSelected">
     <wl-filtered-list slot="master">
       <wl-list-item
         v-for="entityType in entityTypes"
@@ -33,19 +33,10 @@ export default {
     , WlListItem
     , WlFilteredList
   }
-  , data() {
-    return {
-      entityTypes: [
-        { id: 1, name: 'Rectoría'}
-        , { id: 2, name: 'Facultad'}
-        , { id: 3, name: 'Departmanto'}
-        , { id: 4, name: 'Programa'}
-      ]
-    }
-  }
   , computed: {
     ...mapGetters('admin/entity-types', {
       entityTypes: 'entityTypes'
+      , isSelected: 'isSelected'
     })
   }
   , methods: {
@@ -53,8 +44,8 @@ export default {
       loadData: 'loadData'
     })
   }
-  // , fetch({store, params}) {
-  //   return store.dispatch('admin/entity-types/loadData')
-  // }
+  , fetch({store, params}) {
+    return store.dispatch('admin/entity-types/loadData')
+  }
 }
 </script>

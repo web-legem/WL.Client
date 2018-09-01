@@ -56,8 +56,17 @@ module.exports = {
       defaultLocale: 'es',
       lazy: true,
       langDir: 'locales/'
-    }],
-    '@nuxtjs/axios'
+    }]
+    , '@nuxtjs/axios'
+    , ['nuxt-mq',{
+      breakpoints: {
+        xs: 300
+        , sm: 500
+        , md: 800
+        , lg: 1200
+        , xl: Infinity
+      }
+    }]
   ],
   // axios: {
   //   // proxyHeaders: false,

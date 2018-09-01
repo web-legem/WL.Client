@@ -1,4 +1,3 @@
-import mock from '~/mock/document-types'
 
 export const state = () => ({
   list: []
@@ -10,7 +9,8 @@ export const state = () => ({
 
 export const getters = {
   docTypes: (state) => state.list
-  , selectedDocType: (state) => state.list.find( (x) => x.id == Number.parseInt(state.selectedId) )
+  , selectedDocType: (state) => state.list.find( (x) =>
+    x.id == Number.parseInt(state.selectedId) )
   , isADocTypeSelected: (state) => state.selectedId != null
 }
 
@@ -39,6 +39,9 @@ export const mutations = {
   , selectDocType(state, docTypeId) {
     state.selectedId = docTypeId
   }
+  , clearSelection(state) {
+    state.selectedId = null
+  }
 }
 
 export const actions = {
@@ -50,5 +53,8 @@ export const actions = {
   }
   , selectDocType({commit}, docTypeId) {
     commit('selectDocType', docTypeId)
+  }
+  , clearSelection({commit}) {
+    commit('clearSelection')
   }
 }
