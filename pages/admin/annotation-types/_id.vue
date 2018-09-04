@@ -20,18 +20,18 @@ export default {
   }
   , watch: {
     '$route'() {
-      this.selectAnnotationType(this.$route.params.id)
+      this.select(this.$route.params.id)
     }
   }
   , mounted() {
-    this.selectAnnotationType(this.$route.params.id)
+    this.select(this.$route.params.id)
   }
   , beforeDestroy() {
     this.clearSelection()
   }
   , methods: {
     ...mapActions('admin/annotation-types', [
-      'selectAnnotationType'
+      'select'
       , 'clearSelection'
     ])
   }

@@ -1,4 +1,3 @@
-import mock from '~/mock/annotation-types'
 
 export const state = () => ({
   list: []
@@ -9,9 +8,9 @@ export const state = () => ({
 })
 
 export const getters = {
-  annotationTypes: (state) => state.list
+  list: (state) => state.list
   , selected: (state) => state.list.find( (x) => 
-    x.id == Number.parseInt(state.selectedId) )
+      x.id == Number.parseInt(state.selectedId) )
   , isSelected: (state) => state.selectedId != null
 }
 
@@ -37,7 +36,7 @@ export const mutations = {
     state.error = error
     state.selectedId = null
   }
-  , selectAnnotationType(state, annotationTypeId) {
+  , select(state, annotationTypeId) {
     state.selectedId = annotationTypeId
   }
   , clearSelection(state) {
@@ -51,11 +50,10 @@ export const actions = {
     return this.$axios.get('/api/AnnotationType')
       .then(response => commit('loadingSuccess', response.data))
       .catch(e =>{
-        console.log(e)
         return commit('loadingFailure', e)})
   }
-  , selectAnnotationType({commit}, annotationTypeId) {
-    commit('selectAnnotationType', annotationTypeId)
+  , select({commit}, annotationTypeId) {
+    commit('select', annotationTypeId)
   }
   , clearSelection({commit}) {
     commit('clearSelection')

@@ -20,18 +20,18 @@ export default {
   }
   , watch: {
     '$route'(){
-      this.selectEntityType(this.$route.params.id)
+      this.select(this.$route.params.id)
     }
   }
   , mounted() {
-    this.selectEntityType(this.$route.params.id)
+    this.select(this.$route.params.id)
   }
   , beforeDestroy() {
     this.clearSelection()
   }
   , methods: {
     ...mapActions('admin/entity-types', [
-      'selectEntityType'
+      'select'
       , 'clearSelection'
     ])
   }

@@ -38,14 +38,9 @@ export default {
   }
   , computed: {
     ...mapGetters('admin/annotation-types', {
-      annotationTypes: 'annotationTypes'
+      annotationTypes: 'list'
       , isSelected: 'isSelected'
     })
-  }
-  , methods: {
-    ...mapActions('admin/annotation-types', [
-      'loadData'
-    ])
   }
   , fetch({ store, params }) {
     return store.dispatch('admin/annotation-types/loadData')

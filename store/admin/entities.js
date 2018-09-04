@@ -8,7 +8,7 @@ export const state = () => ({
 })
 
 export const getters = {
-  entities: (state) => state.list
+  list: (state) => state.list
   , selected: (state) => state.list.find( (x) =>
     x.id == Number.parseInt(state.selectedId))
   , isSelected: (state) => state.selectedId != null
@@ -23,6 +23,7 @@ export const mutations = {
     state.selectedId = null
   }
   , loadingSuccess(state,payload) {
+    console.log('loadData', payload)
     state.loading = false
     state.loaded = true
     state.list = payload
@@ -30,13 +31,14 @@ export const mutations = {
     state.selectedId = null
   }
   , loadingFailure(state, payload) {
+    console.log('loading Error')
     state.loading = false
     state.loaded = false
     state.list = []
     state.error = payload
     state.selectedId = null
   }
-  , selectEntity(state, entityId) {
+  , select(state, entityId) {
     state.selectedId = entityId
   }
   , clearSelection(state) {
@@ -51,8 +53,8 @@ export const actions = {
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', 'Error'))
   }
-  , selectEntity({commit}, entityId) {
-    commit('selectEntity', entityId)
+  , select({commit}, entityId) {
+    commit('select', entityId)
   }
   , clearSelection({commit}) {
     commit('clearSelection')

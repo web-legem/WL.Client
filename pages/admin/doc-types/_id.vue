@@ -15,23 +15,23 @@ import {
 export default {
   computed: {
     ...mapGetters('admin/document-types', { 
-      selectedDocType: 'selectedDocType'
+      selectedDocType: 'selected'
     })
   }
   , watch: {
     '$route'(){
-      this.selectDocType(this.$route.params.id)
+      this.select(this.$route.params.id)
     }
   }
   , mounted() {
-    this.selectDocType(this.$route.params.id)
+    this.select(this.$route.params.id)
   }
   , beforeDestroy() {
     this.clearSelection()
   }
   , methods: {
     ...mapActions('admin/document-types', [
-      'selectDocType'
+      'select'
       , 'clearSelection'
     ])
   }

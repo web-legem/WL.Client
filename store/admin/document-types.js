@@ -8,10 +8,10 @@ export const state = () => ({
 })
 
 export const getters = {
-  docTypes: (state) => state.list
-  , selectedDocType: (state) => state.list.find( (x) =>
-    x.id == Number.parseInt(state.selectedId) )
-  , isADocTypeSelected: (state) => state.selectedId != null
+  list: (state) => state.list
+  , selected: (state) => state.list.find( (x) =>
+      x.id == Number.parseInt(state.selectedId) )
+  , isSelected: (state) => state.selectedId != null
 }
 
 export const mutations = {
@@ -36,7 +36,7 @@ export const mutations = {
     state.error = payload
     state.selectedId = null
   }
-  , selectDocType(state, docTypeId) {
+  , select(state, docTypeId) {
     state.selectedId = docTypeId
   }
   , clearSelection(state) {
@@ -51,8 +51,8 @@ export const actions = {
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', 'Error'))
   }
-  , selectDocType({commit}, docTypeId) {
-    commit('selectDocType', docTypeId)
+  , select({commit}, docTypeId) {
+    commit('select', docTypeId)
   }
   , clearSelection({commit}) {
     commit('clearSelection')

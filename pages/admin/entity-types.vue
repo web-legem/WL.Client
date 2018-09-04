@@ -35,13 +35,8 @@ export default {
   }
   , computed: {
     ...mapGetters('admin/entity-types', {
-      entityTypes: 'entityTypes'
+      entityTypes: 'list'
       , isSelected: 'isSelected'
-    })
-  }
-  , methods: {
-    ...mapActions('admin/entity-types', {
-      loadData: 'loadData'
     })
   }
   , fetch({store, params}) {

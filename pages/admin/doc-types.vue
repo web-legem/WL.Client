@@ -1,5 +1,5 @@
 <template>
-  <wl-master-detail-layout :has-detail="isADocTypeSelected">
+  <wl-master-detail-layout :has-detail="isSelected">
     <wl-filtered-list slot="master">
       <wl-list-item
         v-for="documentType in documentTypes" 
@@ -38,14 +38,9 @@ export default {
   }
   , computed: {
     ...mapGetters('admin/document-types', {
-      documentTypes: 'docTypes'
-      , isADocTypeSelected: 'isADocTypeSelected'
+      documentTypes: 'list'
+      , isSelected: 'isSelected'
     })
-  }
-  , methods: {
-    ...mapActions('admin/document-types', [
-      'loadData'
-    ])
   }
   , fetch({ store, params }) {
     return store.dispatch('admin/document-types/loadData')

@@ -20,18 +20,18 @@ export default {
   }
   , watch: {
     '$route'() {
-      this.selectEntity(this.$route.params.id)
+      this.select(this.$route.params.id)
     }
   }
   , mounted() {
-    this.selectEntity(this.$route.params.id)
+    this.select(this.$route.params.id)
   }
   , beforeDestroy() {
     this.clearSelection()
   }
   , methods: {
     ...mapActions('admin/entities', [
-      'selectEntity',
+      'select',
       'clearSelection'
     ])
   }

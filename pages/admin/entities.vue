@@ -38,13 +38,8 @@ export default {
   }
   , computed: {
     ...mapGetters('admin/entities', {
-      entities: 'entities'
-      , selected: 'selected'
-    })
-  }
-  , methods: {
-    ...mapActions('admin/entities', {
-      loadData: 'loadData'
+      entities: 'list'
+      , isSelected: 'isSelected'
     })
   }
   , fetch({store, params}) {
