@@ -2,7 +2,6 @@
   <div 
     class="a11y-ctrls"
     @mouseleave="hideA11yPanel"
-    @blur="hideA11yPanel"
   >
     <label><span class="ico2-contrast" /> Contraste</label>
     <div>
@@ -36,6 +35,8 @@
         :style="{fontSize: size / 100 / 1.2 + 'em'}"
         :class="[ size == $store.state.fontSize ? 'selected': '' ]"
         class="btn-a11y ico-font"
+        @focus="showA11yPanel"
+        @focusout="hideA11yPanelOnBlur(index == $store.state.fontSizes.length - 1)"
         @click="setFontSize(size)"
       />
     </div>
@@ -43,18 +44,20 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   methods: {
-    ...mapActions([
+    hideA11yPanelOnBlur(isLastElement) {
+      if(isLastElement)
+        this.hideA11yPanel()
+    }
+    , ...mapActions([
       'changeFontSize'
       , 'changeTheme'
       , 'hideA11yPanel'
+      , 'showA11yPanel'
     ])
-    , test() {
-      console.log('test')
-    }
     , mounted() {
       this.setFontSize(100)
     }

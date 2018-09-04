@@ -27,6 +27,7 @@
       <button
         class="accesibility"
         @mouseenter="toggleA11yPanel"
+        @click="toggleA11yPanel"
       >
         <span class="ico ico-wheelchair" />
       </button> 
