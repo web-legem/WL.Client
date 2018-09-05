@@ -20,20 +20,20 @@
 </template>
 
 <script>
-import WlInputFilter from "~/components/WlInputFilter.vue";
-import WlButton from "~/components/WlButton.vue";
+import WlInputFilter from "~/components/WlInputFilter.vue"
+import WlButton from "~/components/WlButton.vue"
 
 export default {
   components: {
-    WlInputFilter,
-    WlButton
+    WlInputFilter
+    , WlButton
   }
   , data() {
     return {
       disable: false
     }
   }
-};
+}
 </script>
 
 <style>

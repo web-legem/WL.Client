@@ -31,6 +31,12 @@ export default {
       title: this.$t('admin.annotation-types.module-name')
     }
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'tipos-anotacion'
+      , en: 'annotation-types'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem

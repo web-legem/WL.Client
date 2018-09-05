@@ -36,9 +36,15 @@ import WlModuleLayout from '~/components/WlModuleLayout.vue'
 import WlTab from '~/components/WlTab.vue'
 
 export default {
-components: {
-  WlModuleLayout
-  , WlTab
-}
+  components: {
+    WlModuleLayout
+    , WlTab
+  }
+  , nuxtI18n: {
+    paths: {
+      es: '/administracion'
+      , en: '/administration'
+    }
+  }
 }
 </script>

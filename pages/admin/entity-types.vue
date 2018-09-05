@@ -28,6 +28,12 @@ export default {
       title: this.$t('admin.entity-types.module-name')
     }
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'tipos-entidad'
+      , en: 'entity-types'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem

@@ -31,6 +31,12 @@ export default {
       title: this.$t('admin.doc-types.module-name')
     }
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'tipos-documento'
+      , en: 'document-types'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem

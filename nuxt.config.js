@@ -15,9 +15,7 @@ module.exports = {
     ]
   },
   css: [
-    '@/assets/colors.css'
-    , '@/assets/colors-hc.css'
-    , '@/assets/base.css'
+    '@/assets/base.css'
     , '@/assets/iconos-legem1/styles.css' 
     , '@/assets/iconos-legem2/style.css'
     , '@/assets/inputs.css'
@@ -55,7 +53,14 @@ module.exports = {
       ],
       defaultLocale: 'es',
       lazy: true,
-      langDir: 'locales/'
+      langDir: 'locales/',
+      // parsePages: false,
+      // pages: {
+      //   admin: {
+      //     en: '/administration',
+      //     es: '/administracion'
+      //   }
+      // }
     }]
     , '@nuxtjs/axios'
     , ['nuxt-mq',{

@@ -1,4 +1,4 @@
-html {
+:root {
   --button-disabled: rgba(255, 0, 0, 1);
   --tapiz:#E1E3E9;
   --tapiz-contenido:#fff; 

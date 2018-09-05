@@ -31,6 +31,12 @@ export default {
       title: this.$t('admin.entities.module-name')
     };
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'entidades'
+      , en: 'entities'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem
