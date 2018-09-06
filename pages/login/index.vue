@@ -19,6 +19,12 @@ export default {
     WlLandingPage
     , WlLoginForm
   }
+  , nuxtI18n: {
+    paths: {
+      es: '/ingreso'
+      , en: '/login'
+    }
+  }
   , data() {
     return {
       img: imagesContext('./entrada.jpg')

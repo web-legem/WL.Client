@@ -1,7 +1,8 @@
 <template>
   <div 
     class="a11y-ctrls"
-    @mouseleave="hideA11yPanel"
+    @click="showA11yPanel"
+    @focusout="hideA11yPanel"
   >
     <label><span class="ico2-contrast" /> Contraste</label>
     <div>
@@ -9,11 +10,13 @@
         :class="[!$store.state.highContrast ? 'selected' : '' ]"
         class="btn-a11y ico-sun-o" 
         @click="changeTheme('light')"
+        @focus="showA11yPanel"
       />
       <button
         :class="[$store.state.highContrast ? 'selected' : '']"
         class="btn-a11y ico-moon-o"
         @click="changeTheme('dark')"
+        @focus="showA11yPanel"
       />
     </div>
     <label><span class="ico2-earth" /> Idioma</label>
@@ -23,6 +26,7 @@
         :key="locale.code"
         :to="switchLocalePath(locale.code)"
         class="btn-a11y lang"
+        @focus.native="showA11yPanel"
       >
         {{ locale.name }}
       </nuxt-link>
@@ -36,7 +40,7 @@
         :class="[ size == $store.state.fontSize ? 'selected': '' ]"
         class="btn-a11y ico-font"
         @focus="showA11yPanel"
-        @focusout="hideA11yPanelOnBlur(index == $store.state.fontSizes.length - 1)"
+        @blur="hideA11yPanelOnBlur(index == $store.state.fontSizes.length - 1)"
         @click="setFontSize(size)"
       />
     </div>

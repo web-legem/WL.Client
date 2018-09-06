@@ -26,8 +26,9 @@
 
       <button
         class="accesibility"
-        @mouseenter="toggleA11yPanel"
         @click="toggleA11yPanel"
+        @keypress.enter="toggleA11yPanel"
+        @blur="hideA11yPanel"
       >
         <span class="ico ico-wheelchair" />
       </button> 
@@ -76,7 +77,7 @@ export default {
           label: 'Ingresar'
           , icon: 'ico-sign-in'
           , link: 'login'
-          , show: '!vm.session.loggeado'
+          , show: 'true'
         }
       ]
     };
@@ -84,6 +85,7 @@ export default {
   , methods: {
     ...mapActions([
       'toggleA11yPanel'
+      , 'hideA11yPanel'
     ])
   }
 };

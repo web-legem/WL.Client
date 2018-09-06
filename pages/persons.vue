@@ -28,5 +28,11 @@ export default {
     WlModuleLayout
     , WlTab
   }
+  , nuxtI18n: {
+    paths: {
+      es: '/personas'
+      , en: '/persons'
+    }
+  }
 }
 </script>

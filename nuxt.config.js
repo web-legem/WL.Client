@@ -7,11 +7,10 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
+      { id: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {}
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   css: [
@@ -54,13 +53,6 @@ module.exports = {
       defaultLocale: 'es',
       lazy: true,
       langDir: 'locales/',
-      // parsePages: false,
-      // pages: {
-      //   admin: {
-      //     en: '/administration',
-      //     es: '/administracion'
-      //   }
-      // }
     }]
     , '@nuxtjs/axios'
     , ['nuxt-mq',{
