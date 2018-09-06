@@ -26,16 +26,16 @@
 
       <button
         class="accesibility"
-        @click="toggleA11yPanel"
-        @keypress.enter="toggleA11yPanel"
-        @blur="hideA11yPanel"
+        @click.stop="toggleA11yPanel"
+        @keypress.enter.stop="toggleA11yPanel"
+        @blur="hideA11yPanelOnBlur(true)"
       >
         <span class="ico ico-wheelchair" />
       </button> 
 
       <transition name="slide-fade-vertical">
         <wl-a11y-controls
-          v-if="$store.state.showA11yPanel"
+          v-show="$store.state.showA11yPanel"
         />
       </transition>
     </nav>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import WlCintaLogo from '~/components/WlCintaLogo.vue'
 import WlA11yControls from '~/components/WlA11yControls.vue'
 
@@ -82,10 +82,23 @@ export default {
       ]
     };
   }
+  , computed: {
+    ...mapState([
+      'mouseDownA11yPanel'
+    ])
+  }
   , methods: {
-    ...mapActions([
+    hideA11yPanelOnBlur(isLastElement) {
+      if(isLastElement && !this.mouseDownA11yPanel){
+        this.hideA11yPanel()
+      }
+
+      this.setMouseDownA11yPanel(false)
+    }
+    , ...mapActions([
       'toggleA11yPanel'
       , 'hideA11yPanel'
+      , 'setMouseDownA11yPanel'
     ])
   }
 };

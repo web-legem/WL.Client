@@ -5,6 +5,7 @@ export const state = () => ({
   , showA11yPanel: false
   , fontSize: 100
   , fontSizes: [ 100, 125, 150 ]
+  , mouseDownA11yPanel: false
 })
 
 export const mutations = {
@@ -19,6 +20,9 @@ export const mutations = {
   }
   , changeFontSize(state, fontSize) {
     state.fontSize = fontSize
+  }
+  , setMouseDownA11yPanel(state, isDown) {
+    state.mouseDownA11yPanel = isDown
   }
 }
 
@@ -48,5 +52,8 @@ export const actions = {
       commit('hideA11yPanel')
     else
       commit('showA11yPanel')
+  }
+  , setMouseDownA11yPanel({commit}, isDown) {
+    commit('setMouseDownA11yPanel', isDown)
   }
 }

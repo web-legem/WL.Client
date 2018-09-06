@@ -1,21 +1,23 @@
 <template>
   <div 
     class="a11y-ctrls"
-    @click="showA11yPanel"
-    @focusout="hideA11yPanel"
+    @click.stop="focusFirstButton()"
+    @mousedown.stop="reportMouseDown()"
+    @focusout="hideA11yPanelOnBlur(true)"
   >
     <label><span class="ico2-contrast" /> Contraste</label>
     <div>
       <button 
+        id="btn-light"
         :class="[!$store.state.highContrast ? 'selected' : '' ]"
         class="btn-a11y ico-sun-o" 
-        @click="changeTheme('light')"
+        @click.stop="changeTheme('light')"
         @focus="showA11yPanel"
       />
       <button
         :class="[$store.state.highContrast ? 'selected' : '']"
         class="btn-a11y ico-moon-o"
-        @click="changeTheme('dark')"
+        @click.stop="changeTheme('dark')"
         @focus="showA11yPanel"
       />
     </div>
@@ -27,6 +29,7 @@
         :to="switchLocalePath(locale.code)"
         class="btn-a11y lang"
         @focus.native="showA11yPanel"
+        @click.native.stop
       >
         {{ locale.name }}
       </nuxt-link>
@@ -39,28 +42,42 @@
         :style="{fontSize: size / 100 / 1.2 + 'em'}"
         :class="[ size == $store.state.fontSize ? 'selected': '' ]"
         class="btn-a11y ico-font"
-        @focus="showA11yPanel"
-        @blur="hideA11yPanelOnBlur(index == $store.state.fontSizes.length - 1)"
-        @click="setFontSize(size)"
+        @focus.stop="showA11yPanel"
+        @click.stop="setFontSize(size)"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  methods: {
+  computed: {
+    ...mapState([
+      'mouseDownA11yPanel'
+    ])
+  }
+  , methods: {
     hideA11yPanelOnBlur(isLastElement) {
-      if(isLastElement)
+      if(isLastElement && !this.mouseDownA11yPanel){
         this.hideA11yPanel()
+      }
+
+      this.setMouseDownA11yPanel(false)
+    }
+    , reportMouseDown() {
+      this.setMouseDownA11yPanel(true)
+    }
+    , focusFirstButton() {
+      document.getElementById('btn-light').focus()
     }
     , ...mapActions([
       'changeFontSize'
       , 'changeTheme'
       , 'hideA11yPanel'
       , 'showA11yPanel'
+      , 'setMouseDownA11yPanel'
     ])
     , mounted() {
       this.setFontSize(100)
