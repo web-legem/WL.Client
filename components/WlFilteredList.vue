@@ -8,7 +8,9 @@
           :ico="'ico-plus'" 
           :only-icon="true" 
           :title="'Nuevo'"
-          class="btn-filter-add"/>
+          class="btn-filter-add"
+          @click.native="add"
+        />
       </div>
     </div>
     <div class="link-list">
@@ -31,6 +33,11 @@ export default {
   , data() {
     return {
       disable: false
+    }
+  }
+  , methods: {
+    add() {
+      this.$emit('add')
     }
   }
 }
