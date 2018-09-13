@@ -1,11 +1,6 @@
 <template>
   <div class="doc-id">
     <h1>DocumentType to Edit</h1>
-    {{ selectedDocType && selectedDocType.id }}
-    {{ selectedDocType && selectedDocType.name }}
-    {{ editedDocType && editedDocType.id }}
-    {{ editedDocType && editedDocType.name }}
-
     <input
       v-if="selectedDocType"
       :value="selectedDocType.name"
@@ -36,12 +31,7 @@ import {
 } from 'vuex';
 
 export default {
-  data() {
-    return {
-      editedDocType: {}
-    }
-  }
-  , computed: {
+  computed: {
     ...mapGetters('admin/document-types', { 
       selectedDocType: 'selected'
     })
@@ -49,10 +39,6 @@ export default {
   , watch: {
     '$route.params.id'(){
       this.select(this.$route.params.id)
-    }
-    , 'selectedDocType'() {
-      this.editedDocType.id = this.selectedDocType.id
-      this.editedDocType.name = this.selectedDocType.name
     }
   }
   , mounted() {

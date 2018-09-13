@@ -2,6 +2,8 @@
 export const state = () => ({
   list: []
   , selectedId: null
+  , isCreating: false
+  , selected: {}
   , loading: false
   , loaded: false
   , error: null
@@ -9,9 +11,9 @@ export const state = () => ({
 
 export const getters = {
   list: (state) => state.list
-  , selected: (state) => state.list.find( (x) =>
-    x.id == Number.parseInt(state.selectedId))
+  , selected: (state) => state.selected
   , isSelected: (state) => state.selectedId != null
+  , isCreating: (state) => state.isCreating
 }
 
 export const mutations = {
@@ -20,29 +22,52 @@ export const mutations = {
     state.loaded = false
     state.list = []
     state.error = null
-    state.selectedId = null
   }
   , loadingSuccess(state,payload) {
-    console.log('loadData', payload)
     state.loading = false
     state.loaded = true
     state.list = payload
-    state.error = null
-    state.selectedId = null
   }
   , loadingFailure(state, payload) {
-    console.log('loading Error')
     state.loading = false
     state.loaded = false
-    state.list = []
     state.error = payload
-    state.selectedId = null
   }
   , select(state, entityId) {
     state.selectedId = entityId
+    state.selected = state.list
+      .filter(x => x.id == Number.parseInt(entityId))
+      .map(x => JSON.parse(JSON.stringify(x)))
+      .pop()
   }
   , clearSelection(state) {
     state.selectedId = null
+    state.selected = null
+    state.isCreating = false
+  }
+  , creatingError(state, error) {
+    state.loading = false
+    state.error = error
+  }
+  , updatingError(state, error) {
+    state.loading = false
+    state.error = error
+  }
+  , changeName( state, newName) {
+    state.selected.name = newName
+  }
+  , changeEmail(state, newEmail) {
+    state.selectd.email = newEmail
+  }
+  , changeEntityTypeId(state, newId) {
+    state.selected.entityType = newId
+  }
+  , deleteError (state, error) {
+    state.loading = false
+    state.error = error
+  }
+  , waiting(state) {
+    state.loading = true
   }
 }
 
@@ -58,5 +83,32 @@ export const actions = {
   }
   , clearSelection({commit}) {
     commit('clearSelection')
+  }
+  , create({commit, dispatch}, newEntity) {
+    commit('waiting')
+    return this.$axios.post('/api/Entity', newEntity)
+      .then(_ => dispatch('loadData'))
+      .catch(e => commit('creatingError', e))
+  }
+  , save({commit, dispatch}, modifiedEntity) {
+    commit('waiting')
+    return this.$axios.put('/api/Entity', modifiedEntity)
+      .then(_ => dispatch('loadData'))
+      .catch(e => commit('updatingError', e))
+  }
+  , delete({commit, state, dispatch}) {
+    commit('waiting')
+    return this.$axios.delete('/api/Entity/' + state.selectedId)
+      .then(_ => dispatch('loadData'))
+      .catch(e => commit('deleteError', e))
+  }
+  , changeName({commit}, newName) {
+    commit('changeName', newName)
+  }
+  , changeEmail({commit}, newEmail) {
+    commit('changeEmail', newEmail)
+  }
+  , changeEntityTypeId({commit}, newId) {
+    commit('changeEntityTypeId', newId)
   }
 }

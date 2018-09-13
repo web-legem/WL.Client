@@ -36,7 +36,8 @@ export const mutations = {
     state.selectedId = docTypeId
     state.selected = state.list
       .filter(x => x.id == Number.parseInt(docTypeId))
-      .map(x => JSON.parse(JSON.stringify(x))).pop()
+      .map(x => JSON.parse(JSON.stringify(x)))
+      .pop()
   }
   , clearSelection(state) {
     state.selectedId = null
@@ -61,6 +62,9 @@ export const mutations = {
     state.loading = false
     state.error = error
   }
+  , waiting(state) {
+    state.loading = true
+  }
 }
 
 export const actions = {
@@ -80,19 +84,19 @@ export const actions = {
     commit('isCreating')
   }
   , create({commit, dispatch}, newDocName) {
-    commit('loading')
+    commit('waiting')
     return this.$axios.post('/api/DocumentType', { name: newDocName })
       .then(_ => dispatch('loadData'))
       .catch(e => commit('creatingError', e))
   }
   , save({commit, dispatch}, modifiedDocType) {
-    commit('loading')
+    commit('waiting')
     return this.$axios.put('/api/DocumentType', modifiedDocType)
       .then(_ => dispatch('loadData'))
       .catch(e => commit('updatingError', e))
   }
   , delete({commit, state, dispatch}) {
-    commit('loading')
+    commit('waiting')
     return this.$axios.delete('/api/DocumentType/' + state.selectedId )
       .then(_ => dispatch('loadData'))
       .catch(e => commit('deleteError', e))
