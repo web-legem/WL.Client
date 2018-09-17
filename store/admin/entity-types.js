@@ -66,6 +66,9 @@ export const mutations = {
   , wating(state) {
     state.loading = true
   }
+  , isCreating(state) {
+    state.isCreating = true
+  }
 }
 
 export const actions = {
@@ -104,5 +107,8 @@ export const actions = {
   }
   , changeSupportedDocumenttypes({commit}, newValue) {
     commit('changeSupportedDocumentTypes', newValue)
+  }
+  , isCreating({commit}) {
+    commit('isCreating')
   }
 }

@@ -59,6 +59,12 @@ export default {
       .then(response => ({ entityTypes: response.data }))
       .catch(e => console.log(e))
   }
+  , created() {
+    this.isCreating()
+  }
+  , beforeDestroy(){
+    this.clearSelection()
+  }
   , methods: {
     cancel() {
       this.$router.push(this.localePath({name: 'admin-entities'}))
@@ -70,6 +76,8 @@ export default {
     }
     , ...mapActions('admin/entities', {
       create: 'create'
+      , isCreating: 'isCreating'
+      , clearSelection: 'clearSelection'
     })
   }
 }

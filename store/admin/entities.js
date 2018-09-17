@@ -69,6 +69,10 @@ export const mutations = {
   , waiting(state) {
     state.loading = true
   }
+  , isCreating(state) {
+    console.log('creating')
+    state.isCreating = true
+  }
 }
 
 export const actions = {
@@ -101,6 +105,9 @@ export const actions = {
     return this.$axios.delete('/api/Entity/' + state.selectedId)
       .then(_ => dispatch('loadData'))
       .catch(e => commit('deleteError', e))
+  }
+  , isCreating({commit}) {
+    commit('isCreating')
   }
   , changeName({commit}, newName) {
     commit('changeName', newName)

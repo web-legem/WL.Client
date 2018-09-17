@@ -51,6 +51,12 @@ export default {
       , checked: []
     }
   }
+  , created() {
+    this.isCreating()
+  }
+  , beforeDestroy() {
+    this.clearSelection()
+  }
   , methods: {
     cancel() {
       this.$router.push(this.localePath({name: 'admin-entity-types'}))
@@ -61,6 +67,8 @@ export default {
     }
     , ...mapActions('admin/entity-types', {
       create: 'create'
+      , isCreating: 'isCreating'
+      , clearSelection: 'clearSelection'
     })
   }
   , asyncData(context) {
