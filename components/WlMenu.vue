@@ -5,6 +5,48 @@
 
     <nav class="nav">
       <ul class="modules">
+        <li>
+          <button
+            class="module"
+            @click.stop="toggleSubModulesPanel"
+            @keypress.enter.stop="toggleSubModulesPanel"
+            @blur="hideSubModulesPanel"
+          >
+            <div>
+              <span
+                class="ico ico-search"
+              />
+              Modulos
+            </div>
+          </button>
+          <ul
+            v-if="showSubModules"
+            class="sub-modules"
+            @focusout="hideSubModulesPanel"
+          >
+            <li
+              v-for="(module, index) in modules"
+              :key="index"
+            >
+              <nuxt-link
+                :to="localePath({ name: module.link })"
+                class="sub-module"
+                @focus.native="showSubModulesPanel($event)"
+                @click.native.stop="hideSubModulesPanel"
+                @mouseup.stop
+                @mousedown.stop
+              >
+                <div>
+                  <span
+                    :class="[ module.icon ]"
+                    class="ico"
+                  />
+                  {{ module.label }}
+                </div>
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
         <li 
           v-for="(menuItem, index) in menuItems"
           :key="index"
@@ -25,7 +67,7 @@
       </ul>
 
       <button
-        class="accesibility"
+        class="accessibility"
         @click.stop="toggleA11yPanel"
         @keypress.enter.stop="toggleA11yPanel"
         @blur="hideA11yPanelOnBlur(true)"
@@ -54,14 +96,15 @@ export default {
   }
   , data() {
     return {
-      menuItems: [
+      showSubModules: false
+      , menuItems: [
+        // {
+        //   label: 'Componentes'
+        //   , icon: 'ico-cubes'
+        //   , link: 'admin'
+        //   , show: 'true'
+        // }
         {
-          label: 'Componentes'
-          , icon: 'ico-cubes'
-          , link: 'admin'
-          , show: 'true'
-        }
-        , {
           label: 'Busqueda'
           , icon: 'ico-search'
           , link: 'search'
@@ -80,7 +123,29 @@ export default {
           , show: 'true'
         }
       ]
-    };
+      , modules: [
+        {
+          label: 'Administración'
+          , icon: 'ico-search'
+          , link: 'admin'
+        }
+        , {
+          label: 'Gestión Documental'
+          , icon: 'ico-search'
+          , link: 'search'
+        }
+        , {
+          label: 'Anotaciones'
+          , icon: 'ico-search'
+          , link: 'search'
+        }
+        , {
+          label: 'Usuarios'
+          , icon: 'ico-search'
+          , link: 'persons'
+        }
+      ]
+    }
   }
   , computed: {
     ...mapState([
@@ -94,6 +159,15 @@ export default {
       }
 
       this.setMouseDownA11yPanel(false)
+    }
+    , showSubModulesPanel($event) {
+      this.showSubModules = true
+    }
+    , hideSubModulesPanel() {
+      this.showSubModules = false
+    }
+    , toggleSubModulesPanel() {
+      this.showSubModules = !this.showSubModules
     }
     , ...mapActions([
       'toggleA11yPanel'
@@ -176,15 +250,44 @@ ul.modules > li {
   left: 0;
 }
 
-button.accesibility {
+button.module {
+  background: inherit;
+}
+
+.sub-modules {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0;
+  position: absolute;
+}
+
+.sub-module {
+  display: flex;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  text-decoration: none;
+  align-items: center;
+  padding: 10px;
+}
+
+.sub-module .ico {
+  padding: 5px 10px 0 0;
+  margin: 0;
+}
+
+button.accessibility {
   min-width: var(--header-height);
   background: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
 }
 
-button:focus,
-button:hover {
+button.accessibility:focus,
+button.accessibility:hover {
   background: #23948a;
 }
 

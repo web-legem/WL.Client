@@ -6,11 +6,11 @@
       :value="selectedDocType.name"
       type="text"
       @input="changeDocTypeName">
-      
+
     <button
       type="button"
       @click="cancel">Cancelar</button>
-    
+
     <button
       type="button"
       @click="update">Update</button>
@@ -32,7 +32,7 @@ import {
 
 export default {
   computed: {
-    ...mapGetters('admin/document-types', { 
+    ...mapGetters('admin/document-types', {
       selectedDocType: 'selected'
     })
   }
