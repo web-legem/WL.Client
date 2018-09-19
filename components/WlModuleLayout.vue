@@ -24,6 +24,7 @@ export default {
   padding-top: calc(25px + 4.5vh);
   background: #e1e3e9;
 }
+
 .module-layout > div {
   // margin: calc(20px + 1vmin);
   border: 1px solid #ccc;

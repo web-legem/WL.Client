@@ -167,7 +167,7 @@ export default {
         , {
           label: 'Gestión Documental'
           , icon: 'ico-stack-overflow'
-          , link: 'search'
+          , link: 'doc-management'
         }
         , {
           label: 'Anotaciones'
