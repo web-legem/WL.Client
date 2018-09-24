@@ -9,7 +9,7 @@
       </wl-tab>
     </template>
 
-    <div class="content">
+    <div>
       <h1>Subir documento</h1>
       <form
         class="upload-document"
@@ -17,7 +17,11 @@
         @submit.prevent
       >
         <div class="drop-area">
-          <label for="file">
+          <label
+            for="file"
+            @drop.prevent.stop="handleDropFile($event)"
+            @dragover.prevent.stop
+          >
             <input
               id="file"
               ref="file"
@@ -25,8 +29,20 @@
               type="file"
               @change="handleFileToUpload"
             >
-            <span class="ico ico-upload" />
-            <p><strong>Escoja un archivo</strong> ó arrastrelo aquí</p>
+            <span 
+              class="ico ico-upload"
+              @drop.prevent.stop="handleDropFile($event)"
+              @drop.prevent="handleDropFile($event)"
+            />
+            <p 
+              @drop.prevent.stop="handleDropFile($event)"
+              @drop.prevent="handleDropFile($event)"
+            ><strong>Escoja un archivo</strong> ó arrastrelo aquí</p>
+            <progress
+              id="progress"
+              :value.prop="uploadPercentage" 
+              max="100" 
+            />
           </label>
         </div>
   
@@ -52,21 +68,28 @@ export default {
   , data() {
     return {
       file: ''
+      , uploadPercentage: 0
     }
   }
   , methods: {
     handleFileToUpload(){
-      console.log('handleFileToUpload')
       this.file = this.$refs.file.files[0]
     }
+    , handleDropFile(e) {
+      console.log('dropFile')
+      this.file = e.dataTransfer.files[0]
+    }
     , uploadFile(){
-      console.log('uploadFile')
       let formData = new FormData()
       formData.append('files', this.file)
+      let component = this
 
       this.$axios.post('/api/File', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
+        }
+        , onUploadProgress: function(progressEvent) {
+          component.uploadPercentage = Number.parseInt(Math.round(progressEvent.loaded * 100) / progressEvent.total)
         }
       })
       .then(_ => console.log('Success'))
