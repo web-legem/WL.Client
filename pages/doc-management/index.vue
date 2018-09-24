@@ -76,7 +76,6 @@ export default {
       this.file = this.$refs.file.files[0]
     }
     , handleDropFile(e) {
-      console.log('dropFile')
       this.file = e.dataTransfer.files[0]
     }
     , uploadFile(){

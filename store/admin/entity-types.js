@@ -63,7 +63,7 @@ export const mutations = {
     state.loading = false
     state.error = error
   }
-  , wating(state) {
+  , waiting(state) {
     state.loading = true
   }
   , isCreating(state) {
