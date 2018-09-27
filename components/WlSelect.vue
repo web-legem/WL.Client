@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 /*------Select input ---------*/
 
 .a_select {

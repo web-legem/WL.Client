@@ -133,12 +133,6 @@ export default {
       showSubModules: false
       , showMenu: false
       , menuItems: [
-        // {
-        //   label: 'Componentes'
-        //   , icon: 'ico-cubes'
-        //   , link: 'admin'
-        //   , show: 'true'
-        // }
         {
           label: 'Busqueda'
           , icon: 'ico-search'
@@ -205,16 +199,13 @@ export default {
       this.showSubModules = !this.showSubModules
     }
     , showMenuPanel () {
-      console.log('show')
       this.showMenu = true
     }
     , hideMenuPanel() {
-      console.log('hide')
       this.showMenu = false
     }
     , toggleMenuPanel(){
       this.showMenu = !this.showMenu
-      console.log('toggle')
     }
     , ...mapActions([
       'toggleA11yPanel'
@@ -222,10 +213,10 @@ export default {
       , 'setMouseDownA11yPanel'
     ])
   }
-};
+}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .menu {
   --header-height: calc(25px + 4.5vh);
   position: fixed;

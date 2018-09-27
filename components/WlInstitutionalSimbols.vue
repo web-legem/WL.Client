@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .contenedor_simbolos {
   background: rgba(0, 0, 0, .6);
   align-items: flex-end;

@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .tab {
   background-color: #fff;
   padding: .8em 1.6em;

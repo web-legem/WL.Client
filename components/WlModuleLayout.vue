@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .module-layout {
   height: 100%;
   padding-top: calc(25px + 4.5vh);

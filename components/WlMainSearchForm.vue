@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .contenido_nombre_buscador {
   padding-bottom: 60px;
   flex: 1;

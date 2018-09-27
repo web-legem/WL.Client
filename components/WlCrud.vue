@@ -84,7 +84,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .controles_box_right {
   display: flex;
   flex-wrap: wrap;

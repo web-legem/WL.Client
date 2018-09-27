@@ -49,7 +49,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .a_footer {
   background: #2c3e50;
   width: 100%;

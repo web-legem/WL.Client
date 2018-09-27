@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .landing-page {
   display: flex;
   flex-direction: column;

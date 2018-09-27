@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .login_form {
   padding-bottom: 60px;
   flex: 1;

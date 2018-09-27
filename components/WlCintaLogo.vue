@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .figura_logo{
   height: 125px;
   width: 150px;

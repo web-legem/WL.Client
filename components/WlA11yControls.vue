@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .a11y-ctrls {
   position: absolute;
   display: flex;
