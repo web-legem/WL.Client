@@ -52,7 +52,6 @@ export default {
       this.$router.push( this.localePath({ name: 'admin-doc-types'}))
     }
     , drop () {
-      console.log('drop')
       this.delete()
         .then( _ => this.cancel() )
     }
