@@ -31,7 +31,6 @@ export const actions = {
     commit('switchTheme')   
   }
   , changeTheme({commit, state}, theme) {
-    console.log(theme, state.highContrast)
     if(
       (theme == 'light' && state.highContrast)
       || (theme == 'dark' && !state.highContrast)

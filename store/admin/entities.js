@@ -70,7 +70,6 @@ export const mutations = {
     state.loading = true
   }
   , isCreating(state) {
-    console.log('creating')
     state.isCreating = true
   }
 }
