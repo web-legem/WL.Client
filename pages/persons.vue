@@ -20,13 +20,19 @@
 </template>
 
 <script>
-import WlModuleLayout from "~/components/WlModuleLayout.vue";
-import WlTab from "~/components/WlTab.vue";
+import WlModuleLayout from "~/components/WlModuleLayout.vue"
+import WlTab from "~/components/WlTab.vue"
 
 export default {
   components: {
-    WlModuleLayout,
-    WlTab
+    WlModuleLayout
+    , WlTab
   }
-};
+  , nuxtI18n: {
+    paths: {
+      es: '/personas'
+      , en: '/persons'
+    }
+  }
+}
 </script>

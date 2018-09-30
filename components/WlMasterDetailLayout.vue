@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .master-detail-layout {
   display: flex;
   flex-direction: row;

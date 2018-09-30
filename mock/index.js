@@ -10,6 +10,6 @@ var mock = new MockAdapter(axios, { delayResponse: 500 })
 mock.onGet('/api/AnnotationType').reply(200, atParams)
 mock.onGet('/api/DocumentType').reply(200, dtParams)
 mock.onGet('/api/EntityType').reply(200, etParams)
-mock.onGet('/apli/Entities').reply(200, eParams)
+mock.onGet('/api/Entity').reply(200, eParams)
 
 export default mock

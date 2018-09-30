@@ -33,6 +33,12 @@ export default {
     , WlListItem
     , WlFilteredList
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'permisos'
+      , en: 'permissions'
+    }
+  }
   , data() {
     return {
       permissions: [

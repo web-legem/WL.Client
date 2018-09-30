@@ -8,7 +8,9 @@
           :ico="'ico-plus'" 
           :only-icon="true" 
           :title="'Nuevo'"
-          class="btn-filter-add"/>
+          class="btn-filter-add"
+          @click.native="add"
+        />
       </div>
     </div>
     <div class="link-list">
@@ -20,23 +22,28 @@
 </template>
 
 <script>
-import WlInputFilter from "~/components/WlInputFilter.vue";
-import WlButton from "~/components/WlButton.vue";
+import WlInputFilter from "~/components/WlInputFilter.vue"
+import WlButton from "~/components/WlButton.vue"
 
 export default {
   components: {
-    WlInputFilter,
-    WlButton
+    WlInputFilter
+    , WlButton
   }
   , data() {
     return {
       disable: false
     }
   }
-};
+  , methods: {
+    add() {
+      this.$emit('add')
+    }
+  }
+}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .filtered-list {
   display: flex;
   flex-direction: column;

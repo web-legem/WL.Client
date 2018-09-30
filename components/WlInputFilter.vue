@@ -59,7 +59,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .btn_cancel {
   flex-basis: 35px;
   background: #fff;

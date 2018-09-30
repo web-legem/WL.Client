@@ -1,10 +1,82 @@
 <template>
-  <div class="menu">
+  <div
+    :class="{small: $mq == 'sm'}"
+    class="menu"
+  >
+    <button
+      v-if="$mq == 'sm'"
+      class="btn-menu"
+      mq="md-"
+      @click="toggleMenuPanel"
+      @focusout="hideMenuPanel"
+    ><span
+      :class="[ showMenu ? 'ico2-cross' : 'ico-bars' ]"
+      class="ico"
+    /></button>
 
-    <!-- <wl-cinta-logo /> -->
-
-    <nav class="nav">
-      <ul class="modules">
+    <!-- <mq-layout mq="lg+">
+      <wl-cinta-logo />
+    </mq-layout> -->
+  
+    <nav
+      v-if="$mq !== 'sm' || showMenu"
+      :class="{ small: $mq == 'sm' }"
+      class="nav"
+      @focusout="hideMenuPanel"
+    >
+      <ul
+        :class="{small: $mq == 'sm'}"
+        class="modules"
+      >
+        <li
+          :class="{small: $mq == 'sm'}"
+        >
+          <button
+            :class="{small: $mq == 'sm'}"
+            class="module"
+            @click.stop="toggleSubModulesPanel"
+            @keydown.enter="toggleSubModulesPanel"
+            @keypress.enter.stop="toggleSubModulesPanel"
+            @blur="hideSubModulesPanel(); hideMenuPanel()"
+            @focus="showMenuPanel"
+          >
+            <div>
+              <span
+                class="ico ico-cubes"
+              />
+              Modulos
+            </div>
+          </button>
+          <ul
+            v-show="showSubModules"
+            :class="{small: $mq == 'sm'}"
+            class="sub-modules"
+            @focusout="hideSubModulesPanel"
+          >
+            <li
+              v-for="(module, index) in modules"
+              :key="index"
+            >
+              <nuxt-link
+                :to="localePath({ name: module.link })"
+                class="sub-module"
+                @focus.native="showSubModulesPanel($event); showMenuPanel()"
+                @click.native.stop="hideSubModulesPanel(); hideMenuPanel()"
+                @mouseup.stop
+                @mousedown.stop
+                @focusout="hideMenuPanel"
+              >
+                <div>
+                  <span
+                    :class="[ module.icon ]"
+                    class="ico"
+                  />
+                  {{ module.label }}
+                </div>
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
         <li 
           v-for="(menuItem, index) in menuItems"
           :key="index"
@@ -12,6 +84,9 @@
           <nuxt-link
             :to="localePath({ name: menuItem.link })"
             class="module" 
+            @blur.native="hideMenuPanel"
+            @focus.native="showMenuPanel"
+            @click.native="hideMenuPanel"
           >
             <div>
               <span
@@ -24,24 +99,27 @@
         </li>
       </ul>
 
-      <button
-        class="accesibility"
-        @mouseenter="toggleA11yPanel"
-      >
-        <span class="ico ico-wheelchair" />
-      </button> 
-
-      <transition name="slide-fade-vertical">
-        <wl-a11y-controls
-          v-if="$store.state.showA11yPanel"
-        />
-      </transition>
     </nav>
+
+    <button
+      class="accessibility"
+      @click.stop="toggleA11yPanel"
+      @keydown.13.native="toggleA11yPanel"
+      @blur="hideA11yPanelOnBlur(true)"
+    >
+      <span class="ico ico-wheelchair" />
+    </button> 
+
+    <transition name="slide-fade-vertical">
+      <wl-a11y-controls
+        v-show="$store.state.showA11yPanel"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import WlCintaLogo from '~/components/WlCintaLogo.vue'
 import WlA11yControls from '~/components/WlA11yControls.vue'
 
@@ -52,14 +130,10 @@ export default {
   }
   , data() {
     return {
-      menuItems: [
+      showSubModules: false
+      , showMenu: false
+      , menuItems: [
         {
-          label: 'Componentes'
-          , icon: 'ico-cubes'
-          , link: 'admin'
-          , show: 'true'
-        }
-        , {
           label: 'Busqueda'
           , icon: 'ico-search'
           , link: 'search'
@@ -75,20 +149,74 @@ export default {
           label: 'Ingresar'
           , icon: 'ico-sign-in'
           , link: 'login'
-          , show: '!vm.session.loggeado'
+          , show: 'true'
         }
       ]
-    };
+      , modules: [
+        {
+          label: 'Administración'
+          , icon: 'ico-tasks'
+          , link: 'admin'
+        }
+        , {
+          label: 'Gestión Documental'
+          , icon: 'ico-stack-overflow'
+          , link: 'doc-management'
+        }
+        , {
+          label: 'Anotaciones'
+          , icon: 'ico-files-o'
+          , link: 'search'
+        }
+        , {
+          label: 'Usuarios'
+          , icon: 'ico-users'
+          , link: 'persons'
+        }
+      ]
+    }
   }
-  , methods: {
-    ...mapActions([
-      'toggleA11yPanel'
+  , computed: {
+    ...mapState([
+      'mouseDownA11yPanel'
     ])
   }
-};
+  , methods: {
+    hideA11yPanelOnBlur(isLastElement) {
+      if(isLastElement && !this.mouseDownA11yPanel){
+        this.hideA11yPanel()
+      }
+
+      this.setMouseDownA11yPanel(false)
+    }
+    , showSubModulesPanel($event) {
+      this.showSubModules = true
+    }
+    , hideSubModulesPanel() {
+      this.showSubModules = false
+    }
+    , toggleSubModulesPanel() {
+      this.showSubModules = !this.showSubModules
+    }
+    , showMenuPanel () {
+      this.showMenu = true
+    }
+    , hideMenuPanel() {
+      this.showMenu = false
+    }
+    , toggleMenuPanel(){
+      this.showMenu = !this.showMenu
+    }
+    , ...mapActions([
+      'toggleA11yPanel'
+      , 'hideA11yPanel'
+      , 'setMouseDownA11yPanel'
+    ])
+  }
+}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .menu {
   --header-height: calc(25px + 4.5vh);
   position: fixed;
@@ -99,12 +227,29 @@ export default {
   border-bottom: 1px solid #6c767d;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu.small {
+  background: #11171e;
 }
 
 .nav {
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
   align-content: center;
+  flex-grow: 1;
+}
+
+.nav.small {
+  display: flex;
+  position: fixed;
+  top: var(--header-height);
+  flex-direction: column;
+  background: #11171e;
 }
 
 ul.modules {
@@ -115,9 +260,32 @@ ul.modules {
   margin: 0;
 }
 
+ul.modules.small {
+  flex-direction: column;
+  align-content: flex-start;
+  background: rgba(0, 0, 0, 0.75);
+  width: 100vw;
+}
+
+ul.modules > li.small {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--header-height);
+  height: 100%;
+}
+
+ul.modules.small button {
+  width: 100vw;
+  height: 100%;
+}
+
 ul.modules > li {
   padding: 0;
   height: var(--header-height);
+}
+
+ul.modules.small > li {
+  align-content: flex-start;
 }
 
 .module {
@@ -160,15 +328,57 @@ ul.modules > li {
   left: 0;
 }
 
-button.accesibility {
+button.module {
+  background: inherit;
+}
+
+button.module.small {
+  min-height: var(--header-height);
+  height: 100%;
+}
+
+.sub-modules {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0;
+  position: absolute;
+}
+
+.sub-modules.small {
+  position: unset;
+  display: flex;
+  position: inherit;
+}
+
+.sub-module {
+  display: flex;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  text-decoration: none;
+  align-items: center;
+  padding: 10px;
+}
+
+.sub-module .ico {
+  padding: 5px 10px 0 0;
+  margin: 0;
+}
+
+button.accessibility {
   min-width: var(--header-height);
+  min-height: var(--header-height);
   background: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
+  align-self: flex-end;
 }
 
-button:focus,
-button:hover {
+button.accessibility:focus,
+button.accessibility:hover {
   background: #23948a;
 }
 
@@ -178,7 +388,14 @@ button .ico-wheelchair {
   background: rgba(0, 0, 0, 0);
   color: white;
   font-size: 16px;
-  position: relative;
-  cursor: pointer;
+}
+
+.btn-menu {
+  min-width: var(--header-height);
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  font-size: 1.5rem;
+  color: white;
 }
 </style>

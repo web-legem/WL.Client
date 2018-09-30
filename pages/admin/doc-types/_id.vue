@@ -1,8 +1,26 @@
 <template>
   <div class="doc-id">
     <h1>DocumentType to Edit</h1>
-    {{ selectedDocType && selectedDocType.id }}
-    {{ selectedDocType && selectedDocType.name }}
+    <input
+      v-if="selectedDocType"
+      :value="selectedDocType.name"
+      type="text"
+      @input="changeDocTypeName">
+
+    <button
+      type="button"
+      @click="cancel">Cancelar</button>
+
+    <button
+      type="button"
+      @click="update">Update</button>
+
+    <button
+      type="button"
+      @click="drop"
+    >
+      Eliminar
+    </button>
   </div>
 </template>
 
@@ -14,25 +32,42 @@ import {
 
 export default {
   computed: {
-    ...mapGetters('admin/document-types', { 
-      selectedDocType: 'selectedDocType'
+    ...mapGetters('admin/document-types', {
+      selectedDocType: 'selected'
     })
   }
   , watch: {
-    '$route'(){
-      this.selectDocType(this.$route.params.id)
+    '$route.params.id'(){
+      this.select(this.$route.params.id)
     }
   }
   , mounted() {
-    this.selectDocType(this.$route.params.id)
+    this.select(this.$route.params.id)
   }
   , beforeDestroy() {
     this.clearSelection()
   }
   , methods: {
-    ...mapActions('admin/document-types', [
-      'selectDocType'
+    cancel() {
+      this.$router.push( this.localePath({ name: 'admin-doc-types'}))
+    }
+    , drop () {
+      this.delete()
+        .then( _ => this.cancel() )
+    }
+    , update() {
+      this.save(this.selectedDocType)
+        .then( _ => this.cancel() )
+    }
+    , changeDocTypeName(e) {
+      this.changeName(e.target.value)
+    }
+    , ...mapActions('admin/document-types', [
+      'select'
       , 'clearSelection'
+      , 'changeName'
+      , 'save'
+      , 'delete'
     ])
   }
 }

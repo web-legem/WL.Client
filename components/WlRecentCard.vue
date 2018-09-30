@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang= "scss" scoped>
 .card-recent {
   padding: 20px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 1px 2px rgba(0, 0, 0, .3);

@@ -6,7 +6,12 @@
 
 <script>
 export default {
-
+  nuxtI18n: {
+    paths: {
+      es: 'nuevo'
+      , en: 'new'
+    }
+  }
 }
 </script>
 

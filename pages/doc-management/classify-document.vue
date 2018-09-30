@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>New User</h1>
+    <h1>Classify Document</h1>
+    <nuxt-child />
   </div>
 </template>
 
@@ -8,8 +9,8 @@
 export default {
   nuxtI18n: {
     paths: {
-      es: 'nuevo'
-      , en: 'new'
+      es: 'clasificar'
+      , en: 'classify'
     }
   }
 }

@@ -2,30 +2,30 @@
   <div>
     <div class="controles_box_right">        
       <wl-button 
-        v-show="showMod == true" 
+        v-show="true" 
         :ico="'ico-pencil'"         
-        :disable="disableBtn"
+        :disable="true"
         @click.native="edit()">editar
       </wl-button>
       
       <wl-button 
-        v-show="showDel == true" 
+        v-show="true" 
         :ico="'ico-trash'"         
-        :disable="disableBtn"
+        :disable="true"
         @click.native="remove()">eliminar
       </wl-button>
       
       <wl-button 
-        v-show="showNew == true" 
+        v-show="true" 
         :ico="'ico-plus'"         
-        :disable="disableBtn"
+        :disable="true"
         @click.native="create()">nuevo
       </wl-button>
     </div>
 
     este es el obj : {{ objSelect != null ? objSelect.name: "aun esta null" }}
     <br>
-    este es el resultado: {{ showMod }}
+    este es el resultado: {{ 'constante showMod' }}
     <br>
     este es el obj : {{ curObject != null ? curObject.name: "aun esta null el nuevo objecto" }}
 
@@ -36,14 +36,14 @@
       <wl-button 
         v-show ="isEdit"           
         :ico="'ico-floppy-o'" 
-        :disable="disableBtn"
+        :disable="true"
         @click.native="ok()">Aceptar
       </wl-button>
       
       <wl-button 
         v-show="isEdit"
         :ico="'ico-times'"  
-        :disable="disableBtn"
+        :disable="true"
         @click.native="cancel()">Cancelar
       </wl-button>
     </div>
@@ -84,7 +84,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .controles_box_right {
   display: flex;
   flex-wrap: wrap;

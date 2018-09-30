@@ -31,6 +31,12 @@ export default {
       title: this.$t('persons.users.module-name')
     }
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'usuarios'
+      , en: 'users'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem

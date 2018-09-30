@@ -28,13 +28,4 @@
 
 <script>
 export default {};
-
-
-
-function hola(){
-
-}
 </script>
-
-<style>
-</style>

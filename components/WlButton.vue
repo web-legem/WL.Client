@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 /*---------Estilos para Botones----------*/
 
 .btn-normal {

@@ -1,11 +1,16 @@
 <template>
-  <wl-master-detail-layout :has-detail="isADocTypeSelected">
-    <wl-filtered-list slot="master">
+  <wl-master-detail-layout :has-detail="isSelected || isCreating">
+    <wl-filtered-list
+      slot="master"
+      @add="create"
+    >
       <wl-list-item
         v-for="documentType in documentTypes" 
         :key="documentType.id"
         :to="localePath({ name: 'admin-doc-types-id',
-                          params: { id: documentType.id }})">
+                          params: { id: documentType.id }})"
+        @click.native="activateRoute(documentType.id)"
+      >
         {{ documentType.name }}
       </wl-list-item>
     </wl-filtered-list>
@@ -31,6 +36,12 @@ export default {
       title: this.$t('admin.doc-types.module-name')
     }
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'tipos-documento'
+      , en: 'document-types'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem
@@ -38,20 +49,24 @@ export default {
   }
   , computed: {
     ...mapGetters('admin/document-types', {
-      documentTypes: 'docTypes'
-      , isADocTypeSelected: 'isADocTypeSelected'
+      documentTypes: 'list'
+      , selected: 'selected'
+      , isSelected: 'isSelected'
+      , isCreating: 'isCreating'
     })
   }
   , methods: {
-    ...mapActions('admin/document-types', [
-      'loadData'
-    ])
+    activateRoute(actualIdSelected) {
+      if(this.isSelected && actualIdSelected == this.selected.id) {
+        this.$router.push( this.localePath({ name: 'admin-doc-types' }))
+      }
+    }
+    , create() {
+      this.$router.push( this.localePath({ name: 'admin-doc-types-new' }) )
+    }
   }
   , fetch({ store, params }) {
     return store.dispatch('admin/document-types/loadData')
   }
 }
 </script>
-
-<style>
-</style>

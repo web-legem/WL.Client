@@ -1,10 +1,14 @@
 <template>
-  <wl-master-detail-layout :has-detail="isSelected">
-    <wl-filtered-list slot="master">
+  <wl-master-detail-layout :has-detail="isSelected || isCreating">
+    <wl-filtered-list
+      slot="master"
+      @add="create"
+    >
       <wl-list-item
         v-for="entityType in entityTypes"
         :to="localePath({ name: 'admin-entity-types-id', params: {id: entityType.id} })"
         :key="entityType.id"
+        @click.native="activateRoute(entityType.id)"
       >
         {{ entityType.name }}
       </wl-list-item>
@@ -28,6 +32,12 @@ export default {
       title: this.$t('admin.entity-types.module-name')
     }
   }
+  , nuxtI18n: {
+    paths: {
+      es: 'tipos-entidad'
+      , en: 'entity-types'
+    }
+  }
   , components: {
     WlMasterDetailLayout
     , WlListItem
@@ -35,14 +45,21 @@ export default {
   }
   , computed: {
     ...mapGetters('admin/entity-types', {
-      entityTypes: 'entityTypes'
+      entityTypes: 'list'
+      , isCreating: 'isCreating'
       , isSelected: 'isSelected'
+      , selected: 'selected'
     })
   }
   , methods: {
-    ...mapActions('admin/entity-types', {
-      loadData: 'loadData'
-    })
+    create() {
+      this.$router.push(this.localePath({name: 'admin-entity-types-new'}))
+    }
+    , activateRoute(actualIdSelected) {
+      if(this.isSelected && actualIdSelected == this.selected.id) {
+        this.$router.push(this.localePath({name: 'admin-entity-types'}))
+      }
+    }
   }
   , fetch({store, params}) {
     return store.dispatch('admin/entity-types/loadData')

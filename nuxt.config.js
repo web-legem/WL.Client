@@ -7,17 +7,14 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
+      { id: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {}
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   css: [
-    '@/assets/colors.css'
-    , '@/assets/colors-hc.css'
-    , '@/assets/base.css'
+    '@/assets/base.css'
     , '@/assets/iconos-legem1/styles.css' 
     , '@/assets/iconos-legem2/style.css'
     , '@/assets/inputs.css'
@@ -55,7 +52,7 @@ module.exports = {
       ],
       defaultLocale: 'es',
       lazy: true,
-      langDir: 'locales/'
+      langDir: 'locales/',
     }]
     , '@nuxtjs/axios'
     , ['nuxt-mq',{
@@ -68,15 +65,15 @@ module.exports = {
       }
     }]
   ],
-  // axios: {
-  //   // proxyHeaders: false,
-  //   host: 'localhost'
-  //   , port: '54037'
-  //   , retry: {  retries: 2 }
-  // },
   axios: {
-    host: '192.168.0.6'
+    // proxyHeaders: false,
+    host: 'localhost'
     , port: '54037'
-    , retry: { retries: 2 }
-  }
+    , retry: {  retries: 2 }
+  },
+  // axios: {
+  //   host: '192.168.0.6'
+  //   , port: '54037'
+  //   , retry: { retries: 2 }
+  // }
 }
