@@ -1,11 +1,11 @@
 <template>
-  <div class="doc-id">
+  <div>
     <h1>DocumentType to Edit</h1>
     <input
       v-if="selectedDocType"
-      :value="selectedDocType.name"
+      v-model="name"
       type="text"
-      @input="changeDocTypeName">
+    >
 
     <button
       type="button"
@@ -35,6 +35,14 @@ export default {
     ...mapGetters('admin/document-types', {
       selectedDocType: 'selected'
     })
+    , name: {
+      get() {
+        return this.selectedDocType.name
+      }
+      , set(value){
+        this.changeName(value)
+      }
+    }
   }
   , watch: {
     '$route.params.id'(){
@@ -59,9 +67,6 @@ export default {
       this.save(this.selectedDocType)
         .then( _ => this.cancel() )
     }
-    , changeDocTypeName(e) {
-      this.changeName(e.target.value)
-    }
     , ...mapActions('admin/document-types', [
       'select'
       , 'clearSelection'
@@ -72,9 +77,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.doc-id {
-  display: block;
-}
-</style>
