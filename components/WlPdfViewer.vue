@@ -10,7 +10,7 @@
 export default {
   props: {
     fileId: {
-      type: Number
+      type: Number | String
       , required: true
     }
   }
@@ -22,7 +22,7 @@ export default {
   }
   , computed: {
     url() {
-      return 'http://localhost:54037/api/File/' + this.fileId
+      return this.$axios.defaults.baseURL +  'api/File/' + this.fileId
     }
   }
   , mounted() {

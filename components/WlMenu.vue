@@ -223,7 +223,7 @@ export default {
   width: 100%;
   height: var(--header-height);
   min-height: 45px;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.9);
   border-bottom: 1px solid #6c767d;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   z-index: 2;
@@ -263,7 +263,7 @@ ul.modules {
 ul.modules.small {
   flex-direction: column;
   align-content: flex-start;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.9);
   width: 100vw;
 }
 
@@ -354,7 +354,7 @@ button.module.small {
 
 .sub-module {
   display: flex;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
   cursor: pointer;
   height: 40px;
