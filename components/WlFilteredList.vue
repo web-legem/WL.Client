@@ -58,14 +58,11 @@ export default {
 
 .filter {
   width: 100%;
+  margin-right: 5px;
 }
 
 .filter-add {
   display: flex;
-}
-
-.btn-filter-add{
-  padding-left: 4px;
 }
 
 .link-list {

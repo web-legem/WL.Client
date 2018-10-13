@@ -1,15 +1,23 @@
+<<<<<<< HEAD
 <template>  
+=======
+<template>
+>>>>>>> c5820e0ac0d7dc34646f9ffaeec97315272d1c43
   <button 
     :disabled="disable == true" 
     :class="[btnStyle,btnInverso]" 
     :title="title">
     <span :class="[ico,size,icoInverso]"/> <slot/>
+<<<<<<< HEAD
   </button>  
+=======
+  </button>
+>>>>>>> c5820e0ac0d7dc34646f9ffaeec97315272d1c43
 </template>
 
 <script>
 export default {
-  
+
   props: {
     title: { type: String, default: "" },
     ico: { type: String, default: "" },
@@ -35,8 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*---------Estilos para Botones----------*/
-
 .btn-normal {
   position: relative;
   background-color: #0f745b;
@@ -76,8 +82,6 @@ export default {
   background: rgba(0, 0, 0, 0.4);
 }
 
-/*...................................*/
-
 .btn-normal.azul {
   background-color: #2980b9;
 }
@@ -90,8 +94,6 @@ export default {
   background-color: #27649b;
 }
 
-/*---------------------------------*/
-
 .tamano_botones_1 {
   background: rgba(0, 0, 0, 0.08);
   height: 100%;
@@ -102,8 +104,6 @@ export default {
   font-size: 140%;
   line-height: 2.3;
 }
-
-/*-----------------------------------*/
 
 .tamano_botones_1.derecha {
   left: unset;
@@ -153,8 +153,6 @@ export default {
   background-color: #064234;
 }
 
-/*-----Btn solo Ico-----*/
-
 .btn-only-ico {
   border: 0;
   background: #00796b;
@@ -181,6 +179,4 @@ export default {
   color: white;
   width: 100%;
 }
-
-/*--Fin Btn solo Ico-----*/
 </style>

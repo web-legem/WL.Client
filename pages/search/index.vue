@@ -23,12 +23,6 @@ export default {
   components: {
     WlMasterDetailLayout
   }
-  , nuxtI18n: {
-    paths: {
-      es: '/busqueda'
-      , en: '/search'
-    }
-  }
 }
 </script>
 
