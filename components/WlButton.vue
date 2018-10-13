@@ -1,12 +1,10 @@
-<template>
-  <div>
-    <button 
-      :disabled="disable == true" 
-      :class="[btnStyle,btnInverso]" 
-      :title="title">
-      <span :class="[ico,size,icoInverso]"/> <slot/>
-    </button>
-  </div>
+<template>  
+  <button 
+    :disabled="disable == true" 
+    :class="[btnStyle,btnInverso]" 
+    :title="title">
+    <span :class="[ico,size,icoInverso]"/> <slot/>
+  </button>  
 </template>
 
 <script>

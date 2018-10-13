@@ -3,14 +3,16 @@
     <div class="box-filter">
       <div class="filter-add">
         <wl-input-filter class="filter" />
-        <wl-button 
-          :disable="disable"
-          :ico="'ico-plus'" 
-          :only-icon="true" 
-          :title="'Nuevo'"
-          class="btn-filter-add"
-          @click.native="add"
-        />
+        <div>
+          <wl-button 
+            :disable="disable"
+            :ico="'ico-plus'" 
+            :only-icon="true" 
+            :title="'Nuevo'"
+            class="btn-filter-add"
+            @click.native="add"
+          />
+        </div>
       </div>
     </div>
     <div class="link-list">

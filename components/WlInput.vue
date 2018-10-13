@@ -6,13 +6,15 @@
     </label>
 
     <input 
+      :value="value"
       :disabled="disable == true"             
       :type="'text'" 
       :name="name" 
       :id="id" 
       :placeholder="placeholder" 
       :maxlength="max"
-      class="a_input">
+      class="a_input"
+      @input="$emit('input',$event.target.value)">
 
     <div 
       v-show="error" 
@@ -26,6 +28,7 @@
 <script>
 export default {
   props: {
+    value: { type: String, default: "" },
     title: { type: String, default: "" },
     name: { type: String, default: "" },
     placeholder: { type: String, default: "" },
