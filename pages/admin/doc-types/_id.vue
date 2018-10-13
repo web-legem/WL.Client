@@ -1,14 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <wl-crud :obj-select="obj">
-    <template slot="wl-form">
-      <div class="doc-id">
-        <h1>DocumentType to Edit</h1>
-        <input
-          v-if="selectedDocType"
-          v-model="name"
-          type="text">
-=======
   <div>
     <h1>DocumentType to Edit</h1>
     <input
@@ -16,25 +6,22 @@
       v-model="name"
       type="text"
     >
->>>>>>> c5820e0ac0d7dc34646f9ffaeec97315272d1c43
 
-        <button
-          type="button"
-          @click="cancel">Cancelar</button>
+    <button
+      type="button"
+      @click="cancel">Cancelar</button>
 
-        <button
-          type="button"
-          @click="update">Update</button>
+    <button
+      type="button"
+      @click="update">Update</button>
 
-        <button
-          type="button"
-          @click="drop"
-        >
-          Eliminar
-        </button>
-      </div>
-    </template>
-  </wl-crud>  
+    <button
+      type="button"
+      @click="drop"
+    >
+      Eliminar
+    </button>
+  </div>
 </template>
 
 <script>
@@ -55,21 +42,12 @@ export default {
   computed: {
     ...mapGetters('admin/document-types', {
       selectedDocType: 'selected'
-<<<<<<< HEAD
-    }),
-    name:{
-      get(){
-        return this.selectedDocType.name
-      },
-      set(value){
-=======
     })
     , name: {
       get() {
         return this.selectedDocType.name
       }
       , set(value){
->>>>>>> c5820e0ac0d7dc34646f9ffaeec97315272d1c43
         this.changeName(value)
       }
     }

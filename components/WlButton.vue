@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-<template>  
-=======
 <template>
->>>>>>> c5820e0ac0d7dc34646f9ffaeec97315272d1c43
   <button 
     :disabled="disable == true" 
     :class="[btnStyle,btnInverso]" 
     :title="title">
     <span :class="[ico,size,icoInverso]"/> <slot/>
-<<<<<<< HEAD
-  </button>  
-=======
   </button>
->>>>>>> c5820e0ac0d7dc34646f9ffaeec97315272d1c43
 </template>
 
 <script>
