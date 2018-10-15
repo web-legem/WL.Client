@@ -8,7 +8,7 @@
     <input 
       :value="value"
       :disabled="disable == true"             
-      :type="'text'" 
+      :type="type" 
       :name="name" 
       :id="id" 
       :placeholder="placeholder" 
@@ -35,7 +35,7 @@ export default {
     inverso: { type: Boolean, default: false },
     id: { type: String, default: "" },
     isRequired: { type: Boolean, default: false },
-    type: { type: String, default: "" },
+    type: { type: String, default: "text" },
     max: { type: Number, required: true },
     disable: { type: Boolean, default: false },
     error: { type: Boolean, default: false },

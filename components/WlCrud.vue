@@ -3,29 +3,18 @@
     <div class="controles_box_right">        
       <wl-button 
         v-show="true" 
-        :ico="'ico-pencil'"         
-        :disable="true"
+        :ico="'ico-pencil'"                 
         @click.native="edit()">editar
       </wl-button>
       
       <wl-button 
         v-show="true" 
-        :ico="'ico-trash'"         
-        :disable="true"
+        :ico="'ico-trash'"                 
         @click.native="remove()">eliminar
-      </wl-button>
-      
-      <wl-button 
-        v-show="true" 
-        :ico="'ico-plus'"         
-        :disable="true"
-        @click.native="create()">nuevo
       </wl-button>
     </div>
 
-    este es el obj : {{ objSelect != null ? objSelect.name: "aun esta null" }}
-    <br>
-    este es el resultado: {{ 'constante showMod' }}
+    este es el obj : {{ objSelect != null ? objSelect.name: "aun esta null" }}    
     <br>
     este es el obj : {{ curObject != null ? curObject.name: "aun esta null el nuevo objecto" }}
 
@@ -34,17 +23,16 @@
 
     <div class="controles_box_right down">
       <wl-button 
-        v-show ="isEdit"           
         :ico="'ico-floppy-o'" 
-        :disable="true"
+        :disable="!isEdit"
         @click.native="ok()">Aceptar
       </wl-button>
       
       <wl-button 
-        v-show="isEdit"
         :ico="'ico-times'"  
-        :disable="true"
-        @click.native="cancel()">Cancelar
+        :disable="!isEdit"
+        @click.native="$emit('cancel',$event.target.value)">
+        Cancelar
       </wl-button>
     </div>
   </div>
@@ -80,7 +68,11 @@ export default {
   created() {
     this.curObject = this.objSelect;
   },
-
+  methods: {
+    edit() {
+      this.isEdit = true;
+    },
+  }
 };
 </script>
 
