@@ -42,7 +42,7 @@ module.exports = {
     },
   },
   plugins: [
-    '~/plugins/vee-validate.js'
+    // '~/plugins/vee-validate.js'
   ],
   modules: [
     ['nuxt-i18n', {

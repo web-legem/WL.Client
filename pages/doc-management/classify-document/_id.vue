@@ -2,6 +2,7 @@
   <div>
     <h1>Clasificar documento</h1>
     <p v-if="isAlreadyClassified">El documento ya fue clasificado</p>
+    <p v-if="!isAlreadyClassified">El documento no ha sido clasificado</p>
 
     <form action="">
       <input
