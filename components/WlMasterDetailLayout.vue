@@ -1,6 +1,7 @@
 <template>
   <div class="master-detail-layout">
     <div
+      v-hide="hideList"
       :class="[hideList]"
       class="master">
       <slot name="master"/>
@@ -58,8 +59,7 @@ export default {
 }
 
 @media screen and(max-width: 992px) {
-  .master.hide
-  , .detail.hide {
+  .master.hide {
     display: none;
   }
 }
@@ -81,4 +81,11 @@ export default {
     border-left: 1px solid #ccc;
   }
 }
+
+@media screen and(max-width: 992px) {
+  .detail.hide {
+    display: none;
+  }
+}
 </style>
+

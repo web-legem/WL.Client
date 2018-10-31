@@ -1,27 +1,15 @@
 <template>
   <div class="search">
-    <wl-master-detail-layout>
-      <template 
-        slot="master"
-      >
-        Controles Busqueda Avanzada
-      </template>
-
-      <template
-        slot="details"
-      >
-        Resultado Busqueda
-      </template>
-    </wl-master-detail-layout>
+    <wl-search />
   </div>
 </template>
 
 <script>
-import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
+import WlSearch from '~/components/WlSearch.vue'
 
 export default {
   components: {
-    WlMasterDetailLayout
+    WlSearch
   }
 }
 </script>

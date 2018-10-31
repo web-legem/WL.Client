@@ -6,10 +6,9 @@
         <div>
           <wl-button 
             :disable="disable"
-            :ico="'ico-plus'" 
             :only-icon="true" 
-            :title="'Nuevo'"
-            class="btn-filter-add"
+            title="Nuevo"
+            ico="ico-plus" 
             @click.native="add"
           />
         </div>
