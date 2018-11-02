@@ -39,6 +39,7 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      // if(isDev) config.devtool = "#sourcemap"
     },
   },
   plugins: [
