@@ -48,6 +48,9 @@ import {
 } from 'vuex';
 
 export default {
+  validate({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   computed: {
     checked: {
       get() {

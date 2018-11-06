@@ -10,6 +10,9 @@
 import WlPdfViewer from '~/components/WlPdfViewer.vue'
 
 export default {
+  validate({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   components: {
     WlPdfViewer
   }

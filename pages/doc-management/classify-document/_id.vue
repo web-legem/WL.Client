@@ -69,6 +69,9 @@ import {mapActions, mapGetters} from 'vuex'
 import moment from 'moment'
 
 export default {
+  validate({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   data() {
     return {
       number: ''
