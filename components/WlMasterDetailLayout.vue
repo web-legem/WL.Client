@@ -1,7 +1,6 @@
 <template>
   <div class="master-detail-layout">
     <div
-      v-hide="hideList"
       :class="[hideList]"
       class="master">
       <slot name="master"/>
