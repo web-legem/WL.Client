@@ -9,7 +9,6 @@
 
 <script>
 export default {
-
   props: {
     title: { type: String, default: "" },
     ico: { type: String, default: "" },
@@ -29,7 +28,7 @@ export default {
     },
     size() {
       return this.onlyIcon ? "" : "tamano_botones_1";
-    }
+    },
   }
 };
 </script>
@@ -170,5 +169,13 @@ export default {
   font-size: 20px;
   color: white;
   width: 100%;
+}
+
+button.danger {
+  background-color: tomato;
+}
+
+button.danger:hover {
+  background: pink;
 }
 </style>
