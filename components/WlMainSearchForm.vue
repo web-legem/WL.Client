@@ -3,14 +3,24 @@
     <div class="site-name">
       <p>
         <!-- Legem  -->
-        {{ $mq }}</p>
+        {{ $mq }}
+      </p>
     </div>
     <div class="contenedor_mini_search">
-      <form class="mini_search">
+      <form
+        class="mini_search"
+        action=""
+        @submit.prevent
+      >
         <input
           id="mini_search" 
-          type="text">
-        <button class="ico2-search" />
+          v-model="wordsToSearch"
+          type="text"
+        >
+        <button
+          class="ico2-search"
+          @click="search()"
+        />
       </form>
     </div>
   </div>
@@ -18,6 +28,22 @@
 
 <script>
 export default {
+  data() {
+    return {
+      wordsToSearch: ''
+    }
+  },
+  methods: {
+    search() {
+      var query = this.wordsToSearch != null && this.wordsToSearch.length > 0
+        ? { wordsToSearch: encodeURI(this.wordsToSearch) }
+        : {}
+      this.$router.push(this.localePath({
+        name: 'search',
+        query
+      }))
+    }
+  }
 }
 </script>
 
