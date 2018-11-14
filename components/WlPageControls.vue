@@ -47,10 +47,10 @@ export default {
   },
   methods: {
     previous() {
-      this.$emit('previous')
+      this.$emit('go-to-page', this.page > 1 ? this.page - 1 : 1  )
     },
     next() {
-      this.$emit('next')
+      this.$emit('go-to-page', this.page + 1)
     },
   },
 }

@@ -1,14 +1,21 @@
 <template>
   <form
     action="" 
-    class="wl-search-bar">
+    class="wl-search-bar"
+    @submit.prevent
+  >
     <input
+      ref="input"
+      :value="value"
       type="search" 
-      class="a_input">
+      class="a_input"
+    >
     <wl-button 
       :only-icon="true"
       title="Search"
-      ico="ico-search" />
+      ico="ico-search" 
+      @click.native="$emit('input', $refs.input.value )"
+    />
   </form>
 </template>
 
@@ -17,7 +24,13 @@ import WlButton from '~/components/WlButton.vue'
 
 export default {
   components: {
-    WlButton
+    WlButton,
+  },
+  props: {
+    value: {
+      type: String,
+      required: true,
+    },
   }
 }
 </script>

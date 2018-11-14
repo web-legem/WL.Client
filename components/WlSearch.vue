@@ -9,22 +9,27 @@
 
       <template slot="details">
         <div class="layout">
-          <wl-search-bar />
+          <wl-search-bar
+            v-model="wordsToSearch"
+          />
           <wl-order-controls
             class="wl-order-controls"
           />
           <div class="pager-content">
             <wl-page-controls
               :page="page"
-              @previous="previous"
-              @next="next"
               @go-to-page="loadPage($event)"
             />
-            Content
+            <div>
+              <div 
+                v-for="document in results"
+                :key="document.file.id"
+              >
+                {{ document.file.issue }}
+              </div>
+            </div>
             <wl-page-controls
               :page="page"
-              @previous="previous"
-              @next="next"
               @go-to-page="loadPage($event)"
             />
           </div>
@@ -51,18 +56,64 @@ export default {
   },
   data() {
     return {
-      page: 1,
+      results: [],
     }
   },
+  computed: {
+    wordsToSearch: {
+      get() {
+        return decodeURI(this.$route.query.wordsToSearch || '')
+      },
+      set(wordsToSearch) {
+        this.changeParams(this.getQuery(wordsToSearch, 1))
+      }
+    },
+    page: {
+      get() {
+        return Number.parseInt(this.$route.query.page > 0 ? this.$route.query.page : 1)
+      },
+      set(value) {
+        this.changeParams(this.getQuery(this.wordsToSearch, value))
+      }
+    }
+  },
+  watch: {
+    '$route'() {
+      this.search(this.getQuery(this.wordsToSearch, this.page))
+    },
+  },
+  mounted() {
+    this.search(this.getQuery(this.wordsToSearch, this.page))
+  },
   methods: {
-    previous(){
-      this.page = this.page > 1 ? this.page - 1 : 1
-    },
-    next(){
-      this.page++
-    },
     loadPage(number){
       this.page = number > 0 ? number : 1
+    },
+    search(params) {
+      this.$axios.get('/api/ClassifiedFile', {
+        params: {
+          ...params,
+          pageSize: 1,
+        },
+      })
+      .then(response => this.results = response.data)
+      .catch(console.log)
+    },
+    changeParams(query) {
+      this.$router.push(this.localePath({ 
+        name: 'search',
+        query: query,
+      }))
+    },
+    getQuery(wordsToSearch, pageNumber) { // TODO - create query using multiple params filters
+      var query = { 
+        wordsToSearch: encodeURI(wordsToSearch),
+        page: pageNumber,
+      }
+      if(query.wordsToSearch.length == 0){
+        delete query.wordsToSearch
+      }
+      return query;
     },
   },
 }
