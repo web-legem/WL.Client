@@ -13,7 +13,10 @@
             v-model="wordsToSearch"
           />
           <wl-order-controls
+            :order-by="orderBy"
+            :descend="descend"
             class="wl-order-controls"
+            @order="orderBy = $event"
           />
           <div class="pager-content">
             <wl-page-controls
@@ -57,6 +60,7 @@ export default {
   data() {
     return {
       results: [],
+      descend: false
     }
   },
   computed: {
@@ -65,7 +69,7 @@ export default {
         return decodeURI(this.$route.query.wordsToSearch || '')
       },
       set(wordsToSearch) {
-        this.changeParams(this.getQuery(wordsToSearch, 1))
+        this.changeParams(this.getQuery(wordsToSearch, 1, this.orderBy, this.descend))
       }
     },
     page: {
@@ -73,17 +77,26 @@ export default {
         return Number.parseInt(this.$route.query.page > 0 ? this.$route.query.page : 1)
       },
       set(value) {
-        this.changeParams(this.getQuery(this.wordsToSearch, value))
+        this.changeParams(this.getQuery(this.wordsToSearch, value, this.orderBy, this.descend))
+      }
+    },
+    orderBy: {
+      get() {
+        return this.$route.query.orderBy || 'DEFAULT'
+      },
+      set(value) {
+        this.descend = value.descend
+        this.changeParams(this.getQuery(this.wordsToSearch, 1, value.orderBy, value.descend))
       }
     }
   },
   watch: {
     '$route'() {
-      this.search(this.getQuery(this.wordsToSearch, this.page))
+      this.search(this.getQuery(this.wordsToSearch, this.page, this.orderBy, this.descend))
     },
   },
   mounted() {
-    this.search(this.getQuery(this.wordsToSearch, this.page))
+    this.search(this.getQuery(this.wordsToSearch, this.page, this.orderBy, this.descend))
   },
   methods: {
     loadPage(number){
@@ -93,7 +106,7 @@ export default {
       this.$axios.get('/api/ClassifiedFile', {
         params: {
           ...params,
-          pageSize: 1,
+          pageSize: 1, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
         },
       })
       .then(response => this.results = response.data)
@@ -105,13 +118,19 @@ export default {
         query: query,
       }))
     },
-    getQuery(wordsToSearch, pageNumber) { // TODO - create query using multiple params filters
+    getQuery(wordsToSearch, pageNumber, orderBy, descend) { // TODO - create query using multiple params filters
       var query = { 
         wordsToSearch: encodeURI(wordsToSearch),
         page: pageNumber,
+        orderBy: orderBy,
+        descend: descend,
       }
       if(query.wordsToSearch.length == 0){
         delete query.wordsToSearch
+      }
+      if(query.orderBy === 'DEFAULT') {
+        delete query.orderBy
+        delete query.descend
       }
       return query;
     },
