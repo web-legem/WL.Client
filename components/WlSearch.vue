@@ -5,7 +5,8 @@
     >
       <wl-search-filters
         slot="master"
-        class="wl-search-filters"/>
+        class="wl-search-filters"
+      />
 
       <template slot="details">
         <div class="layout">
@@ -88,7 +89,7 @@ export default {
         this.descend = value.descend
         this.changeParams(this.getQuery(this.wordsToSearch, 1, value.orderBy, value.descend))
       }
-    }
+    },
   },
   watch: {
     '$route'() {

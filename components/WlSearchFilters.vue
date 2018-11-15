@@ -2,31 +2,17 @@
   <div class="wl-search-filters">
     <h3>Busqueda avanzada</h3> 
     <div class="active-filters">
-      <div
-        v-if="showSelectedEntityFilter"
-        class="filter">
-        <label for="entidad">Entidad</label>
-        <div class="control">
-          <input
-            id="entidad"
-            :value="selectedEntity.name"
-            name="entidad"
-            type="text"
-            class="a_input"
-            disabled
-          >
-          <wl-button
-            :only-icon="true" 
-            title="Agregar Filtro"
-            ico="ico-arrow-circle-o-down"
-            class="danger"
-            @click.native="disableEntityFilter"
-          />
-        </div>
-      </div>
+      <wl-select-filter
+        v-if="entities"
+        :list="entities"
+        param="entityId"
+        label="Entidad"
+        value-prop-name="id"
+        label-prop-name="name"
+      />
 
-      <div
-        v-if="showSelectedDocumentTypeFilter"
+      <!-- <div
+        v-show="showSelectedDocumentTypeFilter"
         class="filter">
         <label for="tipo-documento">Tipo Documento</label>
         <div class="control">
@@ -46,35 +32,10 @@
             @click.native="disableDocumentTypeFilter"
           />
         </div>
-      </div>
+      </div> -->
 
-      <div
-        v-if="showNumberFilter"
-        class="filter">
-        <label for="numero">
-          Número de documento
-        </label>
-        <div class="control">
-          <input
-            id="numero"
-            v-model="number"
-            name="numero"
-            type="text"
-            class="a_input"
-            disabled
-          >
-          <wl-button 
-            :only-icon="true"
-            title="Agregar Filtro"
-            ico="ico-filter"
-            class="danger"
-            @click.native="disableNumberFilter"
-          />
-        </div>
-      </div>
-
-      <div
-        v-if="showPublicationFilter"
+      <!-- <div
+        v-show="showPublicationFilter"
         class="filter">
         <label for="publicacion">
           Año de publicación
@@ -96,37 +57,12 @@
             @click.native="disablePublicationFilter"
           />
         </div>
-      </div>
+      </div> -->
     </div>
 
-    <div
-      v-if="!showSelectedEntityFilter"
-      class="filter">
-      <label for="entidad">Entidad</label>
-      <div class="control">
-        <select 
-          id="entidad"
-          v-model="selectedEntityId"
-          name="entidad" 
-          class="a_input"
-        >
-          <option 
-            v-for="entity in entities"
-            :key="entity.id"
-            :value="entity.id"
-          >{{ entity.name }}</option>
-        </select>
-        <wl-button
-          :only-icon="true" 
-          title="Agregar Filtro"
-          ico="ico-filter"
-          @click.native="enableEntityFilter()"
-        />
-      </div>
-    </div>
 
-    <div 
-      v-if="!showSelectedDocumentTypeFilter"
+    <!-- <div 
+      v-show="!showSelectedDocumentTypeFilter"
       class="filter">
       <label for="tipo-documento">Tipo Documento</label>
       <div class="control">
@@ -148,33 +84,10 @@
           @click.native="enableDocumentTypeFilter"
         />
       </div>
-    </div>
+    </div> -->
 
-    <div
-      v-if="!showNumberFilter"
-      class="filter">
-      <label for="numero">
-        Número de documento
-      </label>
-      <div class="control">
-        <input
-          id="numero"
-          v-model="number"
-          name="numero"
-          type="text"
-          class="a_input"
-        >
-        <wl-button 
-          :only-icon="true"
-          title="Agregar Filtro"
-          ico="ico-filter"
-          @click.native="enableNumberFilter"
-        />
-      </div>
-    </div>
-
-    <div
-      v-if="!showPublicationFilter"
+    <!-- <div
+      v-show="!showPublicationFilter"
       class="filter">
       <label for="publicacion">
         Año de publicación
@@ -196,16 +109,21 @@
           @click.native="enablePublicationFilter"
         />
       </div>
-    </div>
+    </div> -->
+    <wl-number-filter />
   </div> 
 </template>
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import WlNumberFilter from '~/components/WlNumberFilter.vue'
+import WlSelectFilter from '~/components/WlSelectFilter.vue'
 
 export default {
   components: {
     WlButton,
+    WlNumberFilter,
+    WlSelectFilter,
   },
   data() {
     return {
@@ -225,13 +143,14 @@ export default {
       ],
       selectedDocumentTypeId: null,
       isDocumentTypeFilterEnabled: false,
-      number: '',
-      isNumberFilterEnabled: false,
       publication: this.currentYear,
       isPublicationFilterEnabled: false
     }
   },
   computed: {
+    number() {
+      return this.$route.query.number || ''
+    },
     showSelectedEntityFilter() {
       return this.selectedEntityId != null && this.isEntityFilterEnabled
     },
@@ -244,15 +163,15 @@ export default {
     selectedDocumentType() {
       return this.documentTypes.find(x => x.id == this.selectedDocumentTypeId)
     },
-    showNumberFilter(){
-      return this.number != null && this.number.length > 0 && this.isNumberFilterEnabled
-    },
     currentYear() {
       return new Date().getFullYear()
     },
     showPublicationFilter(){
       return this.publication != null && this.publication.length == 4 && this.isPublicationFilterEnabled
-    }
+    },
+    showNumberFilter() {
+      return this.$route.query && this.$route.query.number > 0
+    },
   },
   methods: {
     unselectEntityId() {
@@ -273,23 +192,30 @@ export default {
     disableDocumentTypeFilter() {
       this.isDocumentTypeFilterEnabled = false
     },
+    canActivateFilter(){
+      let number = this.$refs.inputNumber.value
+      return number.length > 0
+    },
     enableNumberFilter(){
-      if(this.number == null || this.number.length == 0)
-        return;
-      this.isNumberFilterEnabled = true
+      let query = { ...this.$route.query }
+      query.number = this.$refs.inputNumber.value
+      if(this.canActivateFilter()){
+        this.$router.push(this.localePath({ name: 'search', query }))
+      }
     },
     disableNumberFilter() {
-      this.isNumberFilterEnabled = false
+      let query = { ...this.$route.query }
+      delete query.number
+      this.$router.push(this.localePath({name: 'search', query}))
     },
     enablePublicationFilter() {
-      console.log('enable')
       if(this.publication == null || this.publication.length != 4)
         return;
       this.isPublicationFilterEnabled = true
     },
     disablePublicationFilter() {
       this.isPublicationFilterEnabled = false
-    }
+    },
   },
 }
 </script>
