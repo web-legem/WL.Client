@@ -6,14 +6,14 @@
       class="page-label">
       Page: 
       <input 
-        v-if="editable"
+        v-if="false"
         id="page"
-        v-model="pageNumber"
+        :value="page"
         type="number" 
         name="page"
       >
-      <span v-if="textual">
-        {{ pageNumber }}
+      <span v-if="true">
+        {{ page }}
       </span>
     </label>
     <button @click="next">Next</button>
@@ -22,35 +22,34 @@
 
 <script>
 export default {
-  props: {
-    page: {
-      type: Number,
-      default: 1,
-    },
-    editable: {
-      type: Boolean,
-      default: false
-    }
-  },
   computed: {
     textual() {
       return !this.editable;
     },
-    pageNumber: {
-      get() {
-        return this.page
-      },
-      set(value) {
-        this.$emit('go-to-page', value)
-      },
-    },
+    page() {
+      return Number.parseInt(this.$route.query.page) || 1
+    }
   },
   methods: {
     previous() {
       this.$emit('go-to-page', this.page > 1 ? this.page - 1 : 1  )
+      this.$router.push(this.localePath({
+        name: 'search',
+        query: {
+          ...this.$route.query,
+          page: this.page > 1 ? this.page - 1 : 1
+        }
+      }))
     },
     next() {
       this.$emit('go-to-page', this.page + 1)
+      this.$router.push(this.localePath({
+        name: 'search',
+        query: {
+          ...this.$route.query,
+          page: this.page + 1
+        }
+      }))
     },
   },
 }

@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     canActivateFilter() {
-      return this.selectedItem != 0 && this.findItem()
+      return this.selectedItem != 0
     },
     findItem(){
       return this.list.find(x => x[this.valuePropName] == this.$route.query[this.param])
@@ -107,14 +107,13 @@ export default {
     enableFilter() {
       let query = { ...this.$route.query }
       query[this.param] = this.selectedItem
-      if(this.canActivateFilter) {
+      if(this.canActivateFilter()) {
         this.$router.push(this.localePath({ name: 'search', query }))
       }
     },
     disableFilter() {
       let query = { ...this.$route.query }
       delete query[this.param]
-      console.log(query)
       this.$router.push(this.localePath({ name: 'search', query }))
     }
   }

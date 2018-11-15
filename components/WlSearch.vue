@@ -10,9 +10,7 @@
 
       <template slot="details">
         <div class="layout">
-          <wl-search-bar
-            v-model="wordsToSearch"
-          />
+          <wl-search-bar />
           <wl-order-controls
             :order-by="orderBy"
             :descend="descend"
@@ -65,20 +63,12 @@ export default {
     }
   },
   computed: {
-    wordsToSearch: {
-      get() {
-        return decodeURI(this.$route.query.wordsToSearch || '')
-      },
-      set(wordsToSearch) {
-        this.changeParams(this.getQuery(wordsToSearch, 1, this.orderBy, this.descend))
-      }
-    },
     page: {
       get() {
         return Number.parseInt(this.$route.query.page > 0 ? this.$route.query.page : 1)
       },
       set(value) {
-        this.changeParams(this.getQuery(this.wordsToSearch, value, this.orderBy, this.descend))
+        this.changeParams()
       }
     },
     orderBy: {
@@ -87,53 +77,32 @@ export default {
       },
       set(value) {
         this.descend = value.descend
-        this.changeParams(this.getQuery(this.wordsToSearch, 1, value.orderBy, value.descend))
+        this.changeParams()
       }
     },
   },
   watch: {
     '$route'() {
-      this.search(this.getQuery(this.wordsToSearch, this.page, this.orderBy, this.descend))
+      this.search()
     },
   },
   mounted() {
-    this.search(this.getQuery(this.wordsToSearch, this.page, this.orderBy, this.descend))
+    this.search()
   },
   methods: {
     loadPage(number){
       this.page = number > 0 ? number : 1
     },
-    search(params) {
+    search() {
+      let query = { ...this.$route.query }
       this.$axios.get('/api/ClassifiedFile', {
         params: {
-          ...params,
-          pageSize: 1, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
+          ...query,
+          pageSize: 2, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
         },
       })
       .then(response => this.results = response.data)
       .catch(console.log)
-    },
-    changeParams(query) {
-      this.$router.push(this.localePath({ 
-        name: 'search',
-        query: query,
-      }))
-    },
-    getQuery(wordsToSearch, pageNumber, orderBy, descend) { // TODO - create query using multiple params filters
-      var query = { 
-        wordsToSearch: encodeURI(wordsToSearch),
-        page: pageNumber,
-        orderBy: orderBy,
-        descend: descend,
-      }
-      if(query.wordsToSearch.length == 0){
-        delete query.wordsToSearch
-      }
-      if(query.orderBy === 'DEFAULT') {
-        delete query.orderBy
-        delete query.descend
-      }
-      return query;
     },
   },
 }

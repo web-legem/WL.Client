@@ -11,106 +11,21 @@
         label-prop-name="name"
       />
 
-      <!-- <div
-        v-show="showSelectedDocumentTypeFilter"
-        class="filter">
-        <label for="tipo-documento">Tipo Documento</label>
-        <div class="control">
-          <input
-            id="tipo-documento"
-            :value="selectedDocumentType.name"
-            name="tipo-documento"
-            type="text"
-            class="a_input"
-            disabled
-          >
-          <wl-button
-            :only-icon="true" 
-            title="Agregar Filtro"
-            ico="ico-arrow-circle-o-down"
-            class="danger"
-            @click.native="disableDocumentTypeFilter"
-          />
-        </div>
-      </div> -->
+      <wl-select-filter
+        v-if="documentTypes"
+        :list="documentTypes"
+        param="documentTypeId"
+        label="Tipo Documento"
+        value-prop-name="id"
+        label-prop-name="name"
+      />
 
-      <!-- <div
-        v-show="showPublicationFilter"
-        class="filter">
-        <label for="publicacion">
-          Año de publicación
-        </label>
-        <div class="control">
-          <input
-            id="publicacion"
-            v-model="publication"
-            name="publicacion"
-            type="text"
-            class="a_input"
-            disabled
-          >
-          <wl-button 
-            :only-icon="true"
-            title="Agregar Filtro"
-            ico="ico-filter"
-            class="danger"
-            @click.native="disablePublicationFilter"
-          />
-        </div>
-      </div> -->
+      <wl-number-filter />
+
+      <wl-year-filter />
+
     </div>
 
-
-    <!-- <div 
-      v-show="!showSelectedDocumentTypeFilter"
-      class="filter">
-      <label for="tipo-documento">Tipo Documento</label>
-      <div class="control">
-        <select 
-          id="tipo-documento"
-          v-model="selectedDocumentTypeId"
-          name="tipo-documento" 
-          class="a_input"
-        >
-          <option 
-            v-for="documentType in documentTypes"
-            :key="documentType.id"
-            :value="documentType.id">{{ documentType.name }}</option>
-        </select>
-        <wl-button
-          :only-icon="true"
-          title="Agregar filtro"
-          ico="ico-filter"
-          @click.native="enableDocumentTypeFilter"
-        />
-      </div>
-    </div> -->
-
-    <!-- <div
-      v-show="!showPublicationFilter"
-      class="filter">
-      <label for="publicacion">
-        Año de publicación
-      </label>
-      <div class="control">
-        <input
-          id="publicacion"
-          v-model="publication"
-          :max="currentYear"
-          name="publicacion"
-          type="number"
-          min="1990"
-          class="a_input"
-        >
-        <wl-button 
-          :only-icon="true"
-          title="Agregar Filtro"
-          ico="ico-filter"
-          @click.native="enablePublicationFilter"
-        />
-      </div>
-    </div> -->
-    <wl-number-filter />
   </div> 
 </template>
 
@@ -118,12 +33,14 @@
 import WlButton from '~/components/WlButton.vue'
 import WlNumberFilter from '~/components/WlNumberFilter.vue'
 import WlSelectFilter from '~/components/WlSelectFilter.vue'
+import WlYearFilter from '~/components/WlYearFilter.vue'
 
 export default {
   components: {
     WlButton,
     WlNumberFilter,
     WlSelectFilter,
+    WlYearFilter,
   },
   data() {
     return {

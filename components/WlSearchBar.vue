@@ -6,7 +6,7 @@
   >
     <input
       ref="input"
-      :value="value"
+      :value="wordsToSearch"
       type="search" 
       class="a_input"
     >
@@ -14,7 +14,7 @@
       :only-icon="true"
       title="Search"
       ico="ico-search" 
-      @click.native="$emit('input', $refs.input.value )"
+      @click.native="searchWords($refs.input.value)"
     />
   </form>
 </template>
@@ -26,11 +26,26 @@ export default {
   components: {
     WlButton,
   },
-  props: {
-    value: {
-      type: String,
-      required: true,
+  computed: {
+    wordsToSearch() {
+      return this.$route.query.wordsToSearch || ''
     },
+  },
+  methods: {
+    searchWords(wordsToSearch) {
+      if(wordsToSearch.length > 0){
+        this.$router.push(
+          this.localePath({
+            name: 'search',
+            query: { ...this.$route.query, wordsToSearch}
+          }))
+      } else {
+        let query = {...this.$route.query}
+        delete query.wordsToSearch
+        this.$router.push(
+          this.localePath({name: 'search', query}))
+      }
+    }
   }
 }
 </script>
