@@ -32,25 +32,23 @@ export default {
   },
   methods: {
     previous() {
-      this.$emit('go-to-page', this.page > 1 ? this.page - 1 : 1  )
-      this.$router.push(this.localePath({
-        name: 'search',
-        query: {
-          ...this.$route.query,
-          page: this.page > 1 ? this.page - 1 : 1
-        }
-      }))
+      const previousPage = this.page > 1 ? this.page - 1 : 1
+      this.navigateTo(previousPage)
     },
     next() {
-      this.$emit('go-to-page', this.page + 1)
+      const nextPage = this.page + 1
+      this.navigateTo(nextPage)
+    },
+    navigateTo(page) {
+      this.$emit('go-to-page', page)
       this.$router.push(this.localePath({
         name: 'search',
         query: {
           ...this.$route.query,
-          page: this.page + 1
+          page
         }
       }))
-    },
+    }
   },
 }
 </script>

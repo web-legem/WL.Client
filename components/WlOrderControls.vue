@@ -28,23 +28,42 @@
 
 <script>
 export default {
-  props: {
-    orderBy: {
-      type: String,
-      default: 'DEFAULT',
-      validator: function(value) {
-        return ['DEFAULT', 'NUMERO', 'ENTIDAD', 'TIPO_DOCUMENTO', 'ANIO_PUBLICACION'].indexOf(value) !== -1
-      },
+  computed: {
+    orderBy() {
+      return this.$route.query.orderBy || 'DEFAULT'
     },
-    descend: {
-      type: Boolean,
-      default: false
+    descend() {
+      return this.$route.query.descend == "true"
+    }
+  },
+  mounted() {
+    if( ['DEFAULT', 'NUMERO', 'ENTIDAD', 'TIPO_DOCUMENTO', 'ANIO_PUBLICACION'].indexOf(this.orderBy) !== -1){
+      this.clearOrdering()
     }
   },
   methods: {
     setOrdering(orderBy) {
       let descend = orderBy == this.orderBy ? !this.descend : false
-      this.$emit('order', { orderBy, descend })
+      let query = {
+        ...this.$route.query,
+        page: 1,
+        orderBy,
+        descend,
+      }
+      this.navigateWith(query)
+    },
+    clearOrdering() {
+      let query = { ...this.$route.query, page: 1 }
+      delete query.orderBy
+      delete query.descend
+      this.navigateWith(query)
+    },
+    navigateWith(query) {
+      this.$emit('order', { orderBy: query.orderBy, descend: query.descend })
+      this.$router.push(this.localePath({
+        name: 'search',
+        query
+      }))
     }
   }
 }

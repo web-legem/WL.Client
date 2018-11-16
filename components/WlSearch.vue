@@ -12,16 +12,10 @@
         <div class="layout">
           <wl-search-bar />
           <wl-order-controls
-            :order-by="orderBy"
-            :descend="descend"
             class="wl-order-controls"
-            @order="orderBy = $event"
           />
           <div class="pager-content">
-            <wl-page-controls
-              :page="page"
-              @go-to-page="loadPage($event)"
-            />
+            <wl-page-controls />
             <div>
               <div 
                 v-for="document in results"
@@ -30,10 +24,7 @@
                 {{ document.file.issue }}
               </div>
             </div>
-            <wl-page-controls
-              :page="page"
-              @go-to-page="loadPage($event)"
-            />
+            <wl-page-controls />
           </div>
         </div>
       </template>
@@ -61,25 +52,6 @@ export default {
       results: [],
       descend: false
     }
-  },
-  computed: {
-    page: {
-      get() {
-        return Number.parseInt(this.$route.query.page > 0 ? this.$route.query.page : 1)
-      },
-      set(value) {
-        this.changeParams()
-      }
-    },
-    orderBy: {
-      get() {
-        return this.$route.query.orderBy || 'DEFAULT'
-      },
-      set(value) {
-        this.descend = value.descend
-        this.changeParams()
-      }
-    },
   },
   watch: {
     '$route'() {

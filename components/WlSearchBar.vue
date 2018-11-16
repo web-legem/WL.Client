@@ -33,19 +33,27 @@ export default {
   },
   methods: {
     searchWords(wordsToSearch) {
-      if(wordsToSearch.length > 0){
-        this.$router.push(
-          this.localePath({
-            name: 'search',
-            query: { ...this.$route.query, wordsToSearch}
-          }))
-      } else {
-        let query = {...this.$route.query}
+      this.navigateWith(this.addOrRemoveWordsToQuery(wordsToSearch))
+    },
+    addOrRemoveWordsToQuery(wordsToSearch) {
+      let query = this.getModifiableQueryParams()
+
+      if(wordsToSearch.length > 0)
+        query.wordsToSearch = wordsToSearch
+      else 
         delete query.wordsToSearch
-        this.$router.push(
-          this.localePath({name: 'search', query}))
-      }
-    }
+
+      return query
+    },
+    navigateWith(query) {
+      this.$router.push(this.localePath({
+        name: 'search',
+        query
+      }))
+    },
+    getModifiableQueryParams() {
+      return { ...this.$route.query, page: 1 }
+    },
   }
 }
 </script>

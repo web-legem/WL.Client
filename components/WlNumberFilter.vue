@@ -63,7 +63,7 @@ export default {
       return this.$route.query.number || ''
     },
     showNumberFilter() {
-      return this.$route.query && this.$route.query.number > 0
+      return this.$route.query.number && this.$route.query.number.length > 0
     },
   },
   methods: {
@@ -72,17 +72,32 @@ export default {
       return number.length > 0
     },
     enableNumberFilter(){
-      let query = { ...this.$route.query }
-      query.number = this.$refs.inputNumber.value
       if(this.canActivateFilter()){
-        this.$router.push(this.localePath({ name: 'search', query }))
+        this.navigateWith(this.getEnabledFilterQueryParams())
       }
     },
     disableNumberFilter() {
-      let query = { ...this.$route.query }
-      delete query.number
-      this.$router.push(this.localePath({name: 'search', query}))
+      this.navigateWith(this.getDisabledFilterQueryParams())
     },
+    getEnabledFilterQueryParams() {
+      const queryParams = this.getModifiableQueryParams()
+      queryParams.number = this.$refs.inputNumber.value
+      return queryParams
+    },
+    getDisabledFilterQueryParams(){
+      const queryParams = this.getModifiableQueryParams()
+      delete queryParams.number
+      return queryParams
+    },
+    getModifiableQueryParams() {
+      return {...this.$route.query, page: 1}
+    },
+    navigateWith(query) {
+      this.$router.push(this.localePath({
+        name: 'search',
+        query
+      }))
+    }
   }
 }
 </script>

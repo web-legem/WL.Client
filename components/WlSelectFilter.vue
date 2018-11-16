@@ -105,16 +105,25 @@ export default {
       return this.list.find(x => x[this.valuePropName] == this.$route.query[this.param])
     },
     enableFilter() {
-      let query = { ...this.$route.query }
+      let query = this.getModifiableQueryParams()
       query[this.param] = this.selectedItem
       if(this.canActivateFilter()) {
-        this.$router.push(this.localePath({ name: 'search', query }))
+        this.navigateWith(query)
       }
     },
     disableFilter() {
-      let query = { ...this.$route.query }
+      let query = this.getModifiableQueryParams()
       delete query[this.param]
-      this.$router.push(this.localePath({ name: 'search', query }))
+      this.navigateWith(query)
+    },
+    navigateWith(query){
+      this.$router.push(this.localePath({
+        name: 'search',
+        query
+      }))
+    },
+    getModifiableQueryParams() {
+      return {...this.$route.query, page: 1}
     }
   }
 }
