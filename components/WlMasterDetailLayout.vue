@@ -58,8 +58,7 @@ export default {
 }
 
 @media screen and(max-width: 992px) {
-  .master.hide
-  , .detail.hide {
+  .master.hide {
     display: none;
   }
 }
@@ -81,4 +80,11 @@ export default {
     border-left: 1px solid #ccc;
   }
 }
+
+@media screen and(max-width: 992px) {
+  .detail.hide {
+    display: none;
+  }
+}
 </style>
+

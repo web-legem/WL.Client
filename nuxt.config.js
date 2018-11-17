@@ -40,10 +40,11 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      // if(isDev) config.devtool = "#sourcemap"
     },
   },
   plugins: [
-    '~/plugins/vee-validate.js'
+    // '~/plugins/vee-validate.js'
   ],
   modules: [
     ['nuxt-i18n', {

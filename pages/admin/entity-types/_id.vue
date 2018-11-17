@@ -67,6 +67,9 @@ export default {
     WlButton,
     WlInput
   },
+  validate({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   computed: {
     checked: {
       get() {

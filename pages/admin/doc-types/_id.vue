@@ -31,6 +31,9 @@
   import WlInput from "~/components/WlInput.vue"
 
   export default {
+    validate({ params }) {
+      return /^\d+$/.test(params.id)
+    },
     components: {
       WlCrud,
       WlButton,

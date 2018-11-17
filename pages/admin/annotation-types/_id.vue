@@ -37,6 +37,9 @@ import {
 } from 'vuex';
 
 export default {
+  validate({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   computed: {
     ...mapGetters('admin/annotation-types', {
       selected: 'selected'

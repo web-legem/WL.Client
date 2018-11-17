@@ -5,9 +5,50 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "port": 9222,
+      "url": "http://localhost:3000",
+    },
+    {
+      "name": "Launch Firefox",
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Debug Session",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "run",
+        "dev-debug"
+      ],
+      "address": "127.0.0.1",
+      "port": 9229,
+      "timeout": 90000,
+      "sourceMaps": true,
+      "stopOnEntry": true,
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "nuxt:*,app,client"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceRoot}/start"
+    },
+    {
       "type": "node",
       "request": "attach",
-      "name": "Attach to Nuxt",
+      "name": "Attach to Port",
+      "address": "127.0.0.1",
       "port": 9229
     }
   ]

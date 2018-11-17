@@ -34,6 +34,10 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/ClassifiedFile/' + fileId)
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', e))
+      .catch(e => {
+        delete e.response.config
+        delete e.response.request
+        return commit('loadingFailure', e.response)
+      })
   }
 }

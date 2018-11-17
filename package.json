@@ -11,7 +11,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "dev-debug": "nuxt --inspect"
+    "dev-debug": "node --inspect .\\node_modules\\nuxt\\bin\\nuxt-dev"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
