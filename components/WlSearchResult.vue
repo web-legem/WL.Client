@@ -2,23 +2,27 @@
   <div class="tarjeta_busqueda">    
     <div class="titulo_tarjeta">
       <nuxt-link :to="localePath({ name: 'search-id', params: {id: document.file.id} })">        
-        {{ document.document.documentTypeId }}
+        {{ documentTypeName }}
         {{ document.document.number }}
-        del {{ document.document.publicationDate | date($store.state.i18n.locale, 'LL') }}
+        del {{ document.document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
       </nuxt-link>
     </div>
 
     <div class="contenido_tarjeta">
-      {{ document.file.issue }}
+      {{ document.file.issue | limit(400) }}
     </div>
 
     <div class="subcontenido_tarjeta">
-      <a>Entidad: <i>{{ document.document.entityId }} </i> | </a>
-      <a>Fecha: <i>{{ document.document.publicationDate }} </i> | </a>
+      <a>Entidad: <i>{{ entityName }} </i> | </a>
+      <a>Fecha: <i>{{ document.document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
     </div>
 
     <div class="control_tarjeta">
-      <a title="Descargar">
+      <a 
+        :href="$axios.defaults.baseURL + 'api/File/' + document.file.id"
+        title="Descargar"
+        download
+      >
         <span class="ico-download" />{{ 'Descargar' }}
       </a>
     </div>
@@ -26,6 +30,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   props: {
     document: {
@@ -33,6 +39,18 @@ export default {
       required: true
     },
   },
+  computed: {
+    ...mapGetters('search', {
+      entities: 'entities',
+      documentTypes: 'documentTypes',
+    }),
+    entityName(){
+      return this.entities.find(x => x.id == this.document.document.entityId).name
+    },
+    documentTypeName() {
+      return this.documentTypes.find(x => x.id == this.document.document.documentTypeId).name
+    }
+  }
 }
 </script>
 
