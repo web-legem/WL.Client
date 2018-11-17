@@ -1,12 +1,16 @@
 <template>
   <div>
     <wl-crud 
-      :obj-select="obj"
-      @cancel="wlcancel">
+      :obj-select="objSelected"
+      :is-new="false"
+      @wlcancel="cancel"
+      @wlupdate="update"
+      @wldelete="drop"
+    >
       
-      <div slot="wl-form">
+      <template slot="wl-form">
         <wl-input 
-          v-if="selectedDocType"
+          v-if="objSelected"
           :title="'Nombre del Tipo Documento'"
           :max="10" 
           :placeholder="'Escriba el nombre del tipo documento'" 
@@ -14,30 +18,14 @@
           :error="true"
           v-model="name"
         />       
-        <button
-          type="button"
-          @click="cancel">Cancelar</button>
 
-        <button
-          type="button"
-          @click="update">Update</button>
-
-        <button
-          type="button"
-          @click="drop"
-        >
-          Eliminar
-        </button>
-      </div>
+      </template>
     </wl-crud>
   </div>
 </template>
 
 <script>
-  import {
-    mapActions
-    , mapGetters
-  } from 'vuex';
+  import {mapActions,mapGetters,} from 'vuex';
   import WlCrud from "~/components/WlCrud.vue"
   import WlButton from "~/components/WlButton.vue"
   import WlInput from "~/components/WlInput.vue"
@@ -47,48 +35,37 @@
       return /^\d+$/.test(params.id)
     },
     components: {
-      WlCrud
-      , WlButton
-      , WlInput
+      WlCrud,
+      WlButton,
+      WlInput,
     },
     computed: {
       ...mapGetters('admin/document-types', {
-        selectedDocType: 'selected'
-      })
-      , name: {
-        get() {
-          return this.selectedDocType.name
-        }
-        , set(value){
-          this.changeName(value)
-        }
-      }
-    }
-    , watch: {
+        objSelected: 'selected'
+      }),
+      name: {
+        get() {return this.objSelected.name},
+        set(value){this.changeName(value)},
+      },
+    },
+    watch: {
       '$route.params.id'(){
         this.select(this.$route.params.id)
       }
-    }
-    , mounted() {
-      this.select(this.$route.params.id)
-    }
-    , beforeDestroy() {
-      this.clearSelection()
-    }
-    , methods: {
+    },
+    mounted() {this.select(this.$route.params.id)},
+    
+    beforeDestroy() {this.clearSelection()},
+    
+    methods: {
       cancel() {
         this.$router.push( this.localePath({ name: 'admin-doc-types'}))
       },
-      wlcancel() {
-        this.$router.push( this.localePath({ name: 'admin-doc-types'}))
-      },
-      drop () {
-        this.delete()
-          .then( _ => this.cancel() )
+      drop () {      
+        this.delete().then( this.cancel )
       }, 
       update() {
-        this.save(this.selectedDocType)
-          .then( _ => this.cancel() )
+        this.save(this.objSelected).then( this.cancel )
       }, 
       ...mapActions('admin/document-types', [
         'select'

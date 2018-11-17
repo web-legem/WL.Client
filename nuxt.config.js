@@ -17,6 +17,7 @@ module.exports = {
     '@/assets/base.css'
     , '@/assets/iconos-legem1/styles.css' 
     , '@/assets/iconos-legem2/style.css'
+    , '@/assets/escudos-legem/style.css'
     , '@/assets/inputs.css'
   ],
   /*
@@ -71,7 +72,7 @@ module.exports = {
     // proxyHeaders: false,
     host: 'localhost'
     , port: '54037'
-    , retry: {  retries: 2 }
+    , retry: {  retries: 0 }
   },
   // axios: {
   //   host: '192.168.0.6'

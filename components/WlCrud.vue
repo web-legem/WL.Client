@@ -2,48 +2,68 @@
   <div>
     <div class="controles_box_right">        
       <wl-button 
-        v-show="true" 
+        v-show="!isNew"
         :ico="'ico-pencil'"                 
-        @click.native="edit()">editar
+        @click.native="isEdit = true">editar
       </wl-button>
-      
       <wl-button 
-        v-show="true" 
+        v-show="!isNew"
         :ico="'ico-trash'"                 
         @click.native="remove()">eliminar
       </wl-button>
     </div>
 
-    este es el obj : {{ objSelect != null ? objSelect.name: "aun esta null" }}    
-    <br>
-    este es el obj : {{ curObject != null ? curObject.name: "aun esta null el nuevo objecto" }}
-
-
     <slot name="wl-form"/>
 
     <div class="controles_box_right down">
       <wl-button 
+        v-show="isEdit || isNew" 
         :ico="'ico-floppy-o'" 
-        :disable="!isEdit"
-        @click.native="ok()">Aceptar
+        @click.native="ok($event)">
+        Aceptar
       </wl-button>
       
       <wl-button 
+        v-show="isEdit || isNew"
         :ico="'ico-times'"  
-        :disable="!isEdit"
-        @click.native="$emit('cancel',$event.target.value)">
+        @click.native="cancel($event)">
         Cancelar
       </wl-button>
     </div>
+
+    <!-- Modal confirmacion -->
+    <wl-modal
+      v-if="showDialog"
+      :title="'Confirmación'"
+      @wlclose="closeModal">
+
+      <template 
+        slot="wl-content" 
+        class="generic-box-vertical">
+        <p>¿ EstaSeguroDeseaEliminar "{{ objSelect.name }}" ? </p>
+        <div class="a-modal-confirmacion">
+          <wl-button 
+            @click.native="okModal($event)">Eliminar
+          </wl-button>          
+          <wl-button 
+            @click.native="closeModal()">Cancelar
+          </wl-button>
+        </div>
+      </template>
+
+    </wl-modal>
+
   </div>
 </template>
 
 <script>
 import WlButton from "~/components/WlButton.vue";
+import WlModal from "~/components/WlModal.vue";
 
 export default {
   components: {
-    WlButton
+    WlButton,
+    WlModal,
   },
   props: {
     objSelect: {
@@ -54,23 +74,42 @@ export default {
           name: "elemento"
         };
       }
-    }
+    },
+    isNew: {type: Boolean, default: false },
   },
   data() {
     return {
-      isNew: false,
       isEdit: false,
       isProcess: false,
       hasError: false,
-      curObject: null
+      curObject: null,
+      showDialog: false,
     };
   },
   created() {
     this.curObject = this.objSelect;
   },
-  methods: {
-    edit() {
-      this.isEdit = true;
+  methods: {    
+    remove(){
+      this.showDialog = true;
+    },
+    cancel($event){    
+      this.$emit('wlcancel',$event.target.value);
+    },
+    ok($event){
+      if(this.isEdit){
+        this.$emit('wlupdate',$event.target.value);
+      }
+      else if(this.isNew){
+        this.$emit('wlcreate',$event.target.value);
+      }
+    },
+    closeModal(){
+      this.showDialog = false;
+    },
+    okModal($event){
+      this.showDialog = false;
+      this.$emit('wldelete',$event.target.value);
     },
   }
 };
