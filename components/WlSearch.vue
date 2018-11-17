@@ -5,6 +5,8 @@
     >
       <wl-search-filters
         slot="master"
+        :entities="entities"
+        :document-types="documentTypes"
         class="wl-search-filters"
       />
 
@@ -46,6 +48,16 @@ export default {
     WlSearchFilters,
     WlOrderControls,
     WlPageControls,
+  },
+  props: {
+    entities: {
+      type: Array,
+      required: true
+    },
+    documentTypes: {
+      type: Array,
+      required: true
+    }
   },
   data() {
     return {

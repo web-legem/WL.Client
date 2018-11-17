@@ -42,26 +42,24 @@ export default {
     WlSelectFilter,
     WlYearFilter,
   },
+  props: {
+    entities: {
+      type: Array,
+      required: true
+    },
+    documentTypes: {
+      type: Array,
+      required: true
+    },
+  },
   data() {
     return {
-      entities: [
-        { id: 1, name: 'Rectoria' },
-        { id: 2, name: 'Facultad de Ingenieria' },
-        { id: 3, name: 'Facultad de Derecho' },
-        { id: 4, name: 'Facultad de Medicina' },
-      ],
       selectedEntityId: null,
       isEntityFilterEnabled: false,
-      documentTypes: [
-        { id: 1, name: 'Circular' },
-        { id: 2, name: 'Resolución'},
-        { id: 3, name: 'Acuerdo' },
-        { id: 4, name: 'Ley' },
-      ],
       selectedDocumentTypeId: null,
       isDocumentTypeFilterEnabled: false,
       publication: this.currentYear,
-      isPublicationFilterEnabled: false
+      isPublicationFilterEnabled: false,
     }
   },
   computed: {

@@ -1,6 +1,9 @@
 <template>
   <div class="search">
-    <wl-search />
+    <wl-search
+      :entities="entities"
+      :document-types="documentTypes"
+    />
   </div>
 </template>
 
@@ -10,6 +13,15 @@ import WlSearch from '~/components/WlSearch.vue'
 export default {
   components: {
     WlSearch
+  },
+  asyncData({app}){
+    return Promise.all([
+      app.$axios.get('/api/Entity'),
+      app.$axios.get('/api/DocumentType')
+    ]).then(result => ({
+      entities: result[0].data,
+      documentTypes: result[1].data
+    }))
   }
 }
 </script>
