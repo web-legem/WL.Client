@@ -23,7 +23,9 @@
                 v-for="document in results"
                 :key="document.file.id"
               >
-                {{ document.file.issue }}
+                <wl-search-result
+                  :document="document"
+                />
               </div>
             </div>
             <wl-page-controls />
@@ -40,6 +42,7 @@ import WlSearchBar from '~/components/WlSearchBar.vue'
 import WlSearchFilters from '~/components/WlSearchFilters.vue'
 import WlOrderControls from '~/components/WlOrderControls.vue'
 import WlPageControls from '~/components/WlPageControls.vue'
+import WlSearchResult from '~/components/WlSearchResult.vue'
 
 export default {
   components: {
@@ -48,6 +51,7 @@ export default {
     WlSearchFilters,
     WlOrderControls,
     WlPageControls,
+    WlSearchResult,
   },
   props: {
     entities: {
@@ -104,7 +108,6 @@ export default {
 }
 
 .pager-content {
-  background: gray;
   flex-grow: 1;
   margin-top: 8px;
 }

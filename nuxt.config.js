@@ -43,6 +43,7 @@ module.exports = {
     },
   },
   plugins: [
+    '~/plugins/filters.js',
     // '~/plugins/vee-validate.js'
   ],
   modules: [
