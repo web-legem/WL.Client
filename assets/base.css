@@ -19,3 +19,134 @@ html, body {
   height: 100vh;
   font-family: 'Lato';
 }
+
+/* control cuadros tipo entidad */
+
+/* Grid styles -------------------------------------------------*/
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-gap: 15px;
+  height: 40vh;
+  padding: 15px;
+  overflow-y: auto;
+  background: rgb(237, 237, 237);
+  border: 1px solid #aaa;
+  margin: 0 auto 10px;
+}
+
+.block {
+  position: relative;  
+}
+
+.block input {
+  display: none;
+}
+
+.block label {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.name-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 3px;
+  background: #eeffee;
+  overflow:hidden;
+  position: relative;
+}
+
+.note-name {
+  color: #111;
+  font-family: "lato";
+  font-size: 13px;
+  text-overflow:ellipsis;  
+}
+
+.note {
+  display: inline-block;
+  height: 130px; /*alto de la hoja*/
+  width: 110px; /*ancho de la hoja*/
+  font-size: 1.1rem;
+  position: relative;
+  background: #fff;
+  cursor: pointer;
+}
+
+.note div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ico-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+.ico-note {
+  font-size: 60px;
+  color: #444;
+  background:transparent;  
+  width: 100%;
+  height: 65%;
+}
+
+.block input + label {
+  border: 1px solid #aaa;  
+}
+
+.block input:checked + label {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 2px solid #29c44b;
+}
+
+.note:after {
+  content: "✓";
+  position: absolute;
+  font-size: small;
+  font-weight: 900;
+  bottom: 0;
+  right: 80%;
+  opacity: 0;
+  color: green;  
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  visibility: hidden;
+  display: block;
+  overflow: hidden;
+}
+
+.block input:checked + label::after {
+  content: "✓";
+  position: absolute;
+  font-size: medium;
+  font-weight: 900;
+  bottom: 0;
+  right: 0;
+  padding-right: 4px;
+  opacity: 1;
+  color: green;
+
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  visibility: visible;
+
+  display: block;
+  overflow: hidden;
+}
+
+

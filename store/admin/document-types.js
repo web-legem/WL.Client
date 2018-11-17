@@ -14,6 +14,9 @@ export const getters = {
   , selected: (state) => state.selected
   , isSelected: (state) => state.selectedId != null
   , isCreating: (state) => state.isCreating
+  , error: (state) => {
+    return (state.error?state.error.response.data:undefined)
+  }
 }
 
 export const mutations = {
