@@ -21,13 +21,34 @@
       @click="setOrdering('DEFAULT')" 
     >Relevancia</button>
     <button
+      v-if="$mq != 'lg' && $mq != 'xl'"
       class="ordering"
+      @click="showFilters"
     >Mostrar busqueda avanzada</button>
+    <wl-modal
+      v-if="showModal && $mq != 'lg' && $mq != 'xl'"
+      title="Filtros"
+      @wlclose="hideFilters"
+    >
+      <wl-search-filters slot="wl-content" />
+    </wl-modal>
   </div>
 </template>
 
 <script>
+import WlModal from '~/components/WlModal.vue'
+import WlSearchFilters from '~/components/WlSearchFilters.vue'
+
 export default {
+  components: {
+    WlModal,
+    WlSearchFilters,
+  },
+  data() {
+    return {
+      showModal: false,
+    }
+  },
   computed: {
     orderBy() {
       return this.$route.query.orderBy || 'DEFAULT'
@@ -64,6 +85,12 @@ export default {
         name: 'search',
         query
       }))
+    },
+    showFilters() {
+      this.showModal = true
+    },
+    hideFilters() {
+      this.showModal = false
     }
   }
 }
@@ -77,9 +104,28 @@ export default {
   overflow-x: auto;
 }
 
+@media screen and (min-width: 992px) {
+  .order-controls {
+    justify-content: flex-start;
+  }
+  .ordering {
+    margin: 0 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .order-controls {
+    min-height: 75px;
+  }
+}
+
 .ordering {
   padding: 8px;
   background: white;
   border-bottom: 2px solid green;
+}
+
+.mq-layout {
+  background: white;
 }
 </style>

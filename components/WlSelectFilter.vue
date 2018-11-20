@@ -130,8 +130,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 992px) {
+  .wl-select-filter {
+    min-width: 270px;
+  }
+}
+
 .filter {
-  width: 100%;
   margin-bottom: 16px;
 }
 

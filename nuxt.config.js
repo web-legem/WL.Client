@@ -63,6 +63,7 @@ module.exports = {
         xs: 300
         , sm: 500
         , md: 800
+        , mid: 992
         , lg: 1200
         , xl: Infinity
       }

@@ -28,7 +28,6 @@ export const mutations = {
     state.error = null
   },
   loadingFailure(state, error) {
-    console.log(error)
     state.loading = false
     state.loaded = false
     state.error = error

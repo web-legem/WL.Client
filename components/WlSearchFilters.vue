@@ -148,13 +148,4 @@ export default {
   margin-bottom: 16px;
 }
 
-.control {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.control select {
-  flex-grow: 1;
-}
 </style>
