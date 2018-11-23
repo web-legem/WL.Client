@@ -26,7 +26,7 @@
                 />
               </div>
             </div>
-            <wl-page-controls />
+            <wl-page-controls class="bottom-pager" />
           </div>
         </div>
       </template>
@@ -84,6 +84,13 @@ export default {
 
 .pager-content {
   flex-grow: 1;
+  margin-top: 4px;
+  border-top: 1px solid grey;
+  padding-top: 16px;
+}
+
+.bottom-pager {
   margin-top: 8px;
+  margin-bottom: 16px;
 }
 </style>

@@ -117,8 +117,8 @@ export default { components: { WlModal,
     },
     getIconClass() {
       if(this.descend)
-        return 'ico-sort-alpha-asc'
-      return 'ico-sort-alpha-desc'
+        return 'ico-sort-alpha-desc'
+      return 'ico-sort-alpha-asc'
     }
   }
 }
@@ -130,6 +130,7 @@ export default { components: { WlModal,
   flex-direction: row;
   justify-content: space-between;
   overflow-x: auto;
+  margin: 16px 0 0 0;
 }
 
 @media screen and (min-width: 992px) {
@@ -137,7 +138,7 @@ export default { components: { WlModal,
     justify-content: flex-start;
   }
   .ordering {
-    margin: 0 16px;
+    margin: 0 0 0 16px;
   }
 }
 
@@ -148,8 +149,9 @@ export default { components: { WlModal,
 }
 
 .ordering {
-  padding: 8px;
+  padding: 0 4px 4px ;
   background: white;
+  font-size: .9rem;
 }
 
 .mq-layout {
@@ -158,10 +160,11 @@ export default { components: { WlModal,
 
 .ordering.reverse,
 .ordering.enabled {
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid #00696b;
 }
 
 .order-icon {
-  color: green;
+  color: #00696b;
+  padding: 0;
 }
 </style>

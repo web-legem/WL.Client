@@ -137,9 +137,9 @@ export default {
 }
 
 .wl-search-filters h3 {
-  color: green;
+  color: #00696b;
   padding-bottom: 5px;
-  border-bottom: 1px solid green;
+  border-bottom: 1px solid #00696b;
   margin-bottom: 8px;
 }
 

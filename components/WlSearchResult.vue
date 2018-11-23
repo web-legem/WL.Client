@@ -1,7 +1,10 @@
 <template>
   <div class="tarjeta_busqueda">    
     <div class="titulo_tarjeta">
-      <nuxt-link :to="localePath({ name: 'search-id', params: {id: document.file.id} })">        
+      <nuxt-link 
+        :to="localePath({ name: 'search-id', params: {id: document.file.id} })"
+        class="link-bold"
+      >        
         {{ documentTypeName }}
         {{ document.document.number }}
         del {{ document.document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
@@ -83,7 +86,7 @@ export default {
 
 .contenido_tarjeta {
   color:#222;
-  font-size:small;
+  font-size: .8rem;
   font-family: 'Lato';
   text-align:justify;
 }
@@ -91,7 +94,7 @@ export default {
 .subcontenido_tarjeta {
   padding-top:5px;
   color:#666;
-  font-size:small;
+  font-size: .8rem;
   font-family: 'Lato';
   text-align:justify;
 }
@@ -114,7 +117,7 @@ export default {
   color:#0f745b;
   text-decoration:none;
   cursor:pointer;
-  font-size:small;
+  font-size: .8rem;
   font-family: 'Lato';
   position:relative;
   padding-left:5px;
@@ -124,7 +127,7 @@ export default {
   color:#0f745b;
   text-decoration:none;
   cursor:pointer;
-  font-size:small;
+  font-size: .8rem;
   font-family: 'Lato';
   position:relative;
 }
@@ -211,13 +214,13 @@ export default {
 }
 
 .documento_actual > div:last-child > p:first-child {
-  font-size:small;
+  font-size: .8rem;
   color:#27ae60;
 }
 
 .documento_actual p {
   color:#555;
-  font-size:small;
+  font-size: .8rem;
   font-family: 'Lato';
 }
 
@@ -235,7 +238,7 @@ export default {
   font-family: 'Lato';
   padding:0;
   margin:0;
-  font-size:small;
+  font-size: .8rem;
   color:#2c77ba;
 }
 
@@ -252,7 +255,7 @@ export default {
 .tipo_anotacion p {
   text-decoration:none;
   color:#34495e;
-  font-size:small;
+  font-size: .8rem;
   font-family: 'Lato';
 }
 .tipo_anotacion p i {
@@ -272,5 +275,15 @@ export default {
   .documento_actual > div:first-child {     
     display:unset;
   }
+}
+
+.link-bold {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.tarjeta-busqueda {
+  font-size: .8rem;
 }
 </style>
