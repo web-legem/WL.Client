@@ -5,6 +5,7 @@ export const state = () => ({
   loading: false,
   loaded: false,
   error: null,
+  loadingResults: false,
   searchResults: [],
   searchError: null,
   loadingTotalCount: false,
@@ -18,7 +19,12 @@ export const getters = {
   searchResults: (state) => state.searchResults,
   searchError: (state) => state.error,
   totalCount: (state) => state.totalCount,
-  loadingTotalCount: (state) => state.loadingTotalCount
+  loadingTotalCount: (state) => state.loadingTotalCount,
+  searching: (state) => state.loadingTotalCount || state.loadingResults,
+  hasResults: (state) => state.searchResults.length > 0,
+  showNoResultsPage: (state, getters) => !getters.hasResults && !getters.searching,
+  hasAnyResult: (state) => state.totalCount > 0,
+  hasSearchError: (state) => state.totalCountError != null || state.searchError != null,
 }
 
 export const mutations = {
@@ -42,19 +48,17 @@ export const mutations = {
     state.error = error
   },
   loadSearch(state) {
-    state.loading = true
-    state.loaded = false
-    state.searchError = false
+    state.loadingResults = true
+    state.searchError = null
     state.searchResults = []
   },
   searchSuccessful(state, results) {
-    state.loading = false
-    state.loaded = true
+    state.loadingResults = false
     state.searchResults = results
   },
   searchFailure(state, error) {
-    state.loading = true
-    state.loaded = false
+    console.log(error)
+    state.loadingResults = false
     state.searchError = error
   },
   loadTotalCount(state) {
@@ -67,6 +71,7 @@ export const mutations = {
     state.loadingTotalCount = false
   },
   totalCountFailure(state, error) {
+    console.log(error)
     state.totalCountError = error
     state.loadingTotalCount = false
   }

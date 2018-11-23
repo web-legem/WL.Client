@@ -14,7 +14,10 @@
           <wl-order-controls
             class="wl-order-controls"
           />
-          <div class="pager-content">
+          <div
+            v-if="hasResults"
+            class="pager-content"
+          >
             <wl-page-controls />
             <div>
               <div 
@@ -27,6 +30,22 @@
               </div>
             </div>
             <wl-page-controls class="bottom-pager" />
+          </div>
+          <div
+            v-if="searching"
+            class="errors"
+          >
+            Searching ...
+          </div>
+          <div
+            v-if="showNoResultsPage && !hasSearchError"
+          >
+            Not Found
+          </div>
+          <div
+            v-if="showNoResultsPage && hasSearchError"
+          >
+            Network Error
           </div>
         </div>
       </template>
@@ -42,7 +61,7 @@ import WlOrderControls from '~/components/WlOrderControls.vue'
 import WlPageControls from '~/components/WlPageControls.vue'
 import WlSearchResult from '~/components/WlSearchResult.vue'
 
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters, mapState} from 'vuex'
 
 export default {
   components: {
@@ -55,13 +74,30 @@ export default {
   },
   computed: {
     ...mapGetters('search', {
-      results: 'searchResults'
+      results: 'searchResults',
+      searching: 'searching',
+      showNoResultsPage: 'showNoResultsPage',
+      hasResults: 'hasResults',
+      hasAnyResults: 'hasAnyResult',
+      hasSearchError: 'hasSearchError',
+    }),
+    ...mapState('search', {
+      loadingResults: 'loadingResults',
+      loadingTotalCount: 'loadingTotalCount',
+      error: 'error',
+      totalCountError: 'totalCountError',
+      searchError: 'searchError',
     })
   },
   watch: {
     '$route'() {
       this.search({...this.$route.query})
     },
+  },
+  mounted() {
+    if(this.hasAnyResult && !this.hasResults) {
+      this.search({...this.$route.query, page: 1})
+    }
   },
   methods: {
     ...mapActions('search', {
