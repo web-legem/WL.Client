@@ -9,6 +9,7 @@
       :value="wordsToSearch"
       type="search" 
       class="a_input"
+      @search="searchWords($refs.input.value)"
     >
     <wl-button 
       :only-icon="true"

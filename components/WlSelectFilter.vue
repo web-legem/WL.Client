@@ -91,9 +91,14 @@ export default {
       let item =  this.findItem()
       return item != null && item != undefined
     },
+    isFilterEnabled() {
+      const filter = (this.$route || this.$route.query || this.$route.query[this.param]);
+      console.log(filter != null)
+      return filter != null && filter != undefined
+    }
   },
   mounted() {
-    if(!this.existItem){
+    if(!this.existItem && this.isFilterEnabled){
       this.disableFilter()
     }
   },

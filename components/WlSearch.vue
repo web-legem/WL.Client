@@ -95,14 +95,17 @@ export default {
     },
   },
   mounted() {
-    if(this.hasAnyResult && !this.hasResults) {
-      this.search({...this.$route.query, page: 1})
+    if(this.hasAnyResults && !this.hasResults) {
+      this.navigateTo({...this.$route.query, page: 1})
     }
   },
   methods: {
     ...mapActions('search', {
       search: 'search',
-    })
+    }),
+    navigateTo(query) {
+      this.$router.push(this.localePath({ name: 'search', query }))
+    }
   },
 }
 </script>
