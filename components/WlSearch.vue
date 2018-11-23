@@ -42,6 +42,8 @@ import WlOrderControls from '~/components/WlOrderControls.vue'
 import WlPageControls from '~/components/WlPageControls.vue'
 import WlSearchResult from '~/components/WlSearchResult.vue'
 
+import {mapActions, mapGetters} from 'vuex'
+
 export default {
   components: {
     WlMasterDetailLayout,
@@ -51,35 +53,20 @@ export default {
     WlPageControls,
     WlSearchResult,
   },
-  data() {
-    return {
-      results: [],
-      descend: false
-    }
+  computed: {
+    ...mapGetters('search', {
+      results: 'searchResults'
+    })
   },
   watch: {
     '$route'() {
-      this.search()
+      this.search({...this.$route.query})
     },
-  },
-  mounted() {
-    this.search()
   },
   methods: {
-    loadPage(number){
-      this.page = number > 0 ? number : 1
-    },
-    search() {
-      let query = { ...this.$route.query }
-      this.$axios.get('/api/ClassifiedFile', {
-        params: {
-          ...query,
-          pageSize: 2, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
-        },
-      })
-      .then(response => this.results = response.data)
-      .catch(console.log)
-    },
+    ...mapActions('search', {
+      search: 'search',
+    })
   },
 }
 </script>

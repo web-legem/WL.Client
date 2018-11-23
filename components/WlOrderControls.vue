@@ -1,52 +1,57 @@
 <template>
   <div class="order-controls">
     <button 
+      v-for="(filter, index) in filters"
+      :key="index"
+      :class="[getStateClass(filter.filter) ]"
       class="ordering"
-      @click="setOrdering('ENTIDAD')"
-    >Entidad</button>
-    <button
-      class="ordering"
-      @click="setOrdering('TIPO_DOCUMENTO')"
-    >Tipo documento</button>
-    <button
-      class="ordering"
-      @click="setOrdering('NUMERO')" 
-    >Número</button>
-    <button
-      class="ordering"
-      @click="setOrdering('ANIO_PUBLICACION')"  
-    >Año de publicación</button>
-    <button
-      class="ordering"
-      @click="setOrdering('DEFAULT')" 
-    >Relevancia</button>
-    <button
-      v-if="$mq != 'lg' && $mq != 'xl'"
-      class="ordering"
-      @click="showFilters"
-    >Mostrar busqueda avanzada</button>
-    <wl-modal
-      v-if="showModal && $mq != 'lg' && $mq != 'xl'"
-      title="Filtros"
-      @wlclose="hideFilters"
-    >
-      <wl-search-filters slot="wl-content" />
-    </wl-modal>
+      @click="setOrdering(filter.filter)"
+    > {{ filter.label }}
+      <span
+        v-if="showIcon(filter.filter)"
+        :class="[ getIconClass() ]"
+        class="order-icon"
+      />
+    </button>
+    <no-ssr>
+      <button
+        v-if="$mq != 'lg' && $mq != 'xl'"
+        class="ordering"
+        @click="showFilters"
+      >Mostrar busqueda avanzada</button>
+    </no-ssr>
+    <no-ssr>
+      <wl-modal
+        v-if="showModal && $mq != 'lg' && $mq != 'xl'"
+        title="Filtros"
+        @wlclose="hideFilters"
+      >
+        <wl-search-filters slot="wl-content" />
+      </wl-modal>
+    </no-ssr>
   </div>
 </template>
 
 <script>
 import WlModal from '~/components/WlModal.vue'
 import WlSearchFilters from '~/components/WlSearchFilters.vue'
+import { mapGetters } from 'vuex';
 
-export default {
-  components: {
-    WlModal,
-    WlSearchFilters,
+const buttonState = [ 'DISABLED', 'ENABLED', 'REVERSE' ]
+
+export default { components: { WlModal,
+       WlSearchFilters,
   },
   data() {
     return {
       showModal: false,
+      filters: [
+        { label: 'Entidad', filter: 'ENTIDAD' },
+        { label: 'Tipo documento', filter: 'TIPO_DOCUMENTO'},
+        { label: 'Número', filter: 'NUMERO' },
+        { label: 'Año publicación', filter: 'ANIO_PUBLICACION' },
+        { label: 'Relevancia', filter: 'DEFAULT' }, // TODO - cambiar label por cadena en ingles o español
+      ],
     }
   },
   computed: {
@@ -55,10 +60,13 @@ export default {
     },
     descend() {
       return this.$route.query.descend == "true"
-    }
+    },
+    ...mapGetters('search', {
+      loadingTotalCount: 'loadingTotalCount'
+    })
   },
   mounted() {
-    if( ['DEFAULT', 'NUMERO', 'ENTIDAD', 'TIPO_DOCUMENTO', 'ANIO_PUBLICACION'].indexOf(this.orderBy) !== -1){
+    if(this.filters.map(x => x.filter).indexOf(this.orderBy) == -1){
       this.clearOrdering()
     }
   },
@@ -91,6 +99,26 @@ export default {
     },
     hideFilters() {
       this.showModal = false
+    },
+    getStateClass(filter) {
+      if(this.orderBy == filter) {
+        if(this.descend) {
+          return 'reverse'
+        } else {
+          return 'enabled'
+        }
+      }
+      return 'disabled'
+    },
+    showIcon(filter) {
+      if(this.orderBy == filter && filter != 'DEFAULT')
+        return true
+      else false
+    },
+    getIconClass() {
+      if(this.descend)
+        return 'ico-sort-alpha-asc'
+      return 'ico-sort-alpha-desc'
     }
   }
 }
@@ -122,10 +150,18 @@ export default {
 .ordering {
   padding: 8px;
   background: white;
-  border-bottom: 2px solid green;
 }
 
 .mq-layout {
   background: white;
+}
+
+.ordering.reverse,
+.ordering.enabled {
+  border-bottom: 2px solid green;
+}
+
+.order-icon {
+  color: green;
 }
 </style>

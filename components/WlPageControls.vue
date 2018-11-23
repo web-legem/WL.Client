@@ -15,12 +15,15 @@
       <span v-if="true">
         {{ page }}
       </span>
+      / {{ numberOfPages }}
     </label>
     <button @click="next">Next</button>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   computed: {
     textual() {
@@ -28,6 +31,13 @@ export default {
     },
     page() {
       return Number.parseInt(this.$route.query.page) || 1
+    },
+    ...mapGetters('search', {
+      totalCount: 'totalCount',
+      loadingTotalCount: 'loadingTotalCount'
+    }),
+    numberOfPages() {
+      return Math.ceil(this.totalCount / (this.$route.query.pageSize || 2)) // TODO - update default page size
     }
   },
   methods: {
@@ -36,6 +46,8 @@ export default {
       this.navigateTo(previousPage)
     },
     next() {
+      if(this.page == this.numberOfPages || this.loadingTotalCount)
+        return
       const nextPage = this.page + 1
       this.navigateTo(nextPage)
     },

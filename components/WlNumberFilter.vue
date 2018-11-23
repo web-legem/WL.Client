@@ -18,7 +18,7 @@
         <wl-button 
           :only-icon="true"
           title="Agregar Filtro"
-          ico="ico-filter"
+          ico="ico2-minus"
           class="danger"
           @click.native="disableNumberFilter"
         />
@@ -43,7 +43,7 @@
         <wl-button 
           :only-icon="true"
           title="Agregar Filtro"
-          ico="ico-filter"
+          ico="ico2-plus"
           @click.native="enableNumberFilter"
         />
       </div>

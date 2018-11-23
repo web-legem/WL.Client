@@ -70,9 +70,9 @@ export default {
         this.$store.commit('admin/entities/changeEntityTypeId', value)
       }
     }
-    , ...mapGetters('admin/entities', [ 
-      'selected'
-    ])
+    , ...mapGetters('admin/entities', { 
+      selected: 'selected'
+    })
   }
   , watch: {
     '$route'() {

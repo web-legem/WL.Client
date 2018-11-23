@@ -11,9 +11,11 @@ export default {
   components: {
     WlSearch
   },
-  fetch({store, params}) {
-    console.log('fetch')
-    return store.dispatch('search/loadData')
+  fetch({store, params, query}) {
+    return Promise.all([
+      store.dispatch('search/loadFilterData'),
+      store.dispatch('search/search',{ ...query })
+    ])
   }
 }
 </script>
