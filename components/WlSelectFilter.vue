@@ -92,8 +92,9 @@ export default {
       return item != null && item != undefined
     },
     isFilterEnabled() {
-      const filter = (this.$route || this.$route.query || this.$route.query[this.param]);
+      const filter = this.$route.query[this.param];
       console.log(filter != null)
+      console.log(filter != undefined)
       return filter != null && filter != undefined
     }
   },

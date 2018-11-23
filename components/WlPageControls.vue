@@ -63,7 +63,7 @@ export default {
       loadingTotalCount: 'loadingTotalCount'
     }),
     numberOfPages() {
-      return Math.ceil(this.totalCount / (this.$route.query.pageSize || 2)) // TODO - update default page size
+      return Math.ceil(this.totalCount / (this.$route.query.pageSize || 1)) // TODO - update default page size
     }
   },
   methods: {

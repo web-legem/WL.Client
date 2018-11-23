@@ -96,7 +96,7 @@ export const actions = {
       this.$axios.get('/api/ClassifiedFile', {
         params: {
           ...query,
-          pageSize: 2, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
+          pageSize: 1, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
         },
       })
       .then(response => commit('searchSuccessful', response.data))
