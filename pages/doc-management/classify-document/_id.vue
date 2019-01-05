@@ -98,7 +98,6 @@ export default {
       'loadData'
     ])
     , classify() {
-      console.log('classify')
       this.$axios.post('/api/Document', {
         fileId: this.$route.params.id
         , document: {

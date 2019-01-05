@@ -34,6 +34,7 @@ import WlButton from '~/components/WlButton.vue'
 import WlNumberFilter from '~/components/WlNumberFilter.vue'
 import WlSelectFilter from '~/components/WlSelectFilter.vue'
 import WlYearFilter from '~/components/WlYearFilter.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -41,16 +42,6 @@ export default {
     WlNumberFilter,
     WlSelectFilter,
     WlYearFilter,
-  },
-  props: {
-    entities: {
-      type: Array,
-      required: true
-    },
-    documentTypes: {
-      type: Array,
-      required: true
-    },
   },
   data() {
     return {
@@ -63,6 +54,10 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('search', {
+      entities: 'entities',
+      documentTypes: 'documentTypes',
+    }),
     number() {
       return this.$route.query.number || ''
     },
@@ -142,9 +137,9 @@ export default {
 }
 
 .wl-search-filters h3 {
-  color: green;
+  color: #00696b;
   padding-bottom: 5px;
-  border-bottom: 1px solid green;
+  border-bottom: 1px solid #00696b;
   margin-bottom: 8px;
 }
 
@@ -153,13 +148,4 @@ export default {
   margin-bottom: 16px;
 }
 
-.control {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.control select {
-  flex-grow: 1;
-}
 </style>

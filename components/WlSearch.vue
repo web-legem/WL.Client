@@ -5,8 +5,6 @@
     >
       <wl-search-filters
         slot="master"
-        :entities="entities"
-        :document-types="documentTypes"
         class="wl-search-filters"
       />
 
@@ -16,7 +14,10 @@
           <wl-order-controls
             class="wl-order-controls"
           />
-          <div class="pager-content">
+          <div
+            v-if="hasResults"
+            class="pager-content"
+          >
             <wl-page-controls />
             <div>
               <div 
@@ -28,7 +29,23 @@
                 />
               </div>
             </div>
-            <wl-page-controls />
+            <wl-page-controls class="bottom-pager" />
+          </div>
+          <div
+            v-if="searching"
+            class="errors"
+          >
+            Searching ...
+          </div>
+          <div
+            v-if="showNoResultsPage && !hasSearchError"
+          >
+            Not Found
+          </div>
+          <div
+            v-if="showNoResultsPage && hasSearchError"
+          >
+            Network Error
           </div>
         </div>
       </template>
@@ -44,6 +61,8 @@ import WlOrderControls from '~/components/WlOrderControls.vue'
 import WlPageControls from '~/components/WlPageControls.vue'
 import WlSearchResult from '~/components/WlSearchResult.vue'
 
+import {mapActions, mapGetters, mapState} from 'vuex'
+
 export default {
   components: {
     WlMasterDetailLayout,
@@ -53,45 +72,40 @@ export default {
     WlPageControls,
     WlSearchResult,
   },
-  props: {
-    entities: {
-      type: Array,
-      required: true
-    },
-    documentTypes: {
-      type: Array,
-      required: true
-    }
-  },
-  data() {
-    return {
-      results: [],
-      descend: false
-    }
+  computed: {
+    ...mapGetters('search', {
+      results: 'searchResults',
+      searching: 'searching',
+      showNoResultsPage: 'showNoResultsPage',
+      hasResults: 'hasResults',
+      hasAnyResults: 'hasAnyResult',
+      hasSearchError: 'hasSearchError',
+    }),
+    ...mapState('search', {
+      loadingResults: 'loadingResults',
+      loadingTotalCount: 'loadingTotalCount',
+      error: 'error',
+      totalCountError: 'totalCountError',
+      searchError: 'searchError',
+    })
   },
   watch: {
     '$route'() {
-      this.search()
+      this.search({...this.$route.query})
     },
   },
   mounted() {
-    this.search()
+    if(this.hasAnyResults && !this.hasResults) {
+      this.navigateTo({...this.$route.query, page: 1})
+    }
   },
   methods: {
-    loadPage(number){
-      this.page = number > 0 ? number : 1
-    },
-    search() {
-      let query = { ...this.$route.query }
-      this.$axios.get('/api/ClassifiedFile', {
-        params: {
-          ...query,
-          pageSize: 2, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
-        },
-      })
-      .then(response => this.results = response.data)
-      .catch(console.log)
-    },
+    ...mapActions('search', {
+      search: 'search',
+    }),
+    navigateTo(query) {
+      this.$router.push(this.localePath({ name: 'search', query }))
+    }
   },
 }
 </script>
@@ -109,6 +123,13 @@ export default {
 
 .pager-content {
   flex-grow: 1;
+  margin-top: 4px;
+  border-top: 1px solid grey;
+  padding-top: 16px;
+}
+
+.bottom-pager {
   margin-top: 8px;
+  margin-bottom: 16px;
 }
 </style>

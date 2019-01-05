@@ -16,7 +16,7 @@
         <wl-button
           :only-icon="true" 
           title="Agregar Filtro"
-          ico="ico-arrow-circle-o-down"
+          ico="ico2-minus"
           class="danger"
           @click.native="disableFilter"
         />
@@ -44,7 +44,7 @@
         <wl-button
           :only-icon="true" 
           title="Agregar Filtro"
-          ico="ico-filter"
+          ico="ico2-plus"
           @click.native="enableFilter"
         />
       </div>
@@ -91,9 +91,15 @@ export default {
       let item =  this.findItem()
       return item != null && item != undefined
     },
+    isFilterEnabled() {
+      const filter = this.$route.query[this.param];
+      console.log(filter != null)
+      console.log(filter != undefined)
+      return filter != null && filter != undefined
+    }
   },
   mounted() {
-    if(!this.existItem){
+    if(!this.existItem && this.isFilterEnabled){
       this.disableFilter()
     }
   },
@@ -130,8 +136,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 992px) {
+  .wl-select-filter {
+    min-width: 270px;
+  }
+}
+
 .filter {
-  width: 100%;
   margin-bottom: 16px;
 }
 

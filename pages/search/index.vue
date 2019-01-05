@@ -1,9 +1,6 @@
 <template>
   <div class="search">
-    <wl-search
-      :entities="entities"
-      :document-types="documentTypes"
-    />
+    <wl-search />
   </div>
 </template>
 
@@ -14,14 +11,11 @@ export default {
   components: {
     WlSearch
   },
-  asyncData({app}){
+  fetch({store, params, query}) {
     return Promise.all([
-      app.$axios.get('/api/Entity'),
-      app.$axios.get('/api/DocumentType')
-    ]).then(result => ({
-      entities: result[0].data,
-      documentTypes: result[1].data
-    }))
+      store.dispatch('search/loadFilterData'),
+      store.dispatch('search/search',{ ...query })
+    ])
   }
 }
 </script>

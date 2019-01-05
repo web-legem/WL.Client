@@ -82,6 +82,7 @@ export default {
       , set(value) {
         this.$store.commit('admin/entities/changeEntityTypeId', value)
       }
+<<<<<<< HEAD
     },     
   },
 
@@ -89,6 +90,19 @@ export default {
     '$route'() {this.select(this.$route.params.id)}
   },
   mounted() {
+=======
+    }
+    , ...mapGetters('admin/entities', { 
+      selected: 'selected'
+    })
+  }
+  , watch: {
+    '$route'() {
+      this.select(this.$route.params.id)
+    }
+  }
+  , mounted() {
+>>>>>>> d90c1c161210043796257de3bcd3471c3520fac5
     this.select(this.$route.params.id)
   },
   beforeDestroy() {
