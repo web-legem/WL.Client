@@ -27,10 +27,10 @@ import WlSelect from "~/components/WlSelect.vue"
 
 export default {
   components: {
-    WlCrud
-    , WlButton
-    , WlInput
-    , WlSelect
+    WlCrud,
+    WlButton,
+    WlInput,
+    WlSelect,
   }
   , data() {
     return {

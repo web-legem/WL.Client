@@ -1,31 +1,39 @@
 <template>
   <div>
     <h1>Entity to Create</h1>
-
-    <input
+    
+    <wl-input 
       v-model="name"
-      type="text"
-    >
+      :title="'Nombre de la Entidad'"
+      :max="10" 
+      :placeholder="'Escriba el nombre de la entidad'" 
+      :error-msg="'Este es un error'"                     
+      :error="true"
+    />
 
-    <input
+    <wl-input 
       v-model="email"
-      type="email"
-    >
+      :title="'Email'"
+      :max="10" 
+      :placeholder="'Escriba Email'" 
+      :error-msg="'Este es un error'"                     
+      :error="true"
+    />    
 
-    <select
-      id="select"
+    <wl-select 
       v-model="entityTypeId"
-      name="select" 
-    >
-      <option
-        value=""
-        disabled>Por favor, seleciona uno</option>
-      <option
-        v-for="entityType in entityTypes"
-        :key="entityType.id"
-        :value="entityType.id">{{ entityType.name }}</option>
-    </select>
+      :id="'select'"
+      :name="'select'"
+      :title="'Seleccione del Tipo Documento'"
+      :error-msg="'Este es un error'" 
+      :error="true"
+      :list="entityTypes"
+      :value-prop-name="'id'"
+      :label-prop-name="'name'"
+    />
+
     <p>Selected: {{ entityTypeId }}</p>
+    <p>Selected: {{ error }}</p>
 
     <button
       type="button"
@@ -38,46 +46,68 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import WlCrud from "~/components/WlCrud.vue";
+import WlButton from "~/components/WlButton.vue";
+import WlInput from "~/components/WlInput.vue";
+import WlSelect from "~/components/WlSelect.vue";
 
 export default {
+  components: {
+    WlCrud,
+    WlButton,
+    WlInput,
+    WlSelect,
+  },
   nuxtI18n: {
     paths: {
       es: 'nuevo'
       , en: 'new'
     }
-  }
-  , data() {
+  },
+  data() {
     return {
       entityTypeId: null
       , name: ''
       , email: ''
     }
-  }
-  , asyncData(context){
+  },
+  asyncData(context){
     return context.app.$axios.get('/api/EntityType')
       .then(response => ({ entityTypes: response.data }))
       .catch(e => console.log(e))
-  }
-  , created() {
+  },
+    computed:{
+    ...mapGetters('admin/entities',{
+      error: 'error'
+    })
+  },
+  created() {
     this.isCreating()
-  }
-  , beforeDestroy(){
+  },
+  beforeDestroy(){
     this.clearSelection()
-  }
-  , methods: {
+  },
+
+  methods: {
     cancel() {
       this.$router.push(this.localePath({name: 'admin-entities'}))
-    }
-    , submit() {
+    },
+    submit() {
       this.create({ name: this.name, email: this.email, entityTypeId: this.entityTypeId})
-        .then(_ => this.cancel())
-        .catch(e => console.log(e))
-    }
-    , ...mapActions('admin/entities', {
-      create: 'create'
-      , isCreating: 'isCreating'
-      , clearSelection: 'clearSelection'
+        .then(x => {        
+        this.cancel();
+        console.log("zzzzzzzz " , x);        
+        })
+        .catch(e => {
+          console.log("9999999999999999999")
+          console.log(e)
+          })
+    },
+    ...mapActions('admin/entities', {
+      create: 'create',
+      isCreating: 'isCreating',
+      clearSelection: 'clearSelection',      
     })
   }
 }

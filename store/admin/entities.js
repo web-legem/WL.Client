@@ -10,10 +10,11 @@ export const state = () => ({
 })
 
 export const getters = {
-  list: (state) => state.list
-  , selected: (state) => state.selected
-  , isSelected: (state) => state.selectedId != null
-  , isCreating: (state) => state.isCreating
+  list: (state) => state.list,
+  selected: (state) => state.selected,
+  isSelected: (state) => state.selectedId != null,
+  isCreating: (state) => state.isCreating,
+  error: (state) => state.error,
 }
 
 export const mutations = {
@@ -48,6 +49,7 @@ export const mutations = {
   , creatingError(state, error) {
     state.loading = false
     state.error = error
+    console.log("xxxxxxxxxx ",state.error)
   }
   , updatingError(state, error) {
     state.loading = false
@@ -57,7 +59,7 @@ export const mutations = {
     state.selected.name = newName
   }
   , changeEmail(state, newEmail) {
-    state.selectd.email = newEmail
+    state.selected.email = newEmail
   }
   , changeEntityTypeId(state, newId) {
     state.selected.entityType = newId
@@ -91,7 +93,12 @@ export const actions = {
     commit('waiting')
     return this.$axios.post('/api/Entity', newEntity)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('creatingError', e))
+      .catch(e => {
+        console.log("jjjj ", {...e.data} )
+        commit('creatingError', e)
+        throw e;
+      }
+    )
   }
   , save({commit, dispatch}, modifiedEntity) {
     commit('waiting')

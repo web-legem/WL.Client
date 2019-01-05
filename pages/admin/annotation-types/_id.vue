@@ -31,10 +31,7 @@
 </template>
 
 <script>
-import {
-  mapGetters
-  , mapActions 
-} from 'vuex';
+import {mapGetters, mapActions } from 'vuex';
 
 export default {
   validate({ params }) {
@@ -61,12 +58,10 @@ export default {
       this.$router.push(this.localePath({name: 'admin-annotation-types'}))
     }
     , drop() {
-      this.delete()
-        .then(_ => this.cancel())
+      this.delete().then(_ => this.cancel())
     }
     , update() {
-      this.save(this.selected)
-        .then(_ => this.cancel())
+      this.save(this.selected).then(_ => this.cancel())
     }
     , changeAnnotationTypeName(e) {
       this.changeName(e.target.value)
