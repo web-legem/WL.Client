@@ -1,23 +1,23 @@
 <template>
   <div>
-    <wl-crud 
+    <wl-crud
       :obj-select="objSelected"
       :is-new="false"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
     >
-      
+
       <template slot="wl-form">
-        <wl-input 
+        <wl-input
           v-if="objSelected"
           :title="'Nombre del Tipo Documento'"
-          :max="10" 
-          :placeholder="'Escriba el nombre del tipo documento'" 
-          :error-msg="'Este es un error'"                     
+          :max="10"
+          :placeholder="'Escriba el nombre del tipo documento'"
+          :error-msg="'Este es un error'"
           :error="true"
           v-model="name"
-        />       
+        />
 
       </template>
     </wl-crud>
@@ -54,19 +54,17 @@
       }
     },
     mounted() {this.select(this.$route.params.id)},
-    
     beforeDestroy() {this.clearSelection()},
-    
     methods: {
       cancel() {
         this.$router.push( this.localePath({ name: 'admin-doc-types'}))
       },
-      drop () {      
+      drop () {
         this.delete().then( this.cancel )
-      }, 
+      },
       update() {
         this.save(this.objSelected).then( this.cancel )
-      }, 
+      },
       ...mapActions('admin/document-types', [
         'select'
         , 'clearSelection'

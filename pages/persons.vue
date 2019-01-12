@@ -15,7 +15,7 @@
     </template>
 
     <nuxt-child />
-    
+
   </wl-module-layout>
 </template>
 

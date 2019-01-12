@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Annotation Type to Edit</h1>
-    
     <input
       v-if="selected"
       :value="selected.name"
@@ -19,7 +18,7 @@
     <button
       type="button"
       @click="update">Update</button>
-    
+
     <button
       type="button"
       @click="cancel">Cancel</button>
@@ -33,7 +32,7 @@
 <script>
 import {
   mapGetters
-  , mapActions 
+  , mapActions
 } from 'vuex';
 
 export default {

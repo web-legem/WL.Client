@@ -57,7 +57,6 @@ export const mutations = {
     state.searchResults = results
   },
   searchFailure(state, error) {
-    console.log(error)
     state.loadingResults = false
     state.searchError = error
   },
@@ -71,7 +70,6 @@ export const mutations = {
     state.loadingTotalCount = false
   },
   totalCountFailure(state, error) {
-    console.log(error)
     state.totalCountError = error
     state.loadingTotalCount = false
   }

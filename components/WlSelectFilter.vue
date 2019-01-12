@@ -93,8 +93,6 @@ export default {
     },
     isFilterEnabled() {
       const filter = this.$route.query[this.param];
-      console.log(filter != null)
-      console.log(filter != undefined)
       return filter != null && filter != undefined
     }
   },
