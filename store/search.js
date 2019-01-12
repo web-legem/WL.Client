@@ -72,6 +72,9 @@ export const mutations = {
   totalCountFailure(state, error) {
     state.totalCountError = error
     state.loadingTotalCount = false
+  },
+  clear(actualState) {
+    actualState = state()
   }
 }
 

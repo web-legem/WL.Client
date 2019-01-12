@@ -166,7 +166,7 @@ export default {
         , {
           label: 'Anotaciones'
           , icon: 'ico-files-o'
-          , link: 'search'
+          , link: 'annotations'
         }
         , {
           label: 'Usuarios'

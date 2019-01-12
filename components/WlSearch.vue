@@ -60,6 +60,7 @@ import WlSearchFilters from '~/components/WlSearchFilters.vue'
 import WlOrderControls from '~/components/WlOrderControls.vue'
 import WlPageControls from '~/components/WlPageControls.vue'
 import WlSearchResult from '~/components/WlSearchResult.vue'
+import {removeLangExtension} from '~/helpers/routeManipulation'
 
 import {mapActions, mapGetters, mapState} from 'vuex'
 
@@ -104,7 +105,10 @@ export default {
       search: 'search',
     }),
     navigateTo(query) {
-      this.$router.push(this.localePath({ name: 'search', query }))
+      this.$router.push(this.localePath({ 
+        name: removeLangExtension(this.$oute.name),
+        query
+      }))
     }
   },
 }

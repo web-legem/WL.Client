@@ -1,7 +1,8 @@
 <template>
-  <nuxt-child />
+  <div class="source-document">
+    <nuxt-child />
+  </div>
 </template>
-
 
 <script>
 import { mapMutations } from 'vuex';
@@ -9,8 +10,8 @@ import { mapMutations } from 'vuex';
 export default {
   nuxtI18n: {
     paths: {
-      es: '/busqueda'
-      , en: '/search'
+      es: 'documento-fuente',
+      en: 'source-document',
     }
   },
   beforeDestroy() {
@@ -23,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.source-document {
+  padding-top: calc(25px + 4.5vh);
+}
+</style>

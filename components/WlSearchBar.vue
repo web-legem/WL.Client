@@ -22,6 +22,7 @@
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import { removeLangExtension } from '~/helpers/routeManipulation'
 
 export default {
   components: {
@@ -48,7 +49,7 @@ export default {
     },
     navigateWith(query) {
       this.$router.push(this.localePath({
-        name: 'search',
+        name: removeLangExtension(this.$route.name),
         query
       }))
     },
