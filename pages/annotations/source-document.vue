@@ -24,9 +24,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.source-document {
-  padding-top: calc(25px + 4.5vh);
-}
-</style>

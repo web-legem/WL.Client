@@ -28,6 +28,7 @@
       >
         <span class="ico-download" />{{ 'Descargar' }}
       </a>
+      <slot />
     </div>
   </div>
 </template>

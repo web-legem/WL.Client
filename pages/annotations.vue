@@ -1,5 +1,7 @@
 <template>
-  <nuxt-child />
+  <div class="annotations">
+    <nuxt-child />
+  </div>
 </template>
 
 <script>
@@ -19,6 +21,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.annotations {
+  width: 100%;
+  padding-top: calc(25px + 4.5vh);
+  height: calc(95.5vh - 25px);
+  position: relative;
+}
 </style>

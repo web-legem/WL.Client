@@ -26,7 +26,9 @@
               >
                 <wl-search-result
                   :document="document"
-                />
+                >
+                  <slot :document="document" />
+                </wl-search-result>
               </div>
             </div>
             <wl-page-controls class="bottom-pager" />
