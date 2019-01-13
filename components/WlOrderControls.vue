@@ -6,7 +6,8 @@
       :class="[getStateClass(filter.filter) ]"
       class="ordering"
       @click="setOrdering(filter.filter)"
-    > {{ filter.label }}
+    > 
+      {{ filter.label }}
       <span
         v-if="showIcon(filter.filter)"
         :class="[ getIconClass() ]"
@@ -18,7 +19,9 @@
         v-if="$mq != 'lg' && $mq != 'xl'"
         class="ordering"
         @click="showFilters"
-      >Mostrar busqueda avanzada</button>
+      >
+        Mostrar busqueda avanzada
+      </button>
     </no-ssr>
     <no-ssr>
       <wl-modal

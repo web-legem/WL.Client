@@ -14,18 +14,24 @@
       type="text"
       @input="changeAnnotationTypeRoot"
     >
-
     <button
       type="button"
-      @click="update">Update</button>
-
+      @click="update"
+    >
+      Update
+    </button>
     <button
       type="button"
-      @click="cancel">Cancel</button>
-
+      @click="cancel"
+    >
+      Cancel
+    </button>
     <button
       type="button"
-      @click="drop">Delete</button>
+      @click="drop"
+    >
+      Delete
+    </button>
   </div>
 </template>
 

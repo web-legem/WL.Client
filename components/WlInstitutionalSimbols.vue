@@ -2,13 +2,13 @@
   <div class="contenedor_simbolos">
     <div>
       <div>
-        <img src="~/assets/img/acreditacion.png" >
+        <img src="~/assets/img/acreditacion.png">
       </div>
       <div>
-        <img src="~/assets/img/planeacion.png" >
+        <img src="~/assets/img/planeacion.png">
       </div>
       <div>
-        <img src="~/assets/img/years-111.png" >
+        <img src="~/assets/img/years-111.png">
       </div>
     </div>
   </div>

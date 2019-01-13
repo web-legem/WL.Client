@@ -7,13 +7,13 @@
           :max="10" 
           :placeholder="'Escriba el nombre del tipo documento'" 
           :error-msg="'Este es un error'" 
-          :error="true"/>
-
+          :error="true"
+        />
         <wl-select 
           :title="'Seleccione del Tipo Documento'"
           :error-msg="'Este es un error'" 
-          :error="true"/>
-
+          :error="true"
+        />
       </div>
     </wl-crud>
   </div>
@@ -21,14 +21,12 @@
 
 <script>
 import WlCrud from "~/components/WlCrud.vue"
-import WlButton from "~/components/WlButton.vue"
 import WlInput from "~/components/WlInput.vue"
 import WlSelect from "~/components/WlSelect.vue"
 
 export default {
   components: {
     WlCrud
-    , WlButton
     , WlInput
     , WlSelect
   }

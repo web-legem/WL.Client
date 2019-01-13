@@ -7,18 +7,16 @@
       @wlupdate="update"
       @wldelete="drop"
     >
-
       <template slot="wl-form">
         <wl-input
           v-if="objSelected"
+          v-model="name"
           :title="'Nombre del Tipo Documento'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo documento'"
           :error-msg="'Este es un error'"
           :error="true"
-          v-model="name"
         />
-
       </template>
     </wl-crud>
   </div>
@@ -27,7 +25,6 @@
 <script>
   import {mapActions,mapGetters,} from 'vuex';
   import WlCrud from "~/components/WlCrud.vue"
-  import WlButton from "~/components/WlButton.vue"
   import WlInput from "~/components/WlInput.vue"
 
   export default {
@@ -36,7 +33,6 @@
     },
     components: {
       WlCrud,
-      WlButton,
       WlInput,
     },
     computed: {

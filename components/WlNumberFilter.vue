@@ -2,7 +2,8 @@
   <div class="wl-number-filter">
     <div
       v-if="showNumberFilter"
-      class="filter">
+      class="filter"
+    >
       <label for="numero">
         Número de documento
       </label>
@@ -27,7 +28,8 @@
 
     <div
       v-show="!showNumberFilter"
-      class="filter">
+      class="filter"
+    >
       <label for="numero">
         Número de documento
       </label>

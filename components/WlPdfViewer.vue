@@ -10,8 +10,8 @@
 export default {
   props: {
     fileId: {
-      type: Number | String
-      , required: true
+      type: [String, Number],
+      required: true,
     }
   }
   , data() {

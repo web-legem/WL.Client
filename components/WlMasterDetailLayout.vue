@@ -2,15 +2,16 @@
   <div class="master-detail-layout">
     <div
       :class="[hideList]"
-      class="master">
-      <slot name="master"/>
+      class="master"
+    >
+      <slot name="master" />
     </div>
 
     <div
       :class="[hideDetails]"
-      class="detail">
-      <slot
-        name="details" />
+      class="detail"
+    >
+      <slot name="details" />
     </div>
   </div>
 </template>

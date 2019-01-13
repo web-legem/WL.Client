@@ -2,7 +2,8 @@
   <li class="list-item-container">
     <nuxt-link
       :to="to"
-      class="list-item">
+      class="list-item"
+    >
       <div>
         <slot />
       </div>

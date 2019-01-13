@@ -6,14 +6,16 @@
     >
       <wl-list-item
         v-for="entity in entities" 
-        :to="localePath({ name: 'admin-entities-id', params: {id: entity.id} })"
         :key="entity.id"
+        :to="localePath({ name: 'admin-entities-id', params: {id: entity.id} })"
         @click.native="activateRoute(entity.id)"
       >
         <div>
           {{ entity.name }}
         </div>
-        <div class="entity-type-label">{{ entity.entityTypeId }}</div>
+        <div class="entity-type-label">
+          {{ entity.entityTypeId }}
+        </div>
       </wl-list-item>
     </wl-filtered-list>
 

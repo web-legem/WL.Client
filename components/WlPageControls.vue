@@ -10,7 +10,8 @@
     />
     <label
       for="page"
-      class="page-label">
+      class="page-label"
+    >
       Page: 
       <input 
         v-if="false"

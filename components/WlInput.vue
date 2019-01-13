@@ -2,23 +2,27 @@
   <div>
     <label 
       :for="name" 
-      class="texto_labels" >{{ title }}
+      class="texto_labels"
+    >
+      {{ title }}
     </label>
 
     <input 
+      :id="id" 
+      :name="name" 
       :value="value"
       :disabled="disable == true"             
       :type="type" 
-      :name="name" 
-      :id="id" 
       :placeholder="placeholder" 
       :maxlength="max"
       class="a_input"
-      @input="$emit('input',$event.target.value)">
+      @input="$emit('input',$event.target.value)"
+    >
 
     <div 
       v-show="error" 
-      class="msj-error">
+      class="msj-error"
+    >
       <label>{{ errorMsg }}</label>
     </div>
   </div>

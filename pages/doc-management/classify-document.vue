@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Classify Document</h1>
+    <h1>
+      Classify Document
+    </h1>
     <nuxt-child />
   </div>
 </template>

@@ -2,7 +2,8 @@
   <div>
     <div
       v-show="showPublicationFilter"
-      class="filter">
+      class="filter"
+    >
       <label for="publicacion">
         Año de publicación
       </label>
@@ -27,7 +28,8 @@
 
     <div
       v-show="!showPublicationFilter"
-      class="filter">
+      class="filter"
+    >
       <label for="publicacion">
         Año de publicación
       </label>

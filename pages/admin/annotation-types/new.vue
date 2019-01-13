@@ -14,11 +14,17 @@
 
     <button
       type="button"
-      @click="submit()">Aceptar</button>
+      @click="submit()"
+    >
+      Aceptar
+    </button>
 
     <button
       type="button"
-      @click="cancel()">Cancelar</button>
+      @click="cancel()"
+    >
+      Cancelar
+    </button>
   </div>
 </template>
 

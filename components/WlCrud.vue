@@ -4,29 +4,35 @@
       <wl-button 
         v-show="!isNew"
         :ico="'ico-pencil'"                 
-        @click.native="isEdit = true">editar
+        @click.native="isEdit = true"
+      >
+        editar
       </wl-button>
       <wl-button 
         v-show="!isNew"
         :ico="'ico-trash'"                 
-        @click.native="remove()">eliminar
+        @click.native="remove()"
+      >
+        eliminar
       </wl-button>
     </div>
 
-    <slot name="wl-form"/>
+    <slot name="wl-form" />
 
     <div class="controles_box_right down">
       <wl-button 
         v-show="isEdit || isNew" 
         :ico="'ico-floppy-o'" 
-        @click.native="ok($event)">
+        @click.native="ok($event)"
+      >
         Aceptar
       </wl-button>
       
       <wl-button 
         v-show="isEdit || isNew"
         :ico="'ico-times'"  
-        @click.native="cancel($event)">
+        @click.native="cancel($event)"
+      >
         Cancelar
       </wl-button>
     </div>
@@ -35,24 +41,25 @@
     <wl-modal
       v-if="showDialog"
       :title="'Confirmación'"
-      @wlclose="closeModal">
-
+      @wlclose="closeModal"
+    >
       <template 
         slot="wl-content" 
-        class="generic-box-vertical">
-        <p>¿ EstaSeguroDeseaEliminar "{{ objSelect.name }}" ? </p>
+        class="generic-box-vertical"
+      >
+        <p>
+          ¿EstaSeguroDeseaEliminar "{{ objSelect.name }}"?
+        </p>
         <div class="a-modal-confirmacion">
-          <wl-button 
-            @click.native="okModal($event)">Eliminar
+          <wl-button @click.native="okModal($event)">
+            Eliminar
           </wl-button>          
-          <wl-button 
-            @click.native="closeModal()">Cancelar
+          <wl-button @click.native="closeModal()">
+            Cancelar
           </wl-button>
         </div>
       </template>
-
     </wl-modal>
-
   </div>
 </template>
 

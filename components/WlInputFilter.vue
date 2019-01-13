@@ -5,24 +5,27 @@
         :disable="disable"
         :ico="'ico-refresh'" 
         :only-icon="true" 
-        :title="'Actualizar'"/>
+        :title="'Actualizar'"
+      />
 
       <input 
-        :disabled="disable"
+        :id="id"                          
         v-model="textFilter" 
         :name="name"
-        :id="id"                          
+        :disabled="disable"
         :placeholder="placeholder"         
         type="text" 
         maxlength="20"
-        class="input_text_btn">
+        class="input_text_btn"
+      >
 
       <button 
         v-show="isVisible"
         class="btn_cancel" 
         title="Quitar filtro"
-        @click="clearText()">
-        <span class="ico-plus"/>
+        @click="clearText()"
+      >
+        <span class="ico-plus" />
       </button>
     </div>
   </div>

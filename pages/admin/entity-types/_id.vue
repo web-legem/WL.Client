@@ -8,15 +8,14 @@
       @wldelete="drop"
     >
       <template slot="wl-form">
-
         <wl-input
           v-if="objSelected"
+          v-model="name"
           :title="'Nombre del Tipo Entidad'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo entidad'"
           :error-msg="'Este es un error'"
           :error="true"
-          v-model="name"
         />
         <div class="cards">
           <div
@@ -26,10 +25,10 @@
             <div class="block">
               <input
                 v-if="objSelected"
-                :name="docType.id"
                 :id="docType.id"
-                :value="docType.id"
                 v-model="checked"
+                :name="docType.id"
+                :value="docType.id"
                 type="checkbox"
               >
               <label
@@ -38,10 +37,12 @@
               >
                 <div>
                   <div class="ico-container">
-                    <span class="ico-file-text-o ico-note"/>
+                    <span class="ico-file-text-o ico-note" />
                   </div>
                   <div class="name-container">
-                    <p class="note-name">{{ docType.name }}</p>
+                    <p class="note-name">
+                      {{ docType.name }}
+                    </p>
                   </div>
                 </div>
               </label>
@@ -58,13 +59,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import WlCrud from "~/components/WlCrud.vue";
-import WlButton from "~/components/WlButton.vue";
 import WlInput from "~/components/WlInput.vue";
 
 export default {
   components: {
     WlCrud,
-    WlButton,
     WlInput
   },
   validate({ params }) {

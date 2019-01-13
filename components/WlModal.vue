@@ -1,26 +1,30 @@
 <template>
   <div     
-    class="modal ani-modal-delay">  
+    class="modal ani-modal-delay"
+  >  
     <div 
       class="modal-overlay"
-      @click="closeModal($event,false)"/><!--Simula la opacidad de fondo del dialogo-->      
+      @click="closeModal($event,false)"
+    />
+    <!--Simula la opacidad de fondo del dialogo-->      
     <div 
       class="modal-dialog ani-modal-info" 
-      tabindex="1">
-        
+      tabindex="1"
+    >
       <div class="modal-close">            
-        <div class="titulo-modal">{{ title }}</div>
+        <div class="titulo-modal">
+          {{ title }}
+        </div>
         <button 
           title="Cerrar Dialogo" 
-          @click="closeModal($event,true)">
-          <span class="ico-times"/>
+          @click="closeModal($event,true)"
+        >
+          <span class="ico-times" />
         </button>
       </div>
-
       <div class="modal-transclude">
-        <slot name="wl-content"/>
+        <slot name="wl-content" />
       </div>
-
     </div>
   </div>
 </template>

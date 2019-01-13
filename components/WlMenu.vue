@@ -9,10 +9,12 @@
       mq="md-"
       @click="toggleMenuPanel"
       @focusout="hideMenuPanel"
-    ><span
-      :class="[ showMenu ? 'ico2-cross' : 'ico-bars' ]"
-      class="ico"
-    /></button>
+    >
+      <span
+        :class="[ showMenu ? 'ico2-cross' : 'ico-bars' ]"
+        class="ico"
+      />
+    </button>
 
     <!-- <mq-layout mq="lg+">
       <wl-cinta-logo />
@@ -98,9 +100,7 @@
           </nuxt-link>
         </li>
       </ul>
-
     </nav>
-
     <button
       class="accessibility"
       @click.stop="toggleA11yPanel"
@@ -109,7 +109,6 @@
     >
       <span class="ico ico-wheelchair" />
     </button> 
-
     <transition name="slide-fade-vertical">
       <wl-a11y-controls
         v-show="$store.state.showA11yPanel"
@@ -125,8 +124,8 @@ import WlA11yControls from '~/components/WlA11yControls.vue'
 
 export default {
   components: {
-    WlCintaLogo
-    , WlA11yControls
+    // WlCintaLogo,
+    WlA11yControls,
   }
   , data() {
     return {

@@ -2,8 +2,11 @@
   <div class="wl-select-filter">
     <div
       v-if="existItem"
-      class="filter">
-      <label for="entidad">{{ label }}</label>
+      class="filter"
+    >
+      <label for="entidad">
+        {{ label }}
+      </label>
       <div class="control">
         <input
           id="entidad"
@@ -25,8 +28,11 @@
 
     <div
       v-if="!existItem"
-      class="filter">
-      <label for="entidad">{{ label }}</label>
+      class="filter"
+    >
+      <label for="entidad">
+        {{ label }}
+      </label>
       <div class="control">
         <select 
           id="entidad"
@@ -39,7 +45,9 @@
             v-for="item in list"
             :key="item.id"
             :value="item[valuePropName]"
-          >{{ item[labelPropName] }}</option>
+          >
+            {{ item[labelPropName] }}
+          </option>
         </select>
         <wl-button
           :only-icon="true" 

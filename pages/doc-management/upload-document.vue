@@ -27,7 +27,9 @@
           <p 
             @drop.prevent.stop="handleDropFile($event)"
             @drop.prevent="handleDropFile($event)"
-          ><strong>Escoja un archivo</strong> ó arrastrelo aquí</p>
+          >
+            <strong>Escoja un archivo</strong> ó arrastrelo aquí
+          </p>
           <progress
             id="progress"
             :value.prop="uploadPercentage" 
@@ -40,7 +42,9 @@
       <button
         class="next"
         @click="uploadFile"
-      >Subir Archivo</button>
+      >
+        Subir Archivo
+      </button>
     </form>
   </div>
 </template>

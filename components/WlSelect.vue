@@ -2,31 +2,39 @@
   <div>
     <label 
       :for="name" 
-      class="texto_labels" >{{ title }}
+      class="texto_labels"
+    >
+      {{ title }}
     </label>
     <div class="a_select">
       <select 
-        :disabled="disable == true"
+        :id="id"
         :name="name" 
-        :id="id">
+        :disabled="disable == true"
+      >
         <option 
           disabled 
           selected 
-          value> {{ emptyMsg }} 
+          value
+        >
+          {{ emptyMsg }} 
         </option>
         <option 
           v-for="option in options" 
-          :key="option.id">
+          :key="option.id"
+        >
           {{ option.text }}
         </option>      
       </select> 
     </div>
-    
 
     <div 
       v-show="error" 
-      class="msj-error">
-      <label>{{ errorMsg }}</label>
+      class="msj-error"
+    >
+      <label>
+        {{ errorMsg }}
+      </label>
     </div>
   </div>
 </template>
@@ -57,8 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*------Select input ---------*/
-
 .a_select {
   display: flex;
   border-right: none;
@@ -71,6 +77,7 @@ export default {
   background: #ebebeb;
   color: #555;
 }
+
 .a_select input:disabled {
   pointer-events: none;
   background: #ebebeb;
@@ -106,16 +113,15 @@ export default {
 .a_select select:hover {
   border: 1px solid #888;
 }
+
 .a_select:hover::before {
   color: #099472;
 }
+
 .a_select.disable:hover::before {
   color: #999;
 }
 
-/*------ Fin select ------*/
-
-/*---Eventos select-----*/
 .a_select > select:focus {
   outline: 0;
   border-color: #38ba8f;

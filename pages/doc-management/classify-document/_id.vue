@@ -1,8 +1,12 @@
 <template>
   <div>
     <h1>Clasificar documento</h1>
-    <p v-if="isAlreadyClassified">El documento ya fue clasificado</p>
-    <p v-if="!isAlreadyClassified">El documento no ha sido clasificado</p>
+    <p v-if="isAlreadyClassified">
+      El documento ya fue clasificado
+    </p>
+    <p v-if="!isAlreadyClassified">
+      El documento no ha sido clasificado
+    </p>
 
     <form action="">
       <input
@@ -26,13 +30,17 @@
       >
         <option 
           value=""
-          disabled>
+          disabled
+        >
           Por favor, selecciona uno
         </option>
         <option 
           v-for="entity in entities"
           :key="entity.id"
-          :value="entity.id">{{ entity.name }}</option>
+          :value="entity.id"
+        >
+          {{ entity.name }}
+        </option>
       </select>
       EntityId: {{ entityId }}
       <select 
@@ -42,22 +50,31 @@
       >
         <option 
           value=""
-          disabled>
+          disabled
+        >
           Por favor, selecciona uno
         </option>
         <option 
           v-for="documentType in documentTypes"
           :key="documentType.id"
-          :value="documentType.id">{{ documentType.name }}</option>
+          :value="documentType.id"
+        >
+          {{ documentType.name }}
+        </option>
       </select>
       {{ documentTypeId }}
       <button
         type="button"
         @click="clear"
-      >Cancel</button>
+      >
+        Cancel
+      </button>
       <button
         type="button"
-        @click="classify">Accept</button>
+        @click="classify"
+      >
+        Accept
+      </button>
     </form>
     {{ number }}
     {{ date }}

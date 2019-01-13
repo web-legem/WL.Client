@@ -1,7 +1,8 @@
 <template>
   <nuxt-link
     :to="to"
-    class="tab">
+    class="tab"
+  >
     <span :class="[icon, 'ico']" />
     <span class="tab-name">
       <slot />

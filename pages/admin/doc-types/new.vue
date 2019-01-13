@@ -13,10 +13,9 @@
           :max="20" 
           :placeholder="'Escriba el nombre del tipo documento'" 
           :error-msg="'Este es un error'" 
-          :error="true"/>
-        
+          :error="true"
+        />
         error:{{ wlerror }}
-
       </template>
     </wl-crud>
   </div>
@@ -25,13 +24,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import WlCrud from "~/components/WlCrud.vue"
-import WlButton from "~/components/WlButton.vue"
 import WlInput from "~/components/WlInput.vue"
 
 export default {
   components: {
     WlCrud,
-    WlButton,
     WlInput,
   },
   nuxtI18n: {

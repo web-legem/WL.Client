@@ -15,16 +15,23 @@
         <a
           class="ico-facebook-square ico_f"
           title="vm.language.strings.Facebook"
-          href="https://www.facebook.com/udenar" />
+          href="https://www.facebook.com/udenar"
+        />
         <a
           class="ico-twitter-square ico_f"
           title="vm.language.strings.Twitter"
-          href="https://twitter.com/Udenar" /><br>
-        <span
-          class="ico-university f_link"><a
+          href="https://twitter.com/Udenar"
+        />
+        <br>
+        <span class="ico-university f_link">
+          <a
             title="vm.language.strings.UniversidadNarino"
             class="f_link"
-            href="http://www.udenar.edu.co/"> vm.language.strings.UniversidadNarino</a></span>
+            href="http://www.udenar.edu.co/"
+          >
+            vm.language.strings.UniversidadNarino
+          </a>
+        </span>
       </div>
 
       <div id="f_3">

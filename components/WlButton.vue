@@ -1,10 +1,11 @@
 <template>
   <button 
     :disabled="disable" 
-    :class="[btnStyle,btnInverso, disable ? 'disable': '']" 
+    :class="[btnStyle, btnInverso, disable ? 'disable': '']" 
     :title="title"
   >
-    <span :class="[ico,size,icoInverso]"/> <slot/>
+    <span :class="[ico,size,icoInverso]" />
+    <slot />
   </button>
 </template>
 

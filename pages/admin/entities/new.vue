@@ -19,21 +19,31 @@
     >
       <option
         value=""
-        disabled>Por favor, seleciona uno</option>
+        disabled
+      >
+        Por favor, seleciona uno
+      </option>
       <option
         v-for="entityType in entityTypes"
         :key="entityType.id"
-        :value="entityType.id">{{ entityType.name }}</option>
+        :value="entityType.id"
+      >
+        {{ entityType.name }}
+      </option>
     </select>
     <p>Selected: {{ entityTypeId }}</p>
-
     <button
       type="button"
-      @click="submit()">Aceptar</button>
-
+      @click="submit()"
+    >
+      Aceptar
+    </button>
     <button
       type="button"
-      @click="cancel()">Cancel</button>
+      @click="cancel()"
+    >
+      Cancel
+    </button>
   </div>
 </template>
 
