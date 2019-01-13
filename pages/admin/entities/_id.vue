@@ -31,8 +31,8 @@
           @input="changeEmail"
         />    
         <wl-select 
-          v-model="entityTypeId"
           :id="'select'"
+          v-model="entityTypeId"
           :name="'select'"
           :title="'Seleccione del Tipo Documento'"
           :error-msg="'Este es un error'" 
@@ -50,14 +50,12 @@
 <script>
 import {mapGetters, mapActions} from 'vuex';
 import WlCrud from "~/components/WlCrud.vue";
-import WlButton from "~/components/WlButton.vue";
 import WlInput from "~/components/WlInput.vue";
 import WlSelect from "~/components/WlSelect.vue";
 
 export default {
   components:{
     WlCrud,
-    WlButton,
     WlInput,
     WlSelect,
   },

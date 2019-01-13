@@ -20,10 +20,10 @@
       :error="true"
     />
     <wl-select
+      id="select"
       v-model="entityTypeId"
       :error="true"
       :list="entityTypes"
-      id="select"
       title="Seleccione del Tipo Documento"
       error-msg="Este es un error"
       value-prop-name="id"
@@ -47,16 +47,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import WlCrud from "~/components/WlCrud.vue";
-import WlButton from "~/components/WlButton.vue";
-import WlInput from "~/components/WlInput.vue";
-import WlSelect from "~/components/WlSelect.vue";
+import { mapActions, mapGetters } from "vuex"
+import WlInput from "~/components/WlInput.vue"
+import WlSelect from "~/components/WlSelect.vue"
 
 export default {
   components: {
-    WlCrud,
-    WlButton,
     WlInput,
     WlSelect,
   },

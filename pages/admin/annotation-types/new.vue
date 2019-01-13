@@ -32,13 +32,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex"
 import WlCrud from "~/components/WlCrud.vue"
-import WlButton from "~/components/WlButton.vue"
 import WlInput from "~/components/WlInput.vue"
 
 export default {
   components: {
     WlCrud,
-    WlButton,
     WlInput,
   },
   nuxtI18n: {

@@ -46,9 +46,7 @@
             </div>                  
           </div>
         </div>        
-
         <p> error:{{ error }}</p>
-        
       </template>
     </wl-crud>
   </div>
@@ -62,12 +60,7 @@ import WlInput from "~/components/WlInput.vue";
 export default {
   components: {
     WlCrud,
-<<<<<<< HEAD
     WlInput
-=======
-    WlButton,
-    WlInput,
->>>>>>> a29d1d76355fc934dff37eb5ef97c59e04781d1a
   },
   nuxtI18n: {
     paths: {
