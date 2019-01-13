@@ -35,7 +35,8 @@
 <script>
 import WlModal from '~/components/WlModal.vue'
 import WlSearchFilters from '~/components/WlSearchFilters.vue'
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
+import {removeLangExtension} from '~/helpers/routeManipulation'
 
 const buttonState = [ 'DISABLED', 'ENABLED', 'REVERSE' ]
 
@@ -90,7 +91,7 @@ export default { components: { WlModal,
     navigateWith(query) {
       this.$emit('order', { orderBy: query.orderBy, descend: query.descend })
       this.$router.push(this.localePath({
-        name: 'search',
+        name: removeLangExtension(this.$route.name),
         query
       }))
     },

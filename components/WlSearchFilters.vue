@@ -35,6 +35,7 @@ import WlNumberFilter from '~/components/WlNumberFilter.vue'
 import WlSelectFilter from '~/components/WlSelectFilter.vue'
 import WlYearFilter from '~/components/WlYearFilter.vue'
 import {mapGetters} from 'vuex'
+import { removeLangExtension} from '~/helpers/routeManipulation'
 
 export default {
   components: {
@@ -110,13 +111,18 @@ export default {
       let query = { ...this.$route.query }
       query.number = this.$refs.inputNumber.value
       if(this.canActivateFilter()){
-        this.$router.push(this.localePath({ name: 'search', query }))
+        this.$router.push(this.localePath({
+          name: removeLangExtension(this.$route.name),
+          query,
+        }))
       }
     },
     disableNumberFilter() {
       let query = { ...this.$route.query }
       delete query.number
-      this.$router.push(this.localePath({name: 'search', query}))
+      this.$router.push(this.localePath({
+        name: removeLangExtension(this.$route.name),
+        query}))
     },
     enablePublicationFilter() {
       if(this.publication == null || this.publication.length != 4)

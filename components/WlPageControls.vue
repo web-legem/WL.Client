@@ -40,6 +40,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import WlButton from '~/components/WlButton.vue'
+import { removeLangExtension} from '~/helpers/routeManipulation'
 
 export default {
   components: {
@@ -80,7 +81,7 @@ export default {
     navigateTo(page) {
       this.$emit('go-to-page', page)
       this.$router.push(this.localePath({
-        name: 'search',
+        name: removeLangExtension(this.$route.name),
         query: {
           ...this.$route.query,
           page

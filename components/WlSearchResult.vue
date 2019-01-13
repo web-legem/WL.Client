@@ -23,11 +23,12 @@
     <div class="control_tarjeta">
       <a 
         :href="$axios.defaults.baseURL + 'api/File/' + document.file.id"
-        title="Descargar"
         download
+        title="Descargar"
       >
         <span class="ico-download" />{{ 'Descargar' }}
       </a>
+      <slot />
     </div>
   </div>
 </template>

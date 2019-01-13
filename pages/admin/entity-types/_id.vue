@@ -1,6 +1,6 @@
 <template>
   <div>
-    <wl-crud 
+    <wl-crud
       :obj-select="objSelected"
       :is-new="false"
       @wlcancel="cancel"
@@ -9,21 +9,21 @@
     >
       <template slot="wl-form">
 
-        <wl-input 
+        <wl-input
           v-if="objSelected"
           :title="'Nombre del Tipo Entidad'"
-          :max="10" 
-          :placeholder="'Escriba el nombre del tipo entidad'" 
-          :error-msg="'Este es un error'"                     
+          :max="10"
+          :placeholder="'Escriba el nombre del tipo entidad'"
+          :error-msg="'Este es un error'"
           :error="true"
           v-model="name"
-        />    
+        />
         <div class="cards">
           <div
             v-for="docType in docTypes"
-            :key="docType.id"            
+            :key="docType.id"
           >
-            <div class="block">              
+            <div class="block">
               <input
                 v-if="objSelected"
                 :name="docType.id"
@@ -32,7 +32,7 @@
                 v-model="checked"
                 type="checkbox"
               >
-              <label 
+              <label
                 :for="docType.id"
                 class="note checked"
               >
@@ -40,14 +40,14 @@
                   <div class="ico-container">
                     <span class="ico-file-text-o ico-note"/>
                   </div>
-                  <div class="name-container">                  
-                    <p class="note-name">{{ docType.name }}</p>                  
+                  <div class="name-container">
+                    <p class="note-name">{{ docType.name }}</p>
                   </div>
                 </div>
               </label>
-            </div>                  
+            </div>
           </div>
-        </div>        
+        </div>
 
         <p> error:{{ error }}</p>
         
@@ -104,10 +104,19 @@ export default {
       this.select(this.$route.params.id);
     }
   },
+<<<<<<< HEAD
 
   mounted() {this.select(this.$route.params.id);},
   beforeDestroy() {this.clearSelection();},
 
+=======
+  mounted() {
+    this.select(this.$route.params.id);
+  },
+  beforeDestroy() {
+    this.clearSelection();
+  },
+>>>>>>> 379e53a83611082731bc4147d4d9985ee8c12929
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-entity-types" }));
