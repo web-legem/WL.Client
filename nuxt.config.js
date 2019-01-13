@@ -69,15 +69,15 @@ module.exports = {
       }
     }]
   ],
+  // axios: {
+  //   // proxyHeaders: false,
+  //   host: 'localhost'
+  //   , port: '54037'
+  //   , retry: {  retries: 0 }
+  // },
   axios: {
-    // proxyHeaders: false,
     host: 'localhost'
     , port: '54037'
-    , retry: {  retries: 0 }
-  },
-  // axios: {
-  //   host: '192.168.0.6'
-  //   , port: '54037'
-  //   , retry: { retries: 2 }
-  // }
+    , retry: { retries: 0 }
+  }
 }

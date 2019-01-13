@@ -15,7 +15,7 @@
           :error-msg="'Este es un error'" 
           :error="true"
         />
-        error:{{ wlerror }}
+        error:{{ error }}
       </template>
     </wl-crud>
   </div>
@@ -45,7 +45,7 @@ export default {
 
   computed:{
     ...mapGetters('admin/document-types',{
-      wlerror : 'error'
+      error : 'error'
     })
   },
 
@@ -61,9 +61,9 @@ export default {
         .then( _ => this.$router.push( this.localePath({ name: 'admin-doc-types' }) ));      
     },
     ...mapActions('admin/document-types', {
-      isCreating: 'isCreating'
-      , clearSelection: 'clearSelection'
-      , create: 'create'      
+      isCreating: 'isCreating',
+      clearSelection: 'clearSelection',
+      create: 'create',
     }),
   },
 }

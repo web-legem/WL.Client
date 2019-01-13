@@ -26,9 +26,9 @@ import WlSelect from "~/components/WlSelect.vue"
 
 export default {
   components: {
-    WlCrud
-    , WlInput
-    , WlSelect
+    WlCrud,
+    WlInput,
+    WlSelect,
   }
   , data() {
     return {

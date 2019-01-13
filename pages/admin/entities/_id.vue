@@ -2,73 +2,73 @@
   <div>
     <h1>Entity to Update</h1>
 
-    <input
-      v-if="selected"
-      :value="selected.name"
-      type="text"
-      @input="changeName($event.target.value)"
+    <wl-crud 
+      :obj-select="selected"
+      :is-new="false"
+      @wlcancel="cancel"
+      @wlupdate="update"
+      @wldelete="drop"
     >
-      
-    <input
-      v-if="selected"
-      :value="selected.email"
-      type="email"
-      @input="changeEmail($event.target.value)"
-    >
-
-    <select
-      v-if="selected"
-      id="select"
-      v-model="entityTypeId"
-      name="select" 
-    >
-      <option
-        value=""
-        disabled
-      >
-        Por favor, seleciona uno
-      </option>
-      <option
-        v-for="entityType in entityTypes"
-        :key="entityType.id"
-        :value="entityType.id"
-      >
-        {{ entityType.name }}
-      </option>
-    </select>
-    <p>Selected: {{ entityTypeId }}</p>
-    <button
-      type="button"
-      @click="update"
-    >
-      Update
-    </button>
-    <button
-      type="button"
-      @click="cancel"
-    >
-      Cancel
-    </button>
-    <button
-      type="button"
-      @click="drop"
-    >
-      Delete
-    </button>
+      <template slot="wl-form">
+        <wl-input 
+          v-if="selected"
+          :value="selected.name"
+          :title="'Nombre de la Entidad'"
+          :max="10" 
+          :placeholder="'Escriba el nombre de la entidad'" 
+          :error-msg="'Este es un error'"                     
+          :error="true"
+          @input="changeName"
+        />
+        <wl-input 
+          v-if="selected"
+          :value="selected.email"          
+          :title="'Email'"
+          :max="10" 
+          :placeholder="'Escriba Email'" 
+          :error-msg="'Este es un error'"                     
+          :error="true"
+          @input="changeEmail"
+        />    
+        <wl-select 
+          v-model="entityTypeId"
+          :id="'select'"
+          :name="'select'"
+          :title="'Seleccione del Tipo Documento'"
+          :error-msg="'Este es un error'" 
+          :error="true"
+          :list="entityTypes"
+          :value-prop-name="'id'"
+          :label-prop-name="'name'"
+        />
+        <p>Error: {{ error }}</p>
+      </template>
+    </wl-crud>
   </div>
 </template>
 
 <script>
-import {
-  mapGetters
-  , mapActions
-} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
+import WlCrud from "~/components/WlCrud.vue";
+import WlButton from "~/components/WlButton.vue";
+import WlInput from "~/components/WlInput.vue";
+import WlSelect from "~/components/WlSelect.vue";
 
 export default {
+  components:{
+    WlCrud,
+    WlButton,
+    WlInput,
+    WlSelect,
+  },
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
-  computed: {
+  computed: {    
+    ...mapGetters('admin/entities', {
+      selected: 'selected',
+      error: 'error',
+    }),
     entityTypeId: {
       get() {
         return this.$store.state.admin.entities.selected
@@ -78,45 +78,39 @@ export default {
       , set(value) {
         this.$store.commit('admin/entities/changeEntityTypeId', value)
       }
-    }
-    , ...mapGetters('admin/entities', { 
-      selected: 'selected'
-    })
-  }
-  , watch: {
-    '$route'() {
-      this.select(this.$route.params.id)
-    }
-  }
-  , mounted() {
-    this.select(this.$route.params.id)
-  }
-  , beforeDestroy() {
-    this.clearSelection()
-  }
-  , methods: {
+    },     
+  },
+
+  watch: {
+    '$route'() {this.select(this.$route.params.id)}
+  },
+  
+  mounted() {this.select(this.$route.params.id)},
+  beforeDestroy() {this.clearSelection()},
+
+  methods: {
     cancel() {
       this.$router.push(this.localePath({name: 'admin-entities'}))
-    }
-    , drop() {
+    },
+    drop() {
       this.delete()
         .then(_ => this.cancel())
-    }
-    , update() {
+    },
+    update() {
       this.save(this.selected)
         .then(_ => this.cancel())
-    }
-    , ...mapActions('admin/entities', [
-      'select'
-      , 'clearSelection'
-      , 'changeName'
-      , 'changeEmail'
-      , 'changeEntityTypeId'
-      , 'save'
-      , 'delete'
+    },
+    ...mapActions('admin/entities', [
+      'select',
+      'clearSelection',
+      'changeName',
+      'changeEmail',
+      'changeEntityTypeId',
+      'save',
+      'delete',
     ])
-  }
-  , asyncData(context) {
+  },
+  asyncData(context) {
     return context.app.$axios.get('/api/EntityType')
       .then(response => ({ entityTypes: response.data}))
       .catch(e => console.log(e))

@@ -50,7 +50,8 @@
           </div>
         </div>
 
-        <p>Selected: {{ checked }}</p>
+        <p> error:{{ error }}</p>
+        
       </template>
     </wl-crud>
   </div>
@@ -85,7 +86,8 @@ export default {
       }
     },
     ...mapGetters("admin/entity-types", {
-      objSelected: "selected"
+      objSelected: "selected",
+      error: "error",
     }),
     name: {
       get() {
@@ -101,12 +103,10 @@ export default {
       this.select(this.$route.params.id);
     }
   },
-  mounted() {
-    this.select(this.$route.params.id);
-  },
-  beforeDestroy() {
-    this.clearSelection();
-  },
+
+  mounted() {this.select(this.$route.params.id);},
+  beforeDestroy() {this.clearSelection();},
+
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-entity-types" }));
@@ -123,7 +123,7 @@ export default {
       "changeSupportedDocumentTypes",
       "changeName",
       "save",
-      "delete"
+      "delete",
     ])
   },
   asyncData(context) {

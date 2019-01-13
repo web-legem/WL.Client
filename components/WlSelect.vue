@@ -10,7 +10,7 @@
       <select 
         :id="id"
         :name="name" 
-        :disabled="disable == true"
+        @input="$emit('input',$event.target.value)"
       >
         <option 
           disabled 
@@ -20,10 +20,11 @@
           {{ emptyMsg }} 
         </option>
         <option 
-          v-for="option in options" 
-          :key="option.id"
+          v-for="item in list"
+          :key="item.id"
+          :value="item[valuePropName]"
         >
-          {{ option.text }}
+          {{ item[labelPropName] }}
         </option>      
       </select> 
     </div>
@@ -47,17 +48,15 @@ export default {
     id: { type: String, default: "" },
     isRequired: { type: Boolean, default: false },
     disable: { type: Boolean, default: false },
-    error: { type: Boolean, default: false, required: false },
+    error: { type: Boolean, default: false },
     errorMsg: { type: String, default: "" },
-    emptyMsg: { type: String, default: "Seleccione una Opción" }
+    emptyMsg: { type: String, default: "Seleccione una Opción" },
+    list: { type: Array, required: true },
+    valuePropName: { type: String,required: true },
+    labelPropName: { type: String, required: true },
   },
   data() {
-    return {
-      options: [
-        { id:0, text: "One", value: "A" },
-        { id:1, text: "Two", value: "B" },
-        { id:2, text: "Three", value: "C" }
-      ]
+    return {     
     };
   },
   computed: {}

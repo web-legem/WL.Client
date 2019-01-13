@@ -1,92 +1,95 @@
 <template>
   <div>
-    <h1>Annotation Type to Edit</h1>
-    <input
-      v-if="selected"
-      :value="selected.name"
-      type="text"
-      @input="changeAnnotationTypeName"
+    <wl-crud
+      :obj-select="objSelected"
+      :is-new="false"
+      @wlcancel="cancel"
+      @wlupdate="update"
+      @wldelete="drop"
     >
-
-    <input
-      v-if="selected"
-      :value="selected.root"
-      type="text"
-      @input="changeAnnotationTypeRoot"
-    >
-    <button
-      type="button"
-      @click="update"
-    >
-      Update
-    </button>
-    <button
-      type="button"
-      @click="cancel"
-    >
-      Cancel
-    </button>
-    <button
-      type="button"
-      @click="drop"
-    >
-      Delete
-    </button>
+      <template slot="wl-form">
+        <wl-input
+          v-if="objSelected"
+          :title="'Nombre del Tipo Anotación'"
+          :max="10"
+          :placeholder="'Escriba el nombre del tipo anotación'"
+          :error-msg="'Este es un error'"
+          :error="true"
+          v-model="name"
+        />
+        <wl-input
+          v-if="objSelected"
+          v-model="root"
+          :title="'Raiz de la Anotación'"
+          :max="10"
+          :placeholder="'Escriba la raiz de la anotación'"
+          :error-msg="'Este es un error'"
+          :error="true"
+        />
+        <p>Error: {{ error }}</p>
+      </template>
+    </wl-crud>    
   </div>
 </template>
 
 <script>
-import {
-  mapGetters
-  , mapActions
-} from 'vuex';
+import { mapGetters, mapActions } from "vuex";
+import WlCrud from "~/components/WlCrud.vue";
+import WlButton from "~/components/WlButton.vue";
+import WlInput from "~/components/WlInput.vue";
 
 export default {
   validate({ params }) {
-    return /^\d+$/.test(params.id)
+    return /^\d+$/.test(params.id);
+  },
+  components: {
+    WlCrud,
+    WlButton,
+    WlInput
   },
   computed: {
-    ...mapGetters('admin/annotation-types', {
-      selected: 'selected'
-    })
-  }
-  , watch: {
-    '$route'() {
-      this.select(this.$route.params.id)
+    ...mapGetters("admin/annotation-types", {
+      objSelected: "selected",
+      error: "error",
+    }),
+    name: {
+      get() {return this.objSelected.name},
+      set(value){this.changeName(value)},
+    },
+    root: {
+      get() {return this.objSelected.root},
+      set(value){this.changeRoot(value)},
+    },
+  },
+  watch: {
+    $route() {
+      this.select(this.$route.params.id);
     }
-  }
-  , mounted() {
-    this.select(this.$route.params.id)
-  }
-  , beforeDestroy() {
-    this.clearSelection()
-  }
-  , methods: {
+  },
+  mounted() {
+    this.select(this.$route.params.id);
+  },
+  beforeDestroy() {
+    this.clearSelection();
+  },
+  methods: {
     cancel() {
-      this.$router.push(this.localePath({name: 'admin-annotation-types'}))
-    }
-    , drop() {
-      this.delete()
-        .then(_ => this.cancel())
-    }
-    , update() {
-      this.save(this.selected)
-        .then(_ => this.cancel())
-    }
-    , changeAnnotationTypeName(e) {
-      this.changeName(e.target.value)
-    }
-    , changeAnnotationTypeRoot(e) {
-      this.changeRoot(e.target.value)
-    }
-    , ...mapActions('admin/annotation-types', [
-      'select'
-      , 'clearSelection'
-      , 'changeName'
-      , 'changeRoot'
-      , 'save'
-      , 'delete'
+      this.$router.push(this.localePath({ name: "admin-annotation-types" }));
+    },
+    drop() {
+      this.delete().then(this.cancel());
+    },
+    update() {
+      this.save(this.objSelected).then(this.cancel());
+    },
+    ...mapActions("admin/annotation-types", [
+      "select",
+      "clearSelection",
+      "changeName",
+      "changeRoot",
+      "save",
+      "delete",
     ])
   }
-}
+};
 </script>

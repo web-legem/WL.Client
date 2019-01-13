@@ -37,7 +37,8 @@
     },
     computed: {
       ...mapGetters('admin/document-types', {
-        objSelected: 'selected'
+        objSelected: 'selected',
+        error: "error",
       }),
       name: {
         get() {return this.objSelected.name},
@@ -49,7 +50,8 @@
         this.select(this.$route.params.id)
       }
     },
-    mounted() {this.select(this.$route.params.id)},
+    
+    mounted() {this.select(this.$route.params.id)},    
     beforeDestroy() {this.clearSelection()},
     methods: {
       cancel() {
@@ -62,11 +64,11 @@
         this.save(this.objSelected).then( this.cancel )
       },
       ...mapActions('admin/document-types', [
-        'select'
-        , 'clearSelection'
-        , 'changeName'
-        , 'save'
-        , 'delete'
+        'select',
+        'clearSelection',
+        'changeName',
+        'save',
+        'delete',
       ])
     }
   }
