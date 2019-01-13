@@ -45,7 +45,8 @@
           </div>
         </div>        
 
-        <p>Selected: {{ checked }}</p>
+        <p> error:{{ error }}</p>
+        
       </template>
     </wl-crud>
   </div>
@@ -61,42 +62,45 @@ export default {
   components: {
     WlCrud,
     WlButton,
-    WlInput
+    WlInput,
   },
   nuxtI18n: {
     paths: {
-      es: 'nuevo'
-      , en: 'new'
+      es: 'nuevo',
+      en: 'new',
     }
-  }
-  , data() {
+  },
+  data() {
     return {
-      name: ''
-      , docTypes: []
-      , checked: []
+      name: '',
+      docTypes: [],
+      checked: [],
     }
-  }
-  , created() {
-    this.isCreating()
-  }
-  , beforeDestroy() {
-    this.clearSelection()
-  }
-  , methods: {
+  },
+  computed: {
+    ...mapGetters("admin/entity-types", {
+      error: "error"
+    })
+  },
+
+  created() {this.isCreating()},
+  beforeDestroy() {this.clearSelection()},
+  
+  methods: {
     cancel() {
       this.$router.push(this.localePath({name: 'admin-entity-types'}))
-    }
-    , submit() {
+    },
+    submit() {
       this.create({ name: this.name, supportedDocumentTypesIds: this.checked })
         .then(_ => this.$router.push(this.localePath({name: 'admin-entity-types'})))
-    }
-    , ...mapActions('admin/entity-types', {
-      create: 'create'
-      , isCreating: 'isCreating'
-      , clearSelection: 'clearSelection'
-    })
-  }
-  , asyncData(context) {
+    },
+    ...mapActions('admin/entity-types', {
+      create: 'create',
+      isCreating: 'isCreating',
+      clearSelection: 'clearSelection',
+    }),
+  },
+  asyncData(context) {
     console.log(context)
     return context.app.$axios.get('/api/DocumentType')
       .then(response => ({ docTypes: response.data }))
