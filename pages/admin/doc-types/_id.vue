@@ -54,12 +54,8 @@
         this.select(this.$route.params.id)
       }
     },
-<<<<<<< HEAD
     
     mounted() {this.select(this.$route.params.id)},    
-=======
-    mounted() {this.select(this.$route.params.id)},
->>>>>>> 379e53a83611082731bc4147d4d9985ee8c12929
     beforeDestroy() {this.clearSelection()},
     methods: {
       cancel() {

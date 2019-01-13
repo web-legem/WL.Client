@@ -104,19 +104,10 @@ export default {
       this.select(this.$route.params.id);
     }
   },
-<<<<<<< HEAD
 
   mounted() {this.select(this.$route.params.id);},
   beforeDestroy() {this.clearSelection();},
 
-=======
-  mounted() {
-    this.select(this.$route.params.id);
-  },
-  beforeDestroy() {
-    this.clearSelection();
-  },
->>>>>>> 379e53a83611082731bc4147d4d9985ee8c12929
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-entity-types" }));
