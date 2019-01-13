@@ -7,8 +7,7 @@
       <wl-list-item
         v-for="annotationType in annotationTypes" 
         :key="annotationType.id"
-        :to="localePath({ name: 'admin-annotation-types-id', 
-                          params: { id: annotationType.id} })"
+        :to="localePath({ name: 'admin-annotation-types-id', params: { id: annotationType.id} })"
         @click.native="activateRoute(annotationType.id)"
       >
         {{ annotationType.name }}
@@ -25,10 +24,7 @@
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
 import WlListItem from '~/components/WlListItem.vue'
 import WlFilteredList from '~/components/WlFilteredList.vue'
-import {
-  mapGetters
-  , mapActions
-} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   head() {

@@ -1,19 +1,20 @@
 
 export const state = () => ({
-  list: []
-  , selectedId: null
-  , isCreating: false
-  , selected: {}
-  , loading: false
-  , loaded: false
-  , error: null
+  list: [],
+  selectedId: null,
+  isCreating: false,
+  selected: {},
+  loading: false,
+  loaded: false,
+  error: null,
 })
 
 export const getters = {
-  list: (state) => state.list
-  , selected: (state) => state.selected
-  , isSelected: (state) => state.selectedId != null
-  , isCreating: (state) => state.isCreating
+  list: (state) => state.list,
+  selected: (state) => state.selected,
+  isSelected: (state) => state.selectedId != null,
+  isCreating: (state) => state.isCreating,
+  error: (state) => state.error,
 }
 
 export const mutations = {
@@ -22,51 +23,51 @@ export const mutations = {
     state.loaded = false
     state.list = []
     state.error = null
-  }
-  , loadingSuccess(state, list) {
+  },
+  loadingSuccess(state, payload) {
     state.loading = false
     state.loaded = true
-    state.list = list
-  }
-  , loadingFailure(state, error) {
+    state.list = payload
+  },
+  loadingFailure(state, payload) {
     state.loading = false
     state.loaded = false
-    state.error = error
-  }
-  , select(state, annotationTypeId) {
+    state.error = payload
+  },
+  select(state, annotationTypeId) {
     state.selectedId = annotationTypeId
     state.selected = state.list
       .filter(x => x.id == Number.parseInt(annotationTypeId))
       .map(x => JSON.parse(JSON.stringify(x)))
       .pop()
-  }
-  , clearSelection(state) {
+  },
+  clearSelection(state) {
     state.selectedId = null
     state.selected = null
     state.isCreating = false
-  }
-  , isCreating(state) {
+  },
+  isCreating(state) {
     state.isCreating = true
-  }
-  , creatingError(state, error) {
+  },
+  creatingError(state, error) {
     state.loading = false
     state.error = error
-  }
-  , updatingError(state, error) {
+  },
+  updatingError(state, error) {
     state.loading = false
     state.error = error
-  }
-  , changeName(state, newName) {
+  },
+  changeName(state, newName) {
     state.selected.name = newName
-  }
-  , changeRoot(state, newRoot) {
+  },
+  changeRoot(state, newRoot) {
     state.selected.root = newRoot
-  }
-  , deleteError(state, error) {
+  },
+  deleteError(state, error) {
     state.loading = false
     state.error = error
-  }
-  , waiting(state) {
+  },
+  waiting(state) {
     state.loading = true
   }
 }
@@ -76,28 +77,40 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/AnnotationType')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', e))
-  }
-  , select({commit}, annotationTypeId) {
+      .catch(e => commit('loadingFailure', 'Error'))
+  },
+  
+  select({commit}, annotationTypeId) {
     commit('select', annotationTypeId)
-  }
-  , clearSelection({commit}) {
+  },
+
+  clearSelection({commit}) {
     commit('clearSelection')
-  }
-  , isCreating({commit}) {
+  },
+  
+  isCreating({commit}) {
     commit('isCreating')
-  }
-  , create({commit, dispatch}, newAnnotationType) {
+  },
+  
+  create({ commit, dispatch }, newAnnotationType) {
     commit('waiting')
     return this.$axios.post('/api/AnnotationType', newAnnotationType)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('creatingError', e))
-  }
-  , save({commit, dispatch}, modifiedAnnotationType) {
+      .catch(e => {
+        commit('creatingError', e.response.data.message)
+        throw e;
+      }
+      )
+  },
+  save({commit, dispatch}, modifiedAnnotationType) {
     commit('waiting')
     return this.$axios.put('/api/AnnotationType', modifiedAnnotationType)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('updatingError', e))
+      .catch(e => {
+        commit('updatingError', e)
+        throw e;
+      }
+      )
   }
   , delete({commit, state, dispatch}) {
     commit('waiting')
