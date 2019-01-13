@@ -10,7 +10,7 @@
       <template slot="wl-form">
         <wl-input
           v-if="objSelected"
-          v-model="name"
+          :value="name"
           :title="'Nombre del Tipo Anotación'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo anotación'"
@@ -19,7 +19,7 @@
         />
         <wl-input
           v-if="objSelected"
-          v-model="root"
+          :value="root"
           :title="'Raiz de la Anotación'"
           :max="10"
           :placeholder="'Escriba la raiz de la anotación'"
@@ -28,7 +28,7 @@
         />
         <p>Error: {{ error }}</p>
       </template>
-    </wl-crud>    
+    </wl-crud>
   </div>
 </template>
 
@@ -48,28 +48,38 @@ export default {
   computed: {
     ...mapGetters("admin/annotation-types", {
       objSelected: "selected",
-      error: "error",
+      error: "error"
     }),
     name: {
-      get() {return this.objSelected.name},
-      set(value){this.changeName(value)},
+      get() {
+        return this.objSelected.name;
+      },
+      set(value) {
+        this.changeName(value);
+      }
     },
     root: {
-      get() {return this.objSelected.root},
-      set(value){this.changeRoot(value)},
-    },
+      get() {
+        return this.objSelected.root;
+      },
+      set(value) {
+        this.changeRoot(value);
+      }
+    }
   },
   watch: {
     $route() {
       this.select(this.$route.params.id);
     }
   },
+
   mounted() {
     this.select(this.$route.params.id);
   },
   beforeDestroy() {
     this.clearSelection();
   },
+
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-annotation-types" }));
@@ -86,7 +96,7 @@ export default {
       "changeName",
       "changeRoot",
       "save",
-      "delete",
+      "delete"
     ])
   }
 };

@@ -86,9 +86,13 @@ export const actions = {
   select({ commit }, entityId) {
     commit('select', entityId)
   },
-
+  
   clearSelection({ commit }) {
     commit('clearSelection')
+  },
+
+  isCreating({ commit }) {
+    commit('isCreating')
   },
 
   create({ commit, dispatch }, newEntity) {
@@ -117,9 +121,7 @@ export const actions = {
       .then(_ => dispatch('loadData'))
       .catch(e => commit('deleteError', e))
   },
-  isCreating({ commit }) {
-    commit('isCreating')
-  },
+
   changeName({ commit }, newName) {
     commit('changeName', newName)
   },
