@@ -4,7 +4,9 @@
       <wl-list-item
         v-for="permission in permissions"
         :key="permission.id"
-        :to="localePath({ name: 'persons-permissions-id', params: { id: permission.id} })"
+        route="persons-permissions-id"
+        active-route="persons-permissions"
+        :item-id="permission.id"
       >
         {{ permission.name }}
       </wl-list-item>

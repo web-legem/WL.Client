@@ -1,7 +1,7 @@
 <template>
   <li class="list-item-container">
     <nuxt-link
-      :to="to"
+      :to="localePath(params)"
       class="list-item"
     >
       <div>
@@ -14,10 +14,25 @@
 <script>
 export default {
   props: {
-    to: {
-      type: [Object, String],
+    route: {
+      type: String,
+      required: true,
+    },
+    activeRoute: {
+      type: String,
+      required: true,
+    },
+    itemId: {
+      type: Number,
       required: true
     }
+  },
+  computed: {
+    params() {
+      return this.$route.params.id == this.itemId
+        ? { name: this.activeRoute }
+        : { name: this.route, params: { id: this.itemId }}
+    },
   }
 }
 </script>

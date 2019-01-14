@@ -4,7 +4,9 @@
       <wl-list-item 
         v-for="user in users" 
         :key="user.id"
-        :to="localePath({ name: 'persons-users-id', params: { id: user.id} })"
+        route="persons-users-id"
+        active-route="persons-users"
+        :item-id="user.id"
       >
         {{ user.name }}
       </wl-list-item>

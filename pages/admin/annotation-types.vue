@@ -8,7 +8,9 @@
         v-for="annotationType in annotationTypes" 
         :key="annotationType.id"
         :to="localePath({ name: 'admin-annotation-types-id', params: { id: annotationType.id} })"
-        @click.native="activateRoute(annotationType.id)"
+        route="admin-annotation-types-id"
+        active-route="admin-annotation-types"
+        :item-id="annotationType.id"
       >
         {{ annotationType.name }}
       </wl-list-item>
@@ -54,11 +56,6 @@ export default {
   , methods: {
     create() {
       this.$router.push( this.localePath({name: 'admin-annotation-types-new'}))
-    }
-    , activateRoute(actualIdSelected) {
-      if(this.isSelected && actualIdSelected == this.selected.id) {
-        this.$router.push(this.localePath({name: 'admin-annotation-types'}))
-      }
     }
   }
   , fetch({ store, params }) {
