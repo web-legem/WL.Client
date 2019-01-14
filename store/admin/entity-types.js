@@ -119,7 +119,11 @@ export const actions = {
     commit('waiting')
     return this.$axios.delete('/api/EntityType/' + state.selectedId)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('deleteError', e))
+      .catch(e => {
+        commit('deletingError', e.response.data.message)
+        throw e;
+      }
+      )
   },
   changeName({ commit }, newName) {
     commit('changeName', newName)

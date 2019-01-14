@@ -71,7 +71,7 @@
     >
       <template slot="wl-content">
         <div class="generic-box-vertical content-modal">
-          {{ error }}"
+          {{ error }}
         </div>
         <div class="modal-confirmacion content-modal-buttons">
           <wl-button 
