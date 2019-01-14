@@ -51,7 +51,6 @@
             </div>
           </div>
         </div>
-        <p> error:{{ error }}</p>
       </template>
     </wl-crud>
   </div>

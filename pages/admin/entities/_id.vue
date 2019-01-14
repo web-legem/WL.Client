@@ -41,7 +41,6 @@
           :value-prop-name="'id'"
           :label-prop-name="'name'"
         />
-        <p>Error: {{ error }}</p>
       </template>
     </wl-crud>
   </div>
