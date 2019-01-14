@@ -10,12 +10,12 @@
       <select 
         :id="id"
         :name="name" 
+        :value="value"
         @input="$emit('input',$event.target.value)"
       >
         <option 
           disabled 
-          selected 
-          value
+          value=""
         >
           {{ emptyMsg }} 
         </option>
@@ -54,6 +54,7 @@ export default {
     list: { type: Array, required: true },
     valuePropName: { type: String,required: true },
     labelPropName: { type: String, required: true },
+    value: { type: Number, default: 0  }
   },
   data() {
     return {     

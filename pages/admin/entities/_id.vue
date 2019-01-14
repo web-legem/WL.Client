@@ -69,12 +69,12 @@ export default {
     }),
     entityTypeId: {
       get() {
-        return this.$store.state.admin.entities.selected
-          ? this.$store.state.admin.entities.selected.entityType
+        return this.selected
+          ? this.selected.entityType
           : 0;
       },
       set(value) {
-        this.$store.commit("admin/entities/changeEntityTypeId", value);
+        this.changeEntityTypeId(value)
       }
     }
   },
