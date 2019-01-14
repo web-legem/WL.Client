@@ -6,6 +6,7 @@ export const state = () => ({
   , fontSize: 100
   , fontSizes: [ 100, 125, 150 ]
   , mouseDownA11yPanel: false
+  , showBorder: false
 })
 
 export const mutations = {
@@ -23,7 +24,13 @@ export const mutations = {
   }
   , setMouseDownA11yPanel(state, isDown) {
     state.mouseDownA11yPanel = isDown
-  }
+  },
+  showBorder(state) {
+    state.showBorder = true
+  },
+  hideBorder(state) {
+    state.showBorder = false
+  },
 }
 
 export const actions = {
@@ -54,5 +61,11 @@ export const actions = {
   }
   , setMouseDownA11yPanel({commit}, isDown) {
     commit('setMouseDownA11yPanel', isDown)
+  },
+  showBorder({commit}) {
+    commit('showBorder')
+  },
+  hideBorder({commit}){
+    commit('hideBorder')
   }
 }

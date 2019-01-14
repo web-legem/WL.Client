@@ -15,6 +15,7 @@ import WlLandingPage from '~/components/WlLandingPage.vue'
 import WlMainSearchForm from '~/components/WlMainSearchForm.vue'
 import WlFooter from '~/components/WlFooter.vue'
 import { imagesContext } from '~/helpers/imagesContext'
+import {mapActions} from 'vuex'
 
 export default {
   components: { 
@@ -28,6 +29,18 @@ export default {
         return imagesContext('./vipri-light.jpg')
       return imagesContext('./vipri-dark.jpg')
     }
+  },
+  beforeMount(){
+    this.showBorder()
+  },
+  destroyed() {
+    this.hideBorder()
+  },
+  methods: {
+    ...mapActions([
+      'showBorder',
+      'hideBorder',
+    ]),
   }
 }
 </script>

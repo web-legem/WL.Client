@@ -18,7 +18,7 @@
       </button>
     </no-ssr>
 
-    <no-ssr>
+    <no-ssr v-if="showBorder">
       <mq-layout mq="lg+">
         <wl-cinta-logo />
       </mq-layout>
@@ -183,7 +183,8 @@ export default {
   }
   , computed: {
     ...mapState([
-      'mouseDownA11yPanel'
+      'mouseDownA11yPanel',
+      'showBorder'
     ])
   }
   , methods: {
@@ -215,7 +216,9 @@ export default {
     , ...mapActions([
       'toggleA11yPanel'
       , 'hideA11yPanel'
-      , 'setMouseDownA11yPanel'
+      , 'setMouseDownA11yPanel',
+      'displayBorder',
+      'hideBorder',
     ])
   }
 }
