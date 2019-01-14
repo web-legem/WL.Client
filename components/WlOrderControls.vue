@@ -158,10 +158,6 @@ export default { components: { WlModal,
   font-size: .9rem;
 }
 
-.mq-layout {
-  background: white;
-}
-
 .ordering.reverse,
 .ordering.enabled {
   border-bottom: 2px solid #00696b;

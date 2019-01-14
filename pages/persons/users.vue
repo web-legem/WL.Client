@@ -55,9 +55,11 @@ export default {
     }
   }
   , computed: {
-    ...mapGetters('persons/users', {
-      users: 'users'
-    })
+    // TODO - reemplazar los usuarios por los usuarios traidos de la base de 
+    // datos usando el metodo del store
+    // ...mapGetters('persons/users', {
+    //   users: 'users'
+    // })
   }
   , methods: {
     ...mapActions('persons/users', {

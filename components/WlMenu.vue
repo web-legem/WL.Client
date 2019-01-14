@@ -3,104 +3,110 @@
     :class="{small: $mq == 'sm'}"
     class="menu"
   >
-    <button
-      v-if="$mq == 'sm'"
-      class="btn-menu"
-      mq="md-"
-      @click="toggleMenuPanel"
-      @focusout="hideMenuPanel"
-    >
-      <span
-        :class="[ showMenu ? 'ico2-cross' : 'ico-bars' ]"
-        class="ico"
-      />
-    </button>
-
-    <!-- <mq-layout mq="lg+">
-      <wl-cinta-logo />
-    </mq-layout> -->
-  
-    <nav
-      v-if="$mq !== 'sm' || showMenu"
-      :class="{ small: $mq == 'sm' }"
-      class="nav"
-      @focusout="hideMenuPanel"
-    >
-      <ul
-        :class="{small: $mq == 'sm'}"
-        class="modules"
+    <no-ssr>
+      <button
+        v-if="$mq == 'sm'"
+        class="btn-menu"
+        mq="md-"
+        @click="toggleMenuPanel"
+        @focusout="hideMenuPanel"
       >
-        <li
+        <span
+          :class="[ showMenu ? 'ico2-cross' : 'ico-bars' ]"
+          class="ico"
+        />
+      </button>
+    </no-ssr>
+
+    <no-ssr>
+      <mq-layout mq="lg+">
+        <wl-cinta-logo />
+      </mq-layout>
+    </no-ssr>
+  
+    <no-ssr>
+      <nav
+        v-if="$mq !== 'sm' || showMenu"
+        :class="{ small: $mq == 'sm' }"
+        class="nav"
+        @focusout="hideMenuPanel"
+      >
+        <ul
           :class="{small: $mq == 'sm'}"
+          class="modules"
         >
-          <button
+          <li
             :class="{small: $mq == 'sm'}"
-            class="module"
-            @click.stop="toggleSubModulesPanel"
-            @keydown.enter="toggleSubModulesPanel"
-            @keypress.enter.stop="toggleSubModulesPanel"
-            @blur="hideSubModulesPanel(); hideMenuPanel()"
-            @focus="showMenuPanel"
           >
-            <div>
-              <span
-                class="ico ico-cubes"
-              />
-              Modulos
-            </div>
-          </button>
-          <ul
-            v-show="showSubModules"
-            :class="{small: $mq == 'sm'}"
-            class="sub-modules"
-            @focusout="hideSubModulesPanel"
-          >
-            <li
-              v-for="(module, index) in modules"
-              :key="index"
+            <button
+              :class="{small: $mq == 'sm'}"
+              class="module"
+              @click.stop="toggleSubModulesPanel"
+              @keydown.enter="toggleSubModulesPanel"
+              @keypress.enter.stop="toggleSubModulesPanel"
+              @blur="hideSubModulesPanel(); hideMenuPanel()"
+              @focus="showMenuPanel"
             >
-              <nuxt-link
-                :to="localePath({ name: module.link })"
-                class="sub-module"
-                @focus.native="showSubModulesPanel($event); showMenuPanel()"
-                @click.native.stop="hideSubModulesPanel(); hideMenuPanel()"
-                @mouseup.stop
-                @mousedown.stop
-                @focusout="hideMenuPanel"
+              <div>
+                <span
+                  class="ico ico-cubes"
+                />
+                Modulos
+              </div>
+            </button>
+            <ul
+              v-show="showSubModules"
+              :class="{small: $mq == 'sm'}"
+              class="sub-modules"
+              @focusout="hideSubModulesPanel"
+            >
+              <li
+                v-for="(module, index) in modules"
+                :key="index"
               >
-                <div>
-                  <span
-                    :class="[ module.icon ]"
-                    class="ico"
-                  />
-                  {{ module.label }}
-                </div>
-              </nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li 
-          v-for="(menuItem, index) in menuItems"
-          :key="index"
-        >
-          <nuxt-link
-            :to="localePath({ name: menuItem.link })"
-            class="module" 
-            @blur.native="hideMenuPanel"
-            @focus.native="showMenuPanel"
-            @click.native="hideMenuPanel"
+                <nuxt-link
+                  :to="localePath({ name: module.link })"
+                  class="sub-module"
+                  @focus.native="showSubModulesPanel($event); showMenuPanel()"
+                  @click.native.stop="hideSubModulesPanel(); hideMenuPanel()"
+                  @mouseup.stop
+                  @mousedown.stop
+                  @focusout="hideMenuPanel"
+                >
+                  <div>
+                    <span
+                      :class="[ module.icon ]"
+                      class="ico"
+                    />
+                    {{ module.label }}
+                  </div>
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
+          <li 
+            v-for="(menuItem, index) in menuItems"
+            :key="index"
           >
-            <div>
-              <span
-                :class="[ menuItem.icon ]"
-                class="ico"
-              />
-              {{ menuItem.label }}
-            </div>
-          </nuxt-link>
-        </li>
-      </ul>
-    </nav>
+            <nuxt-link
+              :to="localePath({ name: menuItem.link })"
+              class="module" 
+              @blur.native="hideMenuPanel"
+              @focus.native="showMenuPanel"
+              @click.native="hideMenuPanel"
+            >
+              <div>
+                <span
+                  :class="[ menuItem.icon ]"
+                  class="ico"
+                />
+                {{ menuItem.label }}
+              </div>
+            </nuxt-link>
+          </li>
+        </ul>
+      </nav>
+    </no-ssr>
     <button
       class="accessibility"
       @click.stop="toggleA11yPanel"
@@ -124,7 +130,7 @@ import WlA11yControls from '~/components/WlA11yControls.vue'
 
 export default {
   components: {
-    // WlCintaLogo,
+    WlCintaLogo,
     WlA11yControls,
   }
   , data() {
