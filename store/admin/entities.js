@@ -117,9 +117,9 @@ export const actions = {
     return this.$axios.put('/api/Entity', modifiedEntity)
       .then(_ => dispatch('loadData'))
       .catch(e => {
-        commit('updatingError', e)
+        commit('updatingError', e.response.data.message)
         throw e;
-      }
+      }      
       )
   },
   delete({ commit, state, dispatch }) {

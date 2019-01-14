@@ -115,21 +115,21 @@ export const actions = {
     return this.$axios.put('/api/AnnotationType', modifiedAnnotationType)
       .then(_ => dispatch('loadData'))
       .catch(e => {
-        commit('updatingError', e)
+        commit('updatingError', e.response.data.message)
         throw e;
       }
       )
-  }
-  , delete({commit, state, dispatch}) {
+  },
+  delete({commit, state, dispatch}) {
     commit('waiting')
     return this.$axios.delete('/api/AnnotationType/' + state.selectedId)
       .then(_ => dispatch('loadData'))
       .catch(e => commit('deletingError', e))
-  }
-  , changeName({commit}, newName) {
+  },
+  changeName({commit}, newName) {
     commit('changeName', newName)
-  }
-  , changeRoot({commit}, newRoot) {
+  },
+  changeRoot({commit}, newRoot) {
     commit('changeRoot', newRoot)
   }
 }

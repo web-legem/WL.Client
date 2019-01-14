@@ -7,6 +7,7 @@
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
+      @wlclearerror="clearError"
     >
       <template slot="wl-form">
         <wl-input
@@ -96,10 +97,10 @@ export default {
       this.$router.push(this.localePath({ name: "admin-entities" }));
     },
     drop() {
-      this.delete().then(_ => this.cancel());
+      this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.selected).then(_ => this.cancel());
+      this.save(this.selected).then(this.cancel);
     },
     ...mapActions("admin/entities", [
       "select",
@@ -108,7 +109,8 @@ export default {
       "changeEmail",
       "changeEntityTypeId",
       "save",
-      "delete"
+      "delete",
+      "clearError",
     ])
   },
   asyncData(context) {
