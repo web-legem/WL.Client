@@ -18,9 +18,13 @@
       </button>
     </no-ssr>
 
-    <no-ssr v-if="showBorder">
+    <no-ssr>
       <mq-layout mq="lg+">
-        <wl-cinta-logo />
+        <transition
+          name="slide-border"
+        >
+          <wl-cinta-logo v-if="showBorder" />
+        </transition>
       </mq-layout>
     </no-ssr>
   
@@ -405,5 +409,23 @@ button .ico-wheelchair {
   padding: 0;
   font-size: 1.5rem;
   color: white;
+}
+
+@keyframes bajando {
+  0% {margin-top: -100px;}
+  100% {margin-top: 0px; }
+}
+
+@keyframes subiendo {
+  0% { margin-top: 0px; }
+  100% {margin-top: -120px;}
+}
+
+.slide-border-enter-active {
+  animation: 1s bajando;
+}
+
+.slide-border-leave-active {
+  animation: 1s subiendo;
 }
 </style>

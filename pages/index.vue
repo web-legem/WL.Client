@@ -33,7 +33,7 @@ export default {
   beforeMount(){
     this.showBorder()
   },
-  destroyed() {
+  beforeDestroy() {
     this.hideBorder()
   },
   methods: {
