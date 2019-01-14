@@ -7,8 +7,9 @@
       <wl-list-item
         v-for="entity in entities" 
         :key="entity.id"
-        :to="localePath({ name: 'admin-entities-id', params: {id: entity.id} })"
-        @click.native="activateRoute(entity.id)"
+        route="admin-entities-id"
+        active-route="admin-entities"
+        :item-id="entity.id"
       >
         <div>
           {{ entity.name }}

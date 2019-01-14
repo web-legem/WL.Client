@@ -7,9 +7,9 @@
       <wl-list-item
         v-for="documentType in documentTypes" 
         :key="documentType.id"
-        :to="localePath({ name: 'admin-doc-types-id',
-                          params: { id: documentType.id }})"
-        @click.native="activateRoute(documentType.id)"
+        route="admin-doc-types-id"
+        active-route="admin-doc-types"
+        :item-id="documentType.id"
       >
         {{ documentType.name }}
       </wl-list-item>

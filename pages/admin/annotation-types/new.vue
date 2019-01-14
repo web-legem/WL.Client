@@ -1,7 +1,7 @@
 <template>
   <div>
     <wl-crud 
-      :obj-select="obj" 
+      :obj-select="this" 
       :is-new="true" 
       :error="error" 
       @wlcancel="cancel" 
