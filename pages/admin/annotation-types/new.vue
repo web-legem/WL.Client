@@ -3,15 +3,17 @@
     <wl-crud 
       :obj-select="obj" 
       :is-new="true" 
+      :error="error" 
       @wlcancel="cancel" 
       @wlcreate="submit"
+      @wlclearerror="clearError"       
     >
       <template slot="wl-form">
         <wl-input
           v-model="name"
           :title="'Nombre del Tipo Anotación'"
           :max="16"
-          :placeholder="'Escriba el nombre del tipo anotación'" 
+          :placeholder="'Escriba el nombre del tipo anotación'"
           :error-msg="'Este es un error'"
           :error="true"
         />
@@ -58,7 +60,7 @@ export default {
   },
 
   created() {this.isCreating();},
-  beforeDestroy() {this.clearSelection();},
+  beforeDestroy() {this.clearSelection();},  
 
   methods: {
     cancel() {
@@ -73,6 +75,7 @@ export default {
       isCreating: "isCreating",
       clearSelection: "clearSelection",
       create: "create",
+      clearError: "clearError",
     })
   }
 };

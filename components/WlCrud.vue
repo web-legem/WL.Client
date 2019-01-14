@@ -36,26 +36,50 @@
         Cancelar
       </wl-button>
     </div>
-
     <!-- Modal confirmacion -->
     <wl-modal
       v-if="showDialog"
       :title="'Confirmación'"
       @wlclose="closeModal"
     >
-      <template 
-        slot="wl-content" 
-        class="generic-box-vertical"
-      >
-        <p>
-          ¿EstaSeguroDeseaEliminar "{{ objSelect.name }}"?
-        </p>
-        <div class="a-modal-confirmacion">
-          <wl-button @click.native="okModal($event)">
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          <div>¿Esta Seguro De Eliminar "{{ objSelect.name }}"?</div>
+        </div>
+        <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+          <wl-button 
+            class="green"
+            ico="ico-trash" 
+            @click.native="okModal($event)"            
+          >
             Eliminar
           </wl-button>          
-          <wl-button @click.native="closeModal()">
+          <wl-button 
+            ico="ico-times"
+            @click.native="closeModal()"
+          >
             Cancelar
+          </wl-button>
+        </div>
+      </template>
+    </wl-modal>
+    <!-- Modal Error -->
+    <wl-modal
+      v-if="error"
+      :title="'Información'"
+      @wlclose="clearErrorsa"
+    >
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          {{ error }}"
+        </div>
+        <div class="modal-confirmacion content-modal-buttons">
+          <wl-button 
+            class="green"
+            ico="ico-check"
+            @click.native="clearError($event)"
+          >
+            Aceptar
           </wl-button>
         </div>
       </template>
@@ -83,6 +107,10 @@ export default {
       }
     },
     isNew: {type: Boolean, default: false },
+    error: {
+      type: Object,
+      default: null
+    }
   },
   data() {
     return {
@@ -118,6 +146,12 @@ export default {
       this.showDialog = false;
       this.$emit('wldelete',$event.target.value);
     },
+    clearError($event){
+      this.$emit('wlclearerror',$event.target.value);
+    },
+    clearErrorsa(){
+      this.$emit('wlclearerror');
+    },
   }
 };
 </script>
@@ -147,4 +181,15 @@ export default {
   margin-bottom: 10px;
   margin-left: 10px;
 }
+
+.content-modal{
+  padding: 10px;
+  min-width: 400px;
+}
+
+.content-modal-buttons{
+  padding: 10px;  
+  margin-top: 10px;
+}
+
 </style>

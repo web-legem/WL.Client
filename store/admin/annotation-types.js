@@ -35,6 +35,7 @@ export const mutations = {
     state.error = payload
   },
   select(state, annotationTypeId) {
+    state.error = null
     state.selectedId = annotationTypeId
     state.selected = state.list
       .filter(x => x.id == Number.parseInt(annotationTypeId))
@@ -63,9 +64,12 @@ export const mutations = {
   changeRoot(state, newRoot) {
     state.selected.root = newRoot
   },
-  deleteError(state, error) {
+  deletingError(state, error) {
     state.loading = false
     state.error = error
+  },
+  clearError(state) {
+    state.error = null
   },
   waiting(state) {
     state.loading = true
@@ -88,6 +92,10 @@ export const actions = {
     commit('clearSelection')
   },
   
+  clearError({commit}) {
+    commit('clearError')
+  },
+
   isCreating({commit}) {
     commit('isCreating')
   },
@@ -116,7 +124,7 @@ export const actions = {
     commit('waiting')
     return this.$axios.delete('/api/AnnotationType/' + state.selectedId)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('deleteError', e))
+      .catch(e => commit('deletingError', e))
   }
   , changeName({commit}, newName) {
     commit('changeName', newName)
