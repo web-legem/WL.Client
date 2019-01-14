@@ -1,71 +1,72 @@
 
 export const state = () => ({
-  list: []
-  , selectedId: null
-  , isCreating: false
-  , selected: {}
-  , loading: false
-  , loaded: false
-  , error: null
+  list: [],
+  selectedId: null,
+  isCreating: false,
+  selected: {},
+  loading: false,
+  loaded: false,
+  error: null,
 })
 
 export const getters = {
-  list: (state) => state.list
-  , selected: (state) => state.selected
-  , isSelected: (state) => state.selectedId != null
-  , isCreating: (state) => state.isCreating
-  , error: (state) => {
-    return (state.error?state.error.response.data:undefined)
-  }
+  list: (state) => state.list,
+  selected: (state) => state.selected,
+  isSelected: (state) => state.selectedId != null,
+  isCreating: (state) => state.isCreating,
+  error: (state) => state.error,
 }
 
 export const mutations = {
-  loading(state){
+  loading(state) {
     state.loading = true
     state.loaded = false
     state.list = []
     state.error = null
-  }
-  , loadingSuccess(state, payload) {
+  },
+  loadingSuccess(state, payload) {
     state.loading = false
     state.loaded = true
     state.list = payload
-  }
-  , loadingFailure(state, payload) {
+  },
+  loadingFailure(state, payload) {
     state.loading = false
     state.error = payload
-  }
-  , select(state, docTypeId) {
+  },
+  select(state, docTypeId) {
     state.selectedId = docTypeId
     state.selected = state.list
       .filter(x => x.id == Number.parseInt(docTypeId))
       .map(x => JSON.parse(JSON.stringify(x)))
       .pop()
-  }
-  , clearSelection(state) {
+  },
+  clearSelection(state) {
     state.selectedId = null
     state.selected = null
     state.isCreating = false
-  }
-  , isCreating(state) {
+  },
+  isCreating(state) {
     state.isCreating = true
-  }
-  , creatingError(state, error) {
+  },
+  creatingError(state, error) {
     state.loading = false
     state.error = error
-  }
-  , updatingError(state, error) {
+  },
+  updatingError(state, error) {
     state.loading = false
     state.error = error
-  }
-  , changeName(state, newName) {
+  },
+  changeName(state, newName) {
     state.selected.name = newName
-  }
-  , deleteError(state, error) {
+  },  
+  deletingError(state, error) {
     state.loading = false
     state.error = error
-  }
-  , waiting(state) {
+  },
+  clearError(state) {
+    state.error = null
+  },
+  waiting(state) {
     state.loading = true
   }
 }
@@ -76,35 +77,42 @@ export const actions = {
     return this.$axios.get('/api/DocumentType')
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', e))
-  }
-  , select({commit}, docTypeId) {
+  },
+  select({commit}, docTypeId) {
     commit('select', docTypeId)
-  }
-  , clearSelection({commit}) {
+  },
+  clearSelection({commit}) {
     commit('clearSelection')
-  }
-  , isCreating({commit}) {
+  },
+  clearError({commit}) {
+    commit('clearError')
+  },
+  isCreating({commit}) {
     commit('isCreating')
-  }
-  , create({commit, dispatch}, newDocName) {
+  },
+  create({commit, dispatch}, newDocName) {
     commit('waiting')
     return this.$axios.post('/api/DocumentType', { name: newDocName })
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('creatingError', e))
-  }
-  , save({commit, dispatch}, modifiedDocType) {
+      .catch(e => {
+        commit('creatingError', e.response.data.message)
+        throw e;
+      }
+      )
+  },
+  save({commit, dispatch}, modifiedDocType) {
     commit('waiting')
     return this.$axios.put('/api/DocumentType', modifiedDocType)
       .then(_ => dispatch('loadData'))
       .catch(e => commit('updatingError', e))
-  }
-  , delete({commit, state, dispatch}) {
+  },
+  delete({commit, state, dispatch}) {
     commit('waiting')
     return this.$axios.delete('/api/DocumentType/' + state.selectedId )
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('deleteError', e))
-  }
-  , changeName({commit}, newName) {
+      .catch(e => commit('deletingError', e))
+  },
+  changeName({commit}, newName) {
     commit('changeName', newName)
-  }
+  },
 }

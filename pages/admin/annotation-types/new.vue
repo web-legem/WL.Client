@@ -1,12 +1,11 @@
 <template>
   <div>
     <wl-crud 
-      :obj-select="this" 
       :is-new="true" 
-      :error="error" 
+      :error="error"
       @wlcancel="cancel" 
       @wlcreate="submit"
-      @wlclearerror="clearError"       
+      @wlclearerror="clearError"
     >
       <template slot="wl-form">
         <wl-input
@@ -25,7 +24,6 @@
           :error-msg="'Este es un error'"
           :error="true"
         />
-        <p>Error: {{ error }}</p>
       </template>
     </wl-crud>
   </div>

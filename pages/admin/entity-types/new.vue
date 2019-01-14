@@ -1,10 +1,11 @@
 <template>
   <div>
     <wl-crud 
-      :obj-select="objSelected"
       :is-new="true"
+      :error="error"
       @wlcancel="cancel"
       @wlcreate="submit"
+      @wlclearerror="clearError"
     >
       <template slot="wl-form">
         <wl-input 
@@ -46,14 +47,13 @@
             </div>                  
           </div>
         </div>        
-        <p> error:{{ error }}</p>
       </template>
     </wl-crud>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from "vuex"
 import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
 
@@ -96,6 +96,7 @@ export default {
       create: 'create',
       isCreating: 'isCreating',
       clearSelection: 'clearSelection',
+      clearError: "clearError",
     }),
   },
   asyncData(context) {
