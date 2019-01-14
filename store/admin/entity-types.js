@@ -60,9 +60,12 @@ export const mutations = {
   changeSupportedDocumentTypes(state, newValue) {
     state.selected.supportedDocumentTypesIds = newValue
   },
-  deleteError(state, error) {
+  deletingError(state, error) {
     state.loading = false
     state.error = error
+  },
+  clearError(state) {
+    state.error = null
   },
   waiting(state) {
     state.loading = true
@@ -87,6 +90,11 @@ export const actions = {
   clearSelection({ commit }) {
     commit('clearSelection')
   },
+
+  clearError({commit}) {
+    commit('clearError')
+  },
+
   create({ commit, dispatch }, newEntityType) {
     commit('waiting')
     return this.$axios.post('/api/EntityType', newEntityType)

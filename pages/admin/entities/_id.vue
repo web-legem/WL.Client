@@ -3,6 +3,7 @@
     <wl-crud
       :obj-select="selected"
       :is-new="false"
+      :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"

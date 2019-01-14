@@ -3,6 +3,7 @@
     <wl-crud
       :obj-select="objSelected"
       :is-new="false"
+      :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
@@ -10,7 +11,7 @@
       <template slot="wl-form">
         <wl-input
           v-if="objSelected"
-          :value="name"
+          v-model="name"
           :title="'Nombre del Tipo Anotación'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo anotación'"
@@ -19,7 +20,7 @@
         />
         <wl-input
           v-if="objSelected"
-          :value="root"
+          v-model="root"
           :title="'Raiz de la Anotación'"
           :max="10"
           :placeholder="'Escriba la raiz de la anotación'"

@@ -182,12 +182,12 @@
     background:#ddd;
 }
 
-.modal-confirmacion button[value=confirmar] {
+.modal-confirmacion button.green {
     background: #0F745B;
     border-color:#0F745B;
     color:#fff;
 }
-.modal-confirmacion button[value=confirmar]:hover {
+.modal-confirmacion button.green:hover {
     background: #099472;
 }
 </style>

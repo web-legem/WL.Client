@@ -63,9 +63,12 @@ export const mutations = {
   changeEntityTypeId(state, newId) {
     state.selected.entityType = newId
   },
-  deleteError(state, error) {
+  deletingError(state, error) {
     state.loading = false
     state.error = error
+  },
+  clearError(state) {
+    state.error = null
   },
   waiting(state) {
     state.loading = true
@@ -89,6 +92,10 @@ export const actions = {
   
   clearSelection({ commit }) {
     commit('clearSelection')
+  },
+
+  clearError({commit}) {
+    commit('clearError')
   },
 
   isCreating({ commit }) {
@@ -119,7 +126,7 @@ export const actions = {
     commit('waiting')
     return this.$axios.delete('/api/Entity/' + state.selectedId)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('deleteError', e))
+      .catch(e => commit('deletingError', e))
   },
 
   changeName({ commit }, newName) {

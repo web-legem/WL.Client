@@ -1,48 +1,41 @@
 <template>
   <div>
-    <h1>Entity to Create</h1>
-
-    <wl-input
-      v-model="name"
-      :title="'Nombre de la Entidad'"
-      :max="10"
-      :placeholder="'Escriba el nombre de la entidad'"
-      :error-msg="'Este es un error'"
-      :error="true"
-    />
-
-    <wl-input
-      v-model="email"
-      :title="'Email'"
-      :max="10"
-      :placeholder="'Escriba Email'"
-      :error-msg="'Este es un error'"
-      :error="true"
-    />
-    <wl-select
-      id="select"
-      v-model="entityTypeId"
-      :error="true"
-      :list="entityTypes"
-      title="Seleccione del Tipo Documento"
-      error-msg="Este es un error"
-      value-prop-name="id"
-      label-prop-name="name"
-      name="select" 
-    />
-    <p>Error: {{ error }}</p>
-    <button 
-      type="button" 
-      @click="submit()"
+    <wl-crud 
+      :is-new="true" 
+      :error="error"
+      @wlcancel="cancel" 
+      @wlcreate="submit"
+      @wlclearerror="clearError"
     >
-      Aceptar
-    </button>
-    <button 
-      type="button" 
-      @click="cancel()"
-    >
-      Cancel
-    </button>
+      <wl-input
+        v-model="name"
+        :title="'Nombre de la Entidad'"
+        :max="10"
+        :placeholder="'Escriba el nombre de la entidad'"
+        :error-msg="'Este es un error'"
+        :error="true"
+      />
+
+      <wl-input
+        v-model="email"
+        :title="'Email'"
+        :max="10"
+        :placeholder="'Escriba Email'"
+        :error-msg="'Este es un error'"
+        :error="true"
+      />
+      <wl-select
+        id="select"
+        v-model="entityTypeId"
+        :error="true"
+        :list="entityTypes"
+        title="Seleccione del Tipo Documento"
+        error-msg="Este es un error"
+        value-prop-name="id"
+        label-prop-name="name"
+        name="select" 
+      />
+    </wl-crud>
   </div>
 </template>
 
@@ -104,7 +97,8 @@ export default {
     ...mapActions("admin/entities", {
       create: "create",
       isCreating: "isCreating",
-      clearSelection: "clearSelection"
+      clearSelection: "clearSelection",
+      clearError: "clearError",
     })
   }
 };

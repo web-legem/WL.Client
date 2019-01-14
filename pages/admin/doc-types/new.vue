@@ -1,10 +1,11 @@
 <template>
   <div>
     <wl-crud 
-      :obj-select="obj"
       :is-new="true"
+      :error="error" 
       @wlcancel="cancel"
       @wlcreate="submit"
+      @wlclearerror="clearError"
     >
       <template slot="wl-form">
         <wl-input 
@@ -15,7 +16,6 @@
           :error-msg="'Este es un error'" 
           :error="true"
         />
-        error:{{ error }}
       </template>
     </wl-crud>
   </div>
@@ -64,6 +64,7 @@ export default {
       isCreating: 'isCreating',
       clearSelection: 'clearSelection',
       create: 'create',
+      clearError: "clearError",
     }),
   },
 }
