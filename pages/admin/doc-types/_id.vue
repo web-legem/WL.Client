@@ -3,9 +3,11 @@
     <wl-crud
       :obj-select="objSelected"
       :is-new="false"
+      :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
+      @wlclearerror="clearError"
     >
       <template slot="wl-form">
         <wl-input
@@ -69,6 +71,7 @@
         'changeName',
         'save',
         'delete',
+        "clearError",
       ])
     }
   }

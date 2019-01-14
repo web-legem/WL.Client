@@ -7,6 +7,7 @@
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
+      @wlclearerror="clearError"
     >
       <template slot="wl-form">
         <wl-input
@@ -27,7 +28,6 @@
           :error-msg="'Este es un error'"
           :error="true"
         />
-        <p>Error: {{ error }}</p>
       </template>
     </wl-crud>
   </div>
@@ -49,7 +49,7 @@ export default {
   computed: {
     ...mapGetters("admin/annotation-types", {
       objSelected: "selected",
-      error: "error"
+      error: "error",
     }),
     name: {
       get() {
@@ -86,10 +86,10 @@ export default {
       this.$router.push(this.localePath({ name: "admin-annotation-types" }));
     },
     drop() {
-      this.delete().then(this.cancel());
+      this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.objSelected).then(this.cancel());
+      this.save(this.objSelected).then(this.cancel);
     },
     ...mapActions("admin/annotation-types", [
       "select",
@@ -97,7 +97,8 @@ export default {
       "changeName",
       "changeRoot",
       "save",
-      "delete"
+      "delete",
+      "clearError",
     ])
   }
 };

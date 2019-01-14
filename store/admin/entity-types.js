@@ -109,7 +109,11 @@ export const actions = {
     commit('waiting')
     return this.$axios.put('/api/EntityType', modifiedEntityType)
       .then(_ => dispatch('loadData'))
-      .catch(e => commit('updatingError', e))
+      .catch(e => {
+        commit('updatingError', e.response.data.message)
+        throw e;
+      }
+      )
   },
   delete({ commit, state, dispatch }) {
     commit('waiting')
