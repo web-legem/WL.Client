@@ -48,6 +48,7 @@ module.exports = {
     // '~/plugins/vee-validate.js'
   ],
   modules: [
+    'nuxt-vuex-router-sync',
     ['nuxt-i18n', {
       locales: [
         { code: 'es', name: 'Español', iso: 'es-CO', file: 'es.js' }
@@ -58,7 +59,7 @@ module.exports = {
       langDir: 'locales/',
     }]
     , '@nuxtjs/axios'
-    , ['nuxt-mq',{
+    , ['nuxt-mq', {
       breakpoints: {
         xs: 300
         , sm: 500
@@ -66,7 +67,8 @@ module.exports = {
         , mid: 992
         , lg: 1200
         , xl: Infinity
-      }
+      },
+      defaultBreakpoint: 'lg',
     }]
   ],
   // axios: {

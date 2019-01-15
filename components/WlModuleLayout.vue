@@ -44,6 +44,7 @@ export default {
   overflow-y: unset;
   overflow-x: auto;
   background-color: #eee;
+  padding-top: 10px;
 }
 
 .content {

@@ -4382,11 +4382,17 @@ nuxt-i18n@^5.4.4:
     vue-i18n "^8.2.1"
     vue-i18n-extensions "^0.2.0"
 
-nuxt-mq@^1.0.5:
+nuxt-mq@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/nuxt-mq/-/nuxt-mq-1.1.3.tgz#2edceaf9094a277b1879ac64931068c996b19442"
   dependencies:
     vue-mq latest
+
+nuxt-vuex-router-sync@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/nuxt-vuex-router-sync/-/nuxt-vuex-router-sync-0.0.2.tgz#d94f5bfc78551392bbf4334455ad20c9fbe677d9"
+  dependencies:
+    vuex-router-sync "^5.0.0"
 
 nuxt@^2.3.4:
   version "2.3.4"
@@ -6705,6 +6711,10 @@ vue-template-es2015-compiler@^1.6.0:
 vue@^2.5.17:
   version "2.5.22"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.22.tgz#3bf88041af08b8539c37b268b70ca79245e9cc30"
+
+vuex-router-sync@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/vuex-router-sync/-/vuex-router-sync-5.0.0.tgz#1a225c17a1dd9e2f74af0a1b2c62072e9492b305"
 
 vuex@^3.0.1:
   version "3.0.1"
