@@ -2,8 +2,7 @@
   <div class="contenido_nombre_buscador">
     <div class="site-name">
       <p>
-        <!-- Legem  -->
-        {{ $mq }}
+        Legem 
       </p>
     </div>
     <div class="contenedor_mini_search">
