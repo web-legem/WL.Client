@@ -3,13 +3,15 @@
     <div class="controles_box_right">        
       <wl-button 
         v-show="!isNew"
-        :ico="'ico-pencil'"                 
-        @click.native="isEdit = true"
+        :disable="disableButtons"
+        :ico="'ico-pencil'"
+        @click.native="startEdit($event)"
       >
         editar
       </wl-button>
       <wl-button 
         v-show="!isNew"
+        :disable="disableButtons || isEdit"
         :ico="'ico-trash'"                 
         @click.native="remove()"
       >
@@ -110,7 +112,8 @@ export default {
     error: {
       type: Object,
       default: null
-    }
+    },
+    disableButtons: {type: Boolean, default: false },
   },
   data() {
     return {
@@ -138,6 +141,10 @@ export default {
       else if(this.isNew){
         this.$emit('wlcreate',$event.target.value);
       }
+    },
+    startEdit($event){
+      this.isEdit = true
+      this.$emit('wlstartedit',$event.target.value);     
     },
     closeModal(){
       this.showDialog = false;

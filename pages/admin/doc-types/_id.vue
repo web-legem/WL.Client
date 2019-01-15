@@ -8,11 +8,13 @@
       @wlupdate="update"
       @wldelete="drop"
       @wlclearerror="clearError"
+      @wlstartedit="startEdit"
     >
       <template slot="wl-form">
         <wl-input
           v-if="objSelected"
           v-model="name"
+          :disable="!isEdit"
           :title="'Nombre del Tipo Documento'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo documento'"
@@ -36,6 +38,11 @@
     components: {
       WlCrud,
       WlInput,
+    },
+    data() {
+      return {
+        isEdit : false
+      }
     },
     computed: {
       ...mapGetters('admin/document-types', {
@@ -64,6 +71,9 @@
       },
       update() {
         this.save(this.objSelected).then( this.cancel )
+      },
+      startEdit(){
+        this.isEdit = true;
       },
       ...mapActions('admin/document-types', [
         'select',

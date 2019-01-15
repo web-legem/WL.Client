@@ -8,11 +8,13 @@
       @wlupdate="update"
       @wldelete="drop"
       @wlclearerror="clearError"
+      @wlstartedit="startEdit"
     >
       <template slot="wl-form">
         <wl-input
           v-if="selected"
           :value="selected.name"
+          :disable="!isEdit"
           :title="'Nombre de la Entidad'"
           :max="10"
           :placeholder="'Escriba el nombre de la entidad'"
@@ -23,6 +25,7 @@
         <wl-input
           v-if="selected"
           :value="selected.email"
+          :disable="!isEdit"
           :title="'Email'"
           :max="10"
           :placeholder="'Escriba Email'"
@@ -33,6 +36,7 @@
         <wl-select
           :id="'select'"
           v-model="entityTypeId"
+          :disable="!isEdit"
           :name="'select'"
           :title="'Seleccione del Tipo Documento'"
           :error-msg="'Este es un error'"
@@ -57,6 +61,11 @@ export default {
     WlCrud,
     WlInput,
     WlSelect
+  },
+  data() {
+    return {
+      isEdit : false
+    }
   },
   validate({ params }) {
     return /^\d+$/.test(params.id);
@@ -100,6 +109,9 @@ export default {
     },
     update() {
       this.save(this.selected).then(this.cancel);
+    },
+    startEdit(){
+      this.isEdit = true;
     },
     ...mapActions("admin/entities", [
       "select",

@@ -173,6 +173,10 @@
     margin-bottom: 2px;
 }
 
+.texto_labels.small_space {
+    margin-top: 10px;
+}
+
 .texto_labels.green {
     color: #0f745b;
 }

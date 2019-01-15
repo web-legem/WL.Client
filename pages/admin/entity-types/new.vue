@@ -15,7 +15,10 @@
           :placeholder="'Escriba el nombre del tipo entidad'" 
           :error-msg="'Este es un error'"                     
           :error="true"
-        />    
+        />
+        <label class="texto_labels small_space">
+          Documentos Soportados:
+        </label>
         <div class="cards">
           <div
             v-for="docType in docTypes"

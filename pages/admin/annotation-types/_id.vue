@@ -8,11 +8,13 @@
       @wlupdate="update"
       @wldelete="drop"
       @wlclearerror="clearError"
+      @wlstartedit="startEdit"
     >
       <template slot="wl-form">
         <wl-input
           v-if="objSelected"
           v-model="name"
+          :disable="!isEdit"
           :title="'Nombre del Tipo Anotación'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo anotación'"
@@ -22,6 +24,7 @@
         <wl-input
           v-if="objSelected"
           v-model="root"
+          :disable="!isEdit"
           :title="'Raiz de la Anotación'"
           :max="10"
           :placeholder="'Escriba la raiz de la anotación'"
@@ -45,6 +48,11 @@ export default {
   components: {
     WlCrud,
     WlInput
+  },
+  data() {
+    return {
+      isEdit : false
+    }
   },
   computed: {
     ...mapGetters("admin/annotation-types", {
@@ -90,6 +98,9 @@ export default {
     },
     update() {
       this.save(this.objSelected).then(this.cancel);
+    },
+    startEdit(){
+      this.isEdit = true;
     },
     ...mapActions("admin/annotation-types", [
       "select",

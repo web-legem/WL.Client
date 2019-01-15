@@ -1,13 +1,15 @@
 <template>
   <div>
-    <wl-crud :obj-select="obj">
+    <wl-crud 
+      :obj-select="null"
+      :disable-buttons="true"
+    >
       <div slot="wl-form">
         <wl-input 
           :title="'Nombre del Tipo Documento'"
-          :max="10" 
           :placeholder="'Escriba el nombre del tipo documento'" 
-          :error-msg="'Este es un error'" 
-          :error="true"
+          :max="0"
+          :disable="true"
         />
       </div>
     </wl-crud>
@@ -22,22 +24,6 @@ export default {
   components: {
     WlCrud,
     WlInput,
-  }
-  , data() {
-    return {
-      obj: null
-    }
-  }
-  , methods: {
-    selectObj() {
-      this.obj = {
-        id: 10,
-        name: "CARTA"
-      }
-    }
-    , unselectObj() {
-      this.obj = null;
-    }
   }
 }
 </script>

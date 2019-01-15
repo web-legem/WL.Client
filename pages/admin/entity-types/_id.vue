@@ -8,17 +8,22 @@
       @wlupdate="update"
       @wldelete="drop"
       @wlclearerror="clearError"
+      @wlstartedit="startEdit"
     >
       <template slot="wl-form">
         <wl-input
           v-if="objSelected"
           v-model="name"
+          :disable="!isEdit"
           :title="'Nombre del Tipo Entidad'"
           :max="10"
           :placeholder="'Escriba el nombre del tipo entidad'"
           :error-msg="'Este es un error'"
           :error="true"
         />
+        <label class="texto_labels small_space">
+          Documentos Soportados:
+        </label>
         <div class="cards">
           <div
             v-for="docType in docTypes"
@@ -29,6 +34,7 @@
                 v-if="objSelected"
                 :id="docType.id"
                 v-model="checked"
+                :disabled="!isEdit"             
                 :name="docType.id"
                 :value="docType.id"
                 type="checkbox"
@@ -68,6 +74,11 @@ export default {
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
+  },
+  data() {
+    return {
+      isEdit : false
+    }
   },
   computed: {
     checked: {
@@ -115,6 +126,9 @@ export default {
     },
     update() {
       this.save(this.objSelected).then(this.cancel);
+    },
+    startEdit(){
+        this.isEdit = true;
     },
     ...mapActions("admin/entity-types", [
       "select",
