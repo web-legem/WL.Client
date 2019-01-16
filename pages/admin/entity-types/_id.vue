@@ -21,7 +21,7 @@
           :error-msg="'Este es un error'"
           :error="true"
         />
-        <label class="texto_labels small_space">
+        <label class="texto_labels sm-space-top">
           Documentos Soportados:
         </label>
         <div class="cards">
@@ -34,7 +34,7 @@
                 v-if="objSelected"
                 :id="docType.id"
                 v-model="checked"
-                :disabled="!isEdit"             
+                disabled="!isEdit"
                 :name="docType.id"
                 :value="docType.id"
                 type="checkbox"

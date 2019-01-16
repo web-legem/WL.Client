@@ -11,6 +11,7 @@
         :id="id"
         :name="name" 
         :value="value"
+        :disabled="disable == true"
         @input="$emit('input',$event.target.value)"
       >
         <option 
@@ -69,7 +70,7 @@ export default {
   display: flex;
   border-right: none;
   position: relative;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .a_select select:disabled {

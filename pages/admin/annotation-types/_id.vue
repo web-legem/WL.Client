@@ -24,6 +24,7 @@
         <wl-input
           v-if="objSelected"
           v-model="root"
+          class="sm-space-top"
           :disable="!isEdit"
           :title="'Raiz de la Anotación'"
           :max="10"

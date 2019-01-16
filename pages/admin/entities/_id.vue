@@ -25,6 +25,7 @@
         <wl-input
           v-if="selected"
           :value="selected.email"
+          class="sm-space-top"
           :disable="!isEdit"
           :title="'Email'"
           :max="10"
@@ -36,6 +37,7 @@
         <wl-select
           :id="'select'"
           v-model="entityTypeId"
+          class="sm-space-top"
           :disable="!isEdit"
           :name="'select'"
           :title="'Seleccione del Tipo Documento'"

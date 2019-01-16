@@ -16,7 +16,7 @@
           :error-msg="'Este es un error'"                     
           :error="true"
         />
-        <label class="texto_labels small_space">
+        <label class="texto_labels sm-space-top">
           Documentos Soportados:
         </label>
         <div class="cards">

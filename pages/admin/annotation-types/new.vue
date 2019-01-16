@@ -18,6 +18,7 @@
         />
         <wl-input
           v-model="root"
+          class="sm-space-top"
           :title="'Raiz de la Anotación'"
           :max="16"
           :placeholder="'Escriba la raiz de la anotación'"
