@@ -11,7 +11,7 @@
         <wl-input 
           v-model="name"
           :title="'Nombre del Tipo Documento'"
-          :max="20" 
+          :max="50" 
           :placeholder="'Escriba el nombre del tipo documento'" 
           :error-msg="'Este es un error'" 
           :error="true"

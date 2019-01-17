@@ -11,7 +11,7 @@
         <wl-input
           v-model="name"
           :title="'Nombre de la Entidad'"
-          :max="10"
+          :max="100"
           :placeholder="'Escriba el nombre de la entidad'"
           :error-msg="'Este es un error'"
           :error="true"
@@ -21,7 +21,7 @@
           v-model="email"
           class="sm-space-top"
           :title="'Email'"
-          :max="10"
+          :max="100"
           :placeholder="'Escriba Email'"
           :error-msg="'Este es un error'"
           :error="true"
