@@ -2,13 +2,13 @@
   <div class="annotation-info">
     <div class="title">
       <h3 class="document-title">
-        <nuxt-link :to="localePath({ name: 'search-id', params: { id: 2 }})">
+        <nuxt-link
+          :to="localePath({ name: 'search-id', params: { id: 2 }})"
+          class="title-link"
+        >
           {{ annotation.document }}
         </nuxt-link>
       </h3>
-      <div title="Dirección de la anotación">
-        <span :class="[icon]" />{{ direction }}
-      </div>
     </div>
     <div class="type">
       Tipo de Anotación:
@@ -17,9 +17,9 @@
     <div class="control">
       <button
         title="Ver mas"
+        class="button-control"
         @click="showDetails(annotation.id)"
       >
-        <span class="ico2-eye" />
         Ver más
       </button>
     </div>
@@ -27,7 +27,10 @@
       v-if="isSelected"
       class="description"
     >
-      {{ annotation.description }}
+      <div>Descriptión:</div>
+      <div>
+        {{ annotation.description }}
+      </div>
     </div>
   </div>
 </template>
@@ -76,19 +79,57 @@ export default {
   flex-direction: column;
   padding: 16px;
   border-bottom: 1px solid lightgray;
+  font-size: 1rem;
 }
 
 .title {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  font-size: 1em;
 }
 
 .document-title {
   flex-grow: 1;
+  color: #00796b;
+  font-size: 1em;
+}
+
+.title-link {
+  text-decoration: none;
+  color:#0f745b;
+  text-decoration-color: #0f745b;
+  cursor:pointer;
+  font-size: 1em;
+}
+
+.direction-icon {
+  font-size: .9em;
+  color:#555;
+}
+
+.type {
+  color: #555;
+  font-size: .9em;
 }
 
 .control {
   align-self: flex-end;
+  font-size: 1em;
+}
+
+.description {
+  font-size: .9em;
+  color: #555;
+}
+
+.button-control {
+  color: #0f745b;
+  background: white;
+  cursor: pointer;
+}
+
+.button-control:hover {
+  text-decoration: underline;
 }
 </style>
