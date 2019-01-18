@@ -15,7 +15,10 @@
       </wl-list-item>
     </wl-filtered-list>
     
-    <div slot="details">
+    <div
+      slot="details"
+      class="details"
+    >
       <nuxt-child />
     </div>
   </wl-master-detail-layout>
@@ -67,3 +70,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.details {
+  padding: calc(1em + .5vw);
+}
+</style>

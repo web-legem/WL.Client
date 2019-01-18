@@ -1,13 +1,6 @@
 <template>
   <div class="source_id">
-    {{ message }}
-    <nuxt-link
-      :to="localePath({
-        name: 'annotations-source-document-id-destination-document',
-        params: { id: $route.params.id }})"
-    >
-      buscar anotado
-    </nuxt-link>
+    // TODO - incrustar pdf
   </div>
 </template>
 
@@ -23,5 +16,6 @@ export default {
 
 <style>
 .source_id {
+  height: 100%;
 }
 </style>

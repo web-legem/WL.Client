@@ -4,7 +4,10 @@
       :class="[hideList]"
       class="master"
     >
-      <slot name="master" />
+      <slot 
+        :class="[hideList]"
+        name="master" 
+      />
     </div>
 
     <div
@@ -37,9 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 .master-detail-layout {
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
-  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -48,11 +51,12 @@ export default {
   width: 33%;
   display: flex;
   flex-direction: column;
-  padding: calc(1em + .5vw);
+  // padding: calc(1em + .5vw);
+  // TODO - copiar los paddings en los lugares donde se use el layout diferenciando master y detail
 
   @media screen and(max-width: 992px) {
     width: 100%;
-    padding: calc(1em + 3 * 1vw);
+    // padding: calc(1em + 3 * 1vw);
     max-width: 650px;
     margin: 0 auto;
   }
@@ -65,10 +69,11 @@ export default {
 }
 
 .detail {
-  width: 66%;
+  width: 67%;
   display: flex;
   flex-direction: column;
-  padding: calc(1em + .5vw);
+  // padding: calc(1em + .5vw); // TODO- mandar padding para que se pueda sobreescribir y dejar en 0 desde el padre
+  // width: 100%;
 
   @media screen and(max-width: 992px) {
     width: 100%;

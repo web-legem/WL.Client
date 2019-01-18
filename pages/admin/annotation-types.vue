@@ -11,12 +11,15 @@
         route="admin-annotation-types-id"
         active-route="admin-annotation-types"
         :item-id="annotationType.id"
+        class="list-link"
       >
         {{ annotationType.name }}
       </wl-list-item>
     </wl-filtered-list>
 
-    <div slot="details">
+    <div
+      slot="details"
+      class="details">
       <nuxt-child />
     </div>
   </wl-master-detail-layout>
@@ -63,3 +66,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.details {
+  padding: calc(1em + .5vw);
+}
+</style>

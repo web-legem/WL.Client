@@ -40,6 +40,7 @@ export default {
 <style lang="scss" scoped>
 .list-item-container {
   display: block;
+  width: 100%;
 }
 
 .list-item {

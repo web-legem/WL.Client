@@ -2,7 +2,7 @@
   <div class="tarjeta_busqueda">    
     <div class="titulo_tarjeta">
       <nuxt-link 
-        :to="localePath({ name: 'search-id', params: {id: document.file.id} })"
+        :to="localePath({ name: routeName, params: {id: document.file.id} })"
         class="link-bold"
       >        
         {{ documentTypeName }}
@@ -41,6 +41,10 @@ export default {
     document: {
       type: Object,
       required: true
+    },
+    routeName: {
+      type: String,
+      default: 'search-id'
     },
   },
   computed: {

@@ -20,7 +20,10 @@
       </wl-list-item>
     </wl-filtered-list>
 
-    <div slot="details">
+    <div
+      slot="details"
+      class="details"
+    >
       <nuxt-child />
     </div>
   </wl-master-detail-layout>
@@ -76,5 +79,9 @@ export default {
 <style lang="scss">
 .entity-type-label {
   color: #2dbf85;
+}
+
+.details {
+  padding: calc(1em + .5vw);
 }
 </style>

@@ -1,9 +1,8 @@
 <template>
   <div class="module-layout">
-    <div>
+    <div class="module-layout-container">
       <nav class="tabs-container">
         <slot name="tabs" />
-        <div class="space" />
       </nav>
 
       <div class="content">
@@ -25,18 +24,12 @@ export default {
   background: #e1e3e9;
 }
 
-.module-layout > div {
-  // margin: calc(20px + 1vmin);
+.module-layout-container {
+  background: blue;
   border: 1px solid #ccc;
-  // box-shadow: 0 0 0 1px rgba($color: #000000, $alpha: 0.05), 0 1px 2px rgba($color: #000000, $alpha: 0.3);
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.space {
-  border-bottom: 1px solid #ccc;
-  flex-grow: 1;
 }
 
 .tabs-container {
@@ -49,8 +42,8 @@ export default {
 
 .content {
   flex-grow: 1;
-  height: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
   background: white;
 }
 </style>

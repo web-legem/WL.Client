@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="link-list">
-      <ul>
+      <ul class="link-u-list">
         <slot />
       </ul>
     </div>
@@ -49,6 +49,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: calc(1em + .5vw); // TODO- mandar padding para que se pueda sobreescribir y dejar en 0 desde el padre
 }
 
 .filtered-list ul {
@@ -70,5 +71,10 @@ export default {
   overflow-y: auto;
   border: 1px solid #ccc;
   height: calc(100% - 43px);
+  widows: 100%;
+}
+
+.link-u-list {
+  width: 100%;
 }
 </style>

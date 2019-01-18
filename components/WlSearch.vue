@@ -26,6 +26,7 @@
               >
                 <wl-search-result
                   :document="document"
+                  :routeName="routeName"
                 >
                   <slot :document="document" />
                 </wl-search-result>
@@ -75,6 +76,12 @@ export default {
     WlPageControls,
     WlSearchResult,
   },
+  props: {
+    routeName: {
+      type: String,
+      default: 'search-id'
+    },
+  },
   computed: {
     ...mapGetters('search', {
       results: 'searchResults',
@@ -117,14 +124,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wl-search {
+  height: 100%;
+}
+
 .wl-order-controls {
   margin-top: 8px;
+}
+
+.wl-search-filters {
+  margin: calc(1em + .5vw);
 }
 
 .layout {
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin: calc(1em + .5vw);
 }
 
 .pager-content {

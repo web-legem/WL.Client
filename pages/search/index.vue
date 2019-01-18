@@ -24,7 +24,7 @@ export default {
 .search {
   width: 100%;
   padding-top: calc(25px + 4.5vh);
-  height: calc(95.5vh - 25px);
+  height: 100%;
   position: relative;
 }
 </style>

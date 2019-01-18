@@ -24,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.source-document {
+  height: 100%;
+}
+</style>
