@@ -11,11 +11,12 @@
       :id="id" 
       :name="name" 
       :value="value"
-      :disabled="disable == true"             
+      :disabled="disable == true"
       :type="type" 
       :placeholder="placeholder" 
       :maxlength="max"
       class="a_input"
+      :class="{'disable':disable}"
       @input="$emit('input',$event.target.value)"
     >
 

@@ -16,7 +16,7 @@
           :value="selected.name"
           :disable="!isEdit"
           :title="'Nombre de la Entidad'"
-          :max="10"
+          :max="100"
           :placeholder="'Escriba el nombre de la entidad'"
           :error-msg="'Este es un error'"
           :error="true"
@@ -25,9 +25,10 @@
         <wl-input
           v-if="selected"
           :value="selected.email"
+          class="sm-space-top"
           :disable="!isEdit"
           :title="'Email'"
-          :max="10"
+          :max="100"
           :placeholder="'Escriba Email'"
           :error-msg="'Este es un error'"
           :error="true"
@@ -36,6 +37,7 @@
         <wl-select
           :id="'select'"
           v-model="entityTypeId"
+          class="sm-space-top"
           :disable="!isEdit"
           :name="'select'"
           :title="'Seleccione del Tipo Documento'"

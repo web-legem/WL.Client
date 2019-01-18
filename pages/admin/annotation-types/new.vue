@@ -11,15 +11,16 @@
         <wl-input
           v-model="name"
           :title="'Nombre del Tipo Anotación'"
-          :max="16"
+          :max="100"
           :placeholder="'Escriba el nombre del tipo anotación'"
           :error-msg="'Este es un error'"
           :error="true"
         />
         <wl-input
           v-model="root"
+          class="sm-space-top"
           :title="'Raiz de la Anotación'"
-          :max="16"
+          :max="50"
           :placeholder="'Escriba la raiz de la anotación'"
           :error-msg="'Este es un error'"
           :error="true"

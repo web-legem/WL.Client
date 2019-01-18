@@ -14,8 +14,9 @@
         <wl-input
           :title="'Raiz de la Anotación'"
           :placeholder="'Escriba la raiz de la anotación'"
-          :max="0"
+          :max="0"          
           :disable="true"
+          class="sm-space-top"
         />
       </template>
     </wl-crud>

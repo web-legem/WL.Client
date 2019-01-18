@@ -20,6 +20,30 @@ html, body {
   font-family: 'Lato';
 }
 
+.sm-space-top {
+  margin-top: 10px;
+}
+
+.md-space-top {
+  margin-top: 15px;
+}
+
+.lg-space-top {
+  margin-top: 20px;
+}
+
+.sm-space-bottom {
+  margin-bottom: 10px;
+}
+
+.md-space-bottom {
+  margin-top: 15px;
+}
+
+.lg-space-bottom {
+  margin-top: 20px;
+}
+
 /* control cuadros tipo entidad */
 
 /* Grid styles -------------------------------------------------*/

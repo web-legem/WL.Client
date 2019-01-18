@@ -159,7 +159,6 @@
     color: orangered;
     font-family: "Lato";
     font-size: .7rem;
-    line-height: 4px;
     margin-bottom: 4px;
 }
 
@@ -171,10 +170,6 @@
     font-size: 1em;
     font-family: 'Lato';
     margin-bottom: 2px;
-}
-
-.texto_labels.small_space {
-    margin-top: 10px;
 }
 
 .texto_labels.green {

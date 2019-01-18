@@ -12,6 +12,7 @@
           :disable="true"
         />
         <wl-input
+          class="sm-space-top"
           :title="'Email'"
           :placeholder="'Escriba Email'"
           :max="0"
@@ -19,10 +20,12 @@
         />
         <wl-select
           :id="'select'"
+          v-model="entityTypeId"
+          class="sm-space-top"
           :disable="true"
           :name="'select'"
           :title="'Seleccione del Tipo Documento'"
-          :list="entityTypes"
+          :list="emptyList"
           :value-prop-name="'id'"
           :label-prop-name="'name'"
         />
@@ -40,6 +43,12 @@ export default {
     WlCrud,
     WlInput,
     WlSelect
+  },
+  data() {
+    return {
+      emptyList : [{id:1,name:""}],
+      entityTypeId: ""
+    }
   },
 }
 </script>
