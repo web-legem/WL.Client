@@ -2,7 +2,9 @@
   <div class="wl-document-info">
     <wl-document-controls />
     <div class="annotation-list">
-      <h2 class="component-title">Anotaciones del documento</h2>
+      <h2 class="component-title">
+        Anotaciones del documento
+      </h2>
       <nav class="annotation-nav">
         <ul class="document-info_ul">
           <li

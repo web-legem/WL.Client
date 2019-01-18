@@ -3,7 +3,10 @@
     <wl-master-detail-layout
       :has-detail="true"
     >
-      <wl-document-info slot="master" class="master" />
+      <wl-document-info
+        slot="master"
+        class="master"
+      />
 
       <template slot="details">
         <wl-pdf-viewer :file-id="id" />

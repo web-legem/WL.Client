@@ -19,7 +19,8 @@
 
     <div
       slot="details"
-      class="details">
+      class="details"
+    >
       <nuxt-child />
     </div>
   </wl-master-detail-layout>

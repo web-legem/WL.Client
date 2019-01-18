@@ -26,7 +26,7 @@
               >
                 <wl-search-result
                   :document="document"
-                  :routeName="routeName"
+                  :route-name="routeName"
                 >
                   <slot :document="document" />
                 </wl-search-result>
