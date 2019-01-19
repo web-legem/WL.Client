@@ -56,6 +56,7 @@
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import { removeLangExtension } from '~/helpers/routeManipulation'
 
 export default {
   components: {
@@ -86,13 +87,17 @@ export default {
       let query = { ...this.$route.query }
       query.publicationDate = this.$refs.inputDate.value
       if(this.canActivateFilter()){
-        this.$router.push(this.localePath({ name: 'search', query }))
+        this.$router.push(this.localePath({
+          name: removeLangExtension(this.$route.name),
+          query }))
       }
     },
     disablePublicationFilter() {
       let query = { ...this.$route.query }
       delete query.publicationDate
-      this.$router.push(this.localePath({name: 'search', query}))
+      this.$router.push(this.localePath({
+        name: removeLangExtension(this.$route.name),
+        query }))
     }
   }
 }
