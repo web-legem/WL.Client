@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import WlNumberFilter from '~/components/WlNumberFilter.vue'
+import WlNumberFilter from '~/components/search/WlNumberFilter.vue'
 import WlSelectFilter from '~/components/search/WlSelectFilter.vue'
-import WlYearFilter from '~/components/WlYearFilter.vue'
+import WlYearFilter from '~/components/search/WlYearFilter.vue'
 import {mapGetters} from 'vuex'
 import { removeLangExtension } from '~/helpers/routeManipulation'
 
