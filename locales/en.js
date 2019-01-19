@@ -16,14 +16,10 @@ export default {
     , 'entities': {
       'module-name': 'Entities'
     }
-  }
-  , 'persons': {
-    'module-name': 'Persons'
-    , 'users' : {
-      'module-name': 'Users'
-    }
-    , 'permissions': {
-      'module-name': 'Permissions'
-    }
+  },
+  'persons': {
+    'module-name': 'Persons',
+    'users' : {'module-name': 'Users'},
+    'permissions': {'module-name': 'Permissions'}
   }
 }
