@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import WlInstitutionalSimbols from '~/components/WlInstitutionalSimbols.vue'
+import WlInstitutionalSimbols from '~/components/home/WlInstitutionalSimbols.vue'
 
 export default {
   components: {

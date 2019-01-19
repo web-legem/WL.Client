@@ -12,7 +12,7 @@
 <script>
 import { imagesContext } from '~/helpers/imagesContext'
 import WlLandingPage from '~/components/WlLandingPage.vue'
-import WlLoginForm from '~/components/WlLoginForm.vue'
+import WlLoginForm from '~/components/login/WlLoginForm.vue'
 
 export default {
   components: {

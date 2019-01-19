@@ -122,7 +122,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import WlCintaLogo from '~/components/WlCintaLogo.vue'
+import WlCintaLogo from '~/components/home/WlCintaLogo.vue'
 import WlA11yControls from '~/components/WlA11yControls.vue'
 
 export default {

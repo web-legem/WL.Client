@@ -18,7 +18,7 @@
 <script>
 import WlPdfViewer from '~/components/WlPdfViewer.vue'
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
-import WlDocumentInfo from '~/components/WlDocumentInfo.vue'
+import WlDocumentInfo from '~/components/search/WlDocumentInfo.vue'
 
 export default {
   validate({ params }) {

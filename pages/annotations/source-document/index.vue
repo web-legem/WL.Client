@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import WlSearch from '~/components/WlSearch.vue'
+import WlSearch from '~/components/search/WlSearch.vue'
 
 export default {
   components: {

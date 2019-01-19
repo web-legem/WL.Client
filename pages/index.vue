@@ -12,8 +12,8 @@
 
 <script>
 import WlLandingPage from '~/components/WlLandingPage.vue'
-import WlMainSearchForm from '~/components/WlMainSearchForm.vue'
-import WlFooter from '~/components/WlFooter.vue'
+import WlMainSearchForm from '~/components/home/WlMainSearchForm.vue'
+import WlFooter from '~/components/home/WlFooter.vue'
 import { imagesContext } from '~/helpers/imagesContext'
 import {mapActions} from 'vuex'
 
