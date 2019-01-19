@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import WlAnnotationListGroup from '~/components/WlAnnotationListGroup.vue'
+import WlAnnotationListGroup from '~/components/search/WlAnnotationListGroup.vue'
 
 export default {
   components: {

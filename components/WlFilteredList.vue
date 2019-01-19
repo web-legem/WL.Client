@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import WlInputFilter from "~/components/WlInputFilter.vue"
+import WlInputFilter from "~/components/search/WlInputFilter.vue"
 import WlButton from "~/components/WlButton.vue"
 
 export default {

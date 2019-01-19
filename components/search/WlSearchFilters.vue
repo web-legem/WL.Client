@@ -26,10 +26,10 @@
 
 <script>
 import WlNumberFilter from '~/components/WlNumberFilter.vue'
-import WlSelectFilter from '~/components/WlSelectFilter.vue'
+import WlSelectFilter from '~/components/search/WlSelectFilter.vue'
 import WlYearFilter from '~/components/WlYearFilter.vue'
 import {mapGetters} from 'vuex'
-import { removeLangExtension} from '~/helpers/routeManipulation'
+import { removeLangExtension } from '~/helpers/routeManipulation'
 
 export default {
   components: {

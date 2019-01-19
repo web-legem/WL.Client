@@ -37,7 +37,7 @@
 
 <script>
 import WlModal from '~/components/WlModal.vue'
-import WlSearchFilters from '~/components/WlSearchFilters.vue'
+import WlSearchFilters from '~/components/search/WlSearchFilters.vue'
 import { mapGetters } from 'vuex'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 

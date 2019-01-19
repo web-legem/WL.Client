@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import WlDocumentControls from '~/components/WlDocumentControls.vue'
-import WlAnnotationList from '~/components/WlAnnotationList.vue'
+import WlDocumentControls from '~/components/search/WlDocumentControls.vue'
+import WlAnnotationList from '~/components/search/WlAnnotationList.vue'
 
 export default {
   components: {

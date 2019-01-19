@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import WlAnnotationInfo from '~/components/WlAnnotationInfo.vue'
+import WlAnnotationInfo from '~/components/search/WlAnnotationInfo.vue'
 
 export default {
   components: {

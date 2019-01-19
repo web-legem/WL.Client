@@ -58,11 +58,11 @@
 
 <script>
 import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
-import WlSearchBar from '~/components/WlSearchBar.vue'
-import WlSearchFilters from '~/components/WlSearchFilters.vue'
-import WlOrderControls from '~/components/WlOrderControls.vue'
-import WlPageControls from '~/components/WlPageControls.vue'
-import WlSearchResult from '~/components/WlSearchResult.vue'
+import WlSearchBar from '~/components/search/WlSearchBar.vue'
+import WlSearchFilters from '~/components/search/WlSearchFilters.vue'
+import WlOrderControls from '~/components/search/WlOrderControls.vue'
+import WlPageControls from '~/components/search/WlPageControls.vue'
+import WlSearchResult from '~/components/search/WlSearchResult.vue'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 
 import {mapActions, mapGetters, mapState} from 'vuex'
