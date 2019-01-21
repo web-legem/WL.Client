@@ -24,7 +24,6 @@ export default {
 <style lang="scss" scoped>
 .annotations {
   width: 100%;
-  padding-top: calc(25px + 4.5vh);
   height: 100%;
 }
 </style>

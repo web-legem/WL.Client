@@ -1,6 +1,6 @@
 <template>
   <div class="source-document-index">
-    <wl-search route-name="annotations-source-document-id" />
+    <wl-search route-name="annotations-document-id" />
   </div>
 </template>
 

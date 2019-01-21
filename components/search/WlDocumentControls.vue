@@ -25,14 +25,4 @@ export default {
   font-size: 1.4rem;
   color: #00796b;
 }
-
-.controls {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.controls .control:not(:first-child){
-  margin-right: 16px;
-}
-
 </style>
