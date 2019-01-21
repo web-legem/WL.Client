@@ -20,7 +20,10 @@
         />
       </button>
     </h3>
-    <transition name="accordion">
+    <transition
+      name="accordion"
+      appear
+    >
       <ul
         v-if="show"
         class="document-info_ul"
@@ -68,7 +71,7 @@ export default {
   },
   data() {
     return {
-      show: false,
+      show: true,
     }
   },
   computed: {
@@ -91,10 +94,6 @@ export default {
 
 <style lang="scss" scoped>
 .wl-annotation-group {
-}
-
-.annotation-group {
-  background: blue;
 }
 
 .group-toggle {
@@ -125,7 +124,7 @@ export default {
 }
 
 .accordion-enter-active, .accordion-leave-active {
-    transition: max-height .75s linear;
+    transition: max-height .8s linear;
     overflow: hidden;
 }
 

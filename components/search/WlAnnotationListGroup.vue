@@ -128,7 +128,7 @@ export default {
 }
 
 .accordion-enter-active, .accordion-leave-active {
-    transition: max-height .75s linear;
+    transition: max-height .8s linear;
     overflow: hidden;
 }
 

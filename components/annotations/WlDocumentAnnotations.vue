@@ -4,8 +4,8 @@
       <h1 class="document-header">
         Document Title
       </h1>
-      <span class="ico2-eye icon" />
-      <span class="ico2-plus icon" />
+      <button class="ico2-plus icon" />
+      <slot name="controls" />
     </div>
     <wl-annotations
       :document-id="1"
@@ -46,8 +46,24 @@ export default {
 .icon {
   font-size: 1.4rem;
   color: #00796b;
-  padding: 10px;
+  margin: 10px;
+  padding: 5px;
+  padding-bottom: 5px;
   cursor: pointer;
   margin-left: 5px;
+  background-color: transparent;
+  border-radius: 50%;
+  background-position: center;
+  transition: background 0.8s;
+}
+
+.icon:hover {
+  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
+}
+
+.icon:active {
+  background-color: #999;
+  background-size: 100%;
+  transition: background 0s;
 }
 </style>

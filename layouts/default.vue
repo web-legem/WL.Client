@@ -21,6 +21,5 @@ export default {
 <style>
 .nuxt {
   height: 100vh;
-  position: relative;
 }
 </style>

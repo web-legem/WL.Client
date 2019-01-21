@@ -41,8 +41,6 @@ export default {
         { id: 6, direction: "OUT", annotationType: { id: 3, name: "Invailda" }, document: "Decreto 132 del 2012", description: "Invalidó al documento mencionado" },
       ],
       selectedId: 0,
-      showInAnnotations: true,
-      showOutAnnotations: false,
     }
   },
   computed: {

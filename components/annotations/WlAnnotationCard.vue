@@ -8,6 +8,8 @@
         >
           {{ annotation.document }}
         </nuxt-link>
+        <button class="ico-pencil icon" />
+        <button class="ico-trash icon" />
       </h3>
     </div>
     <div class="type">
@@ -93,9 +95,12 @@ export default {
   flex-grow: 1;
   color: #00796b;
   font-size: 1em;
+  display: flex;
+  flex-direction: row;
 }
 
 .title-link {
+  flex-grow: 1;
   text-decoration: none;
   color:#0f745b;
   text-decoration-color: #0f745b;
@@ -131,5 +136,26 @@ export default {
 
 .button-control:hover {
   text-decoration: underline;
+}
+
+.icon {
+  margin-left: 5px;
+  cursor: pointer;
+  background: transparent;
+  color: #0f745b;
+  font-size: 1em;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background 0.8s;
+}
+
+.icon:hover {
+  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
+}
+
+.icon:active {
+  background-color: #999;
+  background-size: 100%;
+  transition: background 0s;
 }
 </style>
