@@ -2,23 +2,28 @@
   <div>
     <div>
       <label class="texto_labels ">
-        fotografias
+        fotografia de usuario
       </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
           <span 
-            v-show="true"
+            v-show="!trash"
             class="ico-user" 
           />
           <img 
-            id="laimagen" 
+            v-show="trash"
+            id="laimagen"
+            ref="imgShowed"
             alt="fotrografia usuario" 
-            src="" 
+            src=""
+            @load="showPhoto"
           >
           <input 
             id="input_usu_foto"
+            ref="inputToLoad"
             type="file" 
             :disabled="false" 
+            @change="loadPhoto"
           >
           <input 
             id="hidden_input" 
@@ -28,7 +33,6 @@
         </div>
         <div class="botonera_camara">
           <wl-button 
-            v-show="true"
             title="tomar foto" 
             :only-icon="true"
             :ico="'ico-camera'"
@@ -36,7 +40,6 @@
             @click.native="openCamera()"
           />
           <wl-button 
-            v-show="true" 
             title="subir foto" 
             :only-icon="true"
             :ico="'ico-upload'"
@@ -44,7 +47,7 @@
             @click.native="selectFile()"
           />
           <wl-button 
-            v-show="true" 
+            v-show="trash" 
             title="BorrarFoto" 
             :only-icon="true"
             :ico="'ico-trash'"
@@ -80,6 +83,7 @@
               class="canvas_container"             
             >          
               <video 
+                v-show="isStreaming"
                 id="camaraUsu" 
                 ref="webcam"
                 width="320" 
@@ -87,6 +91,7 @@
                 autoplay
               />
               <canvas 
+                v-show="!isStreaming"
                 id="fotoUsu" 
                 ref="canvas"
                 width="320" 
@@ -99,6 +104,7 @@
                 v-show="isStreaming"
                 title="BorrarFoto"
                 :ico="'ico-camera'"
+                class="c1"
                 @click.native="snapshot()"
               >
                 tomar foto
@@ -108,6 +114,7 @@
                 v-show="!isStreaming"
                 title="repetirFoto"
                 :ico="'ico-camera'"
+                class="c2"
                 @click.native="repetirFoto()"
               >
                 repetir foto
@@ -115,18 +122,19 @@
 
               <wl-button 
                 v-show="!isStreaming"
-                title="guardarFoto"
+                title="savePhoto"
                 :ico="'ico-camera'"
-                @click.native="guardarFoto()"
+                class="c3"
+                @click.native="savePhoto()"
               >
                 guardar foto
               </wl-button>
             </div>
           </div>
           <img 
-            id="aux_imagen" 
-            src 
-            style="visibility:hidden;width:0;height:0;"
+            ref="imgAux"
+            class="img-aux"
+            src=""
           >          
         </div>
       </div>
@@ -150,109 +158,123 @@ export default {
     showCamera: false,
     webcamStream: null,
     existCanvas: false,
-    img : this.$refs.laimagen,
-    img2: this.$refs.aux_imagen,
     isStreaming: true,
+    trash: false,
     }
   },    
   computed: {
-    videoElement () {
-      return this.$refs.webcam;
-    },
-    canvasElement () {
-      return this.$refs.canvas;
-    },
+    videoElement () {return this.$refs.webcam},
+    canvasElement () {return this.$refs.canvas},
+    imageElement () {return this.$refs.imgShowed},
+    imageAuxElement () {return this.$refs.imgAux},
   },
   methods:{   
     openCamera(){
       var video = this.videoElement;
       this.showCamera = true;
-      this.webcamStream = true;
       if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((localMediaStream) => {
           video.srcObject = localMediaStream;
           this.webcamStream = localMediaStream;
           this.existCanvas = true;
-        }).catch(function (err) {
-          console.log("The following error occured: " + err);
+          },this.errorOpenCamera
+        ).catch(function (err) {
+          alert("The following error occured: " + err);
         })                    
       } else {
+          alert("No tiene soporte para uso de la webCam");
           console.log("getUserMedia not supported");
+      }    
+    },
+    errorOpenCamera(error){
+        if ((error.name == 'NotAllowedError') || (error.name == 'PermissionDismissedError')) {        
+          alert("Debe activar la camara para usar esta función")
+          this.closeCamera();
       }
     },
     selectFile(){
+      this.$refs.inputToLoad.click();
+    },
+    loadPhoto(e){
+      var img = this.imageElement;
+      var files = e.target.files;
+      var f = files[0];
+      var leerArchivo = new FileReader();
+      leerArchivo.onload = (e) => {
+          img.src = e.target.result;
 
+      };
+      leerArchivo.readAsDataURL(f);//para q el archivo sea leido 
     },
     deletePhoto(){
-
+      var img = this.imageElement;
+      img.src = "";
+      this.trash = false;
+      img.style.visibility = "hidden";
+    },
+    showPhoto(){      
+      var img = this.imageElement;      
+      this.trash = true;
+      img.style.visibility = "unset";
     },
     snapshot(){        
       try {// Draws current image from the video element into the canvas
         var video = this.videoElement;
         var canvas = this.canvasElement;
-        if (this.existCanvas) {
-          var ctx = this.$refs.canvas.getContext('2d');
-          console.log("nnn2aa");
-          video;
-          console.log("nnn2bb");
-          canvas.width;
-          console.log("nnn2cc");
-          ctx;
-          console.log("nnn2dd");
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          console.log("nnn3");
-          this.img2.src = this.canvas.toDataURL("image/jpeg");
-          console.log("nnn4");
-          this.isStreaming = !this.isStreaming;
-          console.log("nnn5");
+        var imgAux = this.imageAuxElement;
+        
+        if (this.existCanvas && canvas) {
+          canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+          imgAux.src = canvas.toDataURL("image/jpeg");
+          this.isStreaming = false;
         } else {
-          console.log("Active la camara");
+          alert("Active la camara por favor");
         }
-      } catch (error){                        
-        console.log("Existe problemas con su camara",error);
+      } catch (error){                      
+        alert("Existe problemas con su camara");
+        console.log(error);
       }
     },
-    guardarFoto() {
+    savePhoto() {
+      var img = this.imageElement;
+      var imgAux = this.imageAuxElement;
+      var canvas = this.canvasElement;
+
       var canvasAux = document.createElement("canvas");
       canvasAux.id = "canvasAux";
-      canvasAux.height = 170;
-      canvasAux.width = 150;
-      var context = canvasAux.getContext('2d');
-
-      context.drawImage(img2, 85, 40, 150, 170, 0, 0, 150, 170);
+      canvasAux.height = 200;
+      canvasAux.width = 155;
+      
+      canvasAux.getContext('2d').drawImage(imgAux, 80, 20, 155, 200, 0, 0, 155, 200);
       img.src = canvasAux.toDataURL("image/jpeg");
       img.style.visibility = "unset";
-
       var imageData = canvas.toDataURL('image/png');
       var params = "filename=" + imageData;
-
       document.getElementById("hidden_input").setAttribute("value", params);
       var files = document.getElementById("hidden_input");
-      console.log(files);
-
-      canvasAux.toBlob(function (image) { blob = image; });
-      isStreaming = true;
-      existCanvas = false;
-      cerrarCamara();
+      this.isStreaming = true;
+      this.existCanvas = false;
+      this.closeCamera();
     },
     repetirFoto() {
-          canvas.width = canvas.width;//limpiar contenido del canvas  
-          isStreaming = !isStreaming;
-          existCanvas = true;
-    },
-    stopWebcam(){
-      this.webcamStream.getVideoTracks()[0].stop();
+        var canvas = this.canvasElement;
+        canvas.width = canvas.width;//limpiar contenido del canvas  
+        this.isStreaming = true;
+        this.existCanvas = true;
     },
     closeCamera() {
       try {
-        stopWebcam();
-        existCanvas = false;
-        foto = true;
-        show = false;
+        if(this.webcamStream != null){
+          this.webcamStream.getVideoTracks()[0].stop();          
+        }
+        this.existCanvas = false;
+        this.foto = true;
+        this.showCamera = false;
       } catch (error){
-        console.log("Existe problemas con su camara");
-        show = false;
+        alert("Existe problemas con su camara");
+        console.log(error);
+        this.showCamera = false;
       }
     },
     closeModal(){
@@ -263,7 +285,6 @@ export default {
 </script>
 
 <style>
-/**********************/
 .box_fotografia{
     display:flex;
     margin-top:2px;
@@ -273,7 +294,7 @@ export default {
     border:1px solid #bbb;
     min-width:150px !important;
     width:150px !important;
-    height:170px;
+    height:190px;
     text-align:center;
 }
 
@@ -281,13 +302,12 @@ export default {
     color:#ddd;
     font-size:120px;
     display:block;
-    margin-top:20px;    
+    margin-top:30px;    
 }
 
 #laimagen{
     width:100%;
     height:100%;
-    visibility:hidden;
 }
 
 .botonera_camara {
@@ -325,11 +345,10 @@ export default {
     width:100%;
 }
 
-.botonera_fotografia > button{
+.botonera_fotografia .c2,
+.botonera_fotografia .c3
+{
     margin-left:15px;
-}
-.botonera_fotografia > button:first-child{
-    margin-left:0;
 }
 
 .canvas_container{
@@ -341,10 +360,16 @@ export default {
 .canvas_container:after{
     content:"";
     position:absolute;
-    top:40px;
-    left:85px;
-    height:170px;
-    width:150px;
+    top:20px;
+    left:80px;
+    height:200px;
+    width:155px;
     border:2px solid #ffffff;
+}
+
+.img-aux{
+  visibility:hidden;
+  width:0;
+  height:0;
 }
 </style>

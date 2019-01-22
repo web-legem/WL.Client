@@ -13,19 +13,7 @@
       <template slot="wl-form">
         <div class="box_duo_input">          
           <div>
-            <label class="texto_labels">
-              Documentos Soportados:
-            </label>
             <wl-web-cam />
-            <!-- <web-cam 
-              ref="webcam"
-              :device-id="deviceId"
-              width="100%"
-              @started="onStarted" 
-              @stopped="onStopped" 
-              @cameras="onCameras"
-              @camera-change="onCameraChange" 
-            /> -->
           </div>
           <div>
             <wl-input
@@ -53,7 +41,7 @@
               v-model="name"
               :disable="!isEdit"
               :title="'Nombre de Usuario'"
-              :max="100"
+              :max="50"
               :placeholder="'Ingrese Nombre de Usuario'"
               :error-msg="'Este es un error'"
               :error="true"
@@ -67,7 +55,7 @@
               v-model="name"
               :disable="!isEdit"
               :title="'Contraseña'"
-              :max="100"
+              :max="256"
               :placeholder="'Ingrese Contraseña'"
               :error-msg="'Este es un error'"
               :error="true"
@@ -79,14 +67,14 @@
               v-model="name"
               :disable="!isEdit"
               :title="'Identificacion'"
-              :max="100"
+              :max="50"
               :placeholder="'Ingrese Identificacion'"
               :error-msg="'Este es un error'"
               :error="true"
             />
           </div>
         </div>        
-        <div class="box_duo_input">          
+        <div class="box_duo_input">            
           <div>
             <wl-input
               v-if="true"
@@ -112,6 +100,22 @@
             />
           </div>
         </div>
+
+        <div class="box_duo_input">            
+          <div>
+            <wl-switch-button
+              v-if="true"
+              :id="'rad1'"
+              :disable="!isEdit"
+              :type="'checkbox'"
+              :title="'Estado Usuario'"
+              :label="'Activo'"
+              :error-msg="'Este es un error'"
+              :error="true"
+            />
+          </div>
+          <div />
+        </div>
       </template>
     </wl-crud>    
   </div>
@@ -121,6 +125,7 @@
 import { mapActions, mapGetters } from "vuex";
 import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
+import WlSwitchButton from "~/components/WlSwitchButton.vue";
 import WlWebCam from "~/components/WlWebCam.vue";
 
 export default {
@@ -128,6 +133,7 @@ export default {
     WlCrud,
     WlInput,
     WlWebCam,
+    WlSwitchButton,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
