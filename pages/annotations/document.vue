@@ -1,5 +1,5 @@
 <template>
-  <div class="source-document">
+  <div class="document">
     <nuxt-child />
   </div>
 </template>
@@ -10,8 +10,8 @@ import { mapMutations } from 'vuex';
 export default {
   nuxtI18n: {
     paths: {
-      es: 'documento-fuente',
-      en: 'source-document',
+      es: 'documento',
+      en: 'document',
     }
   },
   beforeDestroy() {
@@ -26,7 +26,8 @@ export default {
 </script>
 
 <style scoped>
-.source-document {
+.document {
   height: 100%;
+  padding-top: calc(25px + 4.5vh);
 }
 </style>

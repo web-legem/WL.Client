@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wl-annotation-group">
     <h3 class="annotation-group">
       <button 
         class="group-toggle"
@@ -20,7 +20,10 @@
         />
       </button>
     </h3>
-    <transition name="accordion">
+    <transition
+      name="accordion"
+      appear
+    >
       <ul
         v-if="show"
         class="document-info_ul"
@@ -30,7 +33,7 @@
           :key="annotation.id"
           class="document-info_li"
         >
-          <wl-annotation-info
+          <wl-annotation-card
             :annotation="annotation"
             :selected="selected"
             @show-annotation="select($event)"
@@ -42,11 +45,11 @@
 </template>
 
 <script>
-import WlAnnotationInfo from '~/components/search/WlAnnotationInfo.vue'
+import WlAnnotationCard from '~/components/annotations/WlAnnotationCard.vue'
 
 export default {
   components: {
-    WlAnnotationInfo,
+    WlAnnotationCard,
   },
   props: {
     annotations: {
@@ -68,7 +71,7 @@ export default {
   },
   data() {
     return {
-      show: false,
+      show: true,
     }
   },
   computed: {
@@ -90,6 +93,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wl-annotation-group {
+}
+
 .group-toggle {
   display: flex;
   width: 100%;
@@ -117,16 +123,6 @@ export default {
   text-align: left;
 }
 
-@keyframes down {
-  0% { margin-top: -100%; }
-  100% { margin-top: 0; }
-}
-
-@keyframes up {
-  0% { margin-top: 0; }
-  100% { margin-top: -100%; }
-}
-
 .accordion-enter-active, .accordion-leave-active {
     transition: max-height .8s linear;
     overflow: hidden;
@@ -141,6 +137,6 @@ export default {
 }
 
 .document-info_ul:last-child {
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #555 !important;
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
-  <embed 
-    :src="url"
-    type="application/pdf" 
-    class="pdf"
-  >
+  <div class="pdf-viewer">
+    <embed 
+      :src="url"
+      type="application/pdf" 
+      class="pdf"
+    >
+  </div>
 </template>
 
 <script>
@@ -47,9 +49,16 @@ export default {
 </script>
 
 <style>
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .75);
+}
+
 .pdf {
   width: 100%;
   height: 100%;
   display: block;
+  background-color: rgba(0, 0, 0, 0);
 }
 </style>

@@ -20,8 +20,6 @@ export default {
 
 <style>
 .nuxt {
-  /* padding-top: calc(25px + 4.5vh); */
   height: 100vh;
-  position: relative;
 }
 </style>

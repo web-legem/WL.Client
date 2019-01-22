@@ -15,7 +15,7 @@ export default {
   fetch({store, params, query}) {
     return Promise.all([
       store.dispatch('search/loadFilterData'),
-      store.dispatch('search/search',{ ...query })
+      store.dispatch('search/search', { ...query })
     ])
   },
 }
@@ -24,7 +24,6 @@ export default {
 <style lang="scss" scoped>
 .annotations {
   width: 100%;
-  padding-top: calc(25px + 4.5vh);
   height: 100%;
 }
 </style>

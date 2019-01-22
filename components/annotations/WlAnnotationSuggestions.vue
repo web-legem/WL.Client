@@ -1,0 +1,14 @@
+<template>
+  <div class="annimation-suggestions">
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>
