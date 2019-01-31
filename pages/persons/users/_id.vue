@@ -1,7 +1,6 @@
 <template>
   <div>
     <wl-crud
-      :obj-select="null"
       :is-new="false"
       :error="error"
       @wlcancel="cancel"
@@ -17,7 +16,6 @@
           </div>
           <div>
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Nombre'"
@@ -27,7 +25,6 @@
               :error="true"
             />
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Apellidos'"
@@ -37,7 +34,6 @@
               :error="true"
             />
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Nombre de Usuario'"
@@ -51,7 +47,6 @@
         <div class="box_duo_input">          
           <div>
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Contraseña'"
@@ -63,7 +58,6 @@
           </div>
           <div>
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Identificacion'"
@@ -77,7 +71,6 @@
         <div class="box_duo_input">            
           <div>
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Correo Electronico'"
@@ -89,7 +82,6 @@
           </div>
           <div>
             <wl-input
-              v-if="true"
               v-model="name"
               :disable="!isEdit"
               :title="'Rol de Usuario'"
@@ -104,7 +96,6 @@
         <div class="box_duo_input">            
           <div>
             <wl-switch-button
-              v-if="true"
               :id="'rad1'"
               :disable="!isEdit"
               :type="'checkbox'"
@@ -142,8 +133,6 @@ export default {
     return {
       img: null,
       camera: null,
-      deviceId: null,
-      devices: [],
       isEdit : false
     };
   },
@@ -165,9 +154,6 @@ export default {
       set(value) {
         this.changeEntityTypeId(value)
       }
-    },
-    device: function() {
-      return find(this.devices, n => n.deviceId == this.deviceId);
     }
   },
   methods: {    
@@ -196,34 +182,3 @@ export default {
   },
 }
 </script>
-
-<style>
-/*-----------------------------------------------------------------------*/
-
-.box_duo_input > div {
-    flex: 1;
-    min-width: 250px;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (max-width : 768px) {
-   .box_duo_input {
-        flex-direction: column;
-    }
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-    .box_duo_input {
-        flex-direction: row;
-    }
-    .box_duo_input > div:first-child {
-        margin-right: 10px;
-    }
-
-    .box_duo_input > div:last-child {
-        margin-left: 10px;
-    }
-}
-</style>

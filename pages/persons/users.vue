@@ -50,20 +50,20 @@ export default {
   },
   data() {
     return {
-      users: [ 
-        {id: 1, name: 'Mario Flórez'},
-        {id: 2, name: 'Felipe Delgado'},
-        {id: 3, name: 'Homero Simpson'},
-        {id: 4, name: 'Bart Simpson'},
-      ]
+    //   users: [ 
+    //     {id: 1, name: 'Mario Flórez'},
+    //     {id: 2, name: 'Felipe Delgado'},
+    //     {id: 3, name: 'Homero Simpson'},
+    //     {id: 4, name: 'Bart Simpson'},
+    //   ]
     }
   },
   computed: {
     // TODO - reemplazar los usuarios por los usuarios traidos de la base de 
     // datos usando el metodo del store
     ...mapGetters('persons/users', {
-      users2: 'list',
-    //   users: 'users'
+      // users2: 'list',
+      users: 'list',
       isCreating: 'isCreating',
       isSelected: 'isSelected',
       selected: 'selected',
@@ -72,11 +72,11 @@ export default {
   methods: {
     create() {
       this.$router.push( this.localePath({name: 'persons-users-new'}))
-    },
-    fetch({ store, params }) {
+    },    
+  },
+  fetch({ store, params }) {
       return store.dispatch('persons/users/loadData')
-    },
-  }
+  },
 }
 </script>
 

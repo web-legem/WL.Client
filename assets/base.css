@@ -44,6 +44,35 @@ html, body {
   margin-top: 20px;
 }
 
+/*-----------------------------------------------------------------------*/
+/* containers */
+.box_duo_input > div {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 768px) {
+ .box_duo_input {
+      flex-direction: column;
+  }
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .box_duo_input {
+      flex-direction: row;
+  }
+  .box_duo_input > div:first-child {
+      margin-right: 10px;
+  }
+
+  .box_duo_input > div:last-child {
+      margin-left: 10px;
+  }
+}
+
 /* control cuadros tipo entidad */
 
 /* Grid styles -------------------------------------------------*/

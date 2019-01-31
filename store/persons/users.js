@@ -7,7 +7,7 @@ export const state = () => ({
   loaded: false,
   error: null,
 })
-
+ 
 export const getters = {
   list: (state) => state.list,
   selected: (state) => state.selected,
@@ -73,13 +73,13 @@ export const mutations = {
 export const actions = {
   loadData({commit}) {
     commit('loading')
-    return this.$axios.get('/api/Users')
+    return this.$axios.get('/api/User')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', 'Error'))
+      .catch(e => commit('loadingFailure', e))
   },
   create({commit, dispatch}, newUser) {
     commit('waiting')
-    return this.$axios.post('/api/Users', newUser)
+    return this.$axios.post('/api/User', newUser)
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('creatingError', e.response.data.message)
@@ -89,7 +89,7 @@ export const actions = {
   },
   save({commit, dispatch}, modifiedUser) {
     commit('waiting')
-    return this.$axios.put('/api/Users', modifiedUser)
+    return this.$axios.put('/api/User', modifiedUser)
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('updatingError', e.response.data.message)
@@ -99,7 +99,7 @@ export const actions = {
   },
   delete({commit, state, dispatch}) {
     commit('waiting')
-    return this.$axios.delete('/api/Users/' + state.selectedId )
+    return this.$axios.delete('/api/User/' + state.selectedId )
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('deletingError', e.response.data.message)

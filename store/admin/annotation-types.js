@@ -81,7 +81,7 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/AnnotationType')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', 'Error'))
+      .catch(e => commit('loadingFailure', "'homero'"))
   },
   
   select({commit}, annotationTypeId) {

@@ -110,7 +110,7 @@ export default {
     },
     isNew: {type: Boolean, default: false },
     error: {
-      type: Object,
+      type: Error,
       default: null
     },
     disableButtons: {type: Boolean, default: false },
