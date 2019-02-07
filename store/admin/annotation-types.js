@@ -77,29 +77,12 @@ export const mutations = {
 }
 
 export const actions = {
-  loadData({commit}) {
+  loadData({ commit }) {
     commit('loading')
     return this.$axios.get('/api/AnnotationType')
-      .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', "'homero'"))
+    .then(response => commit('loadingSuccess', response.data))
+    .catch(e => commit('loadingFailure', "'homero'"))
   },
-  
-  select({commit}, annotationTypeId) {
-    commit('select', annotationTypeId)
-  },
-
-  clearSelection({commit}) {
-    commit('clearSelection')
-  },
-  
-  clearError({commit}) {
-    commit('clearError')
-  },
-
-  isCreating({commit}) {
-    commit('isCreating')
-  },
-  
   create({ commit, dispatch }, newAnnotationType) {
     commit('waiting')
     return this.$axios.post('/api/AnnotationType', newAnnotationType)
@@ -110,7 +93,7 @@ export const actions = {
       }
       )
   },
-  save({commit, dispatch}, modifiedAnnotationType) {
+  save({ commit, dispatch }, modifiedAnnotationType) {
     commit('waiting')
     return this.$axios.put('/api/AnnotationType', modifiedAnnotationType)
       .then(_ => dispatch('loadData'))
@@ -120,7 +103,7 @@ export const actions = {
       }
       )
   },
-  delete({commit, state, dispatch}) {
+  delete({ commit, state, dispatch }) {
     commit('waiting')
     return this.$axios.delete('/api/AnnotationType/' + state.selectedId)
       .then(_ => dispatch('loadData'))
@@ -130,10 +113,27 @@ export const actions = {
       }
       )
   },
-  changeName({commit}, newName) {
+
+  select({ commit }, annotationTypeId) {
+    commit('select', annotationTypeId)
+  },
+
+  clearSelection({ commit }) {
+    commit('clearSelection')
+  },
+
+  clearError({ commit }) {
+    commit('clearError')
+  },
+
+  isCreating({ commit }) {
+    commit('isCreating')
+  },
+
+  changeName({ commit }, newName) {
     commit('changeName', newName)
   },
-  changeRoot({commit}, newRoot) {
+  changeRoot({ commit }, newRoot) {
     commit('changeRoot', newRoot)
   }
 }

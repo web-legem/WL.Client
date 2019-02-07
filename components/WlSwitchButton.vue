@@ -31,7 +31,7 @@ export default {
     id: { type: String, default: "" },
     name: { type: String, default: "" },
     type: { type: String, default: "" },    
-    value: { type: String, default: "" },
+    value: { type: Boolean, default: false },
     title: { type: String, default: "" },
     label: { type: String, default: "" },
     isRequired: { type: Boolean, default: false },    

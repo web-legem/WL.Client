@@ -2,6 +2,7 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list 
       slot="master" 
+      :empty-list="annotationTypes != null && annotationTypes.length == 0"
       @add="create"
     >
       <wl-list-item
@@ -12,7 +13,7 @@
         :item-id="annotationType.id"
       >
         {{ annotationType.name }}
-      </wl-list-item>
+      </wl-list-item>      
     </wl-filtered-list>
 
     <div slot="details" class="details">

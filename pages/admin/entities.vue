@@ -2,6 +2,7 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list
       slot="master"
+      :empty-list="entities != null && entities.length == 0"      
       @add="create"
     >
       <wl-list-item

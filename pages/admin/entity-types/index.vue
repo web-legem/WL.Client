@@ -21,7 +21,6 @@
           >
             <div class="block">
               <input
-                v-if="objSelected"
                 :id="docType.id"
                 v-model="checked"
                 disabled="!isEdit"

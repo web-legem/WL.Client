@@ -149,7 +149,6 @@ export default {
       this.$router.push(this.localePath({ name: "persons-users" }));
     },
     submit() {
-      console.log("aaaaaaaaaaaaaaaa");
       this.create({ 
           firstName : this.firstName,
           lastName : this.lastName,

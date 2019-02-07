@@ -2,12 +2,12 @@ export const state = () => ({
   list: [],
   selectedId: null,
   isCreating: false,
-  selected: {},  
+  selected: {},
   loading: false,
   loaded: false,
   error: null,
 })
- 
+
 export const getters = {
   list: (state) => state.list,
   selected: (state) => state.selected,
@@ -30,9 +30,11 @@ export const mutations = {
   },
   loadingFailure(state, payload) {
     state.loading = false
+    state.loaded = false
     state.error = payload
   },
   select(state, userId) {
+    state.error = null
     state.selectedId = userId
     state.selected = state.list
       .filter(x => x.id == Number.parseInt(userId))
@@ -55,9 +57,6 @@ export const mutations = {
     state.loading = false
     state.error = error
   },
-  changeName(state, newName) {
-    state.selected.name = newName
-  },  
   deletingError(state, error) {
     state.loading = false
     state.error = error
@@ -67,17 +66,45 @@ export const mutations = {
   },
   waiting(state) {
     state.loading = true
-  }
+  },
+
+  changeFirstName(state, newVal) {
+    state.selected.firstName = newVal
+  },
+  changeLastName(state, newVal) {
+    state.selected.lastName = newVal
+  },
+  changeNickname(state, newVal) {
+    state.selected.nickname = newVal
+  },
+  changeDocument(state, newVal) {
+    state.selected.document = newVal
+  },
+  changePassword(state, newVal) {
+    state.selected.password = newVal
+  },
+  changeEmail(state, newVal) {
+    state.selected.email = newVal
+  },
+  changeState(state, newVal) {
+    state.selected.state = newVal
+  },
+  changePhoto(state, newVal) {
+    state.selected.photo = newVal
+  },
+  changeRol(state, newVal) {
+    state.selected.rol = newVal
+  },
 }
 
 export const actions = {
-  loadData({commit}) {
+  loadData({ commit }) {
     commit('loading')
     return this.$axios.get('/api/User')
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', e))
   },
-  create({commit, dispatch}, newUser) {
+  create({ commit, dispatch }, newUser) {
     commit('waiting')
     return this.$axios.post('/api/User', newUser)
       .then(_ => dispatch('loadData'))
@@ -87,7 +114,7 @@ export const actions = {
       }
       )
   },
-  save({commit, dispatch}, modifiedUser) {
+  save({ commit, dispatch }, modifiedUser) {
     commit('waiting')
     return this.$axios.put('/api/User', modifiedUser)
       .then(_ => dispatch('loadData'))
@@ -97,9 +124,9 @@ export const actions = {
       }
       )
   },
-  delete({commit, state, dispatch}) {
+  delete({ commit, state, dispatch }) {
     commit('waiting')
-    return this.$axios.delete('/api/User/' + state.selectedId )
+    return this.$axios.delete('/api/User/' + state.selectedId)
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('deletingError', e.response.data.message)
@@ -107,20 +134,43 @@ export const actions = {
       }
       )
   },
-  select({commit}, docTypeId) {
-    commit('select', docTypeId)
+  select({ commit }, userId) {
+    commit('select', userId)
   },
-  clearSelection({commit}) {
+  clearSelection({ commit }) {
     commit('clearSelection')
   },
-  clearError({commit}) {
+  clearError({ commit }) {
     commit('clearError')
   },
-  isCreating({commit}) {
+  isCreating({ commit }) {
     commit('isCreating')
   },
-  changeName({commit}, newName) {
-    commit('changeName', newName)
+  changeFirstName({ commit }, newVal) {
+    commit('changeFirstName', newVal)
   },
-
+  changeLastName({ commit }, newVal) {
+    commit('changeLastName', newVal)
+  },
+  changeNickname({ commit }, newVal) {
+    commit('changeNickname', newVal)
+  },
+  changeDocument({ commit }, newVal) {
+    commit('changeDocument', newVal)
+  },
+  changePassword({ commit }, newVal) {
+    commit('changePassword', newVal)
+  },
+  changeEmail({ commit }, newVal) {
+    commit('changeEmail', newVal)
+  },
+  changeState({ commit }, newVal) {
+    commit('changeState', newVal)
+  },
+  changePhoto({ commit }, newVal) {
+    commit('changePhoto', newVal)
+  },
+  changeRol({ commit }, newVal) {
+    commit('changeRol', newVal)
+  },
 }
