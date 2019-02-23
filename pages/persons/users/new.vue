@@ -8,9 +8,19 @@
       @wlclearerror="clearError"
     >
       <template slot="wl-form">
+        <input
+          id="file"
+          ref="file"
+          name="file"
+          type="file"
+          @change="handleFileToUpload"
+        >
         <div class="box_duo_input">          
           <div>
-            <wl-web-cam />
+            <wl-web-cam 
+              :photo-input="file"
+              :disable="false"
+            />
           </div>
           <div>
             <wl-input
@@ -131,6 +141,7 @@ export default {
       email: "",
       state: "active",
       rol: "",
+      file: '',
     };
   },
   computed: {
@@ -148,8 +159,11 @@ export default {
     cancel() {
       this.$router.push(this.localePath({ name: "persons-users" }));
     },
+    handleFileToUpload(){      
+      this.file = this.$refs.file.files[0]
+    },
     submit() {
-      this.create({ 
+      let newUser = {         
           firstName : this.firstName,
           lastName : this.lastName,
           nickName : this.nickName,
@@ -158,9 +172,9 @@ export default {
           email: this.email,
           state: this.state,
           //rol: "",
-        }).then(_ =>
-        this.$router.push(this.localePath({ name: "persons-users" }))
-      );
+        };
+      this.create({newUser,file: this.file}).then
+      (_ =>this.$router.push(this.localePath({ name: "persons-users" })));
     },
     ...mapActions("persons/users", {
       isCreating: "isCreating",

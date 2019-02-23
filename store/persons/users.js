@@ -15,7 +15,7 @@ export const getters = {
   isCreating: (state) => state.isCreating,
   error: (state) => state.error,
 }
-
+ 
 export const mutations = {
   loading(state) {
     state.loading = true
@@ -89,9 +89,6 @@ export const mutations = {
   changeState(state, newVal) {
     state.selected.state = newVal
   },
-  changePhoto(state, newVal) {
-    state.selected.photo = newVal
-  },
   changeRol(state, newVal) {
     state.selected.rol = newVal
   },
@@ -104,9 +101,12 @@ export const actions = {
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', e))
   },
-  create({ commit, dispatch }, newUser) {
+  create({ commit, dispatch }, {newUser, file}) {    
+    let formData = new FormData();
+    formData.append('value',JSON.stringify(newUser))
+    formData.append('files', file);
     commit('waiting')
-    return this.$axios.post('/api/User', newUser)
+    return this.$axios.post('/api/User', formData,{headers: {'Content-Type': 'multipart/form-data'}})
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('creatingError', e.response.data.message)
@@ -114,9 +114,14 @@ export const actions = {
       }
       )
   },
-  save({ commit, dispatch }, modifiedUser) {
+  save({ commit, dispatch }, {modifiedUser, file}) {
+    console.log("xxx1",modifiedUser);
+    console.log("xxx2",file);
+    let formData = new FormData();
+    formData.append('value',JSON.stringify(modifiedUser))
+    formData.append('files', file);
     commit('waiting')
-    return this.$axios.put('/api/User', modifiedUser)
+    return this.$axios.put('/api/User', formData, {headers: {'Content-Type': 'multipart/form-data'}})
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('updatingError', e.response.data.message)
@@ -166,9 +171,6 @@ export const actions = {
   },
   changeState({ commit }, newVal) {
     commit('changeState', newVal)
-  },
-  changePhoto({ commit }, newVal) {
-    commit('changePhoto', newVal)
   },
   changeRol({ commit }, newVal) {
     commit('changeRol', newVal)
