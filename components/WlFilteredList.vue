@@ -22,7 +22,7 @@
         v-if="emptyList"
         class="empty-list"
       >
-        <span class="ico2-files-empty"/>
+        <span class="ico2-files-empty" />
         <p>
           presiona el boton de "Nuevo" para crear un nuevo registro  
         </p>    

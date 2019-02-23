@@ -11,9 +11,20 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
+        <!-- <input
+          id="file"
+          ref="file"
+          name="file"
+          type="file"
+          @change="handleFileToUpload"
+        > -->        
+        <wl-load2/>
         <div class="box_duo_input">          
           <div>
-            <wl-web-cam />
+            <wl-web-cam
+              :photo-file="photoUrl"
+              :disable="!isEdit"
+            />            
           </div>
           <div>
             <wl-input
@@ -128,6 +139,7 @@ import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
 import WlSwitchButton from "~/components/WlSwitchButton.vue";
 import WlWebCam from "~/components/WlWebCam.vue";
+import WlLoad2 from "~/components/WlLoad2.vue";
 
 export default {
   components: {
@@ -135,6 +147,7 @@ export default {
     WlInput,
     WlWebCam,
     WlSwitchButton,
+    WlLoad2,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -143,7 +156,10 @@ export default {
     return {
       img: null,
       camera: null,
-      isEdit : false
+      isEdit : false,
+      file: '',
+      loadingPhoto: true,  
+      photoUrl: '',    
     };
   },
   computed: {
@@ -176,24 +192,29 @@ export default {
       set(value){this.changeEmail(value)},
     },
     state: {
-      get() {return this.objSelected.status == 'active'},
-      set(value){this.changeState(value)},
-    },
-    photo: {
-      get() {return this.objSelected.photo},
-      set(value){this.changePhoto(value)},
+      get() {return this.objSelected.state == 'active'},
+      set(value){this.changeState(value ? 'active' : 'inactive')},
     },
     rol: {
       get() {return this.objSelected.rol},
       set(value){this.changeRol(value)},
-    }
+    },
   },
   watch: {
     $route() {
-      this.select(this.$route.params.id);
+      this.select(this.$route.params.id).then(this.getPhoto)
     }
   },
+  mounted() {
+    this.select(this.$route.params.id).then(this.getPhoto);
+  },
+  beforeDestroy() {
+    this.clearSelection();
+  },
   methods: {    
+    handleFileToUpload(){      
+      this.file = this.$refs.file.files[0]
+    },
     cancel() {
       this.$router.push(this.localePath({ name: "persons-users" }));
     },
@@ -201,11 +222,20 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.objSelected).then(this.cancel);
+      this.save({modifiedUser: this.objSelected,file: this.file}).then(this.cancel);
     },
     startEdit(){
       this.isEdit = true;
     },
+    getPhoto(){
+      this.$axios.get('/api/User/Photo/'+ this.$route.params.id, {responseType: 'blob'})
+      .then(response => this.loadPhoto(response.data))
+      .catch(e => console.log("photo cant be loaded",e))
+    },
+    loadPhoto(response){      
+      const url = window.URL.createObjectURL(new Blob([response]));      
+      this.photoUrl = url;
+    },    
     ...mapActions("persons/users", [
       "save",
       "delete",
@@ -219,7 +249,6 @@ export default {
       "changeEmail",
       "changePassword",
       "changeState",
-      "changePhoto",
       "changeRol",
     ])
   },

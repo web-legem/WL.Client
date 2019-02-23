@@ -1,7 +1,7 @@
 <template>
   <button 
     :disabled="disable" 
-    :class="[btnStyle, btnInverso, disable ? 'disable': '']" 
+    :class="[btnStyle, btnInverso, btnDisable]" 
     :title="title"
   >
     <span :class="[ico,size,icoInverso]" />
@@ -27,6 +27,9 @@ export default {
     },
     btnStyle() {
       return this.onlyIcon ? "btn-only-ico" : "btn-normal";
+    },
+    btnDisable() {
+    return  this.disable ? "disable": "";
     },
     size() {
       return this.onlyIcon ? "" : "tamano_botones_1";

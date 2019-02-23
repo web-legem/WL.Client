@@ -15,14 +15,14 @@
             id="laimagen"
             ref="imgShowed"
             alt="fotrografia usuario" 
-            src=""
+            :src="photoFile"
             @load="showPhoto"
           >
           <input 
             id="input_usu_foto"
             ref="inputToLoad"
             type="file" 
-            :disabled="false" 
+            :disabled="disable" 
             @change="loadPhoto"
           >
           <input 
@@ -36,14 +36,14 @@
             title="tomar foto" 
             :only-icon="true"
             :ico="'ico-camera'"
-            :disable="!true"
+            :disable="disable"
             @click.native="openCamera()"
           />
           <wl-button 
             title="subir foto" 
             :only-icon="true"
             :ico="'ico-upload'"
-            :disable="!true"
+            :disable="disable"            
             @click.native="selectFile()"
           />
           <wl-button 
@@ -51,7 +51,7 @@
             title="BorrarFoto" 
             :only-icon="true"
             :ico="'ico-trash'"
-            :disable="!true"
+            :disable="disable"            
             @click.native="deletePhoto()"
           />
         </div>
@@ -151,7 +151,10 @@ export default {
   },
   props: {
     title: { type: String, default: "" },
-    overlayClose: { type: Boolean, default: false },          
+    overlayClose: { type: Boolean, default: false },
+    photoFile: {type:String, default:""},      
+    disable: { type: Boolean, default: true },  
+    photoInput: { type: File, default: null },  
   },
   data() {
   return {
@@ -203,7 +206,6 @@ export default {
       var leerArchivo = new FileReader();
       leerArchivo.onload = (e) => {
           img.src = e.target.result;
-
       };
       leerArchivo.readAsDataURL(f);//para q el archivo sea leido 
     },

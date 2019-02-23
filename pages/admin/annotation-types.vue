@@ -15,8 +15,10 @@
         {{ annotationType.name }}
       </wl-list-item>      
     </wl-filtered-list>
-
-    <div slot="details" class="details">
+    <div 
+      slot="details" 
+      class="details"
+    >
       <nuxt-child/>
     </div>
   </wl-master-detail-layout>
