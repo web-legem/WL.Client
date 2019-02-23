@@ -68,12 +68,12 @@ export default {
 
 .a_select select:disabled {
   pointer-events: none;
-  background: #ebebeb;
+  background: var(--select);
   color: #555;
 }
 .a_select input:disabled {
   pointer-events: none;
-  background: #ebebeb;
+  background: var(--select);
   color: #555;
 }
 
@@ -81,11 +81,11 @@ export default {
 .a_select input {
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: #fff;
+  background: var(--select-s);
   width: 100%;
   height: 35px;
   overflow: hidden;
-  border: 1px solid #aaa;
+  border: 1px solid var(--select-se-b);
   padding: 0 10px;
 }
 
@@ -93,7 +93,7 @@ export default {
   font-family: "iconos-legem";
   font-size: 25px;
   font-weight: 900;
-  color: #999;
+  color: var(--select-be);
   content: "\71";
   position: absolute;
   top: 4px;
@@ -104,13 +104,13 @@ export default {
 }
 
 .a_select select:hover {
-  border: 1px solid #888;
+  border: 1px solid var(--select-ho);
 }
 .a_select:hover::before {
-  color: #099472;
+  color: var(--select-hb);
 }
 .a_select.disable:hover::before {
-  color: #999;
+  color: var(--select-hb);
 }
 
 /*------ Fin select ------*/
@@ -118,7 +118,7 @@ export default {
 /*---Eventos select-----*/
 .a_select > select:focus {
   outline: 0;
-  border-color: #38ba8f;
+  border-color: var(--select-fcu);
   border-width: 2px;
 }
 

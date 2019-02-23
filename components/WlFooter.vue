@@ -51,12 +51,12 @@ export default {
 
 <style>
 .a_footer {
-  background: #2c3e50;
+  background: var(--footer);
   width: 100%;
   min-height: 30vh;
   display: flex;
   flex-direction: column;
-  color: #eee;
+  color: var(--footer-c);
   line-height: 1.7;
   font-size: 1em;
 }
@@ -66,13 +66,13 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;  
-  background:rgba(0, 0, 0, 0.3);
+  background:var(--footer1);
 }
 
 .sub_footer2{
   text-align:center;
   padding:10px;
-  color:#eee;
+  color:var(--footer2);
 }
 
 .sub_footer1 > div {
@@ -81,16 +81,16 @@ export default {
   margin:10px 40px;
   padding:0 30px;
   min-width:200px;
-  color:#eee;
+  color:var(--footer1-dv);
 }
 
 .sub_footer1 > div > hr{
   margin:5px 0;
-  border:1px solid rgba(255, 255, 255, .2);
+  border:1px solid var(--footer1-hr); /*probar o cambiar de normal a alto*/
 }
 
 .sub_footer1>div>p{
-  color:#eee;
+  color:var(--footer1-p);
 }
 
 .sub_footer1>div>p:first-child{
@@ -98,18 +98,18 @@ export default {
 }
 
 .f_link{
-  color:#eee;
+  color:var(--link-c);
   cursor:pointer;
 }
 
 .ico_f{
-  color:#eee;
+  color:var(--ico-f);
   font-size:xx-large;
   cursor:pointer;
 }
 
 .ico_f:hover,.f_link:hover{
-  color:#5ab6ae;
+  color:var(--ico-f-ho);
 }
 
 #f_3 > img{
@@ -127,14 +127,14 @@ export default {
 }
 
 .a_mini_footer {
-  background: #2c3e50;
-  color:#eee;
+  background: var(--footer-m);
+  color:var(--footer-mc);
   display: flex;
   flex-direction:column;   
 }
 
 .a_mini_footer > div:first-child{
-  box-shadow:0 2px 3px 0 #1b2631;
+  box-shadow:0 2px 3px 0 var(--footer-ch);
 }
 
 

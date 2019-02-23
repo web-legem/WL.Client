@@ -8,7 +8,7 @@ html {
   --box-controles-r:#e2e2e2;
   --contenedor-f:#fff;
   --contenedor-f-p:#0f745b;
-  --contendero-f-b:#0f745b;
+  --contenedor-f-b:#0f745b;
   --busqueda-r:#fff;
   --busqueda-s:#aaa;
   --res-desc:#47627d;
@@ -35,7 +35,7 @@ html {
   --btn-sin:#0f745b;
   --btn-sin-i:#fff;
   --btn-sin-h:#009688;
-  --bnt-sin-a:#064234;
+  --btn-sin-a:#064234;
   --btn-in:#00796b;
   --btn-in-s:#fff;
   --tarjetas-a-c:#0f745b;
@@ -75,7 +75,7 @@ html {
   --titulo-n-s:#ccc;
   --news-t:rgba(0, 0, 0, 0.05);
   --news-t-s:rgba(0, 0, 0, 0.3);
-  --newa-t-b:rgba(255, 255, 255, 0.95);
+  --news-t-b:rgba(255, 255, 255, 0.95);
   --control-i:#37404A;
   --control-i-b:white;
   --control-p:rgb(237, 237, 237);
@@ -115,7 +115,7 @@ html {
   --input-st-b:rgba(69,177,93,.2);
   --label-st-b:#fff;
   --label-st-bc:#2dbf85;
-  --mini-se:rgba(17, 21, 21, 0.3);
+  --mini-se:rgba(17, 21, 21, 0.3); 
   --mini-se-in:#444;
   --mini-se-inb:#fff;
   --mini-se-b:#146c47;
@@ -136,7 +136,7 @@ html {
   --switch-br:#fff;
   --switch-af:#5e5f64;
   --switch-lb:#34d056;
-  --swith-ch:#5e5f64;
+  --switch-ch:#5e5f64;
   --checkbox-l:#fff;
   --checkbox-b:#ccc;
   --checkbox-br:#bbb;
@@ -225,6 +225,7 @@ html {
   --modulo-tp:#222 ;
   --admon-ta:#e9eaed;
   --con-olv:blue;
-  --login-bx:#fff;
+  --login-bx:#fff;  
+  
   }
-
+ 

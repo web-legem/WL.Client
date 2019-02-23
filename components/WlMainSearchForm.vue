@@ -54,16 +54,16 @@ export default {
   overflow: hidden;
   display: flex;
   transition: all .4s;
-  box-shadow: 0 0 0 8px rgba(17, 21, 21, .3);
+  box-shadow: 0 0 0 8px var(--mini-se);
 }
 
 .mini_search input {
   font-size: 2em;
   padding: 17px;
   border: none;
-  color: #444;
+  color: var(--mini-se-in);
   flex: 1;
-  background: white;
+  background: var(--mini-se-inb);
   opacity: .8;
 }
 
