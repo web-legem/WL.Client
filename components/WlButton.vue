@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <button 
-      :disabled="disable == true" 
-      :class="[btnStyle,btnInverso]" 
-      :title="title">
-      <span :class="[ico,size,icoInverso]"/> <slot/>
-    </button>
-  </div>
+  <button 
+    :disabled="disable" 
+    :class="[btnStyle, btnInverso, disable ? 'disable': '']" 
+    :title="title"
+  >
+    <span :class="[ico,size,icoInverso]" />
+    <slot />
+  </button>
 </template>
 
 <script>
 export default {
-  
   props: {
     title: { type: String, default: "" },
     ico: { type: String, default: "" },
@@ -31,14 +30,12 @@ export default {
     },
     size() {
       return this.onlyIcon ? "" : "tamano_botones_1";
-    }
+    },
   }
 };
 </script>
 
-<style>
-/*---------Estilos para Botones----------*/
-
+<style lang="scss" scoped>
 .btn-normal {
   position: relative;
   background-color:var(--btn);
@@ -78,8 +75,6 @@ export default {
   background: rgba(0, 0, 0, 0.4); /*falta variable  en colors*/
 }
 
-/*...................................*/
-
 .btn-normal.azul {
   background-color: var(--btn-con-i);
 }
@@ -92,8 +87,6 @@ export default {
   background-color:var(--btn-con-ac);
 }
 
-/*---------------------------------*/
-
 .tamano_botones_1 {
   background: var(--botones-t);
   height: 100%;
@@ -104,8 +97,6 @@ export default {
   font-size: 140%;
   line-height: 2.3;
 }
-
-/*-----------------------------------*/
 
 .tamano_botones_1.derecha {
   left: unset;
@@ -155,8 +146,6 @@ export default {
   background-color: var(--bnt-sin-a);
 }
 
-/*-----Btn solo Ico-----*/
-
 .btn-only-ico {
   border: 0;
   background: var(--btn-in);
@@ -184,5 +173,11 @@ export default {
   width: 100%;
 }
 
-/*--Fin Btn solo Ico-----*/
+button.danger {
+  background-color: tomato;
+}
+
+button.danger:hover {
+  background: pink;
+}
 </style>

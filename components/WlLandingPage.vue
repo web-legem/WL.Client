@@ -1,7 +1,8 @@
 <template>
   <div>
     <div
-      :style="{ backgroundImage: 'url(' + src + ')' }"
+      :style="{ backgroundImage: 'url(' + src + ')'
+                , backgroundColor: backgroundColor }"
       class="before"
     />
 
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import WlInstitutionalSimbols from '~/components/WlInstitutionalSimbols.vue'
+import WlInstitutionalSimbols from '~/components/home/WlInstitutionalSimbols.vue'
 
 export default {
   components: {
@@ -24,11 +25,16 @@ export default {
       type: String
       , required: true
     }
+    , backgroundColor: {
+      type: String
+      , required: false
+      , default: '#5b789e'
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .landing-page {
   display: flex;
   flex-direction: column;
@@ -38,7 +44,6 @@ export default {
 }
 
 .before {
-  background-size: 100%;
   background-size: cover;
   width: 100%;
   height: 100%;

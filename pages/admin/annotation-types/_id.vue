@@ -1,15 +1,117 @@
 <template>
   <div>
-    <h1>Annotation Type to Edit</h1>
+    <wl-crud
+      :obj-select="objSelected"
+      :is-new="false"
+      :error="error"
+      @wlcancel="cancel"
+      @wlupdate="update"
+      @wldelete="drop"
+      @wlclearerror="clearError"
+      @wlstartedit="startEdit"
+    >
+      <template slot="wl-form">
+        <wl-input
+          v-if="objSelected"
+          v-model="name"
+          :disable="!isEdit"
+          :title="'Nombre del Tipo Anotación'"
+          :max="100"
+          :placeholder="'Escriba el nombre del tipo anotación'"
+          :error-msg="'Este es un error'"
+          :error="true"
+        />
+        <wl-input
+          v-if="objSelected"
+          v-model="root"
+          class="sm-space-top"
+          :disable="!isEdit"
+          :title="'Raiz de la Anotación'"
+          :max="50"
+          :placeholder="'Escriba la raiz de la anotación'"
+          :error-msg="'Este es un error'"
+          :error="true"
+        />
+      </template>
+    </wl-crud>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+import WlCrud from "~/components/WlCrud.vue";
+import WlInput from "~/components/WlInput.vue";
+
 export default {
+  validate({ params }) {
+    return /^\d+$/.test(params.id);
+  },
+  components: {
+    WlCrud,
+    WlInput
+  },
+  data() {
+    return {
+      isEdit : false
+    }
+  },
+  computed: {
+    ...mapGetters("admin/annotation-types", {
+      objSelected: "selected",
+      error: "error",
+    }),
+    name: {
+      get() {
+        return this.objSelected.name;
+      },
+      set(value) {
+        this.changeName(value);
+      }
+    },
+    root: {
+      get() {
+        return this.objSelected.root;
+      },
+      set(value) {
+        this.changeRoot(value);
+      }
+    }
+  },
+  watch: {
+    $route() {
+      this.select(this.$route.params.id);
+    }
+  },
 
-}
+  mounted() {
+    this.select(this.$route.params.id);
+  },
+  beforeDestroy() {
+    this.clearSelection();
+  },
+
+  methods: {
+    cancel() {
+      this.$router.push(this.localePath({ name: "admin-annotation-types" }));
+    },
+    drop() {
+      this.delete().then(this.cancel);
+    },
+    update() {
+      this.save(this.objSelected).then(this.cancel);
+    },
+    startEdit(){
+      this.isEdit = true;
+    },
+    ...mapActions("admin/annotation-types", [
+      "select",
+      "clearSelection",
+      "changeName",
+      "changeRoot",
+      "save",
+      "delete",
+      "clearError",
+    ])
+  }
+};
 </script>
-
-<style>
-
-</style>

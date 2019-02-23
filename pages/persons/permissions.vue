@@ -3,13 +3,14 @@
     <wl-filtered-list slot="master">
       <wl-list-item
         v-for="permission in permissions"
-        :to="localePath({ name: 'persons-permissions-id', params: { id: permission.id} })"
         :key="permission.id"
+        route="persons-permissions-id"
+        active-route="persons-permissions"
+        :item-id="permission.id"
       >
         {{ permission.name }}
       </wl-list-item>
     </wl-filtered-list>
-    
     <div slot="details">
       <nuxt-child />
     </div>
@@ -32,6 +33,12 @@ export default {
     WlMasterDetailLayout
     , WlListItem
     , WlFilteredList
+  }
+  , nuxtI18n: {
+    paths: {
+      es: 'permisos'
+      , en: 'permissions'
+    }
   }
   , data() {
     return {

@@ -1,9 +1,12 @@
+// import mock from '~/mock'
 
 export const state = () => ({
   highContrast : false
   , showA11yPanel: false
   , fontSize: 100
   , fontSizes: [ 100, 125, 150 ]
+  , mouseDownA11yPanel: false
+  , showBorder: false
 })
 
 export const mutations = {
@@ -19,6 +22,15 @@ export const mutations = {
   , changeFontSize(state, fontSize) {
     state.fontSize = fontSize
   }
+  , setMouseDownA11yPanel(state, isDown) {
+    state.mouseDownA11yPanel = isDown
+  },
+  showBorder(state) {
+    state.showBorder = true
+  },
+  hideBorder(state) {
+    state.showBorder = false
+  },
 }
 
 export const actions = {
@@ -26,7 +38,6 @@ export const actions = {
     commit('switchTheme')   
   }
   , changeTheme({commit, state}, theme) {
-    console.log(theme, state.highContrast)
     if(
       (theme == 'light' && state.highContrast)
       || (theme == 'dark' && !state.highContrast)
@@ -47,5 +58,14 @@ export const actions = {
       commit('hideA11yPanel')
     else
       commit('showA11yPanel')
+  }
+  , setMouseDownA11yPanel({commit}, isDown) {
+    commit('setMouseDownA11yPanel', isDown)
+  },
+  showBorder({commit}) {
+    commit('showBorder')
+  },
+  hideBorder({commit}){
+    commit('hideBorder')
   }
 }

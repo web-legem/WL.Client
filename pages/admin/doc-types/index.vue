@@ -1,56 +1,31 @@
 <template>
   <div>
-    <wl-crud :obj-select="obj">
+    <wl-crud 
+      :obj-select="null"
+      :disable-buttons="true"
+    >
       <div slot="wl-form">
         <wl-input 
           :title="'Nombre del Tipo Documento'"
-          :max="10" 
           :placeholder="'Escriba el nombre del tipo documento'" 
-          :error-msg="'Este es un error'" 
-          :error="'true'"/>
-
-        <wl-select 
-          :title="'Seleccione del Tipo Documento'"
-          :error-msg="'Este es un error'" 
-          :error="'true'"/>
-
+          :max="0"
+          :disable="true"
+        />
       </div>
     </wl-crud>
   </div>
 </template>
 
 <script>
-import WlCrud from "~/components/WlCrud.vue";
-import WlButton from "~/components/WlButton.vue";
-import WlInput from "~/components/WlInput.vue";
-import WlSelect from "~/components/WlSelect.vue";
+import WlCrud from "~/components/WlCrud.vue"
+import WlInput from "~/components/WlInput.vue"
 
 export default {
   components: {
     WlCrud,
-    WlButton,
     WlInput,
-    WlSelect,    
-  },
-
-  data() {
-    return {
-      obj: null
-    };
-  },
-
-  methods: {
-    selectObj() {
-      this.obj = {
-        id: 10,
-        name: "CARTA"
-      };
-    },
-    unselectObj() {
-      this.obj = null;
-    }
   }
-};
+}
 </script>
 
 <style>

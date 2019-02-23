@@ -2,31 +2,41 @@
   <div>
     <label 
       :for="name" 
-      class="texto_labels" >{{ title }}
+      class="texto_labels"
+    >
+      {{ title }}
     </label>
     <div class="a_select">
       <select 
-        :disabled="disable == true"
+        :id="id"
         :name="name" 
-        :id="id">
+        :value="value"
+        :disabled="disable == true"
+        @input="$emit('input',$event.target.value)"
+      >
         <option 
           disabled 
-          selected 
-          value> {{ emptyMsg }} 
+          value=""
+        >
+          {{ emptyMsg }} 
         </option>
         <option 
-          v-for="option in options" 
-          :key="option.id">
-          {{ option.text }}
+          v-for="item in list"
+          :key="item.id"
+          :value="item[valuePropName]"
+        >
+          {{ item[labelPropName] }}
         </option>      
       </select> 
     </div>
-    
 
     <div 
       v-show="error" 
-      class="msj-error">
-      <label>{{ errorMsg }}</label>
+      class="msj-error"
+    >
+      <label>
+        {{ errorMsg }}
+      </label>
     </div>
   </div>
 </template>
@@ -39,31 +49,28 @@ export default {
     id: { type: String, default: "" },
     isRequired: { type: Boolean, default: false },
     disable: { type: Boolean, default: false },
-    error: { type: Boolean, default: false, required: false },
+    error: { type: Boolean, default: false },
     errorMsg: { type: String, default: "" },
-    emptyMsg: { type: String, default: "Seleccione una Opción" }
+    emptyMsg: { type: String, default: "Seleccione una Opción" },
+    list: { type: Array, required: true },
+    valuePropName: { type: String,required: true },
+    labelPropName: { type: String, required: true },
+    value: { type: Number, default: 0  }
   },
   data() {
-    return {
-      options: [
-        { id:0, text: "One", value: "A" },
-        { id:1, text: "Two", value: "B" },
-        { id:2, text: "Three", value: "C" }
-      ]
+    return {     
     };
   },
   computed: {}
 };
 </script>
 
-<style>
-/*------Select input ---------*/
-
+<style lang="scss" scoped>
 .a_select {
   display: flex;
   border-right: none;
   position: relative;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .a_select select:disabled {
@@ -71,6 +78,7 @@ export default {
   background: var(--select);
   color: #555;
 }
+
 .a_select input:disabled {
   pointer-events: none;
   background: var(--select);
@@ -106,16 +114,15 @@ export default {
 .a_select select:hover {
   border: 1px solid var(--select-ho);
 }
+
 .a_select:hover::before {
   color: var(--select-hb);
 }
+
 .a_select.disable:hover::before {
   color: var(--select-hb);
 }
 
-/*------ Fin select ------*/
-
-/*---Eventos select-----*/
 .a_select > select:focus {
   outline: 0;
   border-color: var(--select-fcu);

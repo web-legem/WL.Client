@@ -42,7 +42,7 @@
 
 .a_input {
     display: flex;
-    margin-bottom: 8px
+    /* margin-bottom: 8px */
 }
 
 .input_text_btn {
@@ -159,7 +159,6 @@
     color: orangered;
     font-family: "Lato";
     font-size: .7rem;
-    line-height: 4px;
     margin-bottom: 4px;
 }
 

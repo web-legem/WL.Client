@@ -1,7 +1,8 @@
 <template>
   <nuxt-link
     :to="to"
-    class="tab">
+    class="tab"
+  >
     <span :class="[icon, 'ico']" />
     <span class="tab-name">
       <slot />
@@ -24,7 +25,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .tab {
   background-color: #fff;
   padding: .8em 1.6em;

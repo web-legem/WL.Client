@@ -7,19 +7,17 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
+      { id: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {}
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   css: [
-    '@/assets/colors.css'
-    , '@/assets/colors-hc.css'
-    , '@/assets/base.css'
+    '@/assets/base.css'
     , '@/assets/iconos-legem1/styles.css' 
     , '@/assets/iconos-legem2/style.css'
+    , '@/assets/escudos-legem/style.css'
     , '@/assets/inputs.css'
   ],
   /*
@@ -42,12 +40,15 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      // if(isDev) config.devtool = "#sourcemap"
     },
   },
   plugins: [
-    '~/plugins/vee-validate.js'
+    '~/plugins/filters.js',
+    // '~/plugins/vee-validate.js'
   ],
   modules: [
+    'nuxt-vuex-router-sync',
     ['nuxt-i18n', {
       locales: [
         { code: 'es', name: 'Español', iso: 'es-CO', file: 'es.js' }
@@ -55,19 +56,30 @@ module.exports = {
       ],
       defaultLocale: 'es',
       lazy: true,
-      langDir: 'locales/'
-    }],
-    '@nuxtjs/axios'
+      langDir: 'locales/',
+    }]
+    , '@nuxtjs/axios'
+    , ['nuxt-mq', {
+      breakpoints: {
+        xs: 300
+        , sm: 500
+        , md: 800
+        , mid: 992
+        , lg: 1200
+        , xl: Infinity
+      },
+      defaultBreakpoint: 'lg',
+    }]
   ],
   // axios: {
   //   // proxyHeaders: false,
   //   host: 'localhost'
   //   , port: '54037'
-  //   , retry: {  retries: 2 }
+  //   , retry: {  retries: 0 }
   // },
   axios: {
-    host: '192.168.0.6'
+    host: 'localhost'
     , port: '54037'
-    , retry: { retries: 2 }
+    , retry: { retries: 0 }
   }
 }

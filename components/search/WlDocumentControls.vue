@@ -1,0 +1,28 @@
+<template>
+  <div class="document-controls">
+    <h1 class="document-title">
+      Document Title
+    </h1>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+.document-controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-bottom: 1px solid grey;
+}
+
+.document-title {
+  font-size: 1.4rem;
+  color: #00796b;
+}
+</style>

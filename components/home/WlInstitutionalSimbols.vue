@@ -2,13 +2,13 @@
   <div class="contenedor_simbolos">
     <div>
       <div>
-        <img src="~/assets/img/acreditacion.png" >
+        <img src="~/assets/img/acreditacion.png">
       </div>
       <div>
-        <img src="~/assets/img/planeacion.png" >
+        <img src="~/assets/img/planeacion.png">
       </div>
       <div>
-        <img src="~/assets/img/years-111.png" >
+        <img src="~/assets/img/years-111.png">
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .contenedor_simbolos {
   background: rgba(0, 0, 0, .6);
   align-items: flex-end;

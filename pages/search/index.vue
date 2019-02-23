@@ -1,27 +1,21 @@
 <template>
   <div class="search">
-    <wl-master-detail-layout>
-      <template 
-        slot="master"
-      >
-        Controles Busqueda Avanzada
-      </template>
-
-      <template
-        slot="details"
-      >
-        Resultado Busqueda
-      </template>
-    </wl-master-detail-layout>
+    <wl-search />
   </div>
 </template>
 
 <script>
-import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
+import WlSearch from '~/components/search/WlSearch.vue'
 
 export default {
   components: {
-    WlMasterDetailLayout
+    WlSearch
+  },
+  fetch({store, params, query}) {
+    return Promise.all([
+      store.dispatch('search/loadFilterData'),
+      store.dispatch('search/search',{ ...query })
+    ])
   }
 }
 </script>
@@ -30,7 +24,7 @@ export default {
 .search {
   width: 100%;
   padding-top: calc(25px + 4.5vh);
-  height: calc(95.5vh - 25px);
+  height: 100%;
   position: relative;
 }
 </style>

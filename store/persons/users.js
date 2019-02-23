@@ -1,41 +1,176 @@
-
 export const state = () => ({
-  list: []
-  , loading: false
-  , loaded: false
-  , error: null
+  list: [],
+  selectedId: null,
+  isCreating: false,
+  selected: {},
+  loading: false,
+  loaded: false,
+  error: null,
 })
 
 export const getters = {
-  users: (state) => state.list
+  list: (state) => state.list,
+  selected: (state) => state.selected,
+  isSelected: (state) => state.selectedId != null,
+  isCreating: (state) => state.isCreating,
+  error: (state) => state.error,
 }
 
 export const mutations = {
   loading(state) {
-    state.loading = false
+    state.loading = true
     state.loaded = false
     state.list = []
     state.error = null
-  }
-  , loadingSuccess(state, payload) {
+  },
+  loadingSuccess(state, payload) {
     state.loading = false
     state.loaded = true
     state.list = payload
-    state.error = null
-  }
-  , loadingFailure(state, payload) {
+  },
+  loadingFailure(state, payload) {
     state.loading = false
     state.loaded = false
-    state.list = []
     state.error = payload
-  }
+  },
+  select(state, userId) {
+    state.error = null
+    state.selectedId = userId
+    state.selected = state.list
+      .filter(x => x.id == Number.parseInt(userId))
+      .map(x => JSON.parse(JSON.stringify(x)))
+      .pop()
+  },
+  clearSelection(state) {
+    state.selectedId = null
+    state.selected = null
+    state.isCreating = false
+  },
+  isCreating(state) {
+    state.isCreating = true
+  },
+  creatingError(state, error) {
+    state.loading = false
+    state.error = error
+  },
+  updatingError(state, error) {
+    state.loading = false
+    state.error = error
+  },
+  deletingError(state, error) {
+    state.loading = false
+    state.error = error
+  },
+  clearError(state) {
+    state.error = null
+  },
+  waiting(state) {
+    state.loading = true
+  },
+
+  changeFirstName(state, newVal) {
+    state.selected.firstName = newVal
+  },
+  changeLastName(state, newVal) {
+    state.selected.lastName = newVal
+  },
+  changeNickname(state, newVal) {
+    state.selected.nickname = newVal
+  },
+  changeDocument(state, newVal) {
+    state.selected.document = newVal
+  },
+  changePassword(state, newVal) {
+    state.selected.password = newVal
+  },
+  changeEmail(state, newVal) {
+    state.selected.email = newVal
+  },
+  changeState(state, newVal) {
+    state.selected.state = newVal
+  },
+  changePhoto(state, newVal) {
+    state.selected.photo = newVal
+  },
+  changeRol(state, newVal) {
+    state.selected.rol = newVal
+  },
 }
 
 export const actions = {
-  loadData({commit}) {
+  loadData({ commit }) {
     commit('loading')
-    return this.$axios.get('/api/Users')
+    return this.$axios.get('/api/User')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', 'Error'))
-  }
+      .catch(e => commit('loadingFailure', e))
+  },
+  create({ commit, dispatch }, newUser) {
+    commit('waiting')
+    return this.$axios.post('/api/User', newUser)
+      .then(_ => dispatch('loadData'))
+      .catch(e => {
+        commit('creatingError', e.response.data.message)
+        throw e;
+      }
+      )
+  },
+  save({ commit, dispatch }, modifiedUser) {
+    commit('waiting')
+    return this.$axios.put('/api/User', modifiedUser)
+      .then(_ => dispatch('loadData'))
+      .catch(e => {
+        commit('updatingError', e.response.data.message)
+        throw e;
+      }
+      )
+  },
+  delete({ commit, state, dispatch }) {
+    commit('waiting')
+    return this.$axios.delete('/api/User/' + state.selectedId)
+      .then(_ => dispatch('loadData'))
+      .catch(e => {
+        commit('deletingError', e.response.data.message)
+        throw e;
+      }
+      )
+  },
+  select({ commit }, userId) {
+    commit('select', userId)
+  },
+  clearSelection({ commit }) {
+    commit('clearSelection')
+  },
+  clearError({ commit }) {
+    commit('clearError')
+  },
+  isCreating({ commit }) {
+    commit('isCreating')
+  },
+  changeFirstName({ commit }, newVal) {
+    commit('changeFirstName', newVal)
+  },
+  changeLastName({ commit }, newVal) {
+    commit('changeLastName', newVal)
+  },
+  changeNickname({ commit }, newVal) {
+    commit('changeNickname', newVal)
+  },
+  changeDocument({ commit }, newVal) {
+    commit('changeDocument', newVal)
+  },
+  changePassword({ commit }, newVal) {
+    commit('changePassword', newVal)
+  },
+  changeEmail({ commit }, newVal) {
+    commit('changeEmail', newVal)
+  },
+  changeState({ commit }, newVal) {
+    commit('changeState', newVal)
+  },
+  changePhoto({ commit }, newVal) {
+    commit('changePhoto', newVal)
+  },
+  changeRol({ commit }, newVal) {
+    commit('changeRol', newVal)
+  },
 }

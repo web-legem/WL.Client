@@ -1,7 +1,9 @@
 <template>
   <div>
     <wl-landing-page
-      :src="vipriImg">
+      :src="vipriImg"
+      background-color="#5b789e"
+    >
       <wl-main-search-form />
     </wl-landing-page>
     <wl-footer />
@@ -10,9 +12,10 @@
 
 <script>
 import WlLandingPage from '~/components/WlLandingPage.vue'
-import WlMainSearchForm from '~/components/WlMainSearchForm.vue'
-import WlFooter from '~/components/WlFooter.vue'
+import WlMainSearchForm from '~/components/home/WlMainSearchForm.vue'
+import WlFooter from '~/components/home/WlFooter.vue'
 import { imagesContext } from '~/helpers/imagesContext'
+import {mapActions} from 'vuex'
 
 export default {
   components: { 
@@ -26,9 +29,18 @@ export default {
         return imagesContext('./vipri-light.jpg')
       return imagesContext('./vipri-dark.jpg')
     }
+  },
+  beforeMount(){
+    this.showBorder()
+  },
+  beforeDestroy() {
+    this.hideBorder()
+  },
+  methods: {
+    ...mapActions([
+      'showBorder',
+      'hideBorder',
+    ]),
   }
 }
 </script>
-
-<style>
-</style>
