@@ -141,7 +141,7 @@ export default {
       email: "",
       state: "active",
       rol: "",
-      file: '',
+      file: null,
     };
   },
   computed: {

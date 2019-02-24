@@ -214,6 +214,7 @@ export default {
       img.src = "";
       this.trash = false;
       img.style.visibility = "hidden";
+      this.photoInput = null;
     },
     showPhoto(){      
       var img = this.imageElement;      
@@ -251,6 +252,7 @@ export default {
       canvasAux.getContext('2d').drawImage(imgAux, 80, 20, 155, 200, 0, 0, 155, 200);
       img.src = canvasAux.toDataURL("image/jpeg");
       img.style.visibility = "unset";
+      this. convertToFile(img.src);
       var imageData = canvas.toDataURL('image/png');
       var params = "filename=" + imageData;
       document.getElementById("hidden_input").setAttribute("value", params);
@@ -259,6 +261,20 @@ export default {
       this.existCanvas = false;
       this.closeCamera();
     },
+    convertToFile(source){
+      let dataUrl = source.split(',')
+      let base64 = dataUrl[1];
+      let mime = dataUrl[0].match(/:(.*?);/)[1];
+      let bin = atob(base64);
+      let length = bin.length;
+      let buf = new ArrayBuffer(length);
+      let arr = new Uint8Array(buf);
+      bin
+        .split('')
+        .forEach((e,i)=>arr[i]=e.charCodeAt(0));
+        
+      this.photoInput = new File([buf],'filename',{type:mime}); // note: [buf]
+    },    
     repetirFoto() {
         var canvas = this.canvasElement;
         canvas.width = canvas.width;//limpiar contenido del canvas  
