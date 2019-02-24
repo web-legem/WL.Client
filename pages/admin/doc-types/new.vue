@@ -10,9 +10,9 @@
       <template slot="wl-form">
         <wl-input 
           v-model="name"
-          :title="'Nombre del Tipo Documento'"
+          :title="$t('admin.document-type.title-name-doc-type')"
           :max="50" 
-          :placeholder="'Escriba el nombre del tipo documento'" 
+          :placeholder="$t('admin.document-type.place-enter-name-td')" 
           :error-msg="'Este es un error'" 
           :error="true"
         />

@@ -10,14 +10,15 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
+    
       <template slot="wl-form">
         <wl-input
           v-if="selected"
           :value="selected.name"
           :disable="!isEdit"
-          :title="'Nombre de la Entidad'"
+          :title="$t('admin.entitie-tab.title-name-entity')"
           :max="100"
-          :placeholder="'Escriba el nombre de la entidad'"
+          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
           :error-msg="'Este es un error'"
           :error="true"
           @input="changeName"
@@ -27,9 +28,9 @@
           :value="selected.email"
           class="sm-space-top"
           :disable="!isEdit"
-          :title="'Email'"
+          :title="$t('admin.entitie-tab.title-email')"
           :max="100"
-          :placeholder="'Escriba Email'"
+          :placeholder="$t('admin.entitie-tab.place-enter-email')"
           :error-msg="'Este es un error'"
           :error="true"
           @input="changeEmail"
@@ -40,7 +41,7 @@
           class="sm-space-top"
           :disable="!isEdit"
           :name="'select'"
-          :title="'Seleccione del Tipo Documento'"
+          :title="$t('admin.entitie-tab.title-select-doc-type')"
           :error-msg="'Este es un error'"
           :error="true"
           :list="entityTypes"

@@ -25,25 +25,25 @@
           <div>
             <wl-input
               v-model="firstName"
-              :title="'Nombre'"
+              :title=" $t('persons.users-s.title-name')"
               :max="100"
-              :placeholder="'Ingrese Nombre'"
+              :placeholder=" $t('persons.users-s.place-enter-name')"
               :error-msg="'Este es un error'"
               :error="true"
             />
             <wl-input
               v-model="lastName"
-              :title="'Apellidos'"
+              :title=" $t('persons.users-s.title-lasltname')"
               :max="100"
-              :placeholder="'Ingrese Apellidos'"
+              :placeholder=" $t('persons.users-s.place-enter-lastname')"
               :error-msg="'Este es un error'"
               :error="true"
             />
             <wl-input
               v-model="nickName"
-              :title="'Nombre de Usuario'"
+              :title=" $t('persons.users-s.title-name-user')"
               :max="50"
-              :placeholder="'Ingrese Nombre de Usuario'"
+              :placeholder=" $t('persons.users-s.place-enter-name-user')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -53,9 +53,9 @@
           <div>
             <wl-input
               v-model="password"
-              :title="'Contraseña'"
+              :title=" $t('persons.users-s.title-password')"
               :max="256"
-              :placeholder="'Ingrese Contraseña'"
+              :placeholder="$t('persons.users-s.place-enter-passord')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -63,9 +63,9 @@
           <div>
             <wl-input
               v-model="document"
-              :title="'Identificacion'"
+              :title=" $t('persons.users-s.title-id')"
               :max="50"
-              :placeholder="'Ingrese Identificacion'"
+              :placeholder=" $t('persons.users-s.place-enter-id')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -75,9 +75,9 @@
           <div>
             <wl-input
               v-model="email"
-              :title="'Correo Electronico'"
+              :title="$t('persons.users-s.title-email')"
               :max="100"
-              :placeholder="'Ingrese Correo Electronico'"
+              :placeholder=" $t('persons.users-s.place-enter-email')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -85,9 +85,9 @@
           <div>
             <wl-input
               v-model="rol"
-              :title="'Rol de Usuario'"
+              :title="$t('persons.users-s.title-role-user')"
               :max="100"
-              :placeholder="'Ingrese Rol de Usuario'"
+              :placeholder="$t('persons.users-s.place-enter-role-user')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -98,9 +98,9 @@
           <div>
             <wl-switch-button
               :id="'rad1'"
-              :type="'checkbox'"
-              :title="'Estado Usuario'"
-              :label="'Activo'"
+              :type="'checkbox'" 
+              :title=" $t('persons.users-s.title-state-user')"
+              :label=" $t('persons.users-s.label-active')"
               :error-msg="'Este es un error'"
               :error="true"
             />

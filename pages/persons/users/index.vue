@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Not Selected</h1>
+    <h1>{{ $t('persons.users-s.h-not-selected') }}</h1>
   </div>
 </template>
 

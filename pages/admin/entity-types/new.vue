@@ -10,14 +10,14 @@
       <template slot="wl-form">
         <wl-input 
           v-model="name"
-          :title="'Nombre del Tipo Entidad'"
+          :title="$t('admin.entities-type.title-name-enty-type')"
           :max="100" 
-          :placeholder="'Escriba el nombre del tipo entidad'" 
+          :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
           :error-msg="'Este es un error'"                     
           :error="true"
         />
         <label class="texto_labels sm-space-top">
-          Documentos Soportados:
+          {{ $t('admin.entities-type.label-documents-suport') }}
         </label>
         <div class="cards">
           <div
