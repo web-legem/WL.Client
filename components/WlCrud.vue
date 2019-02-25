@@ -110,7 +110,7 @@ export default {
     },
     isNew: {type: Boolean, default: false },
     error: {
-      type: Object,
+      type: Error,
       default: null
     },
     disableButtons: {type: Boolean, default: false },
@@ -168,13 +168,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  border-bottom: solid 1px #e2e2e2;
+  border-bottom: solid 1px var(--box-controles);
   margin-bottom: 10px;
 }
 
 .controles_box_right.down {
   border-bottom: none;
-  border-top: solid 1px #e2e2e2;
+  border-top: solid 1px var(--box-controles-r);
   margin-bottom: 0;
   margin-top: 10px;
 }

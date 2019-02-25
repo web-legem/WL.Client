@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>New Permission</h1>
+    <h1> {{ $t('persons.permission.h-new-permission') }}</h1>
   </div>
 </template>
 

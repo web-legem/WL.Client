@@ -6,15 +6,15 @@
     >
       <template slot="wl-form">
         <wl-input
-          :title="'Nombre de la Entidad'"
-          :placeholder="'Escriba el nombre de la entidad'"
+          :title="$t('admin.entitie-tab.title-name-entity')"
+          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
           :max="0"
           :disable="true"
         />
         <wl-input
           class="sm-space-top"
-          :title="'Email'"
-          :placeholder="'Escriba Email'"
+          :title="$t('admin.entitie-tab.title-email')"
+          :placeholder="$t('admin.entitie-tab.place-enter-email')"
           :max="0"
           :disable="true"
         />
@@ -24,7 +24,7 @@
           class="sm-space-top"
           :disable="true"
           :name="'select'"
-          :title="'Seleccione del Tipo Documento'"
+          :title="$t('admin.entitie-tab.title-select-doc-type')"
           :list="emptyList"
           :value-prop-name="'id'"
           :label-prop-name="'name'"

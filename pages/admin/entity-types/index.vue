@@ -4,15 +4,16 @@
       :obj-select="null"
       :disable-buttons="true"
     >
+    
       <template slot="wl-form">
         <wl-input
-          :title="'Nombre del Tipo Entidad'"
-          :placeholder="'Escriba el nombre del tipo entidad'"
+          :title="$t('admin.entities-type.title-name-enty-type')"
+          :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
           :max="0"
           :disable="true"
-        />
+        /> 
         <label class="texto_labels sm-space-top">
-          Documentos Soportados:
+          {{ $t('admin.entities-type.label-documents-suport') }}
         </label>
         <div class="cards">
           <div
@@ -21,9 +22,7 @@
           >
             <div class="block">
               <input
-                v-if="objSelected"
                 :id="docType.id"
-                v-model="checked"
                 disabled="!isEdit"
                 :name="docType.id"
                 :value="docType.id"

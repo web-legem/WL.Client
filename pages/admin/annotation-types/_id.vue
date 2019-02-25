@@ -15,9 +15,9 @@
           v-if="objSelected"
           v-model="name"
           :disable="!isEdit"
-          :title="'Nombre del Tipo Anotación'"
+          :title="$t('admin.annotation-type.title-name-annotation-type')"
           :max="100"
-          :placeholder="'Escriba el nombre del tipo anotación'"
+          :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
           :error-msg="'Este es un error'"
           :error="true"
         />
@@ -26,9 +26,9 @@
           v-model="root"
           class="sm-space-top"
           :disable="!isEdit"
-          :title="'Raiz de la Anotación'"
+          :title="$t('admin.annotation-type.title-annotation-root')"
           :max="50"
-          :placeholder="'Escriba la raiz de la anotación'"
+          :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
           :error-msg="'Este es un error'"
           :error="true"
         />

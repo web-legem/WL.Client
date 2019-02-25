@@ -65,13 +65,13 @@ export default {
 <style lang="scss" scoped>
 .btn_cancel {
   flex-basis: 35px;
-  background: #fff;
+  background:var(--btn-can);
   display: block;
-  border: 1px solid #bbb;
+  border: 1px solid var(--btn-can-b);
   border-left: none !important;
   width: 100%;
   height: 35px;
-  color: #666;
+  color: var(--btn-can-c);
   font-size: large;
   font-size-adjust: -webkit- 0.8;
   cursor: pointer;
@@ -79,12 +79,12 @@ export default {
 }
 
 .btn_cancel:disabled {
-  background: #fff;
+  background:var(--btn-can-d);
 }
 
 .btn_cancel span {
   display: flex;
-  color: #666;
+  color: var(--btn-can-s);
 }
 
 .btn_cancel span:before {
@@ -100,8 +100,8 @@ export default {
 }
 
 .ico_input_text {
-  background: #0f745b;
-  color: #fff;
+  background: var(--ico-inpt);
+  color: var(--ico-inpt-c);
   display: flex;
   justify-content: center;
   font-size: x-large;
@@ -110,7 +110,7 @@ export default {
 
 .ico_input_text > span {
   height: 100%;
-  display: flex;
+  display: flex;  
 }
 
 .ico_input_text > span:before {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <wl-crud
-      :obj-select="null"
+      :obj-select="objSelected"
       :is-new="false"
       :error="error"
       @wlcancel="cancel"
@@ -11,38 +11,49 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
+        <!-- <input
+          id="file"
+          ref="file"
+          name="file"
+          type="file"
+          @change="handleFileToUpload"
+        > -->        
+        <wl-load2/>
         <div class="box_duo_input">          
           <div>
-            <wl-web-cam />
+            <wl-web-cam
+              :photo-file="photoUrl"
+              :disable="!isEdit"
+            />            
           </div>
           <div>
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="firstName"
               :disable="!isEdit"
-              :title="'Nombre'"
+              :title=" $t('persons.users-s.title-name')"
               :max="100"
-              :placeholder="'Ingrese Nombre'"
+              :placeholder=" $t('persons.users-s.place-enter-name')"
               :error-msg="'Este es un error'"
               :error="true"
             />
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="lastName"
               :disable="!isEdit"
-              :title="'Apellidos'"
+              :title=" $t('persons.users-s.title-lastname')"
               :max="100"
-              :placeholder="'Ingrese Apellidos'"
+              :placeholder=" $t('persons.users-s.place-enter-lastname')"
               :error-msg="'Este es un error'"
               :error="true"
             />
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="nickname"
               :disable="!isEdit"
-              :title="'Nombre de Usuario'"
+              :title=" $t('persons.users-s.title-name-user')"
               :max="50"
-              :placeholder="'Ingrese Nombre de Usuario'"
+              :placeholder=" $t('persons.users-s.place-enter-name-user')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -51,24 +62,24 @@
         <div class="box_duo_input">          
           <div>
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="password"
               :disable="!isEdit"
-              :title="'Contraseña'"
-              :max="256"
-              :placeholder="'Ingrese Contraseña'"
+              :title=" $t('persons.users-s.title-password')"
+              :max="100"
+              :placeholder="$t('persons.users-s.place-enter-passord')"
               :error-msg="'Este es un error'"
               :error="true"
             />
           </div>
           <div>
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="document"
               :disable="!isEdit"
-              :title="'Identificacion'"
+              :title=" $t('persons.users-s.title-id')"
               :max="50"
-              :placeholder="'Ingrese Identificacion'"
+              :placeholder=" $t('persons.users-s.place-enter-id')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -77,24 +88,24 @@
         <div class="box_duo_input">            
           <div>
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="email"
               :disable="!isEdit"
-              :title="'Correo Electronico'"
+              :title="$t('persons.users-s.title-email')"
               :max="100"
-              :placeholder="'Ingrese Correo Electronico'"
+              :placeholder=" $t('persons.users-s.place-enter-email')"
               :error-msg="'Este es un error'"
               :error="true"
             />
           </div>
           <div>
             <wl-input
-              v-if="true"
-              v-model="name"
+              v-if="objSelected"
+              v-model="rol"
               :disable="!isEdit"
-              :title="'Rol de Usuario'"
+              :title="$t('persons.users-s.title-role-user')"
               :max="100"
-              :placeholder="'Ingrese Rol de Usuario'"
+              :placeholder="$t('persons.users-s.place-enter-role-user')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -104,12 +115,13 @@
         <div class="box_duo_input">            
           <div>
             <wl-switch-button
-              v-if="true"
+              v-if="objSelected"
               :id="'rad1'"
+              v-model="state"
               :disable="!isEdit"
               :type="'checkbox'"
-              :title="'Estado Usuario'"
-              :label="'Activo'"
+              :title=" $t('persons.users-s.title-state-user')"
+              :label=" $t('persons.users-s.label-active')"
               :error-msg="'Este es un error'"
               :error="true"
             />
@@ -127,6 +139,7 @@ import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
 import WlSwitchButton from "~/components/WlSwitchButton.vue";
 import WlWebCam from "~/components/WlWebCam.vue";
+import WlLoad2 from "~/components/WlLoad2.vue";
 
 export default {
   components: {
@@ -134,6 +147,7 @@ export default {
     WlInput,
     WlWebCam,
     WlSwitchButton,
+    WlLoad2,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -142,9 +156,10 @@ export default {
     return {
       img: null,
       camera: null,
-      deviceId: null,
-      devices: [],
-      isEdit : false
+      isEdit : false,
+      file: '',
+      loadingPhoto: true,  
+      photoUrl: '',    
     };
   },
   computed: {
@@ -152,78 +167,90 @@ export default {
       objSelected: "selected",
       error: "error"
     }),
-    name: {
-      get() {return this.objSelected.name},
-      set(value){this.changeName(value)},
+    firstName: {
+      get() {return this.objSelected.firstName},
+      set(value){this.changeFirstName(value)},
     },
-    entityTypeId: {
-      get() {
-        return this.objSelected
-          ? this.objSelected.entityType
-          : 0;
-      },
-      set(value) {
-        this.changeEntityTypeId(value)
-      }
+    lastName: {
+      get() {return this.objSelected.lastName},
+      set(value){this.changeLastName(value)},
     },
-    device: function() {
-      return find(this.devices, n => n.deviceId == this.deviceId);
+    nickname: {
+      get() {return this.objSelected.nickname},
+      set(value){this.changeNickname(value)},
+    },
+    document: {
+      get() {return this.objSelected.document},
+      set(value){this.changeDocument(value)},
+    },
+    password: {
+      get() {return this.objSelected.password},
+      set(value){this.changePassword(value)},
+    },
+    email: {
+      get() {return this.objSelected.email},
+      set(value){this.changeEmail(value)},
+    },
+    state: {
+      get() {return this.objSelected.state == 'active'},
+      set(value){this.changeState(value ? 'active' : 'inactive')},
+    },
+    rol: {
+      get() {return this.objSelected.rol},
+      set(value){this.changeRol(value)},
+    },
+  },
+  watch: {
+    $route() {
+      this.select(this.$route.params.id).then(this.getPhoto)
     }
   },
+  mounted() {
+    this.select(this.$route.params.id).then(this.getPhoto);
+  },
+  beforeDestroy() {
+    this.clearSelection();
+  },
   methods: {    
+    handleFileToUpload(){      
+      this.file = this.$refs.file.files[0]
+    },
     cancel() {
-      this.$router.push(this.localePath({ name: "admin-annotation-types" }));
+      this.$router.push(this.localePath({ name: "persons-users" }));
     },
     drop() {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.objSelected).then(this.cancel);
+      this.save({modifiedUser: this.objSelected,file: this.file}).then(this.cancel);
     },
     startEdit(){
       this.isEdit = true;
     },
+    getPhoto(){
+      this.$axios.get('/api/User/Photo/'+ this.$route.params.id, {responseType: 'blob'})
+      .then(response => this.loadPhoto(response.data))
+      .catch(e => console.log("photo cant be loaded",e))
+    },
+    loadPhoto(response){      
+      const url = window.URL.createObjectURL(new Blob([response]));      
+      this.photoUrl = url;
+    },    
     ...mapActions("persons/users", [
-      "select",
-      "clearSelection",
-      "changeName",
-      "changeEmail",
-      "changeEntityTypeId",
       "save",
       "delete",
       "clearError",
+      "select",
+      "clearSelection",      
+      "changeFirstName",
+      "changeLastName",
+      "changeNickname",
+      "changeDocument",
+      "changeEmail",
+      "changePassword",
+      "changeState",
+      "changeRol",
     ])
   },
 }
 </script>
-
-<style>
-/*-----------------------------------------------------------------------*/
-
-.box_duo_input > div {
-    flex: 1;
-    min-width: 250px;
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (max-width : 768px) {
-   .box_duo_input {
-        flex-direction: column;
-    }
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-    .box_duo_input {
-        flex-direction: row;
-    }
-    .box_duo_input > div:first-child {
-        margin-right: 10px;
-    }
-
-    .box_duo_input > div:last-child {
-        margin-left: 10px;
-    }
-}
-</style>

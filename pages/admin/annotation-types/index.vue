@@ -6,14 +6,14 @@
     >
       <template slot="wl-form">
         <wl-input
-          :title="'Nombre del Tipo Anotación'"
-          :placeholder="'Escriba el nombre del tipo anotación'"
+          :title="$t('admin.annotation-type.title-name-annotation-type')"
+          :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
           :max="0"
           :disable="true"
         />
         <wl-input
-          :title="'Raiz de la Anotación'"
-          :placeholder="'Escriba la raiz de la anotación'"
+          :title="$t('admin.annotation-type.title-annotation-root')"
+          :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
           :max="0"          
           :disable="true"
           class="sm-space-top"

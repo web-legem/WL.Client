@@ -44,8 +44,8 @@ export default {
 }
 
 .list-item {
-  background-color: white;
-  color: #555;
+  background-color: var(--control-i-b)white;
+  color:var(--documento-p);
   border-bottom: 1px solid #ccc;
   min-height: 2.5em;
   margin: auto 0;

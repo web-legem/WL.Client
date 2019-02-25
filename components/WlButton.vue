@@ -1,7 +1,7 @@
 <template>
   <button 
     :disabled="disable" 
-    :class="[btnStyle, btnInverso, disable ? 'disable': '']" 
+    :class="[btnStyle, btnInverso, btnDisable]" 
     :title="title"
   >
     <span :class="[ico,size,icoInverso]" />
@@ -28,6 +28,9 @@ export default {
     btnStyle() {
       return this.onlyIcon ? "btn-only-ico" : "btn-normal";
     },
+    btnDisable() {
+    return  this.disable ? "disable": "";
+    },
     size() {
       return this.onlyIcon ? "" : "tamano_botones_1";
     },
@@ -38,13 +41,13 @@ export default {
 <style lang="scss" scoped>
 .btn-normal {
   position: relative;
-  background-color: #0f745b;
+  background-color:var(--btn);
   font-family: "Century Gothic";
   font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
-  color: #fff;
+  color: var(--btn-c);
   border: 0;
   margin: auto 0;
   padding: 8px 5px 8px 40px;
@@ -63,32 +66,32 @@ export default {
 }
 
 .btn-normal:hover {
-  background-color: #099472;
+  background-color: var(--btn-con);
 }
 
 .btn-normal:active {
-  background-color: #064234;
+  background-color: var(--btn-con-a);
 }
 
 .btn-normal:disabled {
   pointer-events: none;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); /*falta variable  en colors*/
 }
 
 .btn-normal.azul {
-  background-color: #2980b9;
+  background-color: var(--btn-con-i);
 }
 
 .btn-normal.azul:hover {
-  background-color: #3498db;
+  background-color: var(--btn-con-h);
 }
 
 .btn-normal.azul:active {
-  background-color: #27649b;
+  background-color:var(--btn-con-ac);
 }
 
 .tamano_botones_1 {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--botones-t);
   height: 100%;
   width: 35px;
   position: absolute;
@@ -106,13 +109,13 @@ export default {
 
 .btn_sin_ico {
   position: relative;
-  background-color: #0f745b;
+  background-color:var(--btn-sin);
   font-family: "Century Gothic";
   font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
-  color: #fff;
+  color: var(--btn-sin-i);
   border: 0;
   margin: auto 0;
   padding: 8px 5px 8px 8px;
@@ -135,7 +138,7 @@ export default {
 
 .btn_sin_ico:hover,
 .btn-only-ico:hover {
-  background-color: #009688;
+  background-color: var(--btn-sin-h);
 }
 
 .btn_sin_ico:active,
@@ -143,12 +146,12 @@ export default {
   -webkit-transition: all 0.05s;
   -o-transition: all 0.05s;
   transition: all 0.05s;
-  background-color: #064234;
+  background-color: var(--bnt-sin-a);
 }
 
 .btn-only-ico {
   border: 0;
-  background: #00796b;
+  background: var(--btn-in);
   cursor: pointer;
   min-height: 35px;
   min-width: 35px;
@@ -156,11 +159,11 @@ export default {
 
 .btn-only-ico.disable {
   pointer-events: none;
-  background: #555;
+  background: #555; /*falta variable en colors*/
 }
 
 .btn-only-ico.disable > span:before {
-  color: #ebebeb;
+  color: #ebebeb;/*falta variable en colors*/
 }
 
 .btn-only-ico > span {
@@ -169,7 +172,7 @@ export default {
 
 .btn-only-ico > span:before {
   font-size: 20px;
-  color: white;
+  color: white;/*falta variable en colors*/
   width: 100%;
 }
 

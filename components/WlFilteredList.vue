@@ -18,6 +18,15 @@
       <ul class="link-u-list">
         <slot />
       </ul>
+      <div 
+        v-if="emptyList"
+        class="empty-list"
+      >
+        <span class="ico2-files-empty" />
+        <p>
+          presiona el boton de "Nuevo" para crear un nuevo registro  
+        </p>    
+      </div>
     </div>
   </nav>
 </template>
@@ -30,6 +39,9 @@ export default {
   components: {
     WlInputFilter
     , WlButton
+  },
+  props: {
+    emptyList: { type: Boolean, default: false }
   }
   , data() {
     return {
@@ -77,4 +89,28 @@ export default {
 .link-u-list {
   width: 100%;
 }
+
+.empty-list{
+  display: flex;
+  height: 80%;  
+  min-height: 80% !important;
+  align-items: center;  
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.empty-list span{
+  margin-bottom: 10px;
+  font-size: 3em;
+  color: #888;
+}
+
+.empty-list p{
+  color: #555;
+  text-align: center;
+}
+
 </style>

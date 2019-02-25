@@ -1,8 +1,9 @@
 <template>
   <div>
     <div>
-      <label class="texto_labels ">
-        fotografia de usuario
+      <label class="texto_labels ">  
+        {{ $t('components.webcam.label-foto-user') }}
+       
       </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
@@ -14,15 +15,15 @@
             v-show="trash"
             id="laimagen"
             ref="imgShowed"
-            alt="fotrografia usuario" 
-            src=""
+            :alt="$t('components.webcam.alt-foto-usuario')" 
+            :src="photoFile"
             @load="showPhoto"
           >
           <input 
             id="input_usu_foto"
             ref="inputToLoad"
             type="file" 
-            :disabled="false" 
+            :disabled="disable" 
             @change="loadPhoto"
           >
           <input 
@@ -33,25 +34,25 @@
         </div>
         <div class="botonera_camara">
           <wl-button 
-            title="tomar foto" 
+            :title="$t('components.webcam.b-title-take-photo')"  
             :only-icon="true"
             :ico="'ico-camera'"
-            :disable="!true"
+            :disable="disable"
             @click.native="openCamera()"
           />
           <wl-button 
-            title="subir foto" 
+            :title="$t('components.webcam.b-title-up-photo')"
             :only-icon="true"
             :ico="'ico-upload'"
-            :disable="!true"
+            :disable="disable"            
             @click.native="selectFile()"
           />
           <wl-button 
             v-show="trash" 
-            title="BorrarFoto" 
+            :title="$t('components.webcam.b-title-del-photo')"
             :only-icon="true"
             :ico="'ico-trash'"
-            :disable="!true"
+            :disable="disable"            
             @click.native="deletePhoto()"
           />
         </div>
@@ -68,10 +69,10 @@
       <div class="modal-dialog">
         <div class="modal-close">
           <div class="titulo-modal">
-            Hacer foto
+           {{ $t('components.webcam.take-photo') }}
           </div>
           <button 
-            title="cerrar camara" 
+            :title="$t('components.webcam.title-clos-web')"
             @click="closeCamera()"
           >
             <span class="ico-times" />
@@ -102,32 +103,32 @@
             <div class="botonera_fotografia">
               <wl-button 
                 v-show="isStreaming"
-                title="BorrarFoto"
+                :title="$t('components.webcam.title-del-photo')"
                 :ico="'ico-camera'"
                 class="c1"
                 @click.native="snapshot()"
               >
-                tomar foto
+               {{ $t('components.webcam.w-take-photo') }}
               </wl-button>
 
               <wl-button 
                 v-show="!isStreaming"
-                title="repetirFoto"
+                :title="$t('components.webcam.b-rep-photo')"
                 :ico="'ico-camera'"
                 class="c2"
                 @click.native="repetirFoto()"
               >
-                repetir foto
+               {{ $t('components.webcam.rep-photo') }}
               </wl-button>
 
               <wl-button 
                 v-show="!isStreaming"
-                title="savePhoto"
+                :title="$t('components.webcam.b-save-photo')"
                 :ico="'ico-camera'"
                 class="c3"
                 @click.native="savePhoto()"
               >
-                guardar foto
+                {{ $t('components.webcam.save-photo') }}
               </wl-button>
             </div>
           </div>
@@ -151,7 +152,10 @@ export default {
   },
   props: {
     title: { type: String, default: "" },
-    overlayClose: { type: Boolean, default: false },          
+    overlayClose: { type: Boolean, default: false },
+    photoFile: {type:String, default:""},      
+    disable: { type: Boolean, default: true },  
+    photoInput: { type: File, default: null },  
   },
   data() {
   return {
@@ -183,13 +187,13 @@ export default {
           alert("The following error occured: " + err);
         })                    
       } else {
-          alert("No tiene soporte para uso de la webCam");
+          alert( $t('components.webcam.alert-no-sup-webcam'));
           console.log("getUserMedia not supported");
       }    
     },
     errorOpenCamera(error){
         if ((error.name == 'NotAllowedError') || (error.name == 'PermissionDismissedError')) {        
-          alert("Debe activar la camara para usar esta función")
+          alert( $t('components.webcam.alert-act-web-fun'))
           this.closeCamera();
       }
     },
@@ -203,7 +207,6 @@ export default {
       var leerArchivo = new FileReader();
       leerArchivo.onload = (e) => {
           img.src = e.target.result;
-
       };
       leerArchivo.readAsDataURL(f);//para q el archivo sea leido 
     },
@@ -212,6 +215,7 @@ export default {
       img.src = "";
       this.trash = false;
       img.style.visibility = "hidden";
+      this.photoInput = null;
     },
     showPhoto(){      
       var img = this.imageElement;      
@@ -229,10 +233,10 @@ export default {
           imgAux.src = canvas.toDataURL("image/jpeg");
           this.isStreaming = false;
         } else {
-          alert("Active la camara por favor");
+          alert( $t('components.webcam.alert-act-webcam'));
         }
       } catch (error){                      
-        alert("Existe problemas con su camara");
+        alert( $t('components.webcam.alert-ex-pro-webcam'));
         console.log(error);
       }
     },
@@ -249,6 +253,7 @@ export default {
       canvasAux.getContext('2d').drawImage(imgAux, 80, 20, 155, 200, 0, 0, 155, 200);
       img.src = canvasAux.toDataURL("image/jpeg");
       img.style.visibility = "unset";
+      this. convertToFile(img.src);
       var imageData = canvas.toDataURL('image/png');
       var params = "filename=" + imageData;
       document.getElementById("hidden_input").setAttribute("value", params);
@@ -257,6 +262,20 @@ export default {
       this.existCanvas = false;
       this.closeCamera();
     },
+    convertToFile(source){
+      let dataUrl = source.split(',')
+      let base64 = dataUrl[1];
+      let mime = dataUrl[0].match(/:(.*?);/)[1];
+      let bin = atob(base64);
+      let length = bin.length;
+      let buf = new ArrayBuffer(length);
+      let arr = new Uint8Array(buf);
+      bin
+        .split('')
+        .forEach((e,i)=>arr[i]=e.charCodeAt(0));
+        
+      this.photoInput = new File([buf],'filename',{type:mime}); // note: [buf]
+    },    
     repetirFoto() {
         var canvas = this.canvasElement;
         canvas.width = canvas.width;//limpiar contenido del canvas  
@@ -272,7 +291,7 @@ export default {
         this.foto = true;
         this.showCamera = false;
       } catch (error){
-        alert("Existe problemas con su camara");
+        alert( $t('components.webcam.alert-ex-pro-webcam'));
         console.log(error);
         this.showCamera = false;
       }

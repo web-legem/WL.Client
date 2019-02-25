@@ -2,6 +2,7 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list 
       slot="master"
+      :empty-list="users != null && users.length == 0"            
       @add="create"
     >
       <wl-list-item 
@@ -10,12 +11,10 @@
         route="persons-users-id"
         active-route="persons-users"
         :item-id="user.id"
-        class="list-link"
       >
-        {{ user.name }}
-      </wl-list-item>
+        {{ user.firstName }} {{ user.lastName }}
+      </wl-list-item>   
     </wl-filtered-list>
-
     <div 
       slot="details"
       class="details"
@@ -38,32 +37,16 @@ export default {
     }
   },
   nuxtI18n: {
-    paths: {
-      es: 'usuarios',
-      en: 'users',
-    }
+    paths: {es: 'usuarios',en: 'users' }
   },
   components: {
     WlMasterDetailLayout,
-    WlListItem,
+     WlListItem,
     WlFilteredList,
   },
-  data() {
-    return {
-      users: [ 
-        {id: 1, name: 'Mario Flórez'},
-        {id: 2, name: 'Felipe Delgado'},
-        {id: 3, name: 'Homero Simpson'},
-        {id: 4, name: 'Bart Simpson'},
-      ]
-    }
-  },
   computed: {
-    // TODO - reemplazar los usuarios por los usuarios traidos de la base de 
-    // datos usando el metodo del store
     ...mapGetters('persons/users', {
-      users2: 'list',
-    //   users: 'users'
+      users: 'list',
       isCreating: 'isCreating',
       isSelected: 'isSelected',
       selected: 'selected',
@@ -71,12 +54,12 @@ export default {
   },
   methods: {
     create() {
-      this.$router.push( this.localePath({name: 'persons-users-new'}))
-    },
-    fetch({ store, params }) {
-      return store.dispatch('persons/users/loadData')
-    },
-  }
+      this.$router.push( this.localePath({name: "persons-users-new"}))
+    },    
+  },
+  fetch({ store, params }) {
+      return store.dispatch("persons/users/loadData")
+  },
 }
 </script>
 

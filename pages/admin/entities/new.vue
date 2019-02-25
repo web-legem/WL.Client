@@ -10,9 +10,9 @@
       <template slot="wl-form">
         <wl-input
           v-model="name"
-          :title="'Nombre de la Entidad'"
+          :title="$t('admin.entitie-tab.title-name-entity')"
           :max="100"
-          :placeholder="'Escriba el nombre de la entidad'"
+          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
           :error-msg="'Este es un error'"
           :error="true"
         />
@@ -20,9 +20,9 @@
         <wl-input
           v-model="email"
           class="sm-space-top"
-          :title="'Email'"
+          :title="$t('admin.entitie-tab.title-email')"
           :max="100"
-          :placeholder="'Escriba Email'"
+          :placeholder="$t('admin.entitie-tab.place-enter-email')" 
           :error-msg="'Este es un error'"
           :error="true"
         />
@@ -32,7 +32,7 @@
           class="sm-space-top"
           :error="true"
           :list="entityTypes"
-          title="Seleccione del Tipo Documento"
+          :title="$t('admin.entitie-tab.title-select-doc-type')"
           error-msg="Este es un error"
           value-prop-name="id"
           label-prop-name="name"

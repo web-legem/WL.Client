@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Subir documento</h1>
+    <h1>{{ $t('doc-management.upload-doc.h-upload-doc') }} </h1>
     <form
       class="upload-document"
       action=""
@@ -28,7 +28,7 @@
             @drop.prevent.stop="handleDropFile($event)"
             @drop.prevent="handleDropFile($event)"
           >
-            <strong>Escoja un archivo</strong> ó arrastrelo aquí
+            <strong>{{ $t('doc-management.upload-doc.p-choose-file') }} </strong>{{ $t('doc-management.upload-doc.p-drag-here') }} 
           </p>
           <progress
             id="progress"
@@ -43,7 +43,7 @@
         class="next"
         @click="uploadFile"
       >
-        Subir Archivo
+        {{ $t('doc-management.upload-doc.butt-upload-file') }}
       </button>
     </form>
   </div>

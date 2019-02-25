@@ -6,8 +6,8 @@
     >
       <div slot="wl-form">
         <wl-input 
-          :title="'Nombre del Tipo Documento'"
-          :placeholder="'Escriba el nombre del tipo documento'" 
+          :title="$t('admin.document-type.title-name-doc-type')"
+          :placeholder="$t('admin.document-type.place-enter-name-td')" 
           :max="0"
           :disable="true"
         />

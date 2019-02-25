@@ -34,6 +34,7 @@ export const mutations = {
     state.error = payload
   },
   select(state, docTypeId) {
+    state.error = null
     state.selectedId = docTypeId
     state.selected = state.list
       .filter(x => x.id == Number.parseInt(docTypeId))

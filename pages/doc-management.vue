@@ -5,13 +5,14 @@
         :to="localePath({ name: 'doc-management-upload-document' })"
         icon="ico-files-o"
       >
-        Carga de Documentos
+      {{ $t('doc-management.upload-doc.wl-upload-doc') }}
+        
       </wl-tab>
       <wl-tab
         :to="localePath({ name: 'doc-management-classify-document' })"
         icon="ico-files-o"
       >
-        Clasificar Documento
+       {{ $t('doc-management.classify-doc.h-classify-doc') }}
       </wl-tab>
     </template>
 

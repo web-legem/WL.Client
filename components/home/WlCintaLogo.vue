@@ -58,7 +58,7 @@ export default {
   left: 5px; 
   top: -5px; 
   z-index: 1;    
-  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(1px 1px 3px var(--logo-fi));
 }
 
 .escudo-udenar:before {
