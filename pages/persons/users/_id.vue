@@ -41,7 +41,7 @@
               v-if="objSelected"
               v-model="lastName"
               :disable="!isEdit"
-              :title=" $t('persons.users-s.title-lasltname')"
+              :title=" $t('persons.users-s.title-lastname')"
               :max="100"
               :placeholder=" $t('persons.users-s.place-enter-lastname')"
               :error-msg="'Este es un error'"

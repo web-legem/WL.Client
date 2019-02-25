@@ -123,5 +123,38 @@ export default {
     'error-created-document':{'label-name':'Error al crear documento'},
     'upload-document':{'label-name':'Subir documento'},
   },
+ 
   
+  'components':{
+    'webcam':{
+    'label-foto-user':'Fotografia de usuario',
+    'alt-foto-user':'Fotrografia usuario',
+    'b-title-take-photo':'Tomar foto',
+    'b-title-up-photo':'Subir foto',
+    'b-title-del-photo':'Borrar foto',
+    'take-photo':'Hacer foto',
+    'title-clos-web':'Cerrar camara',
+    'title-del-photo':'Borrar Foto',
+    'w-take-photo':'Tomar foto',
+    'b-rep-photo':'Repetir foto',
+    'rep-photo':'Repetir foto',
+    'b-save-photo':'Guardar foto',
+    'save-photo':'Guardar foto',
+    'alert-no-sup-webcam':'No tiene soporte para uso de la camara web',
+    'alert-act-web-fun':'Debe activar la camara para usar esta función',
+    'alert-act-webcam':'Active la camara por favor',
+    'alert-ex-pro-webcam':'Existe problemas con su camara',    
+     },    
+
+     'menu':{
+      'butt-module':'Modulos',
+      'label-serch':'Busqueda',
+      'label-home':'Inicio',
+      'label-login': 'Ingresar',
+      'label-admin':'Administración',
+      'label-doc-man':'Gestión Documental',
+      'label-annot': 'Anotaciones', 
+      'label-user': 'Usuarios',
+     },
+  },
 }
