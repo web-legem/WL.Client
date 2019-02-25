@@ -156,4 +156,12 @@ export default {
         'label-user': 'Users',
        },
     },
+    'search':{
+      'annotation-inf':{
+       'div-annot-type':'Annotation type:',
+        'title-see-more':'See more',
+        'butt-see-more':'See more',
+        'div-desc':'Description:',
+      },
+    },
   }

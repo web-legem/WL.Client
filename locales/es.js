@@ -157,4 +157,18 @@ export default {
       'label-user': 'Usuarios',
      },
   },
+
+  'search':{
+    'annotation-inf':{
+     'div-annot-type':'Tipo de Anotación:',
+      'title-see-more':'Ver más',
+      'butt-see-more':'Ver más',
+      'div-desc':'Descripción:',
+    },
+    'annotation-list':{
+      'title-annot-enter':'Anotaciones Entrantes',
+      'title-annot-go-out':'Anotaciones Salientes',
+    },
+  },
+
 }
