@@ -11,7 +11,7 @@
       </h3>
     </div>
     <div class="type">
-       {{ $t('search.annotation-inf.div-annot-type') }}
+      {{ $t('search.annotation-inf.div-annot-type') }}
       {{ annotation.annotationType.name }}
     </div>
     <div class="control">
@@ -20,7 +20,7 @@
         class="button-control"
         @click="showDetails(annotation.id)"
       >
-         {{ $t('search.annotation-inf.butt-see-more') }}
+        {{ $t('search.annotation-inf.butt-see-more') }}
       </button>
     </div>
     <div

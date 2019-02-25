@@ -163,5 +163,17 @@ export default {
         'butt-see-more':'See more',
         'div-desc':'Description:',
       },
+      'doc-control':{
+        'h-doc-title':'Document title',
+      },
+      'input-filter':{
+        'title-update':'Update',
+        'title-rem-filt':'Remove filter',
+      },
+      'number-filter':{
+        'label-num-doc':'Document number',
+        'title-add-fil':'Add filter',
+      },
+  
     },
   }

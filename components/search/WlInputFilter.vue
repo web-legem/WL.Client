@@ -5,7 +5,7 @@
         :disable="disable"
         :ico="'ico-refresh'" 
         :only-icon="true" 
-        :title="'Actualizar'"
+        :title="$t('components.input-filter.title-update')"
       />
 
       <input 
@@ -22,7 +22,7 @@
       <button 
         v-show="isVisible"
         class="btn_cancel" 
-        title="Quitar filtro"
+        :title="$t('components.input-filter.title-rem-filt')"
         @click="clearText()"
       >
         <span class="ico-plus" />

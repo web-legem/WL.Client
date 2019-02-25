@@ -169,6 +169,17 @@ export default {
       'title-annot-enter':'Anotaciones Entrantes',
       'title-annot-go-out':'Anotaciones Salientes',
     },
+    'doc-control':{
+      'h-doc-title':'Titulo de documento ',
+    },
+    'input-filter':{
+      'title-update':'Actualizar',
+      'title-rem-filt':'Quitar filtro',
+    },
+    'number-filter':{
+      'label-num-doc':'Número de documento',
+      'title-add-fil':'Agregar Filtro',
+    },
   },
 
 }
