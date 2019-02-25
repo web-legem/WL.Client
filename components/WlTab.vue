@@ -46,6 +46,7 @@ export default {
   flex-direction: row;
   min-width: 10em;
   max-width: 12.5em;
+  box-shadow: 3px -3px 5px 3px #AAAAAA;
 }
 
 .tab:first-child {
@@ -53,20 +54,21 @@ export default {
 }
 
 .tab:hover {
-  background-color: rgba(0, 0, 0, .01);
+  // background-color: rgba(0, 0, 0, .01);
   color: #2dbf85;
   border-top: 3px solid rgba(0, 0, 0, .01);
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
-  transition: ease-out .3s;
+  // transition: ease-out .3s;
+  // font-size: .8rem;
 }
 
 .tab.nuxt-link-active {
   color: #2dbf85;
   border-top: 3px solid #2dbf85;
   border-bottom: 1px solid #fff;
-  /* border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc; */
+  box-shadow: 0 -5px 9px 2px #AAAAAA;
+  z-index: 1;
 }
 
 .ico {

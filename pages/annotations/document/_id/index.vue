@@ -17,8 +17,10 @@
         <wl-superimpose-layout :open="isDocumentOpen">
           <template slot="normal">
             <div class="content">
-              <h1 class="title">Sugerencias de Anotaciones</h1>
-              <wl-annotation-suggestions />
+              <h1 class="title">
+                Sugerencias de Anotaciones
+              </h1>
+              <wl-annotation-suggestions class="annotation-suggestions" />
             </div>
           </template>
           <template slot="superimposed">
@@ -73,11 +75,19 @@ export default {
 
 .content {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
   font-size: 1.4rem;
   color: #00796b;
   padding: .5em;
+  box-shadow: 0 0 8px 2px grey;
+  z-index: 1;
+}
+
+.annotation-suggestions {
+  flex-grow: 1;
 }
 </style>

@@ -34,6 +34,8 @@ export default {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid grey;
+  box-shadow: 0 8px 10px -8px grey;
+  z-index: 1;
 }
 
 .document-header {
