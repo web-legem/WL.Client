@@ -7,19 +7,13 @@
       @wlcreate="submit"
       @wlclearerror="clearError"
     >
-      <template slot="wl-form">
-        <input
-          id="file"
-          ref="file"
-          name="file"
-          type="file"
-          @change="handleFileToUpload"
-        >
+      <template slot="wl-form">                
         <div class="box_duo_input">          
           <div>
             <wl-web-cam 
-              :photo-input="file"
+              :photo-file="photoUrl"
               :disable="false"
+              @new-file="newFile($event)"
             />
           </div>
           <div>
@@ -159,9 +153,6 @@ export default {
     cancel() {
       this.$router.push(this.localePath({ name: "persons-users" }));
     },
-    handleFileToUpload(){      
-      this.file = this.$refs.file.files[0]
-    },
     submit() {
       let newUser = {         
           firstName : this.firstName,
@@ -175,6 +166,9 @@ export default {
         };
       this.create({newUser,file: this.file}).then
       (_ =>this.$router.push(this.localePath({ name: "persons-users" })));
+    },
+    newFile(file) {
+      this.file = file;
     },
     ...mapActions("persons/users", {
       isCreating: "isCreating",
