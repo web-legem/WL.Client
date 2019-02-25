@@ -49,7 +49,7 @@
               <span
                 class="ico ico-cubes"
               />
-              Modulos
+               {{ $t('components.menu.butt-module') }} 
             </div>
           </button>
           <ul
@@ -136,19 +136,19 @@ export default {
       , showMenu: false
       , menuItems: [
         {
-          label: 'Busqueda'
+          label:this.$t('components.menu.label-serch')
           , icon: 'ico-search'
           , link: 'search'
           , show: 'true'
         }
         , {
-          label: 'Inicio'
+          label: this.$t('components.menu.label-home')
           , icon: 'ico-home'
           , link: 'index'
           , show: 'true'
         }
         , {
-          label: 'Ingresar'
+          label: this.$t('components.menu.label-login')
           , icon: 'ico-sign-in'
           , link: 'login'
           , show: 'true'
@@ -156,22 +156,22 @@ export default {
       ]
       , modules: [
         {
-          label: 'Administración'
+          label: this.$t('components.menu.label-admin')
           , icon: 'ico-tasks'
           , link: 'admin'
         }
         , {
-          label: 'Gestión Documental'
+          label:  this.$t('components.menu.label-doc-man')
           , icon: 'ico-stack-overflow'
           , link: 'doc-management'
         }
         , {
-          label: 'Anotaciones'
+          label:this.$t('components.menu.label-annot')
           , icon: 'ico-files-o'
           , link: 'annotations'
         }
         , {
-          label: 'Usuarios'
+          label: this.$t('components.menu.label-user')
           , icon: 'ico-users'
           , link: 'persons'
         }
