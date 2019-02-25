@@ -114,12 +114,14 @@ export const actions = {
       }
       )
   },
-  save({ commit, dispatch }, {modifiedUser, file}) {
+  save({ commit, dispatch }, {modifiedUser, file, fileWasChange}) {
     console.log("xxx1",modifiedUser);
     console.log("xxx2",file);
+    console.log("xxx3",fileWasChange);
     let formData = new FormData();
     formData.append('value',JSON.stringify(modifiedUser))
     formData.append('files', file);
+    formData.append('fileWasChange', fileWasChange);
     commit('waiting')
     return this.$axios.put('/api/User', formData, {headers: {'Content-Type': 'multipart/form-data'}})
       .then(_ => dispatch('loadData'))

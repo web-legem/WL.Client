@@ -17,7 +17,9 @@
         <wl-superimpose-layout :open="isDocumentOpen">
           <template slot="normal">
             <div class="content">
-              <h1 class="title">Sugerencias de Anotaciones</h1>
+              <h1 class="title">
+                Sugerencias de Anotaciones
+              </h1>
               <wl-annotation-suggestions />
             </div>
           </template>

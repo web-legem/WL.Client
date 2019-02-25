@@ -10,20 +10,15 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">
-        <!-- <input
-          id="file"
-          ref="file"
-          name="file"
-          type="file"
-          @change="handleFileToUpload"
-        > -->        
-        <wl-load2/>
+      <template slot="wl-form">     
+        <wl-load2 />
         <div class="box_duo_input">          
           <div>
             <wl-web-cam
               :photo-file="photoUrl"
               :disable="!isEdit"
+              @new-file="newFile($event)"
+              @was-change="setPhotoState($event)"      
             />            
           </div>
           <div>
@@ -157,9 +152,10 @@ export default {
       img: null,
       camera: null,
       isEdit : false,
-      file: '',
+      file: null,
       loadingPhoto: true,  
-      photoUrl: '',    
+      photoUrl: '', 
+      fileWasChange: false,   
     };
   },
   computed: {
@@ -222,7 +218,7 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save({modifiedUser: this.objSelected,file: this.file}).then(this.cancel);
+      this.save({modifiedUser: this.objSelected,file: this.file, fileWasChange: this.fileWasChange}).then(this.cancel);
     },
     startEdit(){
       this.isEdit = true;
@@ -236,6 +232,12 @@ export default {
       const url = window.URL.createObjectURL(new Blob([response]));      
       this.photoUrl = url;
     },    
+    newFile(file) {
+      this.file = file;
+    },
+    setPhotoState(){
+      this.fileWasChange = true;
+    },
     ...mapActions("persons/users", [
       "save",
       "delete",

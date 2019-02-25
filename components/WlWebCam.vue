@@ -2,8 +2,7 @@
   <div>
     <div>
       <label class="texto_labels ">  
-        {{ $t('components.webcam.label-foto-user') }}
-       
+        {{ $t('components.webcam.label-foto-user') }}       
       </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
@@ -69,7 +68,7 @@
       <div class="modal-dialog">
         <div class="modal-close">
           <div class="titulo-modal">
-           {{ $t('components.webcam.take-photo') }}
+            {{ $t('components.webcam.take-photo') }}
           </div>
           <button 
             :title="$t('components.webcam.title-clos-web')"
@@ -108,7 +107,7 @@
                 class="c1"
                 @click.native="snapshot()"
               >
-               {{ $t('components.webcam.w-take-photo') }}
+                {{ $t('components.webcam.w-take-photo') }}
               </wl-button>
 
               <wl-button 
@@ -118,7 +117,7 @@
                 class="c2"
                 @click.native="repetirFoto()"
               >
-               {{ $t('components.webcam.rep-photo') }}
+                {{ $t('components.webcam.rep-photo') }}
               </wl-button>
 
               <wl-button 
@@ -155,7 +154,7 @@ export default {
     overlayClose: { type: Boolean, default: false },
     photoFile: {type:String, default:""},      
     disable: { type: Boolean, default: true },  
-    photoInput: { type: File, default: null },  
+    photoInput: { type: File, default: null },//my prop  
   },
   data() {
   return {
@@ -214,8 +213,9 @@ export default {
       var img = this.imageElement;
       img.src = "";
       this.trash = false;
-      img.style.visibility = "hidden";
-      this.photoInput = null;
+      img.style.visibility = "hidden";      
+      this.$emit('new-file', null)
+      this.$emit('was-change');
     },
     showPhoto(){      
       var img = this.imageElement;      
@@ -253,7 +253,7 @@ export default {
       canvasAux.getContext('2d').drawImage(imgAux, 80, 20, 155, 200, 0, 0, 155, 200);
       img.src = canvasAux.toDataURL("image/jpeg");
       img.style.visibility = "unset";
-      this. convertToFile(img.src);
+      this.convertToFile(img.src);
       var imageData = canvas.toDataURL('image/png');
       var params = "filename=" + imageData;
       document.getElementById("hidden_input").setAttribute("value", params);
@@ -272,9 +272,10 @@ export default {
       let arr = new Uint8Array(buf);
       bin
         .split('')
-        .forEach((e,i)=>arr[i]=e.charCodeAt(0));
-        
-      this.photoInput = new File([buf],'filename',{type:mime}); // note: [buf]
+        .forEach((e,i)=>arr[i]=e.charCodeAt(0));                
+      var objCreado = new File([buf],'filename',{type:mime}); // note: [buf]
+      this.$emit('new-file', objCreado);
+      this.$emit('was-change');
     },    
     repetirFoto() {
         var canvas = this.canvasElement;

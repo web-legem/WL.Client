@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>{{ $t('doc-management.classify-doc.h-classify-doc') }}</h1>
+    <h1>
+      {{ $t('doc-management.classify-doc.h-classify-doc') }}
+    </h1>
     <p v-if="isAlreadyClassified">
-       {{ $t('doc-management.classify-doc.p-ya-classify-doc') }}
-      
+      {{ $t('doc-management.classify-doc.p-ya-classify-doc') }}      
     </p>
     <p v-if="!isAlreadyClassified">
-      {{ $t('doc-management.classify-doc.p-no-classify-doc') }}
-      
+      {{ $t('doc-management.classify-doc.p-no-classify-doc') }}      
     </p>
 
     <form action="">
@@ -34,9 +34,7 @@
           value=""
           disabled
         >
-
-        {{ $t('doc-management.classify-doc.please-select-one') }}
-          
+          {{ $t('doc-management.classify-doc.please-select-one') }}          
         </option>
         <option 
           v-for="entity in entities"
@@ -56,8 +54,7 @@
           value=""
           disabled
         >
-        {{ $t('doc-management.classify-doc.please-select-one') }}
-
+          {{ $t('doc-management.classify-doc.please-select-one') }}
         </option>
         <option 
           v-for="documentType in documentTypes"
@@ -72,15 +69,13 @@
         type="button"
         @click="clear"
       >
-           {{ $t('doc-management.classify-doc.butt-cancel') }}
-
+        {{ $t('doc-management.classify-doc.butt-cancel') }}
       </button>
       <button
         type="button"
         @click="classify"
       >
-           {{ $t('doc-management.classify-doc.butt-accept') }}
-        
+        {{ $t('doc-management.classify-doc.butt-accept') }}        
       </button>
     </form>
     {{ number }}

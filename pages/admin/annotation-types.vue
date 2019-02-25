@@ -19,7 +19,7 @@
       slot="details" 
       class="details"
     >
-      <nuxt-child/>
+      <nuxt-child />
     </div>
   </wl-master-detail-layout>
 </template>
