@@ -11,7 +11,7 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">     
-        <wl-load2/>
+        <wl-load2 />
         <div class="box_duo_input">          
           <div>
             <wl-web-cam
@@ -155,7 +155,7 @@ export default {
       file: null,
       loadingPhoto: true,  
       photoUrl: '', 
-      photoWasChange: false,   
+      fileWasChange: false,   
     };
   },
   computed: {
@@ -218,7 +218,7 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save({modifiedUser: this.objSelected,file: this.file}).then(this.cancel);
+      this.save({modifiedUser: this.objSelected,file: this.file, fileWasChange: this.fileWasChange}).then(this.cancel);
     },
     startEdit(){
       this.isEdit = true;
@@ -236,7 +236,7 @@ export default {
       this.file = file;
     },
     setPhotoState(){
-      this.photoWasChange = true;
+      this.fileWasChange = true;
     },
     ...mapActions("persons/users", [
       "save",

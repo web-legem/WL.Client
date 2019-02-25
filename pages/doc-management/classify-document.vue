@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1>
-      {{ $t('doc-management.classify-doc.h-classify-doc') }}
-      
+      {{ $t('doc-management.classify-doc.h-classify-doc') }}      
     </h1>
     <nuxt-child />
   </div>

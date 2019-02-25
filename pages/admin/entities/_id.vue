@@ -9,8 +9,7 @@
       @wldelete="drop"
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
-    >
-    
+    >    
       <template slot="wl-form">
         <wl-input
           v-if="selected"

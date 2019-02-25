@@ -49,7 +49,7 @@
               <span
                 class="ico ico-cubes"
               />
-               {{ $t('components.menu.butt-module') }} 
+              {{ $t('components.menu.butt-module') }} 
             </div>
           </button>
           <ul

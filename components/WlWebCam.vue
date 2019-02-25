@@ -2,8 +2,7 @@
   <div>
     <div>
       <label class="texto_labels ">  
-        {{ $t('components.webcam.label-foto-user') }}
-       
+        {{ $t('components.webcam.label-foto-user') }}       
       </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
@@ -69,7 +68,7 @@
       <div class="modal-dialog">
         <div class="modal-close">
           <div class="titulo-modal">
-           {{ $t('components.webcam.take-photo') }}
+            {{ $t('components.webcam.take-photo') }}
           </div>
           <button 
             :title="$t('components.webcam.title-clos-web')"
@@ -108,7 +107,7 @@
                 class="c1"
                 @click.native="snapshot()"
               >
-               {{ $t('components.webcam.w-take-photo') }}
+                {{ $t('components.webcam.w-take-photo') }}
               </wl-button>
 
               <wl-button 
@@ -118,7 +117,7 @@
                 class="c2"
                 @click.native="repetirFoto()"
               >
-               {{ $t('components.webcam.rep-photo') }}
+                {{ $t('components.webcam.rep-photo') }}
               </wl-button>
 
               <wl-button 
@@ -216,6 +215,7 @@ export default {
       this.trash = false;
       img.style.visibility = "hidden";      
       this.$emit('new-file', null)
+      this.$emit('was-change');
     },
     showPhoto(){      
       var img = this.imageElement;      

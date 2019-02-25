@@ -1,6 +1,5 @@
 <template>
-  <div class="annimation-suggestions">
-  </div>
+  <div class="annimation-suggestions" />  
 </template>
 
 <script>
