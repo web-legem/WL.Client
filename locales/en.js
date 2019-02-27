@@ -155,6 +155,9 @@ export default {
         'label-annot': 'Annotationes', 
         'label-user': 'Users',
        },
+       'input-filter':{
+        'title-update':'Update',
+        'title-rem-filt':'Remove filter',
        'modal':{
         'title-clos-dia':'Close dialog',
       },

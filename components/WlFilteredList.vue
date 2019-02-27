@@ -94,11 +94,9 @@ export default {
   display: flex;
   height: 80%;  
   min-height: 80% !important;
+  flex-direction: column;
   align-items: center;  
   justify-content: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 20px;
 }
 
