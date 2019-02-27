@@ -156,6 +156,10 @@ export default {
       'label-annot': 'Anotaciones', 
       'label-user': 'Usuarios',
      },
+     'input-filter':{
+      'title-update':'Actualizar',
+      'title-rem-filt':'Quitar filtro',
+    },
   },
 
   'search':{
