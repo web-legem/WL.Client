@@ -7,7 +7,7 @@
       >        
         {{ documentTypeName }}
         {{ document.document.number }}
-        {{ $t('components.search-result.a-del') }} {{ document.document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
+        {{ $t('search.search-result.a-del') }} {{ document.document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
       </nuxt-link>
     </div>
 
@@ -16,15 +16,15 @@
     </div>
 
     <div class="subcontenido_tarjeta">
-      <a>{{ $t('components.search-result.a-entity') }}<i>{{ entityName }} </i> | </a>
-      <a>{{ $t('components.search-result.a-date') }} <i>{{ document.document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
+      <a>{{ $t('search.search-result.a-entity') }}<i>{{ entityName }} </i> | </a>
+      <a>{{ $t('search.search-result.a-date') }} <i>{{ document.document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
     </div>
 
     <div class="control_tarjeta">
       <a 
         :href="$axios.defaults.baseURL + 'api/File/' + document.file.id"
         download
-        :title="$t('components.search-result.title-down')"
+        :title="$t('search.search-result.title-down')"
       >
         <span class="ico-download" />{{ 'Descargar' }}
       </a>

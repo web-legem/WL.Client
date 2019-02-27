@@ -17,16 +17,16 @@
     <no-ssr>
       <button
         v-if="$mq != 'lg' && $mq != 'xl'"
-        class="ordering"
+        class="ordering"  
         @click="showFilters"
       >
-        {{ $t('components.order-control.butt-show-search-adva') }}
+        {{ $t('search.order-control.butt-show-search-adva') }}
       </button>
     </no-ssr>
     <no-ssr>
       <wl-modal
         v-if="showModal && $mq != 'lg' && $mq != 'xl'"
-        :title="$t('components.order-control.title-filterl')"
+        :title="$t('search.order-control.title-filterl')"
         @wlclose="hideFilters"
       >
         <wl-search-filters slot="wl-content" />

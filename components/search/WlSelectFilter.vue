@@ -18,7 +18,7 @@
         >
         <wl-button
           :only-icon="true" 
-          :title="$t('components.select-filter.title-add-filter')"
+          :title="$t('search.select-filter.title-add-filter')"
           ico="ico2-minus"
           class="danger"
           @click.native="disableFilter"
@@ -51,7 +51,7 @@
         </select>
         <wl-button
           :only-icon="true" 
-          :title="$t('components.select-filter.title-add-filter')"
+          :title="$t('search.select-filter.title-add-filter')"
           ico="ico2-plus"
           @click.native="enableFilter"
         />

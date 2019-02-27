@@ -155,6 +155,9 @@ export default {
         'label-annot': 'Annotationes', 
         'label-user': 'Users',
        },
+       'modal':{
+        'title-clos-dia':'Close dialog',
+      },
     },
     'search':{
       'annotation-inf':{
@@ -219,9 +222,7 @@ export default {
        'title-new':'New',
        'title-press-butt':'Press the "New" button to create a new record',
      },
-     'modal':{
-       'title-clos-dia':'Close dialog',
-     },
+     
  
   
   

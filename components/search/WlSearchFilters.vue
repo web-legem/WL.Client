@@ -6,7 +6,7 @@
         v-if="entities"
         :list="entities"
         param="entityId"
-        :label="$t('components.search-filters.label-entity')"
+        :label="$t('search.search-filters.label-entity')"
         value-prop-name="id"
         label-prop-name="name"
       />
@@ -14,7 +14,7 @@
         v-if="documentTypes"
         :list="documentTypes"
         param="documentTypeId"
-        :label="$t('components.search-filters.label-doc-type')"
+        :label="$t('search.search-filters.label-doc-type')"
         value-prop-name="id"
         label-prop-name="name"
       />

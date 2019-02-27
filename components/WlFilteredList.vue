@@ -7,7 +7,7 @@
           <wl-button 
             :disable="disable"
             :only-icon="true" 
-            :title="$t('components.filtere-list.title-new')"
+            :title="$t('search.filtere-list.title-new')"
             ico="ico-plus" 
             @click.native="add"
           />
@@ -24,7 +24,7 @@
       >
         <span class="ico2-files-empty" />
         <p>
-          {{ $t('components.filtere-list.title-press-butt') }}  
+          {{ $t('search.filtere-list.title-press-butt') }}  
         </p>    
       </div>
     </div>

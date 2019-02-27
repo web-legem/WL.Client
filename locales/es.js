@@ -156,6 +156,10 @@ export default {
       'label-annot': 'Anotaciones', 
       'label-user': 'Usuarios',
      },
+     'modal':{
+      'title-clos-dia':'Cerrar Dialogo',
+    },
+
   },
 
   'search':{
@@ -225,10 +229,7 @@ export default {
       'title-new':'Nuevo',
       'title-press-butt':'presiona el boton de "Nuevo" para crear un nuevo registro',
     },
-    'modal':{
-      'title-clos-dia':'Cerrar Dialogo',
-    },
-
+    
 
   },
   
