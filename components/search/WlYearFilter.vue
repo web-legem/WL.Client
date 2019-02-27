@@ -5,7 +5,7 @@
       class="filter"
     >
       <label for="publicacion">
-        Año de publicación
+        {{ $t('components.year-filter.label-year-publ') }}
       </label>
       <div class="control">
         <input
@@ -18,7 +18,7 @@
         >
         <wl-button 
           :only-icon="true"
-          title="Agregar Filtro"
+          :title="$t('components.select-filter.title-add-filter')"
           ico="ico2-minus"
           class="danger"
           @click.native="disablePublicationFilter"
@@ -31,7 +31,7 @@
       class="filter"
     >
       <label for="publicacion">
-        Año de publicación
+        {{ $t('components.year-filter.label-year-publ') }}
       </label>
       <div class="control">
         <input
@@ -45,7 +45,7 @@
         >
         <wl-button 
           :only-icon="true"
-          title="Agregar Filtro"
+          :title="$t('components.select-filter.title-add-filter')"
           ico="ico2-plus"
           @click.native="enablePublicationFilter"
         />

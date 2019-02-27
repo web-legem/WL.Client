@@ -38,17 +38,17 @@
             v-if="searching"
             class="errors"
           >
-            Searching ...
+            {{ $t('components.co-search.search') }}
           </div>
           <div
             v-if="showNoResultsPage && !hasSearchError"
           >
-            Not Found
+            {{ $t('components.co-search.not-found') }}
           </div>
           <div
             v-if="showNoResultsPage && hasSearchError"
           >
-            Network Error
+            {{ $t('components.co-search.network-error') }}
           </div>
         </div>
       </template>

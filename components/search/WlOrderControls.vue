@@ -20,13 +20,13 @@
         class="ordering"
         @click="showFilters"
       >
-        Mostrar busqueda avanzada
+        {{ $t('components.order-control.butt-show-search-adva') }}
       </button>
     </no-ssr>
     <no-ssr>
       <wl-modal
         v-if="showModal && $mq != 'lg' && $mq != 'xl'"
-        title="Filtros"
+        :title="$t('components.order-control.title-filterl')"
         @wlclose="hideFilters"
       >
         <wl-search-filters slot="wl-content" />

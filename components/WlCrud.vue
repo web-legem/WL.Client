@@ -7,7 +7,7 @@
         :ico="'ico-pencil'"
         @click.native="startEdit($event)"
       >
-        editar
+        {{ $t('components.crud.butt-edit') }}
       </wl-button>
       <wl-button 
         v-show="!isNew"
@@ -15,7 +15,7 @@
         :ico="'ico-trash'"                 
         @click.native="remove()"
       >
-        eliminar
+        {{ $t('components.crud.butt-delete') }}
       </wl-button>
     </div>
 
@@ -27,7 +27,7 @@
         :ico="'ico-floppy-o'" 
         @click.native="ok($event)"
       >
-        Aceptar
+        {{ $t('components.crud.butt-accept') }}
       </wl-button>
       
       <wl-button 
@@ -35,18 +35,18 @@
         :ico="'ico-times'"  
         @click.native="cancel($event)"
       >
-        Cancelar
+        {{ $t('components.crud.butt-cancel') }}
       </wl-button>
     </div>
     <!-- Modal confirmacion -->
     <wl-modal
       v-if="showDialog"
-      :title="'Confirmación'"
+      :title="$t('components.crud.title-confirm')"
       @wlclose="closeModal"
     >
       <template slot="wl-content">
         <div class="generic-box-vertical content-modal">
-          <div>¿Esta Seguro De Eliminar "{{ objSelect.name }}"?</div>
+          <div>{{ $t('components.crud.div-sure-delete') }} "{{ objSelect.name }}"?</div>
         </div>
         <div class="modal-confirmacion confirm-dialog content-modal-buttons">
           <wl-button 
@@ -54,13 +54,13 @@
             ico="ico-trash" 
             @click.native="okModal($event)"            
           >
-            Eliminar
+            {{ $t('components.crud.butt-delete') }}
           </wl-button>          
           <wl-button 
             ico="ico-times"
             @click.native="closeModal()"
           >
-            Cancelar
+            {{ $t('components.crud.butt-cancel') }}
           </wl-button>
         </div>
       </template>
@@ -68,7 +68,7 @@
     <!-- Modal Error -->
     <wl-modal
       v-if="error"
-      :title="'Información'"
+      :title="$t('components.crud.title-info')"
       @wlclose="clearErrorsa"
     >
       <template slot="wl-content">
@@ -81,7 +81,7 @@
             ico="ico-check"
             @click.native="clearError($event)"
           >
-            Aceptar
+            {{ $t('components.crud.butt-accept') }}
           </wl-button>
         </div>
       </template>

@@ -3,7 +3,7 @@
     <wl-button
       :only-icon="true"
       :disable="!hasPrevious"
-      title="Previous"
+      :title="$t('components.page-controls.title-previ')"
       class="icon"
       data-icon="G"
       @click.native="previous()"
@@ -30,7 +30,7 @@
     <wl-button
       :only-icon="true"
       :disable="!hasNext"
-      title="Next"
+      :title="$t('components.page-controls.title-next')"
       class="icon"
       data-icon="H"
       @click.native="next"

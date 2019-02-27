@@ -13,7 +13,7 @@
     >
     <wl-button 
       :only-icon="true"
-      title="Search"
+      :title="$t('components.search-bar.title-search-bar')"
       ico="ico-search" 
       @click.native="searchWords($refs.input.value)"
     />

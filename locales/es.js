@@ -180,6 +180,56 @@ export default {
       'label-num-doc':'Número de documento',
       'title-add-fil':'Agregar Filtro',
     },
-  },
+    'order-control':{
+      'title-filter':'Filtros',
+      'butt-show-search-adva':'Mostrar busqueda avanzada',
+    },
+    'page-controls':{
+      'title-previ':'Anterior',
+      'title-next':'Siguiente',
+    },
+    'co-search':{
+      'search':'Buscando ...',
+      'not-found':'No se encontro',
+      'network-error':'Error de red',
+    },
+    'search-bar':{
+      'title-search-bar':'Buscar',
+    },
+    'search-filters':{
+      'label-entity':'Entidad',
+      'label-doc-type':'Tipo Documento',
+    },
+    'search-result':{
+     'a-entity':'Entidad:', 
+     'a-date':'Fecha:',
+     'a-del':'del',
+     'title-down':'"Descargar',
+    },
+    'select-filter':{
+      'title-add-filter':'Agregar Filtro',
+    },
+    'year-filter':{
+      'label-year-publ':'Año de publicación',
+    },
+    'crud':{
+      'butt-edit':'Editar',
+      'butt-delete':'Eliminar',
+      'butt-accept':'Aceptar',
+      'butt-cancel':'Cancelar',
+      'title-confirm':'Confirmación',
+      'div-sure-delete':'¿Esta Seguro De Eliminar?',
+      'title-info':'Información',
+    },
+    'filtere-list':{
+      'title-new':'Nuevo',
+      'title-press-butt':'presiona el boton de "Nuevo" para crear un nuevo registro',
+    },
+    'modal':{
+      'title-clos-dia':'Cerrar Dialogo',
+    },
 
+
+  },
+  
 }
