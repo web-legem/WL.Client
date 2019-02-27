@@ -7,7 +7,7 @@
           <wl-button 
             :disable="disable"
             :only-icon="true" 
-            title="Nuevo"
+            :title="$t('search.filtere-list.title-new')"
             ico="ico-plus" 
             @click.native="add"
           />
@@ -24,7 +24,7 @@
       >
         <span class="ico2-files-empty" />
         <p>
-          presiona el boton de "Nuevo" para crear un nuevo registro  
+          {{ $t('search.filtere-list.title-press-butt') }}  
         </p>    
       </div>
     </div>
