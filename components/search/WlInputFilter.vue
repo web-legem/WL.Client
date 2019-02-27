@@ -5,7 +5,7 @@
         :disable="disable"
         :ico="'ico-refresh'" 
         :only-icon="true" 
-        :title="$t('search.input-filter.title-update')"
+        :title="$t('search.order-contro.title-update')"
       />
 
       <input 

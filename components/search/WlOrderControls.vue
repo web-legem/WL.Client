@@ -50,7 +50,7 @@ export default { components: { WlModal,
     return {
       showModal: false,
       filters: [
-        { label: 'Entidad', filter: 'ENTIDAD' },
+        { label:this.$t('search.input-filter.label-entitie'), filter: 'ENTIDAD' },
         { label: 'Tipo documento', filter: 'TIPO_DOCUMENTO'},
         { label: 'Número', filter: 'NUMERO' },
         { label: 'Año publicación', filter: 'ANIO_PUBLICACION' },

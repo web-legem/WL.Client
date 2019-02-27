@@ -236,6 +236,9 @@ export default {
       'label-language':'Idioma',
       'label-font-size':'Tamaño Fuente',
     },
+    'order-contro':{
+      'label-entitie':'Entidad ya',
+    },
   },
   
 }
