@@ -5,7 +5,7 @@
         :disable="disable"
         :ico="'ico-refresh'" 
         :only-icon="true" 
-        :title="$t('components.input-filter.title-update')"
+        :title="$t('search.input-filter.title-update')"
       />
 
       <input 
@@ -22,7 +22,7 @@
       <button 
         v-show="isVisible"
         class="btn_cancel" 
-        :title="$t('components.input-filter.title-rem-filt')"
+        :title="$t('search.input-filter.title-rem-filt')"
         @click="clearText()"
       >
         <span class="ico-plus" />

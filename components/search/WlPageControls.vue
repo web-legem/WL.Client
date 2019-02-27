@@ -12,7 +12,7 @@
       for="page"
       class="page-label"
     >
-      Page: 
+      {{ $t('search.page-controls.page') }} 
       <input 
         v-if="false"
         id="page"

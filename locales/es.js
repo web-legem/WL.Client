@@ -189,6 +189,7 @@ export default {
       'butt-show-search-adva':'Mostrar busqueda avanzada',
     },
     'page-controls':{
+      'page':'Página:',
       'title-previ':'Anterior',
       'title-next':'Siguiente',
     },
@@ -201,6 +202,7 @@ export default {
       'title-search-bar':'Buscar',
     },
     'search-filters':{
+      'h-search-ava':'Busqueda avanzada',
       'label-entity':'Entidad',
       'label-doc-type':'Tipo Documento',
     },
@@ -229,8 +231,11 @@ export default {
       'title-new':'Nuevo',
       'title-press-butt':'presiona el boton de "Nuevo" para crear un nuevo registro',
     },
-    
-
+    'controls-la':{
+      'label-contrast':'Contraste',
+      'label-language':'Idioma',
+      'label-font-size':'Tamaño Fuente',
+    },
   },
   
 }

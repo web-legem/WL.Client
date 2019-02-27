@@ -182,6 +182,7 @@ export default {
         'butt-show-search-adva':'show advanced search',
       },
       'page-controls':{
+        'page':'Page:',
         'title-previ':'Previous',
         'title-next':'Next',
       },
@@ -194,6 +195,7 @@ export default {
         'title-search-bar':'Search',
       },
       'search-filters':{
+        'h-search-ava':'Advanced search',
         'label-entity':'Entity',
         'label-doc-type':'Document type',
       },      
@@ -222,9 +224,10 @@ export default {
        'title-new':'New',
        'title-press-butt':'Press the "New" button to create a new record',
      },
-     
- 
-  
-  
+     'controls-la':{
+      'label-contrast':'Contrast',
+      'label-language':'Language',
+      'label-font-size':'Font size',
     },
+  },
   }

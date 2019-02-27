@@ -1,6 +1,8 @@
 <template>
   <div class="wl-search-filters">
-    <h3>Busqueda avanzada</h3> 
+    <h3>
+      {{ $t('search.search-filters.h-search-ava') }}
+    </h3> 
     <div class="active-filters">
       <wl-select-filter
         v-if="entities"
