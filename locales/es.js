@@ -156,17 +156,14 @@ export default {
       'label-annot': 'Anotaciones', 
       'label-user': 'Usuarios',
      },
-<<<<<<< HEAD
      'input-filter':{
       'title-update':'Actualizar',
       'title-rem-filt':'Quitar filtro',
     },
-=======
      'modal':{
       'title-clos-dia':'Cerrar Dialogo',
     },
 
->>>>>>> f2c02ccb38c1b507dd50461e415c7768620b4c1e
   },
 
   'search':{
