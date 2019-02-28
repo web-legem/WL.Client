@@ -7,18 +7,26 @@
       {{ title }}
     </label>
 
-    <input 
-      :id="id" 
-      :name="name" 
-      :value="value"
-      :disabled="disable == true"
-      :type="type" 
-      :placeholder="placeholder" 
-      :maxlength="max"
-      class="a_input"
-      :class="{'disable':disable}"
-      @input="$emit('input',$event.target.value)"
-    >
+    <div class="box_input_ico">
+      <input 
+        :id="id" 
+        :name="name" 
+        :value="value"
+        :disabled="disable"
+        :type="type" 
+        :placeholder="placeholder" 
+        :maxlength="max"
+        class="a_input"
+        :class="{'disable':disable}"
+        @input="$emit('input',$event.target.value)"
+      >
+      <div 
+        v-if="!(inputIco === '')"
+        class="ico_input_text"
+      >
+        <span :class="inputIco" />
+      </div>
+    </div>
 
     <div 
       v-show="error" 
@@ -44,7 +52,8 @@ export default {
     max: { type: Number, required: true },
     disable: { type: Boolean, default: false },
     error: { type: Boolean, default: false },
-    errorMsg: { type: String, default: "" }
+    errorMsg: { type: String, default: "" },
+    inputIco: { type: String, default: "" },
   },
   computed: {}
 };

@@ -208,3 +208,33 @@ html, body {
   flex-wrap: wrap;
   margin-bottom: 5px;
 }
+
+.flex-container{
+  display: flex;
+}
+
+.flex-container.col.center{ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  justify-content: center;
+}
+
+.flex-container.row.center{
+  display: flex;
+  flex-direction: row;
+  align-items: center;  
+  justify-content: center;
+}
+
+.box-title {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 35px;
+  align-self: stretch;
+  background: #00796b;
+  font-family: 'Lato';
+  font-size: 1rem;
+  padding-left: 10px;
+}
