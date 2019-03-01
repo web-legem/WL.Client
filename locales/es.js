@@ -163,6 +163,24 @@ export default {
      'modal':{
       'title-clos-dia':'Cerrar Dialogo',
     },
+    'controls-la':{
+      'label-contrast':'Contraste',
+      'label-language':'Idioma',
+      'label-font-size':'Tamaño Fuente',
+    },
+    'crud':{
+      'butt-edit':'Editar',
+      'butt-delete':'Eliminar',
+      'butt-accept':'Aceptar',
+      'butt-cancel':'Cancelar',
+      'title-confirm':'Confirmación',
+      'div-sure-delete':'¿Esta Seguro De Eliminar?',
+      'title-info':'Información',
+    },
+    'filtere-list':{
+      'title-new':'Nuevo',
+      'title-press-butt':'presiona el boton de "Nuevo" para crear un nuevo registro',
+    }, 
 
   },
 
@@ -191,6 +209,11 @@ export default {
     'order-control':{
       'title-filter':'Filtros',
       'butt-show-search-adva':'Mostrar busqueda avanzada',
+      'label-entitie':'Entidad',
+      'label-type-doc':'Tipo documento',
+      'label-number':'Número',
+      'label-date':'Año publicación',
+      'label-relevance':'Relevancia', 
     },
     'page-controls':{
       'page':'Página:',
@@ -222,27 +245,10 @@ export default {
     'year-filter':{
       'label-year-publ':'Año de publicación',
     },
-    'crud':{
-      'butt-edit':'Editar',
-      'butt-delete':'Eliminar',
-      'butt-accept':'Aceptar',
-      'butt-cancel':'Cancelar',
-      'title-confirm':'Confirmación',
-      'div-sure-delete':'¿Esta Seguro De Eliminar?',
-      'title-info':'Información',
-    },
-    'filtere-list':{
-      'title-new':'Nuevo',
-      'title-press-butt':'presiona el boton de "Nuevo" para crear un nuevo registro',
-    },
-    'controls-la':{
-      'label-contrast':'Contraste',
-      'label-language':'Idioma',
-      'label-font-size':'Tamaño Fuente',
-    },
-    'order-contro':{
-      'label-entitie':'Entidad ya',
-    },
+    
+   },  
+   'annotations':{
+    '':'',
   },
   
 }

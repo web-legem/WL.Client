@@ -158,10 +158,30 @@ export default {
        'input-filter':{
         'title-update':'Update',
         'title-rem-filt':'Remove filter',
+       },
        'modal':{
         'title-clos-dia':'Close dialog',
       },
+      'controls-la':{
+        'label-contrast':'Contrast',
+        'label-language':'Language',
+        'label-font-size':'Font size',
+      },
+      'crud':{
+        'butt-edit':'Edit',
+        'butt-delete':'Delete',
+        'butt-accept':'Accept',
+        'butt-cancel':'Cancel',
+        'title-confirm':'Confirmation',
+        'div-sure-delete':'¿Is sure to eliminate?',
+        'title-info':'Information',
+      },
+      'filtere-list':{
+        'title-new':'New',
+        'title-press-butt':'Press the "New" button to create a new record',
+      },
     },
+
     'search':{
       'annotation-inf':{
        'div-annot-type':'Annotation type:',
@@ -183,6 +203,11 @@ export default {
       'order-control':{
         'title-filter':'Filters',
         'butt-show-search-adva':'show advanced search',
+        'label-entitie':'Entity',
+        'label-type-doc':'Document type',
+        'label-number':'Number',
+        'label-date':'year of publication',
+        'label-relevance':'Relevance',
       },
       'page-controls':{
         'page':'Page:',
@@ -213,24 +238,11 @@ export default {
      },
      'year-filter':{
        'label-year-publ':'Year of publication',
-     },
-     'crud':{
-       'butt-edit':'Edit',
-       'butt-delete':'Delete',
-       'butt-accept':'Accept',
-       'butt-cancel':'Cancel',
-       'title-confirm':'Confirmation',
-       'div-sure-delete':'¿Is sure to eliminate?',
-       'title-info':'Information',
-     },
-     'filtere-list':{
-       'title-new':'New',
-       'title-press-butt':'Press the "New" button to create a new record',
-     },
-     'controls-la':{
-      'label-contrast':'Contrast',
-      'label-language':'Language',
-      'label-font-size':'Font size',
-    },
+     },    
+     
   },
-  }
+
+  'annotations':{
+    '':'',
+  },
+}

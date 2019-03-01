@@ -7,7 +7,7 @@
         :ico="'ico-pencil'"
         @click.native="startEdit($event)"
       >
-        {{ $t('search.crud.butt-edit') }}
+        {{ $t('components.crud.butt-edit') }}
       </wl-button>
       <wl-button 
         v-show="!isNew"
@@ -15,7 +15,7 @@
         :ico="'ico-trash'"                 
         @click.native="remove()"
       >
-        {{ $t('search.crud.butt-delete') }}
+        {{ $t('components.crud.butt-delete') }}
       </wl-button>
     </div>
 
@@ -27,7 +27,7 @@
         :ico="'ico-floppy-o'" 
         @click.native="ok($event)"
       >
-        {{ $t('search.crud.butt-accept') }}
+        {{ $t('components.crud.butt-accept') }}
       </wl-button>
       
       <wl-button 
@@ -35,18 +35,18 @@
         :ico="'ico-times'"  
         @click.native="cancel($event)"
       >
-        {{ $t('search.crud.butt-cancel') }}
+        {{ $t('components.crud.butt-cancel') }}
       </wl-button>
     </div>
     <!-- Modal confirmacion -->
     <wl-modal
       v-if="showDialog"
-      :title="$t('search.crud.title-confirm')"
+      :title="$t('components.crud.title-confirm')"
       @wlclose="closeModal"
     >
       <template slot="wl-content">
         <div class="generic-box-vertical content-modal">
-          <div>{{ $t('search.crud.div-sure-delete') }} "{{ objSelect.name }}"?</div>
+          <div>{{ $t('components.crud.div-sure-delete') }} "{{ objSelect.name }}"?</div>
         </div>
         <div class="modal-confirmacion confirm-dialog content-modal-buttons">
           <wl-button 
@@ -54,13 +54,13 @@
             ico="ico-trash" 
             @click.native="okModal($event)"            
           >
-            {{ $t('search.crud.butt-delete') }}
+            {{ $t('components.crud.butt-delete') }}
           </wl-button>          
           <wl-button 
             ico="ico-times"
             @click.native="closeModal()"
           >
-            {{ $t('search.crud.butt-cancel') }}
+            {{ $t('components.crud.butt-cancel') }}
           </wl-button>
         </div>
       </template>
