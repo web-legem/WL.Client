@@ -7,8 +7,7 @@ Vue.filter('date' , (date, locale, format) => moment(date)
   .locale(locale)
   .format(format))
 
-Vue.filter('limit', (str, max) => {
-  var length = str.length
-  if(length > max) return `${str.substring(0,max)}...`
-  return str
-})
+Vue.filter('limit', (str, max) => str.length > max 
+    ? `${str.substring(0, max)}...`
+   : str
+)
