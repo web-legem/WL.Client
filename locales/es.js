@@ -156,5 +156,99 @@ export default {
       'label-annot': 'Anotaciones', 
       'label-user': 'Usuarios',
      },
+     'input-filter':{
+      'title-update':'Actualizar',
+      'title-rem-filt':'Quitar filtro',
+    },
+     'modal':{
+      'title-clos-dia':'Cerrar Dialogo',
+    },
+    'controls-la':{
+      'label-contrast':'Contraste',
+      'label-language':'Idioma',
+      'label-font-size':'Tamaño Fuente',
+    },
+    'crud':{
+      'butt-edit':'Editar',
+      'butt-delete':'Eliminar',
+      'butt-accept':'Aceptar',
+      'butt-cancel':'Cancelar',
+      'title-confirm':'Confirmación',
+      'div-sure-delete':'¿Esta Seguro De Eliminar?',
+      'title-info':'Información',
+    },
+    'filtere-list':{
+      'title-new':'Nuevo',
+      'title-press-butt':'presiona el boton de "Nuevo" para crear un nuevo registro',
+    }, 
+
   },
+
+  'search':{
+    'annotation-inf':{
+     'div-annot-type':'Tipo de Anotación:',
+      'title-see-more':'Ver más',
+      'butt-see-more':'Ver más',
+      'div-desc':'Descripción:',
+    },
+    'annotation-list':{
+      'title-annot-enter':'Anotaciones Entrantes',
+      'title-annot-go-out':'Anotaciones Salientes',
+    },
+    'doc-control':{
+      'h-doc-title':'Titulo de documento ',
+    },
+    'input-filter':{
+      'title-update':'Actualizar',
+      'title-rem-filt':'Quitar filtro',
+    },
+    'number-filter':{
+      'label-num-doc':'Número de documento',
+      'title-add-fil':'Agregar Filtro',
+    },
+    'order-control':{
+      'title-filter':'Filtros',
+      'butt-show-search-adva':'Mostrar busqueda avanzada',
+      'label-entitie':'Entidad',
+      'label-type-doc':'Tipo documento',
+      'label-number':'Número',
+      'label-date':'Año publicación',
+      'label-relevance':'Relevancia', 
+    },
+    'page-controls':{
+      'page':'Página:',
+      'title-previ':'Anterior',
+      'title-next':'Siguiente',
+    },
+    'co-search':{
+      'search':'Buscando ...',
+      'not-found':'No se encontro',
+      'network-error':'Error de red',
+    },
+    'search-bar':{
+      'title-search-bar':'Buscar',
+    },
+    'search-filters':{
+      'h-search-ava':'Busqueda avanzada',
+      'label-entity':'Entidad',
+      'label-doc-type':'Tipo Documento',
+    },
+    'search-result':{
+     'a-entity':'Entidad:', 
+     'a-date':'Fecha:',
+     'a-del':'del',
+     'title-down':'"Descargar',
+    },
+    'select-filter':{
+      'title-add-filter':'Agregar Filtro',
+    },
+    'year-filter':{
+      'label-year-publ':'Año de publicación',
+    },
+    
+   },  
+   'annotations':{
+    '':'',
+  },
+  
 }

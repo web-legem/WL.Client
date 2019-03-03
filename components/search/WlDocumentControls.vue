@@ -1,7 +1,7 @@
 <template>
   <div class="document-controls">
     <h1 class="document-title">
-      Document Title
+      {{ $t('search.doc-control.h-doc-title') }}
     </h1>
   </div>
 </template>

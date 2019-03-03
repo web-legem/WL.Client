@@ -5,7 +5,7 @@
     @mousedown.stop="reportMouseDown()"
     @focusout="hideA11yPanelOnBlur(true)"
   >
-    <label><span class="ico2-contrast" /> Contraste</label>
+    <label><span class="ico2-contrast" /> {{ $t('components.controls-la.label-contrast') }}</label>
     <div>
       <button 
         id="btn-light"
@@ -21,7 +21,7 @@
         @focus="showA11yPanel"
       />
     </div>
-    <label><span class="ico2-earth" /> Idioma</label>
+    <label><span class="ico2-earth" /> {{ $t('components.controls-la.label-language') }}</label>
     <div>
       <nuxt-link
         v-for="locale in $i18n.locales"
@@ -34,7 +34,7 @@
         {{ locale.name }}
       </nuxt-link>
     </div>
-    <label><span class="ico2-font-size" /> Tamaño Fuente</label>
+    <label><span class="ico2-font-size" /> {{ $t('components.controls-la.label-font-size') }}</label>
     <div>
       <button
         v-for="(size, index) in $store.state.fontSizes"

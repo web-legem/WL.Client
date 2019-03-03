@@ -5,7 +5,7 @@
       class="filter"
     >
       <label for="numero">
-        Número de documento
+        {{ $t('search.number-filter.label-num-doc') }}
       </label>
       <div class="control">
         <input
@@ -18,7 +18,7 @@
         >
         <wl-button 
           :only-icon="true"
-          title="Agregar Filtro"
+          :title="$t('search.number-filter.title-add-fil')"
           ico="ico2-minus"
           class="danger"
           @click.native="disableNumberFilter"
@@ -31,7 +31,7 @@
       class="filter"
     >
       <label for="numero">
-        Número de documento
+        {{ $t('search.number-filter.label-num-doc') }}
       </label>
       <div class="control">
         <input
@@ -44,7 +44,7 @@
         >
         <wl-button 
           :only-icon="true"
-          title="Agregar Filtro"
+          :title="$t('search.number-filter.title-add-fil')"
           ico="ico2-plus"
           @click.native="enableNumberFilter"
         />

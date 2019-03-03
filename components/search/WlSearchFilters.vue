@@ -1,12 +1,14 @@
 <template>
   <div class="wl-search-filters">
-    <h3>Busqueda avanzada</h3> 
+    <h3>
+      {{ $t('search.search-filters.h-search-ava') }}
+    </h3> 
     <div class="active-filters">
       <wl-select-filter
         v-if="entities"
         :list="entities"
         param="entityId"
-        label="Entidad"
+        :label="$t('search.search-filters.label-entity')"
         value-prop-name="id"
         label-prop-name="name"
       />
@@ -14,7 +16,7 @@
         v-if="documentTypes"
         :list="documentTypes"
         param="documentTypeId"
-        label="Tipo Documento"
+        :label="$t('search.search-filters.label-doc-type')"
         value-prop-name="id"
         label-prop-name="name"
       />

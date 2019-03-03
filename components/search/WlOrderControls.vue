@@ -17,16 +17,16 @@
     <no-ssr>
       <button
         v-if="$mq != 'lg' && $mq != 'xl'"
-        class="ordering"
+        class="ordering"  
         @click="showFilters"
       >
-        Mostrar busqueda avanzada
+        {{ $t('search.order-control.butt-show-search-adva') }}
       </button>
     </no-ssr>
     <no-ssr>
       <wl-modal
         v-if="showModal && $mq != 'lg' && $mq != 'xl'"
-        title="Filtros"
+        :title="$t('search.order-control.title-filterl')"
         @wlclose="hideFilters"
       >
         <wl-search-filters slot="wl-content" />
@@ -50,11 +50,11 @@ export default { components: { WlModal,
     return {
       showModal: false,
       filters: [
-        { label: 'Entidad', filter: 'ENTIDAD' },
-        { label: 'Tipo documento', filter: 'TIPO_DOCUMENTO'},
-        { label: 'Número', filter: 'NUMERO' },
-        { label: 'Año publicación', filter: 'ANIO_PUBLICACION' },
-        { label: 'Relevancia', filter: 'DEFAULT' }, // TODO - cambiar label por cadena en ingles o español
+        { label:this.$t('search.order-control.label-entitie'), filter: 'ENTIDAD' },
+        { label:this.$t('search.order-control.label-type-doc'), filter: 'TIPO_DOCUMENTO'},
+        { label:this.$t('search.order-control.label-number'), filter: 'NUMERO' },
+        { label:this.$t('search.order-control.label-date'),  filter: 'ANIO_PUBLICACION' },
+        { label:this.$t('search.order-control.label-relevance'), filter: 'DEFAULT' }, // TODO - cambiar label por cadena en ingles o español
       ],
     }
   },

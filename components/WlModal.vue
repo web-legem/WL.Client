@@ -16,7 +16,7 @@
           {{ title }}
         </div>
         <button 
-          title="Cerrar Dialogo" 
+          :title="$t('components.modal.title-clos-dia')"
           @click="closeModal($event,true)"
         >
           <span class="ico-times" />

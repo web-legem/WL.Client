@@ -155,5 +155,94 @@ export default {
         'label-annot': 'Annotationes', 
         'label-user': 'Users',
        },
+       'input-filter':{
+        'title-update':'Update',
+        'title-rem-filt':'Remove filter',
+       },
+       'modal':{
+        'title-clos-dia':'Close dialog',
+      },
+      'controls-la':{
+        'label-contrast':'Contrast',
+        'label-language':'Language',
+        'label-font-size':'Font size',
+      },
+      'crud':{
+        'butt-edit':'Edit',
+        'butt-delete':'Delete',
+        'butt-accept':'Accept',
+        'butt-cancel':'Cancel',
+        'title-confirm':'Confirmation',
+        'div-sure-delete':'¿Is sure to eliminate?',
+        'title-info':'Information',
+      },
+      'filtere-list':{
+        'title-new':'New',
+        'title-press-butt':'Press the "New" button to create a new record',
+      },
     },
-  }
+
+    'search':{
+      'annotation-inf':{
+       'div-annot-type':'Annotation type:',
+        'title-see-more':'See more',
+        'butt-see-more':'See more',
+        'div-desc':'Description:',
+      },
+      'doc-control':{
+        'h-doc-title':'Document title',
+      },
+      'input-filter':{
+        'title-update':'Update',
+        'title-rem-filt':'Remove filter',
+      },
+      'number-filter':{
+        'label-num-doc':'Document number',
+        'title-add-fil':'Add filter',
+      },
+      'order-control':{
+        'title-filter':'Filters',
+        'butt-show-search-adva':'show advanced search',
+        'label-entitie':'Entity',
+        'label-type-doc':'Document type',
+        'label-number':'Number',
+        'label-date':'year of publication',
+        'label-relevance':'Relevance',
+      },
+      'page-controls':{
+        'page':'Page:',
+        'title-previ':'Previous',
+        'title-next':'Next',
+      },
+      'co-search':{
+        'search':'Searching ...',
+        'not-found':'Not Found',
+        'network-error':'Network Error',
+      },
+      'search-bar':{
+        'title-search-bar':'Search',
+      },
+      'search-filters':{
+        'h-search-ava':'Advanced search',
+        'label-entity':'Entity',
+        'label-doc-type':'Document type',
+      },      
+     'search-result':{
+      'a-entity':'Entity:', 
+      'a-date':'Date:',
+      'a-del':'Of',
+      'title-down':'"Download',
+     },
+     'select-filter':{
+       'title-add-filter':'Add filter',
+     },
+     'year-filter':{
+       'label-year-publ':'Year of publication',
+     },    
+     
+  },
+
+  'annotations':{
+    '':'',
+  },
+}

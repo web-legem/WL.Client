@@ -2,20 +2,23 @@
   <div>
     <div>
       <label class="texto_labels ">  
-        {{ $t('components.webcam.label-foto-user') }}
-       
+        {{ $t('components.webcam.label-foto-user') }}       
       </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
+          <wl-load2 
+            v-if="isLoading"          
+            class="loading-photo"
+          />            
           <span 
-            v-show="!trash"
+            v-show="(!trash || !loadingSuccess) && !isLoading "
             class="ico-user" 
           />
-          <img 
-            v-show="trash"
+          <img             
+            v-show="trash && loadingSuccess && !isLoading"
             id="laimagen"
             ref="imgShowed"
-            :alt="$t('components.webcam.alt-foto-usuario')" 
+            :alt="$t('components.webcam.alt-foto-user')" 
             :src="photoFile"
             @load="showPhoto"
           >
@@ -145,17 +148,22 @@
 
 <script>
 import WlButton from "~/components/WlButton.vue";
+import WlLoad2 from "~/components/WlLoad2.vue";
 
 export default {
   components: {
     WlButton,
+    WlLoad2,
   },
   props: {
     title: { type: String, default: "" },
     overlayClose: { type: Boolean, default: false },
     photoFile: {type:String, default:""},      
     disable: { type: Boolean, default: true },  
-    photoInput: { type: File, default: null },  
+    photoInput: { type: File, default: null },
+    isLoading: { type: Boolean, default: false },  
+    loadingSuccess: { type: Boolean, default: false },  
+    trash: { type: Boolean, default: false },
   },
   data() {
   return {
@@ -163,9 +171,11 @@ export default {
     webcamStream: null,
     existCanvas: false,
     isStreaming: true,
-    trash: false,
     }
-  },    
+  }, 
+  update(){
+    console.log("xxxxxxxxxxxxxxxxxx");
+  }   ,
   computed: {
     videoElement () {return this.$refs.webcam},
     canvasElement () {return this.$refs.canvas},
@@ -207,20 +217,24 @@ export default {
       var leerArchivo = new FileReader();
       leerArchivo.onload = (e) => {
           img.src = e.target.result;
+          this.$emit('loading-success');
+          this.$emit('was-change');
+          this.$emit('show-trash',true);
       };
       leerArchivo.readAsDataURL(f);//para q el archivo sea leido 
     },
     deletePhoto(){
       var img = this.imageElement;
       img.src = "";
-      this.trash = false;
       img.style.visibility = "hidden";
-      this.photoInput = null;
+      this.$emit('show-trash',false);
+      this.$emit('new-file', null);
+      this.$emit('was-change');
     },
     showPhoto(){      
-      var img = this.imageElement;      
-      this.trash = true;
+      var img = this.imageElement;
       img.style.visibility = "unset";
+      this.$emit('show-trash',true);
     },
     snapshot(){        
       try {// Draws current image from the video element into the canvas
@@ -253,13 +267,14 @@ export default {
       canvasAux.getContext('2d').drawImage(imgAux, 80, 20, 155, 200, 0, 0, 155, 200);
       img.src = canvasAux.toDataURL("image/jpeg");
       img.style.visibility = "unset";
-      this. convertToFile(img.src);
+      this.convertToFile(img.src);
       var imageData = canvas.toDataURL('image/png');
       var params = "filename=" + imageData;
       document.getElementById("hidden_input").setAttribute("value", params);
       var files = document.getElementById("hidden_input");
       this.isStreaming = true;
       this.existCanvas = false;
+      this.$emit('was-change');
       this.closeCamera();
     },
     convertToFile(source){
@@ -272,9 +287,10 @@ export default {
       let arr = new Uint8Array(buf);
       bin
         .split('')
-        .forEach((e,i)=>arr[i]=e.charCodeAt(0));
-        
-      this.photoInput = new File([buf],'filename',{type:mime}); // note: [buf]
+        .forEach((e,i)=>arr[i]=e.charCodeAt(0));                
+      var objCreado = new File([buf],'filename',{type:mime}); // note: [buf]
+      this.$emit('new-file', objCreado);
+      this.$emit('was-change');
     },    
     repetirFoto() {
         var canvas = this.canvasElement;
@@ -315,13 +331,15 @@ export default {
     width:150px !important;
     height:190px;
     text-align:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .foto_usuarios > span:before{   
     color:#ddd;
     font-size:120px;
-    display:block;
-    margin-top:30px;    
+    display:block;    
 }
 
 #laimagen{

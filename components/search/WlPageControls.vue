@@ -3,7 +3,7 @@
     <wl-button
       :only-icon="true"
       :disable="!hasPrevious"
-      title="Previous"
+      :title="$t('search.page-controls.title-previ')"
       class="icon"
       data-icon="G"
       @click.native="previous()"
@@ -12,7 +12,7 @@
       for="page"
       class="page-label"
     >
-      Page: 
+      {{ $t('search.page-controls.page') }} 
       <input 
         v-if="false"
         id="page"
@@ -30,7 +30,7 @@
     <wl-button
       :only-icon="true"
       :disable="!hasNext"
-      title="Next"
+      :title="$t('search.page-controls.title-next')"
       class="icon"
       data-icon="H"
       @click.native="next"

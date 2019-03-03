@@ -10,20 +10,19 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">
-        <!-- <input
-          id="file"
-          ref="file"
-          name="file"
-          type="file"
-          @change="handleFileToUpload"
-        > -->        
-        <wl-load2 />
+      <template slot="wl-form">     
         <div class="box_duo_input">          
           <div>
             <wl-web-cam
               :photo-file="photoUrl"
               :disable="!isEdit"
+              :is-loading="isLoading"
+              :loading-success="loadingSuccess"
+              :trash="showTrash"
+              @new-file="newFile($event)"
+              @was-change="setPhotoState($event)"   
+              @loading-success="setLoadingSuccess($event)"   
+              @show-trash="setShowTrash($event)" 
             />            
           </div>
           <div>
@@ -139,7 +138,6 @@ import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
 import WlSwitchButton from "~/components/WlSwitchButton.vue";
 import WlWebCam from "~/components/WlWebCam.vue";
-import WlLoad2 from "~/components/WlLoad2.vue";
 
 export default {
   components: {
@@ -147,7 +145,6 @@ export default {
     WlInput,
     WlWebCam,
     WlSwitchButton,
-    WlLoad2,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -157,10 +154,14 @@ export default {
       img: null,
       camera: null,
       isEdit : false,
-      file: '',
+      file: null,
       loadingPhoto: true,  
-      photoUrl: '',    
-    };
+      photoUrl: '', 
+      fileWasChange: false,
+      isLoading: false,
+      loadingSuccess: false,
+      showTrash: false,
+    }
   },
   computed: {
     ...mapGetters("persons/users", {
@@ -222,20 +223,40 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save({modifiedUser: this.objSelected,file: this.file}).then(this.cancel);
+      this.save({modifiedUser: this.objSelected,file: this.file, fileWasChange: this.fileWasChange}).then(this.cancel);
     },
     startEdit(){
       this.isEdit = true;
     },
     getPhoto(){
+      this.isLoading = true;
       this.$axios.get('/api/User/Photo/'+ this.$route.params.id, {responseType: 'blob'})
       .then(response => this.loadPhoto(response.data))
-      .catch(e => console.log("photo cant be loaded",e))
+      .catch(e => this.cantLoadPhoto(e))
     },
-    loadPhoto(response){      
-      const url = window.URL.createObjectURL(new Blob([response]));      
+    cantLoadPhoto(e){        
+      console.log("photo cant be loaded",e);    
+      this.isLoading = false;
+      this.loadingSuccess = false;
+    },
+    loadPhoto(response){            
+      const url = window.URL.createObjectURL(new Blob([response]));            
       this.photoUrl = url;
+      this.isLoading = false;
+      this.loadingSuccess = true;
     },    
+    newFile(file) {
+      this.file = file;
+    },
+    setShowTrash(show) {
+      this.showTrash = show;
+    },
+    setPhotoState(){
+      this.fileWasChange = true;
+    },
+    setLoadingSuccess(){
+      this.loadingSuccess = true;
+    },
     ...mapActions("persons/users", [
       "save",
       "delete",

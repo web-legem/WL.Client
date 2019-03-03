@@ -5,7 +5,7 @@
         :disable="disable"
         :ico="'ico-refresh'" 
         :only-icon="true" 
-        :title="'Actualizar'"
+        :title="$t('search.order-contro.title-update')"
         @click.native="reload"
       />
 
@@ -23,7 +23,7 @@
       <button 
         v-show="isVisible"
         class="btn_cancel" 
-        title="Quitar filtro"
+        :title="$t('search.input-filter.title-rem-filt')"
         @click="clearText()"
       >
         <span class="ico-plus" />

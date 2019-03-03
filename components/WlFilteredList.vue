@@ -10,7 +10,7 @@
           <wl-button 
             :disable="disable"
             :only-icon="true" 
-            title="Nuevo"
+            :title="$t('components.filtere-list.title-new')"
             ico="ico-plus" 
             @click.native="add"
           />
@@ -30,7 +30,7 @@
       >
         <span class="ico2-files-empty" />
         <p>
-          presiona el boton de "Nuevo" para crear un nuevo registro  
+          {{ $t('components.filtere-list.title-press-butt') }}  
         </p>    
       </div>
     </div>
@@ -115,11 +115,9 @@ export default {
   display: flex;
   height: 80%;  
   min-height: 80% !important;
+  flex-direction: column;
   align-items: center;  
   justify-content: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 20px;
 }
 

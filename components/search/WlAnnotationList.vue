@@ -4,15 +4,14 @@
       :annotations="inAnnotations"
       :selected="selectedId"
       icon="ico2-arrow-right"
-      title="Anotaciones Entrantes"
+      :title="$t('search.annotation-list.title-annot-enter') "
       @show-annotation="select($event)"
     />
-
     <wl-annotation-list-group
       :annotations="outAnnotations"
       :selected="selectedId"
       icon="ico2-arrow-left"
-      title="Anotaciones Salientes"
+      :title="$t('search.annotation-list.title-annot-go-out') "
       @show-annotation="select($event)"
     />
   </nav>

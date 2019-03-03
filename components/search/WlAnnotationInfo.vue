@@ -11,23 +11,23 @@
       </h3>
     </div>
     <div class="type">
-      Tipo de Anotación:
+      {{ $t('search.annotation-inf.div-annot-type') }}
       {{ annotation.annotationType.name }}
     </div>
     <div class="control">
       <button
-        title="Ver mas"
+        :title="$t('search.annotation-inf.title-see-more') "
         class="button-control"
         @click="showDetails(annotation.id)"
       >
-        Ver más
+        {{ $t('search.annotation-inf.butt-see-more') }}
       </button>
     </div>
     <div
       v-if="isSelected"
       class="description"
     >
-      <div>Descriptión:</div>
+      <div> {{ $t('search.annotation-inf.div-desc') }}</div>
       <div>
         {{ annotation.description }}
       </div>
