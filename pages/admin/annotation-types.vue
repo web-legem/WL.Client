@@ -2,24 +2,29 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list 
       slot="master" 
-      :empty-list="annotationTypes != null && annotationTypes.length == 0"
+      :list="annotationTypes"
       @add="create"
     >
-      <wl-list-item
-        v-for="annotationType in annotationTypes"
-        :key="annotationType.id"
-        route="admin-annotation-types-id"
-        active-route="admin-annotation-types"
-        :item-id="annotationType.id"
+      <template
+        slot="list"
+        slot-scope="{ filteredList }"
       >
-        {{ annotationType.name }}
-      </wl-list-item>      
+        <wl-list-item
+          v-for="annotationType in filteredList"
+          :key="annotationType.id"
+          route="admin-annotation-types-id"
+          active-route="admin-annotation-types"
+          :item-id="annotationType.id"
+        >
+          {{ annotationType.name }}
+        </wl-list-item>      
+      </template>
     </wl-filtered-list>
     <div 
       slot="details" 
       class="details"
     >
-      <nuxt-child/>
+      <nuxt-child />
     </div>
   </wl-master-detail-layout>
 </template>
@@ -52,14 +57,14 @@ export default {
       selected: "selected"
     })
   },
+  fetch({ store, params }) {
+    return store.dispatch("admin/annotation-types/loadData");
+  },
   methods: {
     create() {
       this.$router.push(this.localePath({ name: "admin-annotation-types-new" }));
     }
   },
-  fetch({ store, params }) {
-    return store.dispatch("admin/annotation-types/loadData");
-  }
 };
 </script>
 

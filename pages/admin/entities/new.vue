@@ -68,16 +68,16 @@ export default {
       email: "",
     }
   },
+  computed: {
+    ...mapGetters("admin/entities", {
+      error: "error"
+    })
+  },
   asyncData(context) {
     return context.app.$axios
       .get("/api/EntityType")
       .then(response => ({ entityTypes: response.data }))
       .catch(e => console.log(e));
-  },
-  computed: {
-    ...mapGetters("admin/entities", {
-      error: "error"
-    })
   },
   created() {
     this.isCreating();

@@ -52,13 +52,13 @@ export default {
       selected: 'selected',
     })
   },
+  fetch({ store, params }) {
+    return store.dispatch("persons/users/loadData")
+  },
   methods: {
     create() {
       this.$router.push( this.localePath({name: "persons-users-new"}))
     },    
-  },
-  fetch({ store, params }) {
-      return store.dispatch("persons/users/loadData")
   },
 }
 </script>

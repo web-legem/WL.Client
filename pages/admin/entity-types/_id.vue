@@ -113,10 +113,14 @@ export default {
       this.select(this.$route.params.id);
     }
   },
-
+  asyncData(context) {
+    return context.app.$axios
+      .get("/api/DocumentType")
+      .then(response => ({ docTypes: response.data }))
+      .catch(e => console.log(e));
+  },
   mounted() {this.select(this.$route.params.id);},
   beforeDestroy() {this.clearSelection();},
-
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-entity-types" }));
@@ -140,12 +144,6 @@ export default {
       "clearError",
     ])
   },
-  asyncData(context) {
-    return context.app.$axios
-      .get("/api/DocumentType")
-      .then(response => ({ docTypes: response.data }))
-      .catch(e => console.log(e));
-  }
 };
 </script>
 

@@ -1,9 +1,9 @@
 <template>
-<div>
-  <div class="container-circulo">
-    <div class="load_list"></div>
+  <div>
+    <div class="container-circulo">
+      <div class="load_list" />
+    </div>
   </div>
-</div>
 </template>
 
 <style lang="scss" scoped>

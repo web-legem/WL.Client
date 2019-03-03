@@ -2,23 +2,28 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list
       slot="master"
-      :empty-list="entities != null && entities.length == 0"      
+      :list="entities"
       @add="create"
     >
-      <wl-list-item
-        v-for="entity in entities" 
-        :key="entity.id"
-        route="admin-entities-id"
-        active-route="admin-entities"
-        :item-id="entity.id"
+      <template
+        slot="list"
+        slot-scope="{ filteredList }"
       >
-        <div>
-          {{ entity.name }}
-        </div>
-        <div class="entity-type-label">
-          {{ entity.entityTypeId }}
-        </div>
-      </wl-list-item>
+        <wl-list-item
+          v-for="entity in filteredList" 
+          :key="entity.id"
+          route="admin-entities-id"
+          active-route="admin-entities"
+          :item-id="entity.id"
+        >
+          <div>
+            {{ entity.name }}
+          </div>
+          <div class="entity-type-label">
+            {{ entity.entityTypeId }}
+          </div>
+        </wl-list-item>
+      </template>
     </wl-filtered-list>
 
     <div
@@ -60,8 +65,11 @@ export default {
       , isSelected: 'isSelected'
       , selected: 'selected'
     })
-  }
-  , methods: {
+  },
+  fetch({store, params}) {
+    return store.dispatch('admin/entities/loadData')
+  },
+  methods: {
     create() {
       this.$router.push(this.localePath({name: 'admin-entities-new'}))
     }
@@ -70,10 +78,7 @@ export default {
         this.$router.push(this.localePath({name: 'admin-entities'}))
       }
     }
-  }
-  , fetch({store, params}) {
-    return store.dispatch('admin/entities/loadData')
-  }
+  },
 }
 </script>
 

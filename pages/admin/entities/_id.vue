@@ -10,7 +10,6 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-    
       <template slot="wl-form">
         <wl-input
           v-if="selected"
@@ -95,14 +94,18 @@ export default {
       this.select(this.$route.params.id);
     }
   },
-
+  asyncData(context) {
+    return context.app.$axios
+      .get("/api/EntityType")
+      .then(response => ({ entityTypes: response.data }))
+      .catch(e => console.log(e));
+  },
   mounted() {
     this.select(this.$route.params.id);
   },
   beforeDestroy() {
     this.clearSelection();
   },
-
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-entities" }));
@@ -127,11 +130,5 @@ export default {
       "clearError",
     ])
   },
-  asyncData(context) {
-    return context.app.$axios
-      .get("/api/EntityType")
-      .then(response => ({ entityTypes: response.data }))
-      .catch(e => console.log(e));
-  }
 };
 </script>

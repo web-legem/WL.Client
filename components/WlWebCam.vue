@@ -69,7 +69,7 @@
       <div class="modal-dialog">
         <div class="modal-close">
           <div class="titulo-modal">
-           {{ $t('components.webcam.take-photo') }}
+            {{ $t('components.webcam.take-photo') }}
           </div>
           <button 
             :title="$t('components.webcam.title-clos-web')"
@@ -108,7 +108,7 @@
                 class="c1"
                 @click.native="snapshot()"
               >
-               {{ $t('components.webcam.w-take-photo') }}
+                {{ $t('components.webcam.w-take-photo') }}
               </wl-button>
 
               <wl-button 
@@ -118,7 +118,7 @@
                 class="c2"
                 @click.native="repetirFoto()"
               >
-               {{ $t('components.webcam.rep-photo') }}
+                {{ $t('components.webcam.rep-photo') }}
               </wl-button>
 
               <wl-button 

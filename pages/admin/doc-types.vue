@@ -1,26 +1,31 @@
 <template>
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list 
-      slot="master" 
-      :empty-list="documentTypes != null && documentTypes.length == 0"
+      slot="master"
+      :list="documentTypes"
       @add="create"
     >
-      <wl-list-item
-        v-for="documentType in documentTypes"
-        :key="documentType.id"
-        route="admin-doc-types-id"
-        active-route="admin-doc-types"
-        :item-id="documentType.id"
+      <template
+        slot="list"
+        slot-scope="{ filteredList }"
       >
-        {{ documentType.name }}
-      </wl-list-item>
+        <wl-list-item
+          v-for="documentType in filteredList"
+          :key="documentType.id"
+          route="admin-doc-types-id"
+          active-route="admin-doc-types"
+          :item-id="documentType.id"
+        >
+          {{ documentType.name }}
+        </wl-list-item>
+      </template>
     </wl-filtered-list>
 
     <div 
       slot="details" 
       class="details"
     >
-      <nuxt-child/>
+      <nuxt-child />
     </div>
   </wl-master-detail-layout>
 </template>
@@ -51,7 +56,10 @@ export default {
       selected: "selected",
       isSelected: "isSelected",
       isCreating: "isCreating"
-    })
+    }),
+  },
+  fetch({ store, params }) {
+    return store.dispatch("admin/document-types/loadData");
   },
   methods: {
     activateRoute(actualIdSelected) {
@@ -63,10 +71,7 @@ export default {
       this.$router.push(this.localePath({ name: "admin-doc-types-new" }));
     }
   },
-  fetch({ store, params }) {
-    return store.dispatch("admin/document-types/loadData");
-  }
-};
+}
 </script>
 
 <style lang="scss" scoped>

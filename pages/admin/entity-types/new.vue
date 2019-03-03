@@ -83,10 +83,14 @@ export default {
       error: "error"
     })
   },
-
+  asyncData(context) {
+    console.log(context)
+    return context.app.$axios.get('/api/DocumentType')
+      .then(response => ({ docTypes: response.data }))
+      .catch(e => console.log('error', e))
+  },
   created() {this.isCreating()},
   beforeDestroy() {this.clearSelection()},
-  
   methods: {
     cancel() {
       this.$router.push(this.localePath({name: 'admin-entity-types'}))
@@ -102,11 +106,5 @@ export default {
       clearError: "clearError",
     }),
   },
-  asyncData(context) {
-    console.log(context)
-    return context.app.$axios.get('/api/DocumentType')
-      .then(response => ({ docTypes: response.data }))
-      .catch(e => console.log('error', e))
-  }
 }
 </script>

@@ -2,12 +2,10 @@
   <div>
     <h1>{{ $t('doc-management.classify-doc.h-classify-doc') }}</h1>
     <p v-if="isAlreadyClassified">
-       {{ $t('doc-management.classify-doc.p-ya-classify-doc') }}
-      
+      {{ $t('doc-management.classify-doc.p-ya-classify-doc') }}
     </p>
     <p v-if="!isAlreadyClassified">
       {{ $t('doc-management.classify-doc.p-no-classify-doc') }}
-      
     </p>
 
     <form action="">
@@ -34,9 +32,7 @@
           value=""
           disabled
         >
-
-        {{ $t('doc-management.classify-doc.please-select-one') }}
-          
+          {{ $t('doc-management.classify-doc.please-select-one') }}
         </option>
         <option 
           v-for="entity in entities"
@@ -56,8 +52,7 @@
           value=""
           disabled
         >
-        {{ $t('doc-management.classify-doc.please-select-one') }}
-
+          {{ $t('doc-management.classify-doc.please-select-one') }}
         </option>
         <option 
           v-for="documentType in documentTypes"
@@ -72,15 +67,13 @@
         type="button"
         @click="clear"
       >
-           {{ $t('doc-management.classify-doc.butt-cancel') }}
-
+        {{ $t('doc-management.classify-doc.butt-cancel') }}
       </button>
       <button
         type="button"
         @click="classify"
       >
-           {{ $t('doc-management.classify-doc.butt-accept') }}
-        
+        {{ $t('doc-management.classify-doc.butt-accept') }}
       </button>
     </form>
     {{ number }}
@@ -116,12 +109,24 @@ export default {
     '$route.params.id'(){
       this.loadData(this.$route.params.id)
     }
-  }
-  , methods: {
+  },
+  asyncData(context) {
+    return Promise.all([
+      context.app.$axios.get('/api/Entity')
+      , context.app.$axios.get('/api/DocumentType')
+    ]).then(results => ({
+      entities: results[0].data
+      , documentTypes: results[1].data
+    }))
+  },
+  fetch({ store, params }) {
+    return store.dispatch('doc-management/classify-document/loadData', params.id)
+  },
+  methods: {
     ...mapActions('doc-management/classify-document', [
       'loadData'
-    ])
-    , classify() {
+    ]),
+    classify() {
       this.$axios.post('/api/Document', {
         fileId: this.$route.params.id
         , document: {
@@ -133,27 +138,15 @@ export default {
       })
       .then(console.log)
       .catch(console.log)
-    }
-    , clear(){
+    },
+    clear(){
       this.date = moment(Date.now())
         .locale(this.$store.state.i18n.locale)
         .format('YYYY-MM-DD')
       this.number = ''
       this.documentTypeId = null
       this.entityId = null
-    }
-  }
-  , asyncData(context) {
-    return Promise.all([
-      context.app.$axios.get('/api/Entity')
-      , context.app.$axios.get('/api/DocumentType')
-    ]).then(results => ({
-      entities: results[0].data
-      , documentTypes: results[1].data
-    }))
-  }
-  , fetch({ store, params }) {
-    return store.dispatch('doc-management/classify-document/loadData', params.id)
-  }
+    },
+  },
 }
 </script>

@@ -4,7 +4,6 @@
       :obj-select="null"
       :disable-buttons="true"
     >
-    
       <template slot="wl-form">
         <wl-input
           :title="$t('admin.entities-type.title-name-enty-type')"

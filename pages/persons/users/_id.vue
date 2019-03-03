@@ -18,7 +18,7 @@
           type="file"
           @change="handleFileToUpload"
         > -->        
-        <wl-load2/>
+        <wl-load2 />
         <div class="box_duo_input">          
           <div>
             <wl-web-cam

@@ -2,18 +2,23 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list
       slot="master"
-      :empty-list="entityTypes != null && entityTypes.length == 0"        
+      :list="entityTypes"
       @add="create"
     >
-      <wl-list-item
-        v-for="entityType in entityTypes"
-        :key="entityType.id"
-        route="admin-entity-types-id"
-        active-route="admin-entity-types"
-        :item-id="entityType.id"
+      <template
+        slot="list"
+        slot-scope="{ filteredList }"
       >
-        {{ entityType.name }}
-      </wl-list-item>
+        <wl-list-item
+          v-for="entityType in filteredList"
+          :key="entityType.id"
+          route="admin-entity-types-id"
+          active-route="admin-entity-types"
+          :item-id="entityType.id"
+        >
+          {{ entityType.name }}
+        </wl-list-item>
+      </template>
     </wl-filtered-list>
     
     <div
@@ -36,39 +41,39 @@ export default {
     return {
       title: this.$t('admin.entity-types.module-name')
     }
-  }
-  , nuxtI18n: {
+  },
+  nuxtI18n: {
     paths: {
-      es: 'tipos-entidad'
-      , en: 'entity-types'
+      es: 'tipos-entidad',
+      en: 'entity-types',
     }
-  }
-  , components: {
-    WlMasterDetailLayout
-    , WlListItem
-    , WlFilteredList
-  }
-  , computed: {
+  },
+  components: {
+    WlMasterDetailLayout,
+    WlListItem,
+    WlFilteredList,
+  },
+  computed: {
     ...mapGetters('admin/entity-types', {
-      entityTypes: 'list'
-      , isCreating: 'isCreating'
-      , isSelected: 'isSelected'
-      , selected: 'selected'
+      entityTypes: 'list',
+      isCreating: 'isCreating',
+      isSelected: 'isSelected',
+      selected: 'selected',
     })
-  }
-  , methods: {
+  },
+  fetch({store, params}) {
+    return store.dispatch('admin/entity-types/loadData')
+  },
+  methods: {
     create() {
       this.$router.push(this.localePath({name: 'admin-entity-types-new'}))
-    }
-    , activateRoute(actualIdSelected) {
+    },
+    activateRoute(actualIdSelected) {
       if(this.isSelected && actualIdSelected == this.selected.id) {
         this.$router.push(this.localePath({name: 'admin-entity-types'}))
       }
     }
-  }
-  , fetch({store, params}) {
-    return store.dispatch('admin/entity-types/loadData')
-  }
+  },
 }
 </script>
 

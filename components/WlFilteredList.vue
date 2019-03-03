@@ -2,7 +2,10 @@
   <nav class="filtered-list">
     <div class="box-filter">
       <div class="filter-add">
-        <wl-input-filter class="filter" />
+        <wl-input-filter
+          v-model="filter"
+          class="filter"
+        />
         <div>
           <wl-button 
             :disable="disable"
@@ -16,10 +19,13 @@
     </div>
     <div class="link-list">
       <ul class="link-u-list">
-        <slot />
+        <slot
+          name="list" 
+          :filtered-list="filtered"
+        />
       </ul>
       <div 
-        v-if="emptyList"
+        v-if="isEmpty"
         class="empty-list"
       >
         <span class="ico2-files-empty" />
@@ -41,17 +47,32 @@ export default {
     , WlButton
   },
   props: {
-    emptyList: { type: Boolean, default: false }
-  }
-  , data() {
+    list: { type: Array, default: () => [] },
+    filterCondition: { 
+      type: Function, 
+      default: filter => x => filter.length < 0
+        ? true
+        : x.name.toLowerCase().search(filter.toLowerCase()) >= 0
+    },
+  },
+  data() {
     return {
-      disable: false
+      disable: false,
+      filter: "",
     }
-  }
-  , methods: {
+  },
+  computed: {
+    isEmpty() {
+      return this.list == null || this.list.length == 0 
+    },
+    filtered() {
+      return this.list.filter(this.filterCondition(this.filter))
+    },
+  },
+  methods: {
     add() {
       this.$emit('add')
-    }
+    },
   }
 }
 </script>

@@ -6,11 +6,12 @@
         :ico="'ico-refresh'" 
         :only-icon="true" 
         :title="'Actualizar'"
+        @click.native="reload"
       />
 
       <input 
         :id="id"                          
-        v-model="textFilter" 
+        v-model="internalValue" 
         :name="name"
         :disabled="disable"
         :placeholder="placeholder"         
@@ -43,20 +44,24 @@ export default {
     placeholder: { type: String, default: "" },
     id: { type: String, default: "" },
     disable:  { type: Boolean, default: false },
+    value: {type: String, default: "" },
   },  
-  data() {
-    return {
-      textFilter: ""
-    };
-  },
   computed: {
     isVisible() {
-      return this.textFilter.length > 2;
+      return this.value.length > 0;
+    },
+    internalValue: {
+      get() { return this.value },
+      set(value) { this.$emit('input', value)}
     }
   },
   methods: {
     clearText() {
-      this.textFilter = "";
+      this.$emit('input', '')
+    },
+    reload() {
+      console.log('reload')
+      location.reload()
     }
   }
 };
