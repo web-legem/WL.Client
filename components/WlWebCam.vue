@@ -160,7 +160,6 @@ export default {
     overlayClose: { type: Boolean, default: false },
     photoFile: {type:String, default:""},      
     disable: { type: Boolean, default: true },  
-    photoInput: { type: File, default: null },
     isLoading: { type: Boolean, default: false },  
     loadingSuccess: { type: Boolean, default: false },  
     trash: { type: Boolean, default: false },

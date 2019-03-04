@@ -102,6 +102,60 @@
             </div>
           </nuxt-link>
         </li>
+        <!-- Usuario--------------------------------------- -->
+        <li
+          :class="{small: $mq == 'sm'}"
+        >
+          <button
+            :class="{small: $mq == 'sm'}"
+            class="module"
+            @click.stop="toggleSubUserPanel"
+            @keydown.enter="toggleSubUserPanel"
+            @keypress.enter.stop="toggleSubUserPanel"
+            @blur="hideSubUserPanel(); hideMenuPanel()"
+            @focus="showMenuPanel"
+          >
+            <div>
+              <span
+                class="ico ico-user"
+              />
+              Usuarios
+              <div class="avatar-usu">
+                <img 
+                  alt="" 
+                  src="" 
+                >
+              </div>
+            </div>
+          </button>
+          <ul
+            v-show="showSubUser"
+            :class="{small: $mq == 'sm'}"
+            class="sub-modules"
+            @focusout="hideSubUserPanel"
+          >
+            <li>
+              <nuxt-link
+                :to="localePath({name:'settings-settings'})"
+                class="sub-module"
+                @focus.native="showSubUserPanel($event); showMenuPanel()"
+                @click.native.stop="hideSubUserPanel(); hideMenuPanel()"
+                @mouseup.stop
+                @mousedown.stop
+                @focusout="hideMenuPanel"
+              >
+                <div>
+                  <span
+                    :class="'ico-config'"
+                    class="ico"
+                  />
+                  Configuracion de cuenta
+                </div>
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
+        <!-- Usuario--------------------------------------- -->
       </ul>
     </nav>
     <button
@@ -132,48 +186,49 @@ export default {
   }
   , data() {
     return {
-      showSubModules: false
-      , showMenu: false
-      , menuItems: [
+      showSubModules: false,
+      showSubUser: false,      
+      showMenu: false,
+      menuItems: [
         {
           label:this.$t('components.menu.label-serch')
           , icon: 'ico-search'
           , link: 'search'
           , show: 'true'
-        }
-        , {
+        },
+        {
           label: this.$t('components.menu.label-home')
           , icon: 'ico-home'
           , link: 'index'
           , show: 'true'
-        }
-        , {
+        },
+        {
           label: this.$t('components.menu.label-login')
           , icon: 'ico-sign-in'
           , link: 'login'
           , show: 'true'
         }
-      ]
-      , modules: [
+      ],
+      modules: [
         {
-          label: this.$t('components.menu.label-admin')
-          , icon: 'ico-tasks'
-          , link: 'admin'
-        }
-        , {
-          label:  this.$t('components.menu.label-doc-man')
-          , icon: 'ico-stack-overflow'
-          , link: 'doc-management'
-        }
-        , {
-          label:this.$t('components.menu.label-annot')
-          , icon: 'ico-files-o'
-          , link: 'annotations'
-        }
-        , {
-          label: this.$t('components.menu.label-user')
-          , icon: 'ico-users'
-          , link: 'persons'
+          label: this.$t('components.menu.label-admin'),
+          icon: 'ico-tasks',
+          link: 'admin',
+        },
+        {
+          label:  this.$t('components.menu.label-doc-man'),
+          icon: 'ico-stack-overflow',
+          link: 'doc-management',
+        },
+        {
+          label:this.$t('components.menu.label-annot'),
+          icon: 'ico-files-o',
+          link: 'annotations',
+        },
+        {
+          label: this.$t('components.menu.label-user'),
+          icon: 'ico-users',
+          link: 'persons',
         }
       ]
     }
@@ -192,31 +247,32 @@ export default {
       if(isLastElement && !this.mouseDownA11yPanel){
         this.hideA11yPanel()
       }
-
       this.setMouseDownA11yPanel(false)
-    }
-    , showSubModulesPanel($event) {
-      this.showSubModules = true
-    }
-    , hideSubModulesPanel() {
-      this.showSubModules = false
-    }
-    , toggleSubModulesPanel() {
-      this.showSubModules = !this.showSubModules
-    }
-    , showMenuPanel () {
+    },
+    
+    // menu modules-----------
+    showSubModulesPanel($event) {this.showSubModules = true},
+    hideSubModulesPanel() {this.showSubModules = false},
+    toggleSubModulesPanel() {this.showSubModules = !this.showSubModules},
+    // menu Users-----------
+    hideSubUserPanel() {this.showSubUser = false},
+    showSubUserPanel($event) {this.showSubUser = true},
+    toggleSubUserPanel() {this.showSubUser = !this.showSubUser},
+    // ---------------------
+    
+    showMenuPanel () {
       this.showMenu = true
-    }
-    , hideMenuPanel() {
+    },
+    hideMenuPanel() {
       this.showMenu = false
-    }
-    , toggleMenuPanel(){
+    }, 
+    toggleMenuPanel(){
       this.showMenu = !this.showMenu
-    }
-    , ...mapActions([
-      'toggleA11yPanel'
-      , 'hideA11yPanel'
-      , 'setMouseDownA11yPanel',
+    },
+    ...mapActions([
+      'toggleA11yPanel',
+      'hideA11yPanel',
+      'setMouseDownA11yPanel',
       'displayBorder',
       'hideBorder',
     ])
@@ -405,6 +461,14 @@ button .ico-wheelchair {
   padding: 0;
   font-size: 1.5rem;
   color: white;
+}
+
+.avatar-usu{
+  margin-left: 10px;
+  width: 50px;
+  --header-height: calc(25px + 4.5vh);
+  height: var(--header-height);
+  background: red;
 }
 
 @keyframes bajando {
