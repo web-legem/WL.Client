@@ -34,7 +34,9 @@
         class="modules"
       >
         <li
+          ref="submodulesContainer"
           :class="{small: $mq == 'sm'}"
+          @focusout="checkIfFocusLost($event)"
         >
           <button
             :class="{small: $mq == 'sm'}"
@@ -42,7 +44,6 @@
             @click.stop="toggleSubModulesPanel"
             @keydown.enter="toggleSubModulesPanel"
             @keypress.enter.stop="toggleSubModulesPanel"
-            @blur="hideSubModulesPanel(); hideMenuPanel()"
             @focus="showMenuPanel"
           >
             <div>
@@ -56,7 +57,6 @@
             v-show="showSubModules"
             :class="{small: $mq == 'sm'}"
             class="sub-modules"
-            @focusout="hideSubModulesPanel"
           >
             <li
               v-for="(module, index) in modules"
@@ -65,13 +65,9 @@
               <nuxt-link
                 :to="localePath({ name: module.link })"
                 class="sub-module"
-                @focus.native="showSubModulesPanel($event); showMenuPanel()"
-                @click.native.stop="hideSubModulesPanel(); hideMenuPanel()"
-                @mouseup.stop
-                @mousedown.stop
-                @focusout="hideMenuPanel"
+                @click.native="hideSubModulesPanel()"
               >
-                <div>
+                <div> 
                   <span
                     :class="[ module.icon ]"
                     class="ico"
@@ -242,12 +238,24 @@ export default {
       return this.$options.filters.mq(this.$mq, { xs: false, mid: true })
     }
   },
+  watch: {
+    '$route'() {
+      this.hideSubModulesPanel()
+      this.hideA11yPanel()
+      this.hideMenuPanel()
+    },
+  },
   methods: {
     hideA11yPanelOnBlur(isLastElement) {
       if(isLastElement && !this.mouseDownA11yPanel){
         this.hideA11yPanel()
       }
       this.setMouseDownA11yPanel(false)
+    },
+    checkIfFocusLost(event) {
+      if(!this.$refs.submodulesContainer.contains(event.relatedTarget)) {
+        this.hideSubModulesPanel()
+      } 
     },
     
     // menu modules-----------

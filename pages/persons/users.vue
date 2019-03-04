@@ -2,18 +2,25 @@
   <wl-master-detail-layout :has-detail="isSelected || isCreating">
     <wl-filtered-list 
       slot="master"
-      :empty-list="users != null && users.length == 0"            
+      :list="users"
+      :filter-condition="filter"
       @add="create"
     >
-      <wl-list-item 
-        v-for="user in users" 
-        :key="user.id"
-        route="persons-users-id"
-        active-route="persons-users"
-        :item-id="user.id"
+      <!-- :list="users" -->
+      <template
+        slot="list"
+        slot-scope="{ filteredList }"
       >
-        {{ user.firstName }} {{ user.lastName }}
-      </wl-list-item>   
+        <wl-list-item 
+          v-for="user in filteredList" 
+          :key="user.id"
+          route="persons-users-id"
+          active-route="persons-users"
+          :item-id="user.id"
+        >
+          {{ user.firstName }} {{ user.lastName }}
+        </wl-list-item>   
+      </template>
     </wl-filtered-list>
     <div 
       slot="details"
@@ -50,7 +57,12 @@ export default {
       isCreating: 'isCreating',
       isSelected: 'isSelected',
       selected: 'selected',
-    })
+    }),
+    filter() {
+      return (filter) => (user) => void console.log('filter') ||  filter == null || filter.length < 0
+          || user.firstName.toLowerCase().search(filter.toLowerCase()) >= 0 
+          || user.lastName.toLowerCase().search(filter.toLowerCase()) >= 0
+    }
   },
   fetch({ store, params }) {
     return store.dispatch("persons/users/loadData")
