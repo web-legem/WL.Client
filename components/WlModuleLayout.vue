@@ -46,5 +46,6 @@ export default {
   display: flex;
   flex-direction: column;
   background: white;
+  height: 100%;
 }
 </style>
