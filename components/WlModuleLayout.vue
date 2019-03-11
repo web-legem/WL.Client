@@ -38,7 +38,7 @@ export default {
   overflow-x: auto;
   background-color: #eee;
   padding-top: 10px;
-  box-shadow: inset 0 -5px 10px -5px #AAAAAA;
+  box-shadow: inset 0 -3px 6px -3px #AAAAAA;
 }
 
 .content {
