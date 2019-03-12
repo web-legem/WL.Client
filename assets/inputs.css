@@ -182,6 +182,13 @@
   margin-bottom: 4px;
 }
 
+.msj-error.md {
+  color: orangered;
+  font-family: "Lato";
+  font-size: .9rem;
+  margin-bottom: 4px;
+}
+
 /*TEXTO PARA LOS LABELS*/
 
 .texto_labels {

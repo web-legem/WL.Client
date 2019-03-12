@@ -171,10 +171,7 @@ export default {
     existCanvas: false,
     isStreaming: true,
     }
-  }, 
-  update(){
-    console.log("xxxxxxxxxxxxxxxxxx");
-  }   ,
+  },
   computed: {
     videoElement () {return this.$refs.webcam},
     canvasElement () {return this.$refs.canvas},

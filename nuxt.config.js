@@ -45,7 +45,7 @@ module.exports = {
   },
   plugins: [
     '~/plugins/filters.js',
-    // '~/plugins/vee-validate.js'
+    '~/plugins/vee-validate.js'
   ],
   modules: [
     'nuxt-vuex-router-sync',
@@ -78,7 +78,7 @@ module.exports = {
   //   , retry: {  retries: 0 }
   // },
   axios: {
-    host: 'localhost'
+    host: '192.168.0.4'
     , port: '54037'
     , retry: { retries: 0 }
   }

@@ -82,7 +82,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: calc(1em + .5vw); // TODO- mandar padding para que se pueda sobreescribir y dejar en 0 desde el padre
+  padding: calc(1em + .5vw); 
+  // TODO- mandar padding para que se pueda sobreescribir y dejar en 0 desde el padre
 }
 
 .filtered-list ul {

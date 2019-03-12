@@ -59,7 +59,8 @@ export default {
       selected: 'selected',
     }),
     filter() {
-      return (filter) => (user) => void console.log('filter') ||  filter == null || filter.length < 0
+      return (filter) => (user) => 
+          filter == null || filter.length < 0
           || user.firstName.toLowerCase().search(filter.toLowerCase()) >= 0 
           || user.lastName.toLowerCase().search(filter.toLowerCase()) >= 0
     }
