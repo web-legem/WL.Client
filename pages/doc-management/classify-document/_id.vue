@@ -1,6 +1,22 @@
 <template>
-  <div>
-    <h1>
+  <div class="classify-document-id">
+    <wl-master-detail-layout>
+      <div 
+        slot="master"
+        class="master"
+      >
+        <wl-classification-form
+          :entities="entities"
+          :document-types="documentTypes"
+        />
+      </div>
+
+      <template slot="details">
+        <wl-pdf-viewer :file-id="id" />
+      </template>
+    </wl-master-detail-layout>
+
+    <!-- <h1>
       {{ $t('doc-management.classify-doc.h-classify-doc') }}
     </h1>
     <p v-if="isAlreadyClassified">
@@ -9,108 +25,25 @@
     <p v-if="!isAlreadyClassified">
       {{ $t('doc-management.classify-doc.p-no-classify-doc') }}      
     </p>
-
-    <form action="">
-      <input
-        id="number"
-        v-model="number"
-        type="text"
-        name="number"
-      >
-
-      <input 
-        id="date" 
-        v-model="date"
-        type="date" 
-        name="date" 
-      >
-
-      <select 
-        id="entityId"
-        v-model="entityId"
-        name="entityId" 
-      >
-        <option 
-          value=""
-          disabled
-        >
-          {{ $t('doc-management.classify-doc.please-select-one') }}          
-        </option>
-        <option 
-          v-for="entity in entities"
-          :key="entity.id"
-          :value="entity.id"
-        >
-          {{ entity.name }}
-        </option>
-      </select>
-      EntityId: {{ entityId }}
-      <select 
-        id="documentTypeId"
-        v-model="documentTypeId"
-        name="documentTypeId" 
-      >
-        <option 
-          value=""
-          disabled
-        >
-          {{ $t('doc-management.classify-doc.please-select-one') }}
-        </option>
-        <option 
-          v-for="documentType in documentTypes"
-          :key="documentType.id"
-          :value="documentType.id"
-        >
-          {{ documentType.name }}
-        </option>
-      </select>
-      {{ documentTypeId }}
-      <button
-        type="button"
-        @click="clear"
-      >
-        {{ $t('doc-management.classify-doc.butt-cancel') }}
-      </button>
-      <button
-        type="button"
-        @click="classify"
-      >
-        {{ $t('doc-management.classify-doc.butt-accept') }}        
-      </button>
-    </form>
-    {{ number }}
-    {{ date }}
+    -->
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
-import moment from 'moment'
+import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
+import WlPdfViewer from '~/components/WlPdfViewer.vue'
+import WlClassificationForm from '~/components/doc-management/WlClassificationForm.vue'
 
 export default {
-  validate({ params }) {
-    return /^\d+$/.test(params.id)
+  components: {
+    WlMasterDetailLayout,
+    WlPdfViewer,
+    WlClassificationForm,
   },
-  data() {
-    return {
-      number: ''
-      , entityId: null
-      , documentTypeId: null
-      , date: moment(Date.now())
-        .locale(this.$store.state.i18n.locale)
-        .format('YYYY-MM-DD')
-      , error: null
-    }
-  }
-  , computed: {
-    ...mapGetters('doc-management/classify-document', {
-      isAlreadyClassified: 'isAlreadyClassified'
-    })
-  }
-  , watch: {
-    '$route.params.id'(){
-      this.loadData(this.$route.params.id)
-    }
+  computed: {
+    id() {
+      return this.$route.params.id
+    },
   },
   asyncData(context) {
     return Promise.all([
@@ -121,34 +54,16 @@ export default {
       , documentTypes: results[1].data
     }))
   },
-  fetch({ store, params }) {
-    return store.dispatch('doc-management/classify-document/loadData', params.id)
-  },
-  methods: {
-    ...mapActions('doc-management/classify-document', [
-      'loadData'
-    ]),
-    classify() {
-      this.$axios.post('/api/Document', {
-        fileId: this.$route.params.id
-        , document: {
-          entityId: this.entityId
-          , documentTypeId: this.documentTypeId
-          , number: this.number
-          , publicationDate: this.date
-        }
-      })
-      .then(console.log)
-      .catch(console.log)
-    },
-    clear(){
-      this.date = moment(Date.now())
-        .locale(this.$store.state.i18n.locale)
-        .format('YYYY-MM-DD')
-      this.number = ''
-      this.documentTypeId = null
-      this.entityId = null
-    },
-  },
 }
 </script>
+
+<style lang="scss" scoped>
+.classify-document-id {
+  height: 100%;
+}
+
+.master {
+  margin: 0;
+  padding: 0;
+}
+</style>

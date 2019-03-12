@@ -46,7 +46,7 @@ export default {
   flex-direction: row;
   min-width: 10em;
   max-width: 12.5em;
-  box-shadow: 3px -3px 5px 3px #AAAAAA;
+  box-shadow: 1px -1px 4px 1px #ccc;
 }
 
 .tab:first-child {
@@ -67,7 +67,7 @@ export default {
   color: #2dbf85;
   border-top: 3px solid #2dbf85;
   border-bottom: 1px solid #fff;
-  box-shadow: 0 -5px 9px 2px #AAAAAA;
+  box-shadow: 0 0px 7px 2px #ccc;
   z-index: 1;
 }
 

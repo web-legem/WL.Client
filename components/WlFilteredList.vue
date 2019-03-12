@@ -17,8 +17,9 @@
         </div>
       </div>
     </div>
-    <div class="link-list">
-      <ul class="link-u-list">
+    <div class="link-list"> 
+      <div class="list-content">
+        <ul class="link-u-list">
         <slot
           name="list" 
           :filtered-list="filtered"
@@ -33,6 +34,7 @@
           {{ $t('components.filtere-list.title-press-butt') }}  
         </p>    
       </div>
+     </div>
     </div>
   </nav>
 </template>
@@ -81,13 +83,21 @@ export default {
 .filtered-list {
   display: flex;
   flex-direction: column;
+  padding: calc(1em + .5vw); // TODO- mandar padding para que se pueda sobreescribir y dejar en 0 desde el padre
   height: 100%;
-  padding: calc(1em + .5vw); 
-  // TODO- mandar padding para que se pueda sobreescribir y dejar en 0 desde el padre
 }
 
 .filtered-list ul {
   list-style-type: none;
+}
+
+.list-content {
+  position: absolute;
+  overflow: auto;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .filter {
@@ -100,16 +110,15 @@ export default {
 }
 
 .link-list {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  height: calc(100% - 43px);
-  widows: 100%;
+  position: relative;
 }
 
 .link-u-list {
-  width: 100%;
 }
 
 .empty-list{

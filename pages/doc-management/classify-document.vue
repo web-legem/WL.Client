@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h1>
-      {{ $t('doc-management.classify-doc.h-classify-doc') }}      
-    </h1>
+  <div class="classify-document">
     <nuxt-child />
   </div>
 </template>
@@ -18,6 +15,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.classify-document {
+  height: 100%;
+}
 </style>
