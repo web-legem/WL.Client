@@ -28,6 +28,14 @@ export const mutations = {
     state.loaded = true
     state.list = payload
   },
+  loadingSuccessSingle(state, payload) {
+    state.loading = false
+    state.loaded = true
+    state.list = payload
+    state.error = null  
+    state.selectedId = state.list[0].id    
+    //este metodo se uso para la ventana da cfg que se quito
+  },
   loadingFailure(state, payload) {
     state.loading = false
     state.loaded = false
@@ -101,6 +109,13 @@ export const actions = {
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => commit('loadingFailure', e))
   },
+  getUser({ commit },{userId}) {
+    commit('loading')
+    return this.$axios.get('/api/User/'+userId)
+      .then(response => commit('loadingSuccessSingle', response.data))
+      .catch(e => commit('loadingFailure', e))
+      //este metodo se uso para la ventana da cfg que se quito    
+  },  
   create({ commit, dispatch }, {newUser, file}) {    
     let formData = new FormData();
     formData.append('value',JSON.stringify(newUser))

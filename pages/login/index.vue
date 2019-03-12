@@ -9,62 +9,55 @@
           <div class="box-title">
             Ingresar al Sistema
           </div>
+          
           <form 
             class="form-login" 
             name="form-login"
-          >        
-            <!----------------------------------------------------->
-            <wl-input
-              :name="'user'"
-              required
-              :input-ico="'ico-user'"
-              :title="'usuario'"
-              :placeholder="'usuario'"
-              :max="100"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />        
-            <wl-input
-              :name="'password'"
-              required
-              :input-ico="'ico-lock'"
-              :type="'password'"
-              :title="'password'"
-              :max="100"
-              :placeholder="'usuario'"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-            <!----------------------------------------------------->
+            data-vv-scope="form1"            
+            @submit.prevent="signIn()"
+          >
             <div>
               <div
-                class="msj-error"
-                style="padding-bottom:10px"
-                ng-show="vm.error_login"
+                v-show="error || passwordChanged"
+                class="msj-error md"
               >
-                contraseña invalida
+                {{ getMsgInfo }}
               </div>
-            </div>
+            </div>        
+            <!----------------------------------------------------->
+            <wl-input
+              v-model="nickname"
+              :name="'form1.user'"
+              :input-ico="'ico-user'"
+              :title="'Usuario'"
+              :placeholder="'usuario'"
+              :max="100"
+              :validate="{required:true}"
+              :is-submit="true"
+            />        
+            <wl-input
+              v-model="password"
+              :name="'form1.password'"
+              :input-ico="'ico-lock'"
+              :type="'password'"
+              :title="'Password'"
+              :placeholder="'contraseña'"
+              :max="100"
+              :validate="{required:true}"
+              :is-submit="true"
+            />
+            <!----------------------------------------------------->            
 
-            <div class="flex-container col center">          
+            <div class="flex-container col center btn-submit">          
               <div>
                 <wl-button                 
-                  :ico="'ico-sign-in'"                 
-                  :type="'submit'"
-                  @click.native="remove()"
+                  :ico="'ico-sign-in'"        
+                  :type="'input'"         
                 >
                   Ingresar
                 </wl-button>
               </div>
             </div>
-
-            <a
-              title="olvide la contraseña"
-              class="olvide_contraseña"
-              href="https://www.w3schools.com/html/"
-            >
-              Olvide mi contraseña
-            </a>
           </form>
         </div>
       </div>
@@ -73,10 +66,12 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import { imagesContext } from '~/helpers/imagesContext'
 import WlLandingPage from '~/components/WlLandingPage.vue'
 import WlInput from "~/components/WlInput.vue";
 import WlButton from "~/components/WlButton.vue";
+import md5 from "js-md5"; 
 
 export default {
   components: {
@@ -92,8 +87,41 @@ export default {
   },
   data() {
     return {
-      img: imagesContext('./entrada.jpg')
+      img: imagesContext('./entrada.jpg'),
+      nickname:"",
+      password:"",
     }
+  },
+  computed: {
+    getMsgInfo() {
+      if(this.passwordChanged){
+        return "Inicie sesion con su nueva contraseña"
+      }else{
+        return this.error
+      }
+    },
+    ...mapGetters("login/login", {      
+      error: "error",
+      redirectTo: "redirectTo",
+      passwordChanged: "passwordChanged",
+    }),    
+  },
+  methods: {    
+    signIn(){    
+      var data = {
+        nickname : this.nickname,
+        password : md5(this.password),
+      }
+      this.$validator.validate('form1.*').then(valid => {
+        if (valid) {
+          this.login(data)          
+            .then(_ =>this.$router.push(this.localePath({ name: this.redirectTo })));          
+        }
+      });      
+    },
+    ...mapActions("login/login", [
+      "login",     
+    ])
   }
 }
 </script>
@@ -134,6 +162,10 @@ export default {
     display:inline-block;
     font-family: 'Lato';
     font-size:small;
+}
+
+.btn-submit{
+  margin-top: 20px;
 }
 
 </style>

@@ -145,7 +145,7 @@
                     :class="'ico-config'"
                     class="ico"
                   />
-                  Configuracion de cuenta
+                  Cerrar sesion
                 </div>
               </nuxt-link>
             </li>
@@ -244,6 +244,12 @@ export default {
       this.hideA11yPanel()
       this.hideMenuPanel()
     },
+    '$i18n.locale'(){
+      this.$validator.locale = this.$i18n.locale;
+    }
+  },
+  mounted() {
+    this.$validator.locale = this.$i18n.locale;
   },
   methods: {
     hideA11yPanelOnBlur(isLastElement) {

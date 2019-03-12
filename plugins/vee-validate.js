@@ -6,4 +6,12 @@ import en from '../locales/validator-en'
 Validator.localize('en', en)
 Validator.localize('es', es)
 
-Vue.use(VeeValidate)
+Vue.use(VeeValidate,
+  {
+    locale: 'es',
+    dictionary:{
+      es ,
+      en ,     
+    }
+  }
+)
