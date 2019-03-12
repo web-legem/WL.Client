@@ -1,15 +1,14 @@
 <template>
   <div class="classify-document-id">
     <wl-master-detail-layout>
-      <div 
+      <template 
         slot="master"
-        class="master"
       >
         <wl-classification-form
           :entities="entities"
           :document-types="documentTypes"
         />
-      </div>
+      </template>
 
       <template slot="details">
         <wl-pdf-viewer :file-id="id" />

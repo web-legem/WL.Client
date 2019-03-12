@@ -1,22 +1,32 @@
 <template>
-  <div>
-    <form action="">
-      <input
+  <div
+      class="form"
+  >
+    <form
+      action=""
+    >
+      <wl-input
+        title="Number"
         id="number"
         v-model="number"
         type="text"
         name="number"
-      >
-      <input 
+        placeholder="por ejemplo: 029"
+      />
+      <wl-input 
         id="date" 
+        title="Fecha publicación"
         v-model="date"
         type="date" 
         name="date" 
-      >
-      <select 
+        placeholer="p.e.: 07/30/2018"
+      />
+      <wl-select 
         id="entityId"
+        title="Entidad"
         v-model="entityId"
         name="entityId" 
+        class="select"
       >
         <option 
           value=""
@@ -31,12 +41,13 @@
         >
           {{ entity.name }}
         </option>
-      </select>
-      EntityId: {{ entityId }}
-      <select 
+      </wl-select>
+      <wl-select 
+        title="Tipo Documento"
         id="documentTypeId"
         v-model="documentTypeId"
         name="documentTypeId" 
+        class="select"
       >
         <option 
           value=""
@@ -51,20 +62,27 @@
         >
           {{ documentType.name }}
         </option>
-      </select>
-      {{ documentTypeId }}
-      <button
-        type="button"
-        @click="clear"
+      </wl-select>
+      <div
+        class="action-container"
       >
-        {{ $t('doc-management.classify-doc.butt-cancel') }}
-      </button>
-      <button
-        type="button"
-        @click="classify"
-      >
-        {{ $t('doc-management.classify-doc.butt-accept') }}        
-      </button>
+        <wl-button
+          type="button"
+          @click="classify"
+          class="action"
+          ico="ico2-checkmark"
+        >
+          {{ $t('doc-management.classify-doc.butt-accept') }}        
+        </wl-button>
+        <wl-button
+          type="button"
+          @click="clear"
+          class="action"
+          ico="ico2-cross"
+        >
+          {{ $t('doc-management.classify-doc.butt-cancel') }}
+        </wl-button>
+      </div>
     </form>
   </div>
 </template>
@@ -72,8 +90,17 @@
 <script>
 import moment from 'moment';
 import {mapGetters, mapActions} from 'vuex'
+import WlInput from '~/components/WlInput.vue'
+import WlSelect from '~/components/WlSelect.vue'
+import WlButton from '~/components/WlButton.vue'
 
 export default {
+  components: {
+    WlInput,
+    WlSelect,
+    WlButton,
+    WlButton,
+  },
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
@@ -135,5 +162,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+}
 
+.action-container {
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action {
+  margin-left: 16px;
+}
+
+.select {
+  margin-bottom: 10px;
+}
 </style>
