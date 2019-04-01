@@ -118,8 +118,8 @@ export default {
   position: relative;
 }
 
-.link-u-list {
-}
+// .link-u-list {
+// }
 
 .empty-list{
   display: flex;
