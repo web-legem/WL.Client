@@ -1,84 +1,63 @@
 <template>
   <div
-      class="form"
+    class="form"
   >
     <form
       action=""
     >
       <wl-input
-        title="Number"
         id="number"
         v-model="number"
+        title="Number"
         type="text"
         name="number"
         placeholder="por ejemplo: 029"
       />
       <wl-input 
         id="date" 
-        title="Fecha publicación"
         v-model="date"
+        title="Fecha publicación"
         type="date" 
         name="date" 
         placeholer="p.e.: 07/30/2018"
       />
       <wl-select 
         id="entityId"
-        title="Entidad"
         v-model="entityId"
+        title="Entidad"
+        value-prop-name="id"
+        label-prop-name="name"
         name="entityId" 
         class="select"
-      >
-        <option 
-          value=""
-          disabled
-        >
-          {{ $t('doc-management.classify-doc.please-select-one') }}          
-        </option>
-        <option 
-          v-for="entity in entities"
-          :key="entity.id"
-          :value="entity.id"
-        >
-          {{ entity.name }}
-        </option>
-      </wl-select>
+        :list="entities"
+      />
       <wl-select 
-        title="Tipo Documento"
         id="documentTypeId"
         v-model="documentTypeId"
+        title="Tipo Documento"
+        value-prop-name="id"
+        label-prop-name="name"
         name="documentTypeId" 
         class="select"
-      >
-        <option 
-          value=""
-          disabled
-        >
-          {{ $t('doc-management.classify-doc.please-select-one') }}
-        </option>
-        <option 
-          v-for="documentType in documentTypes"
-          :key="documentType.id"
-          :value="documentType.id"
-        >
-          {{ documentType.name }}
-        </option>
-      </wl-select>
+        :list="documentTypes"
+        :empty-msg="$t('doc-management.classify-doc.please-select-one')"
+      />
       <div
         class="action-container"
       >
         <wl-button
           type="button"
-          @click="classify"
           class="action"
-          ico="ico2-checkmark"
+          ico="ico-check"
+          @click="classify"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
         </wl-button>
         <wl-button
           type="button"
-          @click="clear"
           class="action"
-          ico="ico2-cross"
+          ico="ico-times"
+          @click="clear"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>

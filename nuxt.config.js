@@ -71,15 +71,15 @@ module.exports = {
       defaultBreakpoint: 'lg',
     }]
   ],
-  // axios: {
-  //   // proxyHeaders: false,
-  //   host: 'localhost'
-  //   , port: '54037'
-  //   , retry: {  retries: 0 }
-  // },
   axios: {
-    host: '192.168.0.4'
+    // proxyHeaders: false,
+    host: 'localhost'
     , port: '54037'
-    , retry: { retries: 0 }
-  }
+    , retry: {  retries: 0 }
+  },
+  // axios: {
+  //   host: '192.168.0.4'
+  //   , port: '54037'
+  //   , retry: { retries: 0 }
+  // }
 }
