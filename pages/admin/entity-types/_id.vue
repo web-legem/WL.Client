@@ -2,7 +2,6 @@
   <div>
     <wl-crud
       :obj-select="objSelected"
-      :is-new="false"
       :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
@@ -11,52 +10,68 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
-        <wl-input
-          v-if="objSelected"
-          v-model="name"
-          :disable="!isEdit"
-          :title="$t('admin.entities-type.title-name-enty-type')"
-          :max="100"
-          :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
-        <label class="texto_labels sm-space-top">
-          {{ $t('admin.entities-type.label-documents-suport') }}
-        </label>
-        <div class="cards">
-          <div
-            v-for="docType in docTypes"
-            :key="docType.id"
-          >
-            <div class="block">
-              <input
-                v-if="objSelected"
-                :id="docType.id"
-                v-model="checked"
-                disabled="!isEdit"
-                :name="docType.id"
-                :value="docType.id"
-                type="checkbox"
-              >
-              <label
-                :for="docType.id"
-                class="note checked"
-              >
-                <div>
-                  <div class="ico-container">
-                    <span class="ico-file-text-o ico-note" />
+        <form 
+          name="form-entity-types"
+          data-vv-scope="form1"
+          @submit.prevent
+        >
+          <wl-input
+            v-if="objSelected"
+            v-model="name"
+            :mode="'titleCase'"
+            :name="'form1.name'"
+            :disable="!isEdit"
+            :title="$t('admin.entities-type.title-name-enty-type')"
+            :max="100"
+            :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+          <label class="texto_labels sm-space-top">
+            {{ $t('admin.entities-type.label-documents-suport') }}
+          </label>
+          <div class="cards">
+            <div
+              v-for="docType in docTypes"
+              :key="docType.id"
+            >
+              <div class="block">
+                <input
+                  v-if="objSelected"
+                  :id="docType.id"
+                  v-model="checked"
+                  v-validate="{required:true}" 
+                  :data-vv-as="$t('admin.entities-type.label-documents-suport')"
+                  disabled="!isEdit"
+                  :name="'form1.cards'"
+                  :value="docType.id"
+                  type="checkbox"
+                >
+                <label
+                  :for="docType.id"
+                  class="note checked"
+                >
+                  <div>
+                    <div class="ico-container">
+                      <span class="ico-file-text-o ico-note" />
+                    </div>
+                    <div class="name-container">
+                      <p class="note-name">
+                        {{ docType.name }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="name-container">
-                    <p class="note-name">
-                      {{ docType.name }}
-                    </p>
-                  </div>
-                </div>
-              </label>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+          <div 
+            v-show="errors.has('form1.cards') && isSubmit"
+            class="msj-error"
+          >
+            <label>{{ errors.first('form1.cards') }}</label>
+          </div>
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -77,7 +92,8 @@ export default {
   },
   data() {
     return {
-      isEdit : false
+      isEdit : false,
+      isSubmit: false,
     }
   },
   computed: {
@@ -129,7 +145,12 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.objSelected).then(this.cancel);
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.save(this.objSelected).then(this.cancel);      
+        }
+      });
     },
     startEdit(){
         this.isEdit = true;

@@ -42,8 +42,7 @@ export default {
     'entities-type': {
       'title-name-enty-type': 'Entity type name',
       'place-enter-name-type-enty': 'Write entity type name',
-      'label-documents-suport': 'Documents supported:',
-
+      'label-documents-suport': 'Documents supported',
     },
 
   },

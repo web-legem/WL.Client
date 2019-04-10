@@ -42,8 +42,7 @@ export default {
     'entities-type': {
       'title-name-enty-type': 'Nombre del tipo de entidad',
       'place-enter-name-type-enty': 'Escriba el nombre del tipo de  entidad',
-      'label-documents-suport': 'Documentos soportados:',
-
+      'label-documents-suport': 'Documentos soportados',
     },
 
   },

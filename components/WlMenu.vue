@@ -269,13 +269,11 @@ export default {
     },
     checkIfFocusLost(event) {
       if(!this.$refs.submodulesContainer.contains(event.relatedTarget)) {        
-        console.log("focus m lost");
         this.hideSubModulesPanel()
       }       
     },
     checkIfFocusLostUser(event){
       if(!this.$refs.userContainer.contains(event.relatedTarget)) {
-        console.log("focus lost");
         this.hideSubUserPanel()
       }
     },
