@@ -24,7 +24,8 @@
         :maxlength="max"
         class="a_input"
         :class="{'disable':disable}"
-        @input="$emit('input',$event.target.value)"
+        @input="onInput"
+        @blur="onBlur"
       >
       <div 
         v-if="!(inputIco === '')"
@@ -62,6 +63,52 @@ export default {
     inputIco: { type: String, default: "" },
     validate: { type: Object, default: function(){ return{} } },
     isSubmit: { type: Boolean, default: false },
+    mode: { type: String, default: "" }
   },
+  computed:{    
+    functionModes(){
+      return {
+        onlyNumber: value => {
+          value = value.toLowerCase();
+          value = value.replace(/[^0-9]+$/g, function(str){ return '' } );   
+          return value 
+        },
+        noSpace: value => {
+          value = value.toLowerCase();
+          value = value.replace(/[^\S+]+$/g, function(str){ return '' } );   
+          return value 
+        },
+        titleCase: value => {
+          value = value.toLowerCase();
+          value = value.replace(/(^\w|\s+\w){1}/g, function(str){ return str.toUpperCase() } );   
+          return value 
+        }
+      }
+    },
+  },
+  methods: {
+     onInput(event) {
+      let value = event.target.value;
+      let modes = this.mode.split('|'); 
+      if( this.mode.length != 0 ){
+        modes = modes.filter(x => x =='onlyNumber' || x =='noSpace');
+        let fn = (valorAnterior, modoActual) => this.functionModes[modoActual](valorAnterior)
+        value = modes.reduce( fn, value)
+      }
+      this.$emit('input',value.trimStart());
+    },
+
+    onBlur(event) {
+      let value = event.target.value.trimEnd();
+      let modes = this.mode.split('|'); 
+      if( this.mode.length != 0 ){
+        modes.filter(x => x =='titleCase');
+        let fn = (valorAnterior, modoActual) => this.functionModes[modoActual](valorAnterior)
+        value = modes.reduce( fn, value)
+      }
+      this.$emit('input',value.trimStart());
+    },
+  }
+
 };
 </script>

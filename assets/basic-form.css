@@ -1,0 +1,38 @@
+.basic-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.basic-form-box {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  max-width: 420px;
+  min-width: 420px;
+  background: white;
+  margin: 0 auto;
+}
+/* mensaje del formulario */
+.msg-pass{
+  padding: 20px;
+  display:inline-block;
+  font-family: 'Lato';
+  font-size: 1rem;
+  color: #111;
+  background: #eee;
+  border-bottom: 1px solid #aaa;
+}
+
+.btn-submit{
+  margin-top: 20px;
+}
+
+.form-basic-container {
+  background: white;
+  padding: 20px;
+  padding-top: 18px;
+}

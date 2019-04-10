@@ -8,36 +8,44 @@
       @wlclearerror="clearError"
     >
       <template slot="wl-form">
-        <wl-input
-          v-model="name"
-          :title="$t('admin.entitie-tab.title-name-entity')"
-          :max="100"
-          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
+        <form 
+          name="form-entities"
+          data-vv-scope="form1"
+          @submit.prevent
+        >
+          <wl-input
+            v-model="name"
+            :name="'form1.name'"
+            :title="$t('admin.entitie-tab.title-name-entity')"
+            :max="100"
+            :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
 
-        <wl-input
-          v-model="email"
-          class="sm-space-top"
-          :title="$t('admin.entitie-tab.title-email')"
-          :max="100"
-          :placeholder="$t('admin.entitie-tab.place-enter-email')" 
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
-        <wl-select
-          id="select"
-          v-model="entityTypeId"
-          class="sm-space-top"
-          :error="true"
-          :list="entityTypes"
-          :title="$t('admin.entitie-tab.title-select-doc-type')"
-          error-msg="Este es un error"
-          value-prop-name="id"
-          label-prop-name="name"
-          name="select" 
-        />
+          <wl-input
+            v-model="email"
+            :name="'form1.email'"
+            :type="'email'"
+            class="sm-space-top"
+            :title="$t('admin.entitie-tab.title-email')"
+            :max="100"
+            :placeholder="$t('admin.entitie-tab.place-enter-email')" 
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+          <wl-select
+            v-model="entityTypeId"
+            :name="'form1.select'"
+            class="sm-space-top"
+            :list="entityTypes"
+            :title="$t('admin.entitie-tab.title-select-entity-type')"
+            value-prop-name="id"
+            label-prop-name="name"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -66,6 +74,7 @@ export default {
       entityTypeId: null,
       name: "",
       email: "",
+      isSubmit: false,
     }
   },
   computed: {
@@ -91,14 +100,18 @@ export default {
       this.$router.push(this.localePath({ name: "admin-entities" }));
     },
     submit() {
-      this.create({
-        name: this.name,
-        email: this.email,
-        entityTypeId: this.entityTypeId
-      }).then(x => {
-        this.cancel();
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.create({
+            name: this.name,
+            email: this.email,
+            entityTypeId: this.entityTypeId
+          }).then(x => {
+            this.cancel();
+          });
+        }
       });
-      // .catch(e => {console.log(e)})
     },
     ...mapActions("admin/entities", {
       create: "create",

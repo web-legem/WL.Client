@@ -5,11 +5,16 @@
       class="texto_labels"
     >
       {{ title }}
+      <span v-if="validate.required"> 
+        *
+      </span>
     </label>
     <div class="a_select">
       <select 
         :id="id"
+        v-validate="validate"
         :name="name" 
+        :data-vv-as="title"
         :value="value"
         :disabled="disable == true"
         @input="$emit('input',$event.target.value)"
@@ -31,13 +36,11 @@
     </div>
 
     <div 
-      v-show="error" 
+      v-show="errors.has(name) && isSubmit"
       class="msj-error"
     >
-      <label>
-        {{ errorMsg }}
-      </label>
-    </div>
+      <label>{{ errors.first(name) }}</label>
+    </div>      
   </div>
 </template>
 
@@ -55,7 +58,9 @@ export default {
     list: { type: Array, required: true },
     valuePropName: { type: String,required: true },
     labelPropName: { type: String, required: true },
-    value: { type: Number, default: 0  }
+    value: { type: Number, default: 0  },
+    validate: { type: Object, default: function(){ return{} } },
+    isSubmit: { type: Boolean, default: false },
   },
   data() {
     return {     

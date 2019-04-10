@@ -2,7 +2,6 @@
   <div>
     <wl-crud
       :obj-select="selected"
-      :is-new="false"
       :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
@@ -11,42 +10,52 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
-        <wl-input
-          v-if="selected"
-          :value="selected.name"
-          :disable="!isEdit"
-          :title="$t('admin.entitie-tab.title-name-entity')"
-          :max="100"
-          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
-          :error-msg="'Este es un error'"
-          :error="true"
-          @input="changeName"
-        />
-        <wl-input
-          v-if="selected"
-          :value="selected.email"
-          class="sm-space-top"
-          :disable="!isEdit"
-          :title="$t('admin.entitie-tab.title-email')"
-          :max="100"
-          :placeholder="$t('admin.entitie-tab.place-enter-email')"
-          :error-msg="'Este es un error'"
-          :error="true"
-          @input="changeEmail"
-        />
-        <wl-select
-          :id="'select'"
-          v-model="entityTypeId"
-          class="sm-space-top"
-          :disable="!isEdit"
-          :name="'select'"
-          :title="$t('admin.entitie-tab.title-select-doc-type')"
-          :error-msg="'Este es un error'"
-          :error="true"
-          :list="entityTypes"
-          :value-prop-name="'id'"
-          :label-prop-name="'name'"
-        />
+        <form 
+          name="form-entities"
+          data-vv-scope="form1"
+          @submit.prevent
+        >   
+          <wl-input
+            v-if="selected"
+            v-model="name"
+            :name="'form1.name'"
+            :mode="'titleCase'"
+            :disable="!isEdit"
+            :title="$t('admin.entitie-tab.title-name-entity')"
+            :max="100"
+            :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+          <wl-input
+            v-if="selected"
+            v-model="email"
+            :type="'email'"
+            :name="'form1.email'"
+            :mode="'noSpace'"
+            class="sm-space-top"
+            :disable="!isEdit"
+            :title="$t('admin.entitie-tab.title-email')"
+            :max="100"
+            :placeholder="$t('admin.entitie-tab.place-enter-email')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+          <wl-select
+            v-if="selected"
+            :id="'select'"
+            v-model="entityTypeId"
+            :name="'form1.select'"
+            class="sm-space-top"
+            :disable="!isEdit"
+            :title="$t('admin.entitie-tab.title-select-entity-type')"            
+            :list="entityTypes"
+            :value-prop-name="'id'"
+            :label-prop-name="'name'"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -66,7 +75,8 @@ export default {
   },
   data() {
     return {
-      isEdit : false
+      isEdit : false,
+      isSubmit: false,
     }
   },
   validate({ params }) {
@@ -77,6 +87,22 @@ export default {
       selected: "selected",
       error: "error"
     }),
+    name: {
+      get() {
+        return this.selected.name;
+      },
+      set(value) {
+        this.changeName(value);
+      }
+    },
+    email: {
+      get() {
+        return this.selected.email;
+      },
+      set(value) {
+        this.changeEmail(value);
+      }
+    },
     entityTypeId: {
       get() {
         return this.selected
@@ -114,7 +140,12 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.selected).then(this.cancel);
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.save(this.selected).then(this.cancel);
+        }
+      });      
     },
     startEdit(){
       this.isEdit = true;

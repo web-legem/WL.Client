@@ -36,7 +36,7 @@ export default {
       'place-enter-name-entity': 'Write entity name',
       'title-email': 'Email',
       'place-enter-email': 'Write email',
-      'title-select-doc-type': 'Select document type',
+      'title-select-entity-type': 'Select entity type',
     },
 
     'entities-type': {
@@ -106,6 +106,7 @@ export default {
       'place-enter-role-user': 'Enter user role',
       'title-state-user': 'User state',
       'label-active': 'Active',
+      'label-restore-password': 'Restore password',
     },
   },
 

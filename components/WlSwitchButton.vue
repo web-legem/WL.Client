@@ -6,7 +6,10 @@
     >
       {{ title }}
     </label>
-    <label class="w-switch">
+    <label 
+      class="w-switch"
+      :class="{'disable':disable}"
+    >
       <input 
         :id="id" 
         :name="name" 
@@ -43,15 +46,35 @@ export default {
 </script>
 
 <style scoped>
+.w-switch{  
+  display: flex;
+  height: 35px;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+.w-switch.disable{  
+  pointer-events: none;
+}
+
 .w-switch span{ cursor:pointer; }
 .w-switch input { display: none; }
 .w-switch:hover input ~ span { color: #2c77ba; }
-.w-switch input ~ span{ color: #aaa; }
+.w-switch input ~ span{ 
+  color: #aaa; 
+  display: flex;  
+  align-items: center;
+  justify-content: center;  
+}
 .w-switch span:last-child{/*texto*/
     color: #434e58;
     font-size: 1em;
     font-family: 'Lato';
-    margin-bottom: 2px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -68,7 +91,12 @@ export default {
 }
 .w-switch input ~ span.ico-dot-circle-o{ display: none }
 .w-switch input:checked ~ span.ico-circle-o{ display: none }
-.w-switch input:checked ~ span.ico-dot-circle-o{ color: #2c77ba; display: inline;}
+.w-switch input:checked ~ span.ico-dot-circle-o{ 
+  color: #2c77ba;
+  display: flex;  
+  align-items: center;
+  justify-content: center;  
+}
 /*------------Checkbox-------------*/
 .w-switch input ~ span.ico-square-o:before{
     vertical-align: text-bottom;
@@ -82,6 +110,11 @@ export default {
 }
 .w-switch input ~ span.ico-check-square-o{ display: none }
 .w-switch input:checked ~ span.ico-square-o{ display: none }
-.w-switch input:checked ~ span.ico-check-square-o{ color: #2c77ba; display: inline;}
+.w-switch input:checked ~ span.ico-check-square-o{ 
+  color: #2c77ba; 
+  display: flex;  
+  align-items: center;
+  justify-content: center;  
+  }
 
 </style>

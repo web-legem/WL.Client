@@ -10,123 +10,136 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">     
-        <div class="box_duo_input">          
-          <div>
-            <wl-web-cam
-              :photo-file="photoUrl"
-              :disable="!isEdit"
-              :is-loading="isLoading"
-              :loading-success="loadingSuccess"
-              :trash="showTrash"
-              @new-file="newFile($event)"
-              @was-change="setPhotoState($event)"   
-              @loading-success="setLoadingSuccess($event)"   
-              @show-trash="setShowTrash($event)" 
-            />            
+      <template slot="wl-form">   
+        <form 
+          class="form-user" 
+          name="form-user"
+          data-vv-scope="form1"
+          @submit.prevent
+        >  
+          <div class="box_duo_input">          
+            <div>
+              <wl-web-cam
+                :disable="!isEdit"
+                :photo-file="photoUrl"
+                :is-loading="isLoading"
+                :loading-success="loadingSuccess"
+                :trash="showTrash"
+                @new-file="newFile($event)"
+                @was-change="setPhotoState($event)"   
+                @loading-success="setLoadingSuccess($event)"   
+                @show-trash="setShowTrash($event)" 
+              />            
+            </div>
+            <div>
+              <wl-input
+                v-if="objSelected"
+                v-model="firstName"
+                :mode="'titleCase'"
+                :name="'form1.firstname'"
+                :disable="!isEdit"
+                :title=" $t('persons.users-s.title-name')"
+                :max="100"
+                :placeholder=" $t('persons.users-s.place-enter-name')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+              <wl-input
+                v-if="objSelected"
+                v-model="lastName"
+                :mode="'titleCase'"
+                :name="'form1.lastname'"
+                :disable="!isEdit"                
+                :title=" $t('persons.users-s.title-lastname')"
+                :max="100"
+                :placeholder=" $t('persons.users-s.place-enter-lastname')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+              <wl-input
+                v-if="objSelected"
+                v-model="nickname"
+                :mode="'noSpace'"
+                :name="'form1.nickname'"
+                :disable="!isEdit"
+                :title=" $t('persons.users-s.title-name-user')"
+                :max="50"
+                :placeholder=" $t('persons.users-s.place-enter-name-user')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+            </div>
           </div>
-          <div>
-            <wl-input
-              v-if="objSelected"
-              v-model="firstName"
-              :disable="!isEdit"
-              :title=" $t('persons.users-s.title-name')"
-              :max="100"
-              :placeholder=" $t('persons.users-s.place-enter-name')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-            <wl-input
-              v-if="objSelected"
-              v-model="lastName"
-              :disable="!isEdit"
-              :title=" $t('persons.users-s.title-lastname')"
-              :max="100"
-              :placeholder=" $t('persons.users-s.place-enter-lastname')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-            <wl-input
-              v-if="objSelected"
-              v-model="nickname"
-              :disable="!isEdit"
-              :title=" $t('persons.users-s.title-name-user')"
-              :max="50"
-              :placeholder=" $t('persons.users-s.place-enter-name-user')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
+          <div class="box_duo_input">          
+            <div>
+              <wl-input
+                v-if="objSelected"
+                v-model="document"
+                :mode="'onlyNumber'"
+                :name="'form1.document'"
+                :disable="!isEdit"
+                :title=" $t('persons.users-s.title-id')"
+                :max="50"
+                :placeholder=" $t('persons.users-s.place-enter-id')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+            </div>
+            <div>
+              <wl-input
+                v-if="objSelected"
+                v-model="email"
+                :mode="'noSpace'"
+                :type="'email'"
+                :name="'form1.email'"
+                :disable="!isEdit"
+                :title="$t('persons.users-s.title-email')"
+                :max="100"
+                :placeholder=" $t('persons.users-s.place-enter-email')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+            </div>
+          </div>        
+          <div class="box_duo_input">                        
+            <div>
+              <wl-input
+                v-if="objSelected"
+                v-model="rol"
+                :name="'form1.rol'"
+                :disable="!isEdit"
+                :title="$t('persons.users-s.title-role-user')"
+                :max="100"
+                :placeholder="$t('persons.users-s.place-enter-role-user')"                
+              />
+            </div>
+            <div>
+              <wl-switch-button 
+                v-if="objSelected"               
+                v-model="state"       
+                :name="'form1.state'"       
+                :type="'checkbox'" 
+                :disable="!isEdit"
+                :title=" $t('persons.users-s.title-state-user')"
+                :label=" $t('persons.users-s.label-active')"
+              />
+            </div>
           </div>
-        </div>
-        <div class="box_duo_input">          
-          <div>
-            <wl-input
-              v-if="objSelected"
-              v-model="password"
-              :disable="!isEdit"
-              :title=" $t('persons.users-s.title-password')"
-              :max="100"
-              :placeholder="$t('persons.users-s.place-enter-passord')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
+          <div class="box_duo_input">            
+            <div>
+              <wl-switch-button 
+                v-if="objSelected"               
+                v-model="restorePass"  
+                :name="'form1.restore'"            
+                :type="'checkbox'" 
+                :disable="!isEdit"
+                :title=" $t('persons.users-s.label-restore-password')"
+                :label=" $t('persons.users-s.label-restore-password')"
+              />
+            </div>
+            <div />
           </div>
-          <div>
-            <wl-input
-              v-if="objSelected"
-              v-model="document"
-              :disable="!isEdit"
-              :title=" $t('persons.users-s.title-id')"
-              :max="50"
-              :placeholder=" $t('persons.users-s.place-enter-id')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-        </div>        
-        <div class="box_duo_input">            
-          <div>
-            <wl-input
-              v-if="objSelected"
-              v-model="email"
-              :disable="!isEdit"
-              :title="$t('persons.users-s.title-email')"
-              :max="100"
-              :placeholder=" $t('persons.users-s.place-enter-email')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-          <div>
-            <wl-input
-              v-if="objSelected"
-              v-model="rol"
-              :disable="!isEdit"
-              :title="$t('persons.users-s.title-role-user')"
-              :max="100"
-              :placeholder="$t('persons.users-s.place-enter-role-user')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-        </div>
-
-        <div class="box_duo_input">            
-          <div>
-            <wl-switch-button
-              v-if="objSelected"
-              :id="'rad1'"
-              v-model="state"
-              :disable="!isEdit"
-              :type="'checkbox'"
-              :title=" $t('persons.users-s.title-state-user')"
-              :label=" $t('persons.users-s.label-active')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-          <div />
-        </div>
+        </form>
       </template>
     </wl-crud>    
   </div>
@@ -151,8 +164,6 @@ export default {
   },
   data() {
     return {
-      img: null,
-      camera: null,
       isEdit : false,
       file: null,
       loadingPhoto: true,  
@@ -161,6 +172,8 @@ export default {
       isLoading: false,
       loadingSuccess: false,
       showTrash: false,
+      isSubmit: false,
+      restorePass: false,
     }
   },
   computed: {
@@ -223,14 +236,24 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save({modifiedUser: this.objSelected,file: this.file, fileWasChange: this.fileWasChange}).then(this.cancel);
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.save({
+                modifiedUser: this.objSelected,
+                file: this.file, 
+                fileWasChange: this.fileWasChange,
+                restorePass: this.restorePass
+              }).then(this.cancel);        
+        }
+      });
     },
     startEdit(){
       this.isEdit = true;
     },
     getPhoto(){
       this.isLoading = true;
-      this.$axios.get('/api/User/Photo/'+ this.$route.params.id, {responseType: 'blob'})
+      this.$axios.get('/api/User/Photo?id='+ this.$route.params.id, {responseType: 'blob'})
       .then(response => this.loadPhoto(response.data))
       .catch(e => this.cantLoadPhoto(e))
     },

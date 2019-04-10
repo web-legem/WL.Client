@@ -19,6 +19,7 @@ module.exports = {
     , '@/assets/iconos-legem2/style.css'
     , '@/assets/escudos-legem/style.css'
     , '@/assets/inputs.css'
+    , '@/assets/basic-form.css'    
   ],
   /*
   ** Customize the progress bar color
@@ -71,15 +72,15 @@ module.exports = {
       defaultBreakpoint: 'lg',
     }]
   ],
-  // axios: {
-  //   // proxyHeaders: false,
-  //   host: 'localhost'
-  //   , port: '54037'
-  //   , retry: {  retries: 0 }
-  // },
   axios: {
-    host: '192.168.0.4'
+    // proxyHeaders: false,
+    host: 'localhost'
     , port: '54037'
-    , retry: { retries: 0 }
-  }
+    , retry: {  retries: 0 }
+  },
+  // axios: {
+  //   host: '192.168.0.6'
+  //   , port: '54037'
+  //   , retry: { retries: 0 }
+  // }
 }

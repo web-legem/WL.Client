@@ -20,21 +20,21 @@
     <div class="link-list"> 
       <div class="list-content">
         <ul class="link-u-list">
-        <slot
-          name="list" 
-          :filtered-list="filtered"
-        />
-      </ul>
-      <div 
-        v-if="isEmpty"
-        class="empty-list"
-      >
-        <span class="ico2-files-empty" />
-        <p>
-          {{ $t('components.filtere-list.title-press-butt') }}  
-        </p>    
+          <slot
+            name="list" 
+            :filtered-list="filtered"
+          />
+        </ul>
+        <div 
+          v-if="isEmpty"
+          class="empty-list"
+        >
+          <span class="ico2-files-empty" />
+          <p>
+            {{ $t('components.filtere-list.title-press-butt') }}  
+          </p>    
+        </div>
       </div>
-     </div>
     </div>
   </nav>
 </template>

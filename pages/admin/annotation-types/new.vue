@@ -8,23 +8,33 @@
       @wlclearerror="clearError"
     >
       <template slot="wl-form">
-        <wl-input
-          v-model="name"
-          :title="$t('admin.annotation-type.title-name-annotation-type')"
-          :max="100"
-          :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
-        <wl-input
-          v-model="root"
-          class="sm-space-top"
-          :title="$t('admin.annotation-type.title-annotation-root')"
-          :max="50"
-          :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
+        <form 
+          name="form-annotation"
+          data-vv-scope="form1"
+          @submit.prevent
+        >    
+          <wl-input
+            v-model="name"
+            :mode="'noSpace|titleCase'"
+            :name="'form1.name'"
+            :title="$t('admin.annotation-type.title-name-annotation-type')"
+            :max="100"
+            :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+          <wl-input
+            v-model="root"
+            :mode="'noSpace|titleCase'"
+            :name="'form1.root'"
+            class="sm-space-top"
+            :title="$t('admin.annotation-type.title-annotation-root')"
+            :max="50"
+            :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -50,6 +60,7 @@ export default {
     return {
       name: "",
       root: "",
+      isSubmit: false,
     };
   },
   computed: {
@@ -66,9 +77,14 @@ export default {
       this.$router.push(this.localePath({ name: "admin-annotation-types" }));
     },
     submit() {
-      this.create({ name: this.name, root: this.root }).then(_ =>
-        this.$router.push(this.localePath({ name: "admin-annotation-types" }))
-      );
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.create({ name: this.name, root: this.root }).then(_ =>
+            this.$router.push(this.localePath({ name: "admin-annotation-types" }))
+          );      
+        }
+      }); 
     },
     ...mapActions("admin/annotation-types", {
       isCreating: "isCreating",

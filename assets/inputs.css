@@ -183,10 +183,18 @@
 }
 
 .msj-error.md {
-  color: orangered;
-  font-family: "Lato";
   font-size: .9rem;
+}
+
+.msj-success {
+  color: #0f745b;
+  font-family: "Lato";
+  font-size: .7rem;
   margin-bottom: 4px;
+}
+
+.msj-success.md {
+  font-size: .9rem;
 }
 
 /*TEXTO PARA LOS LABELS*/

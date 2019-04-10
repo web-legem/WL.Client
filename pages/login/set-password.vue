@@ -4,20 +4,23 @@
       :src="img"
       background-color="#8f956f"
     >
-      <div class="login_form">
+      <div class="basic-form">
         <div 
           v-if="isPathAllow"          
-          class="form-box"
+          class="basic-form-box"
         >
           <div class="box-title">
             Actualizar Contraseña 
           </div>          
-          <p class="msg-pass">
+          <p 
+            v-if="isPathAllow && !isTokenAllow"          
+            class="msg-pass"
+          >
             Esta usando el documento como contraseña del sitio, debe actualizar su contraseña para ingresar            
           </p>
           <div />
           <form 
-            class="form-login" 
+            class="form-basic-container" 
             name="set-password"
             data-vv-scope="form1"
             @submit.prevent="sendSetPassword()"
@@ -44,7 +47,7 @@
             />
             
             <div 
-              v-show="showWidget"
+              v-show="showWidget.show"
               ref="widgetSeguridad"
               class="widget_seguridad"
             > 
@@ -59,7 +62,7 @@
                 <span />
               </div>
               <p>
-                nivel de seguridad: algun valor
+                nivel de seguridad: {{ showWidget.level }}
               </p>
             </div>
 
@@ -119,6 +122,8 @@ export default {
       colors: ['#F00', '#F90', '#FF0', '#9F0', '#0F0'],
       valors: ['muy bajo', 'bajo', 'medio', 'alto', 'muy alto'],
       isSubmit: false,
+      isTokenAllow: false,
+      userIdRestore:null,
     }
   },
   computed:{
@@ -137,11 +142,15 @@ export default {
               spans[i].style.background = c.col;
           }
         }
-        return true;
+        let result = {
+          show: true,
+          level: c.val,
+        }
+        return result;
       }     
     },
     isPathAllow(){
-      return this.credential && this.credential.newPasswordRequired
+      return this.credential && this.credential.newPasswordRequired || this.isTokenAllow
     },
     ...mapGetters("login/login", {      
       credential: "credential",
@@ -149,10 +158,22 @@ export default {
       error: "error",
     }),
   },
-  //---------- override ----------
+  //---------- override ----------  
   created() {
+    var data = {
+      id: this.$route.query.id,
+      token: this.$route.query.token,
+    }
+
+    if(data.id != undefined && data.token != undefined){
+      this.userIdRestore = data.id
+      this.verifyToken(data)
+        .then(x => x == false ? this.$router.push(this.localePath({ name: 'index' })) : this.isTokenAllow = true )
+        .catch(x => this.$router.push(this.localePath({ name: 'index' })))
+      return;
+    }
     if(!this.isPathAllow){    
-      this.$router.push(this.localePath({ name: 'login' }))      
+      this.$router.push(this.localePath({ name: 'index' }))      
     }    
   },
   //------------------------------
@@ -187,7 +208,7 @@ export default {
     },      
     getColor(s) {
         var idx = 1;
-        var val = 'muy bajo';
+        var val = this.valors[0];
         if (s >= 60) { idx = 5; }
         else if (s >= 50) { idx = 4; }
         else if (s >= 40) { idx = 3; }
@@ -199,67 +220,27 @@ export default {
     },
     sendSetPassword(){    
       var data = {
-        userId : this.credential.id,  
-        password : this.password1,
+        userId : this.isTokenAllow ? this.userIdRestore : this.credential.id,  
+        password : this.password1,        
       }
 
       this.$validator.validate('form1.*').then(valid => {
         this.isSubmit = true;
         if (valid) {
           this.setPassword(data)
-            .then(_ =>this.$router.push(this.localePath({ name: 'index' })));             
+            .then(_ =>this.$router.push(this.localePath({ name: 'login' })));             
         }      
       });
     },
     ...mapActions("login/login", [
-      "setPassword",     
+      "setPassword",    
+      "verifyToken" 
     ])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
-.login_form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.form-box {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  max-width: 420px;
-  min-width: 420px;
-  background: white;
-  margin: 0 auto;
-}
-
-.form-login {
-  background: white;
-  padding: 20px;
-  padding-top: 18px;
-}
-
-.contenedor_login{
-    max-width:420px;
-    box-shadow:0 0 0 1px rgba(0, 0, 0, 0.05),0 1px 2px rgba(0, 0, 0, 0.3);   
-    min-width:0;
-}
-
-.msg-pass{
-    padding: 20px;
-    display:inline-block;
-    font-family: 'Lato';
-    font-size: 1rem;
-    color: #111;
-    background: #eee;
-    border-bottom: 1px solid #aaa;
-}
 
 .widget_seguridad > p{
     margin-top: 2px;
@@ -288,12 +269,4 @@ export default {
     background:#ccc;
 }
 
-.msg-document{
-  padding-bottom: 10px;
-  font-size: medium;
-}
-
-.btn-submit{
-  margin-top: 20px;
-}
 </style>

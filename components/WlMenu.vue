@@ -44,7 +44,6 @@
             @click.stop="toggleSubModulesPanel"
             @keydown.enter="toggleSubModulesPanel"
             @keypress.enter.stop="toggleSubModulesPanel"
-            @focus="showMenuPanel"
           >
             <div>
               <span
@@ -83,11 +82,12 @@
           :key="index"
         >
           <nuxt-link
+            v-show="menuItem.show"
             :to="localePath({ name: menuItem.link })"
             class="module" 
             @blur.native="hideMenuPanel"
             @focus.native="showMenuPanel"
-            @click.native="hideMenuPanel"
+            @click.native="hideMenuPanel"            
           >
             <div>
               <span
@@ -98,60 +98,58 @@
             </div>
           </nuxt-link>
         </li>
-        <!-- Usuario--------------------------------------- -->
-        <li
-          :class="{small: $mq == 'sm'}"
-        >
-          <button
+        <!-- Usuario--------------------------------------- -->        
+        <no-ssr>
+          <li
+            v-if="loogedIn != undefined && loogedIn == true"          
+            ref="userContainer"
             :class="{small: $mq == 'sm'}"
-            class="module"
-            @click.stop="toggleSubUserPanel"
-            @keydown.enter="toggleSubUserPanel"
-            @keypress.enter.stop="toggleSubUserPanel"
-            @blur="hideSubUserPanel(); hideMenuPanel()"
-            @focus="showMenuPanel"
+            @focusout="checkIfFocusLostUser($event)"
           >
-            <div>
-              <span
-                class="ico ico-user"
-              />
-              Usuarios
-              <div class="avatar-usu">
-                <img 
-                  alt="" 
-                  src="" 
-                >
-              </div>
-            </div>
-          </button>
-          <ul
-            v-show="showSubUser"
-            :class="{small: $mq == 'sm'}"
-            class="sub-modules"
-            @focusout="hideSubUserPanel"
-          >
-            <li>
-              <nuxt-link
-                :to="localePath({name:'settings-settings'})"
-                class="sub-module"
-                @focus.native="showSubUserPanel($event); showMenuPanel()"
-                @click.native.stop="hideSubUserPanel(); hideMenuPanel()"
-                @mouseup.stop
-                @mousedown.stop
-                @focusout="hideMenuPanel"
-              >
-                <div>
-                  <span
-                    :class="'ico-config'"
-                    class="ico"
-                  />
-                  Cerrar sesion
+            <button
+              :class="{small: $mq == 'sm'}"
+              class="module"
+              @click.stop="toggleSubUserPanel"
+              @keydown.enter="toggleSubUserPanel"
+              @keypress.enter.stop="toggleSubUserPanel"
+            >
+              <div>
+                <span
+                  class="ico ico-user"
+                />
+                Usuarios
+                <div class="avatar-usu">                  
+                  <img 
+                    alt="" 
+                    :src="credential.photo"
+                  >
                 </div>
-              </nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <!-- Usuario--------------------------------------- -->
+              </div>
+            </button>
+            <ul
+              v-show="showSubUser"
+              :class="{small: $mq == 'sm'}"
+              class="sub-modules"
+            >
+              <li>
+                <nuxt-link
+                  :to="localePath({name:''})"
+                  class="sub-module"                
+                  @click.native="signOut()"
+                >
+                  <div>
+                    <span
+                      :class="'ico-sign-out'"
+                      class="ico"
+                    />
+                    Cerrar sesion
+                  </div>
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
+        </no-ssr>
+        <!-- fin Usuario----------------------------------- -->
       </ul>
     </nav>
     <button
@@ -171,7 +169,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import WlCintaLogo from '~/components/home/WlCintaLogo.vue'
 import WlA11yControls from '~/components/WlA11yControls.vue'
 
@@ -179,32 +177,13 @@ export default {
   components: {
     WlCintaLogo,
     WlA11yControls,
-  }
-  , data() {
+  },
+  data() {
     return {
       showSubModules: false,
       showSubUser: false,      
       showMenu: false,
-      menuItems: [
-        {
-          label:this.$t('components.menu.label-serch')
-          , icon: 'ico-search'
-          , link: 'search'
-          , show: 'true'
-        },
-        {
-          label: this.$t('components.menu.label-home')
-          , icon: 'ico-home'
-          , link: 'index'
-          , show: 'true'
-        },
-        {
-          label: this.$t('components.menu.label-login')
-          , icon: 'ico-sign-in'
-          , link: 'login'
-          , show: 'true'
-        }
-      ],
+
       modules: [
         {
           label: this.$t('components.menu.label-admin'),
@@ -228,12 +207,38 @@ export default {
         }
       ]
     }
-  }
-  , computed: {
+  },
+  computed: {
     ...mapState([
       'mouseDownA11yPanel',
       'showBorder'
     ]),
+    ...mapGetters("login/login", {
+      loogedIn: "loogedIn",
+      credential: "credential",      
+    }), 
+    menuItems(){
+      return [
+        {
+          label:this.$t('components.menu.label-serch'),
+          icon: 'ico-search',
+          link: 'search',
+          show: 'true',
+        },
+        {
+          label: this.$t('components.menu.label-home'),
+          icon: 'ico-home',
+          link: 'index',
+          show: 'true',
+        },
+        {
+          label: this.$t('components.menu.label-login'),
+          icon: 'ico-sign-in',
+          link: 'login',
+          show: this.loogedIn != undefined && this.loogedIn == false,
+        }
+      ]
+    },
     showSsr() {
       return this.$options.filters.mq(this.$mq, { xs: false, mid: true })
     }
@@ -241,12 +246,16 @@ export default {
   watch: {
     '$route'() {
       this.hideSubModulesPanel()
+      this.hideSubUserPanel()
       this.hideA11yPanel()
       this.hideMenuPanel()
     },
     '$i18n.locale'(){
       this.$validator.locale = this.$i18n.locale;
     }
+  },
+  beforeMount(){
+    this.$store.commit("login/login/initCredential");
   },
   mounted() {
     this.$validator.locale = this.$i18n.locale;
@@ -259,9 +268,16 @@ export default {
       this.setMouseDownA11yPanel(false)
     },
     checkIfFocusLost(event) {
-      if(!this.$refs.submodulesContainer.contains(event.relatedTarget)) {
+      if(!this.$refs.submodulesContainer.contains(event.relatedTarget)) {        
+        console.log("focus m lost");
         this.hideSubModulesPanel()
-      } 
+      }       
+    },
+    checkIfFocusLostUser(event){
+      if(!this.$refs.userContainer.contains(event.relatedTarget)) {
+        console.log("focus lost");
+        this.hideSubUserPanel()
+      }
     },
     
     // menu modules-----------
@@ -269,9 +285,10 @@ export default {
     hideSubModulesPanel() {this.showSubModules = false},
     toggleSubModulesPanel() {this.showSubModules = !this.showSubModules},
     // menu Users-----------
-    hideSubUserPanel() {this.showSubUser = false},
     showSubUserPanel($event) {this.showSubUser = true},
+    hideSubUserPanel() {this.showSubUser = false},
     toggleSubUserPanel() {this.showSubUser = !this.showSubUser},
+    signOut(){this.logout(this.credential.id)},
     // ---------------------
     
     showMenuPanel () {
@@ -289,7 +306,10 @@ export default {
       'setMouseDownA11yPanel',
       'displayBorder',
       'hideBorder',
-    ])
+    ]),
+    ...mapActions("login/login", [
+      "logout",
+    ]),
   }
 }
 </script>
@@ -478,11 +498,16 @@ button .ico-wheelchair {
 }
 
 .avatar-usu{
-  margin-left: 10px;
-  width: 50px;
+  margin-left: 10px;  
   --header-height: calc(25px + 4.5vh);
   height: var(--header-height);
-  background: red;
+  width: auto;  
+  background: #555;
+}
+
+.avatar-usu  > img{  
+  width: 100%;
+  height:100%;
 }
 
 @keyframes bajando {

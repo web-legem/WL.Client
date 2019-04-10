@@ -2,16 +2,16 @@
   <div>
     <div>
       <label class="texto_labels ">  
-        {{ $t('components.webcam.label-foto-user') }}       
+        {{ $t('components.webcam.label-foto-user') }}
       </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
           <wl-load2 
             v-if="isLoading"          
             class="loading-photo"
-          />            
+          />        
           <span 
-            v-show="(!trash || !loadingSuccess) && !isLoading "
+            v-show="(!trash || !loadingSuccess) && !isLoading" 
             class="ico-user" 
           />
           <img             
@@ -207,17 +207,63 @@ export default {
       this.$refs.inputToLoad.click();
     },
     loadPhoto(e){
-      var img = this.imageElement;
+      var imgOrig = this.imageElement;
       var files = e.target.files;
       var f = files[0];
       var leerArchivo = new FileReader();
-      leerArchivo.onload = (e) => {
-          img.src = e.target.result;
+
+      var img = document.createElement("img");      
+      leerArchivo.onload = (e) => {        
+        img.src = e.target.result;
+        img.onload = () => {
+          var canvas = this.rescalePicture(img)          
+          imgOrig.src = canvas.toDataURL(f.type);
           this.$emit('loading-success');
-          this.$emit('was-change');
-          this.$emit('show-trash',true);
+          this.convertToFile(imgOrig.src);
+        };             
       };
       leerArchivo.readAsDataURL(f);//para q el archivo sea leido 
+    },
+    rescalePicture(img){
+      var width = img.width;
+      var height = img.height;
+      var MAX_WIDTH = 155;
+      var MAX_HEIGHT = 200;
+      var ratio = MAX_WIDTH/MAX_HEIGHT;
+      var ratioImg = width/height;                      
+      var dx = 0;
+      var dy = 0;
+                
+      var canvas = document.createElement("canvas");
+      canvas.width = MAX_WIDTH;
+      canvas.height = MAX_HEIGHT;
+      var ctx = canvas.getContext("2d");
+          
+      if (width >= height) {
+        if(ratioImg<ratio){
+          dy = (height - (height * ratio))/2;
+          height = height * ratio;
+        }else{
+          if(ratioImg > 1){
+            ratio = MAX_HEIGHT/MAX_WIDTH;
+            ratioImg = height/width;
+            ratio = ratioImg/ratio;
+          } 
+          dx = (width - (width * ratio))/2;
+          width = width * ratio;             
+        }                     
+      } else {
+          if(ratioImg>ratio){
+            dx = (width - (width * ratio))/2;
+            width = width * ratio;                   
+          }else{
+            dy = (height - (height * ratio))/2;
+            height = height * ratio;
+          }
+      }           
+        
+      ctx.drawImage(img, dx, dy, width, height,0,0,MAX_WIDTH,MAX_HEIGHT);
+      return canvas;
     },
     deletePhoto(){
       var img = this.imageElement;
@@ -262,7 +308,7 @@ export default {
       
       canvasAux.getContext('2d').drawImage(imgAux, 80, 20, 155, 200, 0, 0, 155, 200);
       img.src = canvasAux.toDataURL("image/jpeg");
-      img.style.visibility = "unset";
+      img.style.display = "unset";
       this.convertToFile(img.src);
       var imageData = canvas.toDataURL('image/png');
       var params = "filename=" + imageData;
@@ -270,8 +316,11 @@ export default {
       var files = document.getElementById("hidden_input");
       this.isStreaming = true;
       this.existCanvas = false;
+      this.$emit('loading-success');
+      this.$emit('show-trash',false);      
       this.$emit('was-change');
       this.closeCamera();
+      
     },
     convertToFile(source){
       let dataUrl = source.split(',')
@@ -283,7 +332,7 @@ export default {
       let arr = new Uint8Array(buf);
       bin
         .split('')
-        .forEach((e,i)=>arr[i]=e.charCodeAt(0));                
+        .forEach((e,i)=>arr[i]=e.charCodeAt(0));      
       var objCreado = new File([buf],'filename',{type:mime}); // note: [buf]
       this.$emit('new-file', objCreado);
       this.$emit('was-change');
@@ -308,9 +357,6 @@ export default {
         this.showCamera = false;
       }
     },
-    closeModal(){
-      this.$emit('wlclose',$event.target.value)        
-    },
   },
 }
 </script>
@@ -330,6 +376,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .foto_usuarios > span:before{   
@@ -339,8 +386,8 @@ export default {
 }
 
 #laimagen{
-    width:100%;
-    height:100%;
+    width:auto; /* you can use % */
+    height: 190px;
 }
 
 .botonera_camara {

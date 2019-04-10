@@ -2,7 +2,6 @@
   <div>
     <wl-crud
       :obj-select="objSelected"
-      :is-new="false"
       :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
@@ -11,28 +10,38 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
-        <wl-input
-          v-if="objSelected"
-          v-model="name"
-          :disable="!isEdit"
-          :title="$t('admin.annotation-type.title-name-annotation-type')"
-          :max="100"
-          :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
-        <wl-input
-          v-if="objSelected"
-          v-model="root"
-          class="sm-space-top"
-          :disable="!isEdit"
-          :title="$t('admin.annotation-type.title-annotation-root')"
-          :max="50"
-          :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
-      </template>
+        <form 
+          name="form-annotation"
+          data-vv-scope="form1"
+          @submit.prevent
+        >   
+          <wl-input
+            v-if="objSelected"
+            v-model="name"
+            :mode="'noSpace|titleCase'"
+            :name="'form1.name'"
+            :disable="!isEdit"
+            :title="$t('admin.annotation-type.title-name-annotation-type')"
+            :max="100"
+            :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+          <wl-input
+            v-if="objSelected"
+            v-model="root"
+            :mode="'noSpace|titleCase'"
+            :name="'form1.root'"
+            class="sm-space-top"
+            :disable="!isEdit"
+            :title="$t('admin.annotation-type.title-annotation-root')"
+            :max="50"
+            :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"            
+          />
+        </form>
+      </template>      
     </wl-crud>
   </div>
 </template>
@@ -52,7 +61,8 @@ export default {
   },
   data() {
     return {
-      isEdit : false
+      isEdit : false,
+      isSubmit: false,
     }
   },
   computed: {
@@ -98,7 +108,12 @@ export default {
       this.delete().then(this.cancel);
     },
     update() {
-      this.save(this.objSelected).then(this.cancel);
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.save(this.objSelected).then(this.cancel);      
+        }
+      });
     },
     startEdit(){
       this.isEdit = true;

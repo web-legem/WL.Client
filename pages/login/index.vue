@@ -4,26 +4,30 @@
       :src="img"
       background-color="#8f956f"
     >
-      <div class="login_form">
-        <div class="form-box">
+      <div class="basic-form">
+        <div class="basic-form-box">
           <div class="box-title">
             Ingresar al Sistema
           </div>
-          
+
           <form 
-            class="form-login" 
+            class="form-basic-container" 
             name="form-login"
             data-vv-scope="form1"            
             @submit.prevent="signIn()"
-          >
-            <div>
-              <div
-                v-show="error || passwordChanged"
-                class="msj-error md"
-              >
-                {{ getMsgInfo }}
-              </div>
-            </div>        
+          >              
+            <div
+              v-show="msgReturn"
+              class="msj-success md"
+            >              
+              {{ msgReturn }}
+            </div>
+            <div
+              v-show="error"
+              class="msj-error md"
+            >
+              {{ getMsgInfo }}
+            </div>    
             <!----------------------------------------------------->
             <wl-input
               v-model="nickname"
@@ -49,7 +53,15 @@
             <!----------------------------------------------------->            
 
             <div class="flex-container col center btn-submit">          
-              <div>
+              <div class="forget-pass">
+                <nuxt-link 
+                  :to="localePath({ name: 'login-restore-password' })"
+                  class="link-restore"
+                >
+                  He olvidado mi contraseña
+                </nuxt-link>
+              </div>
+              <div>                
                 <wl-button                 
                   :ico="'ico-sign-in'"        
                   :type="'input'"         
@@ -90,23 +102,45 @@ export default {
       img: imagesContext('./entrada.jpg'),
       nickname:"",
       password:"",
+      msgUpdate:"",
     }
   },
   computed: {
-    getMsgInfo() {
-      if(this.passwordChanged){
-        return "Inicie sesion con su nueva contraseña"
-      }else{
-        return this.error
-      }
+    getMsgInfo() {      
+      return this.error      
+    },
+    msgReturn(){
+      return this.msgUpdate
     },
     ...mapGetters("login/login", {      
       error: "error",
       redirectTo: "redirectTo",
+      loogedIn: "loogedIn",
       passwordChanged: "passwordChanged",
     }),    
   },
-  methods: {    
+  watch: {
+    '$route'() {
+      this._clearError()
+    }
+  },
+  beforeMount(){
+    if(this.loogedIn){
+      this.$router.push(this.localePath({ name: 'index' }))
+    }    
+  },
+  mounted(){
+    if(this.passwordChanged){
+      this.msgUpdate =  "Inicie sesion con su nueva contraseña"
+      this.clearPasswordChanged()
+    }else{
+      this.msgUpdate =  ""
+    }
+  },
+  beforeDestroy(){
+    this.clearError();
+  },
+  methods: {            
     signIn(){    
       var data = {
         nickname : this.nickname,
@@ -120,42 +154,15 @@ export default {
       });      
     },
     ...mapActions("login/login", [
-      "login",     
+      "login",
+      "clearError",
+      "clearPasswordChanged"
     ])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.login_form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.form-box {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  max-width: 420px;
-  min-width: 420px;
-  background: white;
-  margin: 0 auto;
-}
-
-.form-login {
-  background: white;
-  padding: 20px;
-}
-
-.contenedor_login{
-    max-width:420px;
-    box-shadow:0 0 0 1px rgba(0, 0, 0, 0.05),0 1px 2px rgba(0, 0, 0, 0.3);   
-    min-width:0;
-}
 
 .olvide_contraseña{
     margin-top:20px;
@@ -164,7 +171,18 @@ export default {
     font-size:small;
 }
 
-.btn-submit{
+.btn-submit > div:first-child{
+  color: blue;
+  font-size: .8rem;
+  align-self: flex-start;
+}
+
+.link-restore:visited{
+  color: blue;
+}
+
+
+.btn-submit > div:last-child{
   margin-top: 20px;
 }
 

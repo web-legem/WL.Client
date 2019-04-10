@@ -7,100 +7,106 @@
       @wlcreate="submit"
       @wlclearerror="clearError"
     >
-      <template slot="wl-form">                
-        <div class="box_duo_input">          
-          <div>
-            <wl-web-cam 
-              :photo-file="photoUrl"
-              :disable="false"
-              @new-file="newFile($event)"
-            />
+      <template slot="wl-form">   
+        <form 
+          class="form-user" 
+          name="form-user"
+          data-vv-scope="form1"
+          @submit.prevent
+        >           
+          <div class="box_duo_input">          
+            <div>
+              <wl-web-cam 
+                :disable="false"
+                :photo-file="photoUrl"
+                :is-loading="isLoading"
+                :loading-success="loadingSuccess"
+                :trash="showTrash"
+                @new-file="newFile($event)"
+                @was-change="setPhotoState($event)"   
+                @loading-success="setLoadingSuccess($event)"   
+                @show-trash="setShowTrash($event)" 
+              />   
+            </div>
+            <div>
+              <wl-input
+                v-model="firstName"
+                :mode="'titleCase'"
+                :name="'form1.firstname'"
+                :title=" $t('persons.users-s.title-name')"
+                :max="100"
+                :placeholder=" $t('persons.users-s.place-enter-name')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+              <wl-input
+                v-model="lastName"
+                :mode="'titleCase'"
+                :name="'form1.lastname'"
+                :title=" $t('persons.users-s.title-lastname')"
+                :max="100"
+                :placeholder=" $t('persons.users-s.place-enter-lastname')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+              <wl-input
+                v-model="nickName"
+                :mode="'noSpace'"
+                :name="'form1.nickname'"
+                :title=" $t('persons.users-s.title-name-user')"
+                :max="50"
+                :placeholder=" $t('persons.users-s.place-enter-name-user')"                
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+            </div>
           </div>
-          <div>
-            <wl-input
-              v-model="firstName"
-              :title=" $t('persons.users-s.title-name')"
-              :max="100"
-              :placeholder=" $t('persons.users-s.place-enter-name')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-            <wl-input
-              v-model="lastName"
-              :title=" $t('persons.users-s.title-lastname')"
-              :max="100"
-              :placeholder=" $t('persons.users-s.place-enter-lastname')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-            <wl-input
-              v-model="nickName"
-              :title=" $t('persons.users-s.title-name-user')"
-              :max="50"
-              :placeholder=" $t('persons.users-s.place-enter-name-user')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
+          <div class="box_duo_input">                    
+            <div>
+              <wl-input
+                v-model="document"
+                :mode="'onlyNumber'"
+                :name="'form1.document'"
+                :title=" $t('persons.users-s.title-id')"
+                :max="50"
+                :placeholder=" $t('persons.users-s.place-enter-id')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+            </div>
+            <div>
+              <wl-input
+                v-model="email"
+                :mode="'noSpace'"
+                :type="'email'"
+                :name="'form1.email'"
+                :title="$t('persons.users-s.title-email')"
+                :max="100"
+                :placeholder=" $t('persons.users-s.place-enter-email')"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
+              />
+            </div>
+          </div>        
+          <div class="box_duo_input">                      
+            <div>
+              <wl-input
+                v-model="rol"
+                :title="$t('persons.users-s.title-role-user')"
+                :max="100"
+                :placeholder="$t('persons.users-s.place-enter-role-user')"                
+              />
+            </div>
+            <div>
+              <wl-switch-button                
+                v-model="state"              
+                :type="'checkbox'" 
+                :title=" $t('persons.users-s.title-state-user')"
+                :label=" $t('persons.users-s.label-active')"
+              />
+            </div>
           </div>
-        </div>
-        <div class="box_duo_input">          
-          <div>
-            <wl-input
-              v-model="password"
-              :title=" $t('persons.users-s.title-password')"
-              :max="256"
-              :placeholder="$t('persons.users-s.place-enter-passord')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-          <div>
-            <wl-input
-              v-model="document"
-              :title=" $t('persons.users-s.title-id')"
-              :max="50"
-              :placeholder=" $t('persons.users-s.place-enter-id')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-        </div>        
-        <div class="box_duo_input">            
-          <div>
-            <wl-input
-              v-model="email"
-              :title="$t('persons.users-s.title-email')"
-              :max="100"
-              :placeholder=" $t('persons.users-s.place-enter-email')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-          <div>
-            <wl-input
-              v-model="rol"
-              :title="$t('persons.users-s.title-role-user')"
-              :max="100"
-              :placeholder="$t('persons.users-s.place-enter-role-user')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-        </div>
-
-        <div class="box_duo_input">            
-          <div>
-            <wl-switch-button
-              :id="'rad1'"
-              :type="'checkbox'" 
-              :title=" $t('persons.users-s.title-state-user')"
-              :label=" $t('persons.users-s.label-active')"
-              :error-msg="'Este es un error'"
-              :error="true"
-            />
-          </div>
-          <div />
-        </div>
+        </form>
       </template>
     </wl-crud> 
   </div>
@@ -125,17 +131,21 @@ export default {
   },
   data() {
     return {
-      img: null,
-      camera: null,
       firstName : "",
       lastName : "",
       nickName : "",
       document : "",
-      password :"",
       email: "",
-      state: "active",
+      state: true,
       rol: "",
       file: null,
+      loadingPhoto: true,  
+      photoUrl: '', 
+      fileWasChange: false,
+      isLoading: false,
+      loadingSuccess: false,
+      showTrash: false,
+      isSubmit: false,
     };
   },
   computed: {
@@ -159,16 +169,30 @@ export default {
           lastName : this.lastName,
           nickName : this.nickName,
           document : this.document,
-          password : this.password,
           email: this.email,
-          state: this.state,
+          state: this.state ? 'active' : 'inactive',
           //rol: "",
         };
-      this.create({newUser,file: this.file}).then
-      (_ =>this.$router.push(this.localePath({ name: "persons-users" })));
+      
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.create({newUser,file: this.file})
+            .then(_ =>this.$router.push(this.localePath({ name: "persons-users" })));
+        }
+      });       
     },
     newFile(file) {
       this.file = file;
+    },
+    setShowTrash(show) {
+      this.showTrash = show;
+    },
+    setPhotoState(){
+      this.fileWasChange = true;
+    },
+    setLoadingSuccess(){
+      this.loadingSuccess = true;
     },
     ...mapActions("persons/users", {
       isCreating: "isCreating",
