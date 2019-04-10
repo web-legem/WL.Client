@@ -5,6 +5,43 @@
     <form
       action=""
     >
+      <h3>
+        {{ $t('doc-management.upload-doc.form-title') }}
+      </h3>
+      <label
+        for="file"
+        class="upload-document"
+        @drop.prevent.stop="handleDropFile($event)"
+        @dragover.prevent.stop
+      >
+        <input
+          id="file"
+          ref="file"
+          name="file"
+          type="file"
+          accept="application/pdf"
+          @change="handleFileToUpload"
+        >
+        <span
+          class="ico ico-upload"
+          @drop.prevent.stop="handleDropFile($event)"
+          @drop.prevent="handleDropFile($event)"
+        />
+        <p 
+          @drop.prevent.stop="handleDropFile($event)"
+          @drop.prevent="handleDropFile($event)"
+        >
+          <strong v-if="file">{{ file.name }}</strong>
+          <span v-else>
+            <strong>{{ $t('doc-management.upload-doc.p-choose-file') }} </strong>{{ $t('doc-management.upload-doc.p-drag-here') }} 
+          </span>
+        </p>
+        <progress
+          id="progress"
+          :value.prop="uploadPercentage" 
+          max="100" 
+        />
+      </label>
       <wl-input
         id="number"
         v-model="number"
@@ -42,6 +79,9 @@
         :list="documentTypes"
         :empty-msg="$t('doc-management.classify-doc.please-select-one')"
       />
+      <wl-chips
+        v-model="tags"
+      ></wl-chips>
       <div
         class="action-container"
       >
@@ -62,6 +102,7 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
+
     </form>
   </div>
 </template>
@@ -72,6 +113,7 @@ import {mapGetters, mapActions} from 'vuex'
 import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
+import WlChips from '~/components/WlChips.vue'
 
 export default {
   components: {
@@ -79,6 +121,7 @@ export default {
     WlSelect,
     WlButton,
     WlButton,
+    WlChips,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -89,13 +132,16 @@ export default {
   },
   data() {
     return {
-      number: ''
-      , entityId: null
-      , documentTypeId: null
-      , date: moment(Date.now())
+      number: '',
+      entityId: null,
+      documentTypeId: null,
+      date: moment(Date.now())
         .locale(this.$store.state.i18n.locale)
-        .format('YYYY-MM-DD')
-      , error: null
+        .format('YYYY-MM-DD'),
+      file: null,
+      uploadPercentage: 0,
+      error: null,
+      tags: ['test'],
     }
   },
   computed: {
@@ -106,7 +152,7 @@ export default {
   , watch: {
     '$route.params.id'(){
       this.loadData(this.$route.params.id)
-    }
+    },
   },
   fetch({ store, params }) {
     return store.dispatch('doc-management/classify-document/loadData', params.id)
@@ -116,15 +162,27 @@ export default {
       'loadData'
     ]),
     classify() {
-      this.$axios.post('/api/Document', {
-        fileId: this.$route.params.id
-        , document: {
-          entityId: this.entityId
-          , documentTypeId: this.documentTypeId
-          , number: this.number
-          , publicationDate: this.date
-        }
+      let formData = new FormData()
+      formData.append('files', this.file)
+      const form = JSON.stringify({
+        documentTypeId: this.documentTypeId,
+        entityId: this.entityId,
+        number: this.number,
+        publicationDate: this.date
       })
+      formData.append('value', form )
+
+
+      this.$axios.post(
+        '/api/Document',
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data'},
+          onUploadProgress: (progressEvent) => {
+            this.uploadPercentage = Number.parseInt(
+              Math.round(progressEvent.loaded * 100) / progressEvent.total)
+          }
+        })
       .then(console.log)
       .catch(console.log)
     },
@@ -135,6 +193,17 @@ export default {
       this.number = ''
       this.documentTypeId = null
       this.entityId = null
+      this.file = null
+    },
+    handleFileToUpload(){
+      this.file = this.$refs.file.files[0]
+      const url = URL.createObjectURL(this.file)
+      this.$emit('fileurl', url)
+    },
+    handleDropFile(e) {
+      this.file = e.dataTransfer.files[0]
+      const url = URL.createObjectURL(this.file)
+      this.$emit('fileurl', url)
     },
   },
 }
@@ -145,6 +214,15 @@ export default {
   display: flex;
   padding: 16px;
   flex-direction: column;
+  border: 1px solid gray;
+  margin: calc(1em + .5vw);
+}
+
+h3 {
+  color: #00696b;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #00696b;
+  margin-bottom: 8px;
 }
 
 .action-container {
@@ -159,5 +237,58 @@ export default {
 
 .select {
   margin-bottom: 10px;
+}
+
+.content {
+  height: 100%;
+}
+
+.upload-document {
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ddd;
+  color: gray;
+  max-width: 650px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  outline: 2px dashed #ccc;
+  outline-offset: 4px;
+  padding: 1rem 0;
+  margin: 16px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.drop-area {
+  background: #ddd;
+  color: gray;
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  outline: 2px dashed #ccc;
+  outline-offset: 4px;
+  padding: 2rem 0;
+  margin: 10px 0;
+}
+
+.ico-upload {
+  display: block;
+  font-size: 3rem;
+  color: gray;
+}
+
+.next {
+  align-self: flex-end;
 }
 </style>

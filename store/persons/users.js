@@ -121,13 +121,15 @@ export const actions = {
     formData.append('value',JSON.stringify(newUser))
     formData.append('files', file);
     commit('waiting')
-    return this.$axios.post('/api/User', formData,{headers: {'Content-Type': 'multipart/form-data'}})
+    return this.$axios.post(
+      '/api/User',
+      formData,
+      { headers: {'Content-Type': 'multipart/form-data' }})
       .then(_ => dispatch('loadData'))
       .catch(e => {
         commit('creatingError', e.response.data.message)
         throw e;
-      }
-      )
+      })
   },
   save({ commit, dispatch }, {modifiedUser, file, fileWasChange}) {
     console.log("xxx1",modifiedUser);

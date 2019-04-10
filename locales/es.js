@@ -61,6 +61,7 @@ export default {
 
     },
     'upload-doc': {
+      'form-title': 'Subir documento',
       'h-upload-doc': 'Subir documento',
       'p-choose-file': 'Escoja un archivo',
       'p-drag-here': ' ó arrastrelo aquí',

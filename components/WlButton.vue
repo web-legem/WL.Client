@@ -3,7 +3,7 @@
     :disabled="disable" 
     :class="[btnStyle, btnInverso, btnDisable]" 
     :title="title"
-    :click="$emit('click', $event)"
+    @click="$emit('click', $event)"
   >
     <span :class="[ico,size,icoInverso]" />
     <slot />

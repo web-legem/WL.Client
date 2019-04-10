@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .pdf-viewer {
   width: 100%;
   height: 100%;

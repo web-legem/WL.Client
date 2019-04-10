@@ -13,6 +13,12 @@
       >
         {{ $t('doc-management.classify-doc.h-classify-doc') }}
       </wl-tab>
+      <wl-tab
+        :to="localePath({name: 'doc-management-upload-document2'})"
+        icon="ico-files-o"
+      >
+        See original load form
+      </wl-tab>
     </template>
 
     <nuxt-child />

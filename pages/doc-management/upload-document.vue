@@ -1,135 +1,79 @@
 <template>
-  <div>
-    <h1>{{ $t('doc-management.upload-doc.h-upload-doc') }} </h1>
-    <form
-      class="upload-document"
-      action=""
-      @submit.prevent
+  <wl-master-detail-layout :has-detail="false">
+    <div
+      slot="master"
+      class="overflowed-area"
     >
-      <div class="drop-area">
-        <label
-          for="file"
-          @drop.prevent.stop="handleDropFile($event)"
-          @dragover.prevent.stop
-        >
-          <input
-            id="file"
-            ref="file"
-            name="file"
-            type="file"
-            @change="handleFileToUpload"
-          >
-          <span 
-            class="ico ico-upload"
-            @drop.prevent.stop="handleDropFile($event)"
-            @drop.prevent="handleDropFile($event)"
-          />
-          <p 
-            @drop.prevent.stop="handleDropFile($event)"
-            @drop.prevent="handleDropFile($event)"
-          >
-            <strong>{{ $t('doc-management.upload-doc.p-choose-file') }} </strong>{{ $t('doc-management.upload-doc.p-drag-here') }} 
-          </p>
-          <progress
-            id="progress"
-            :value.prop="uploadPercentage" 
-            max="100" 
-          />
-        </label>
-      </div>
+      <wl-classification-form
+        :entities="entities" 
+        :document-types="documentTypes"
+        @fileurl="showPdf($event)"
+      />
+    </div>
 
-      <hr>
-      <button
-        class="next"
-        @click="uploadFile"
+    <div
+      slot="details"
+      class="pdf-viewer"
+    >
+      <wl-neutral-pdf-viewer
+        class="pdf-viewer"
+        :url="fileUrl"
       >
-        {{ $t('doc-management.upload-doc.butt-upload-file') }}
-      </button>
-    </form>
-  </div>
+        <wl-error-message 
+          icon="ico-file-pdf-o"
+        >
+          No has seleccionado ningun archivo.
+        </wl-error-message>
+      </wl-neutral-pdf-viewer>
+    </div>
+  </wl-master-detail-layout>
 </template>
 
 <script>
-export default {
-  nuxtI18n: {
-    paths: {
-      es: 'carga-documentos'
-      , en: 'upload-documents'
-    }
-  }
-  , data() {
-    return {
-      file: ''
-      , uploadPercentage: 0
-    }
-  }
-  , methods: {
-    handleFileToUpload(){
-      this.file = this.$refs.file.files[0]
-    }
-    , handleDropFile(e) {
-      this.file = e.dataTransfer.files[0]
-    }
-    , uploadFile(){
-      let formData = new FormData()
-      formData.append('files', this.file)
-      let component = this
+import WlMasterDetailLayout from '~/components/WlMasterDetailLayout.vue'
+import WlNeutralPdfViewer from '~/components/WlNeutralPdfViewer.vue'
+import WlClassificationForm from '~/components/doc-management/WlClassificationForm.vue'
+import WlErrorMessage from '~/components/WlErrorMessage.vue'
 
-      this.$axios.post('/api/File', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-        , onUploadProgress: function(progressEvent) {
-          component.uploadPercentage = Number.parseInt(Math.round(progressEvent.loaded * 100) / progressEvent.total)
-        }
-      })
-      .then(_ => console.log('Success')) // TODO - preguntar si desea clasificar el documento
-      .catch(e => console.log('Error', e))
+export default {
+  components: {
+    WlMasterDetailLayout,
+    WlNeutralPdfViewer,
+    WlClassificationForm,
+    WlErrorMessage,
+  },
+  data() {
+    return {
+      fileUrl: '',
+      fileUploaded: true,
+      validFile: false,
     }
-  }
+  },
+  methods: {
+    showPdf(fileUrl) {
+      console.log(fileUrl)
+      this.fileUrl = fileUrl
+      this.validFile = true
+    },
+  },
+  asyncData(context) {
+    return Promise.all([
+      context.app.$axios.get('/api/Entity')
+      , context.app.$axios.get('/api/DocumentType')
+    ]).then(results => ({
+      entities: results[0].data
+      , documentTypes: results[1].data
+    }))
+  },
 }
 </script>
 
-<style lang="scss" scoped>
-.content {
+<style scoped lang="scss">
+.pdf-viewer {
   height: 100%;
 }
 
-.upload-document {
-  max-width: 650px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-.drop-area {
-  background: #ddd;
-  color: gray;
-  max-width: 650px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  outline: 2px dashed #ccc;
-  outline-offset: 4px;
-  padding: 2rem 0;
-  margin: 10px 0;
-}
-
-.ico-upload {
-  display: block;
-  font-size: 3rem;
-  color: gray;
-}
-
-.next {
-  align-self: flex-end;
+.overflowed-area {
+  overflow-y: auto;
 }
 </style>

@@ -61,11 +61,12 @@ export default {
 
     },
     'upload-doc': {
+      'form-title': 'Upload document',
       'h-upload-doc': 'Upload document',
       'p-choose-file': 'Choose a file',
       'p-drag-here': ' Or drag it here',
       'butt-upload-file': 'Upload file',
-      'wl-upload-doc': 'Upload of documents',
+      'wl-upload-doc': 'Upload documents',
     },
   },
 
