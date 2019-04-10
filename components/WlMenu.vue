@@ -158,7 +158,7 @@
       @keydown.13.native="toggleA11yPanel"
       @blur="hideA11yPanelOnBlur(true)"
     >
-      <span class="ico ico-wheelchair" />
+      <span class="ico ico2-accessibility" />
     </button> 
     <transition name="slide-fade-vertical">
       <wl-a11y-controls
@@ -480,7 +480,7 @@ button.accessibility:hover {
   background: #23948a;
 }
 
-button .ico-wheelchair {
+button 	.ico2-accessibility {
   width: var(--header-height);
   height: var(--header-height);
   background: rgba(0, 0, 0, 0);
