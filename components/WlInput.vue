@@ -24,6 +24,7 @@
         :maxlength="max"
         class="a_input"
         :class="{'disable':disable}"
+        :autocomplete="autocomplete?'on':'off'"
         @input="onInput"
         @blur="onBlur"
       >
@@ -63,7 +64,8 @@ export default {
     inputIco: { type: String, default: "" },
     validate: { type: Object, default: function(){ return{} } },
     isSubmit: { type: Boolean, default: false },
-    mode: { type: String, default: "" }
+    mode: { type: String, default: "" },
+    autocomplete: { type: Boolean, default: false },    
   },
   computed:{    
     functionModes(){

@@ -86,6 +86,12 @@ export default {
       'h-update-permissions': 'update permissions',
       'h-new-permission': 'New permission',
       'h-not-selected': 'Not selected',
+      'title-name': 'Role name',
+      'place-enter-name': 'Enter role name',
+      'title-config-system': 'Configure the system',
+      'title-create-doc': 'Manage documents',
+      'title-delete-doc': 'Delete documents',
+      'label-allow': 'Allow',
     },
     'users-s': {
       'h-not-selected': 'Not selected',

@@ -68,7 +68,7 @@
     <!-- Modal Error -->
     <wl-modal
       v-if="error"
-      :title="$t('search.crud.title-info')"
+      :title="$t('components.crud.title-info')"
       @wlclose="clearErrorsa"
     >
       <template slot="wl-content">
@@ -81,7 +81,7 @@
             ico="ico-check"
             @click.native="clearError($event)"
           >
-            {{ $t('search.crud.butt-accept') }}
+            {{ $t('components.crud.butt-accept') }}
           </wl-button>
         </div>
       </template>

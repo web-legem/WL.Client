@@ -6,7 +6,6 @@
       :filter-condition="filter"
       @add="create"
     >
-      <!-- :list="users" -->
       <template
         slot="list"
         slot-scope="{ filteredList }"

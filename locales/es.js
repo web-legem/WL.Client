@@ -85,6 +85,12 @@ export default {
       'h-update-permissions': 'Actualizar permisos',
       'h-new-permission': 'Nuevo permiso',
       'h-not-selected': 'No seleccionado',
+      'title-name': 'Nombre de rol',
+      'place-enter-name': 'Ingrese nombre de rol',
+      'title-config-system': 'Configurar el sistema',
+      'title-create-doc': 'Gestionar documentos',
+      'title-delete-doc': 'Eliminar documentos',
+      'label-allow': 'Permitir',
     },
     'users-s': {
       'h-not-selected': 'No seleccionado',

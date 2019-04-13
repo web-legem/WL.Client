@@ -51,10 +51,7 @@ export default {
     WlInput,
   },
   nuxtI18n: {
-    paths: {
-      es: "nuevo",
-      en: "new",
-    }
+    paths: {es: "nuevo",en: "new",}
   },
   data() {
     return {
