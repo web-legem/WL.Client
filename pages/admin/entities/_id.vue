@@ -105,9 +105,13 @@ export default {
     },
     entityTypeId: {
       get() {
-        return this.selected
-          ? this.selected.entityType
-          : 0;
+        if(this.selected){
+          return this.selected.entityType
+            ? this.selected.entityType.toString()
+            : "";
+        }
+        return ""
+        
       },
       set(value) {
         this.changeEntityTypeId(value)

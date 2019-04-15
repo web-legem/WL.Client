@@ -103,19 +103,24 @@
           </div>        
           <div class="box_duo_input">                        
             <div>
-              <wl-input
+              <wl-select
                 v-if="objSelected"
-                v-model="rol"
-                :name="'form1.rol'"
+                :id="'select'"
+                v-model="roleId"
+                :name="'form1.select'"
                 :disable="!isEdit"
+                :list="roles"
                 :title="$t('persons.users-s.title-role-user')"
-                :max="100"
-                :placeholder="$t('persons.users-s.place-enter-role-user')"                
+                value-prop-name="id"
+                label-prop-name="name"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
               />
             </div>
             <div>
               <wl-switch-button 
-                v-if="objSelected"               
+                v-if="objSelected"    
+                :id="'chk1'"           
                 v-model="state"       
                 :name="'form1.state'"       
                 :type="'checkbox'" 
@@ -128,7 +133,8 @@
           <div class="box_duo_input">            
             <div>
               <wl-switch-button 
-                v-if="objSelected"               
+                v-if="objSelected"         
+                :id="'chk2'"      
                 v-model="restorePass"  
                 :name="'form1.restore'"            
                 :type="'checkbox'" 
@@ -151,6 +157,7 @@ import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
 import WlSwitchButton from "~/components/WlSwitchButton.vue";
 import WlWebCam from "~/components/WlWebCam.vue";
+import WlSelect from "~/components/WlSelect.vue";
 
 export default {
   components: {
@@ -158,6 +165,7 @@ export default {
     WlInput,
     WlWebCam,
     WlSwitchButton,
+    WlSelect,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -213,11 +221,26 @@ export default {
       get() {return this.objSelected.rol},
       set(value){this.changeRol(value)},
     },
+    roleId: {
+      get() {
+        if(this.objSelected){
+          return this.objSelected.roleId ? this.objSelected.roleId.toString() : ""
+        }
+        return ""
+      },
+      set(value) {this.changeRoleId(value)}
+    },
   },
   watch: {
     $route() {
       this.select(this.$route.params.id).then(this.getPhoto)
-    }
+    },
+  },
+  asyncData(context) {
+    return context.app.$axios
+      .get("/api/Role")
+      .then(response => ({ roles: response.data }))
+      .catch(e => console.log(e));
   },
   mounted() {
     this.select(this.$route.params.id).then(this.getPhoto);
@@ -293,7 +316,7 @@ export default {
       "changeEmail",
       "changePassword",
       "changeState",
-      "changeRol",
+      "changeRoleId",
     ])
   },
 }

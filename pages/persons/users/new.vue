@@ -89,16 +89,21 @@
             </div>
           </div>        
           <div class="box_duo_input">                      
-            <div>
-              <wl-input
-                v-model="rol"
+            <div>              
+              <wl-select
+                v-model="roleId"
+                :name="'form1.select'"
+                :list="roles"
                 :title="$t('persons.users-s.title-role-user')"
-                :max="100"
-                :placeholder="$t('persons.users-s.place-enter-role-user')"                
+                value-prop-name="id"
+                label-prop-name="name"
+                :validate="{required:true}"
+                :is-submit="isSubmit"
               />
             </div>
             <div>
-              <wl-switch-button                
+              <wl-switch-button 
+                :id="'chk1'"               
                 v-model="state"              
                 :type="'checkbox'" 
                 :title=" $t('persons.users-s.title-state-user')"
@@ -118,6 +123,7 @@ import WlCrud from "~/components/WlCrud.vue";
 import WlInput from "~/components/WlInput.vue";
 import WlSwitchButton from "~/components/WlSwitchButton.vue";
 import WlWebCam from "~/components/WlWebCam.vue";
+import WlSelect from "~/components/WlSelect.vue";
 
 export default {
   nuxtI18n: {
@@ -128,6 +134,7 @@ export default {
     WlInput,
     WlWebCam,
     WlSwitchButton,
+    WlSelect,
   },
   data() {
     return {
@@ -137,7 +144,7 @@ export default {
       document : "",
       email: "",
       state: true,
-      rol: "",
+      roleId: "",
       file: null,
       loadingPhoto: true,  
       photoUrl: '', 
@@ -146,12 +153,21 @@ export default {
       loadingSuccess: false,
       showTrash: false,
       isSubmit: false,
+      roles: {},
     };
   },
   computed: {
     ...mapGetters("persons/users", {
       error: "error"
     })
+  },
+  asyncData(context) {
+    return context.app.$axios
+      .get("/api/Role")
+      .then(response => {
+        console.log("r",response.data);
+        return {roles:response.data}})
+      .catch(e => console.log(e));
   },
   created() {
     this.isCreating();
@@ -170,8 +186,8 @@ export default {
           nickName : this.nickName,
           document : this.document,
           email: this.email,
+          roleId: this.roleId,
           state: this.state ? 'active' : 'inactive',
-          //rol: "",
         };
       
       this.$validator.validate('form1.*').then(valid => {

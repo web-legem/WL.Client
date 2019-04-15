@@ -17,6 +17,7 @@
         >
           <wl-input
             v-if="objSelected"
+            :id="'chk1'"
             v-model="name"
             :mode="'titleCase'"
             :name="'form1.name'"
@@ -30,6 +31,7 @@
 
           <wl-switch-button 
             v-if="objSelected"               
+            :id="'chk2'"
             v-model="configSystem"       
             :name="'form1.configSystem'"       
             :type="'checkbox'" 
@@ -39,6 +41,7 @@
           />
           <wl-switch-button 
             v-if="objSelected"               
+            :id="'chk3'"
             v-model="createDoc"       
             :name="'form1.createDoc'"       
             :type="'checkbox'" 

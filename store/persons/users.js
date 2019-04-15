@@ -97,8 +97,8 @@ export const mutations = {
   changeState(state, newVal) {
     state.selected.state = newVal
   },
-  changeRol(state, newVal) {
-    state.selected.rol = newVal
+  changeRoleId(state, newVal) {
+    state.selected.roleId = newVal
   },
 }
 
@@ -187,7 +187,7 @@ export const actions = {
   changeState({ commit }, newVal) {
     commit('changeState', newVal)
   },
-  changeRol({ commit }, newVal) {
-    commit('changeRol', newVal)
+  changeRoleId({ commit }, newVal) {
+    commit('changeRoleId', newVal)
   },
 }

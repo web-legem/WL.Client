@@ -53,8 +53,8 @@ export default {
   },
   data() {
     return {
-      emptyList : [{id:1,name:"Seleccione un elemento"}],
-      entityTypeId: 1
+      emptyList : [{id:"",name:"Seleccione un elemento"}],
+      entityTypeId: ""
     }
   },
 }

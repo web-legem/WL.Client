@@ -58,7 +58,7 @@ export default {
     list: { type: Array, required: true },
     valuePropName: { type: String,required: true },
     labelPropName: { type: String, required: true },
-    value: { type: Number, default: 0  },
+    value: { type: String, default: ""  },
     validate: { type: Object, default: function(){ return{} } },
     isSubmit: { type: Boolean, default: false },
   },
