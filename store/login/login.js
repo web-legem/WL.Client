@@ -29,6 +29,9 @@ export const mutations = {
 
     if (state.credential.token) {
       localStorage.setItem('credential', JSON.stringify(state.credential));
+      //this.$axios.setHeader('Authorization', JSON.stringify(state.credential));
+      let credential = JSON.parse(localStorage.getItem('credential'));
+      this.$axios.setToken(credential.token)
     }
   },
   setPasswordSuccess(state) {
@@ -56,6 +59,7 @@ export const mutations = {
     state.user = null
     state.error = null    
     localStorage.removeItem('credential')
+    this.$axios.setToken(false)
   },
   initCredential(state){
     if(localStorage.getItem('credential')){
