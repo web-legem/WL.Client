@@ -12,7 +12,6 @@
     >
       <template slot="wl-form">   
         <form 
-          class="form-user" 
           name="form-user"
           data-vv-scope="form1"
           @submit.prevent

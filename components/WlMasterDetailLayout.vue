@@ -83,7 +83,7 @@ export default {
   }
   
   @media screen and (min-width: 992px) {
-    border-left: 1px solid #ccc;
+    border-left: 1px solid var(--wl_border);
   }
 }
 

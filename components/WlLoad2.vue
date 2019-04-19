@@ -15,9 +15,9 @@
 .load_list {
   display: flex;
   z-index: 1;
-  border: 5px solid #e1e1e1;
+  border: 5px solid var(--wl_gray_light);
   border-radius: 50%;
-  border-top: 5px solid #0f745b;
+  border-top: 5px solid var(--wl_primary);
   width: 60px;
   height: 60px;
   -webkit-animation: spin 1.5s linear infinite;

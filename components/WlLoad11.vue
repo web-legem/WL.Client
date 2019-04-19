@@ -16,13 +16,13 @@
     -webkit-animation: spin 1.5s linear infinite;
     animation: spin 1.5s linear infinite;
     border-radius: 50%;
-    border:2px solid #999;
+    border:2px solid var(--wl_gray_light);
 }
 .circulo_carga:after{
     content: "";
     position: absolute;
     border-radius:50%;
-    background:#099472;
+    background: var(--wl_primary);
 }
 
 .circulo_carga:before{

@@ -36,6 +36,7 @@
               :title="'Usuario'"
               :placeholder="'usuario'"
               :max="100"
+              :autocomplete="true"
               :validate="{required:true}"
               :is-submit="true"
             />        

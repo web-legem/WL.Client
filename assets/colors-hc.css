@@ -1,3 +1,31 @@
+.high-contrast{
+  --wl_dark:           #064234;  
+  --wl_primary:        #E6D239;
+  --wl_light:          #FFE776;
+  --wl_subtle:         #feffd9;
+  --wl_primary:        #b0f563;
+  --wl_light:          #85e000;
+  --wl_subtle:         #00131a;
+  --wl_btn_bg_ico:  rgba(0,0,0,.1);
+  --wl_btn_content:    #111111;
+  --wl_btn_disable:    #c0d4be;
+  --wl_border:         #B4CADE;
+  --wl_gray_light:     #1C2D38;
+  --wl_gray:           #B4CADE;
+  --wl_form_bg:        #0F1517;
+  --wl_tab_bg:         #111111;
+  --wl_tab_shw:        #1C2D38;
+  --wl_input_bg:       #111111;
+  --wl_input_text:     #9CDCFE;
+  --wl_input_text_ph:  #cccccc;  
+  --wl_text:           #eeeeee;
+  --wl_text_error:     #ff4500;
+  --wl_primary_hover:  rgba(0, 0, 0, 0.25); 
+  --wl_primary_active: rgba(255, 255, 255, 0.25);
+}
+/* --wl_text_light:     #4F7E9E; */
+
+
 .high-contrast {
   --button-disabled: rgba(0,255,0, 1);
   --tapiz:#1C2D38;

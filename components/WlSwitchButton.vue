@@ -79,16 +79,16 @@ export default {
 }
 .w-switch div:hover span,
 .w-switch div:hover label
- { color: #2c77ba; }
+ { color:var(--wl_primary); }
  
 .w-switch div span{ 
-  color: #aaa; 
+  color: var(--wl_gray);
   display: flex;  
   align-items: center;
   justify-content: center;  
 }
 .w-switch div label{/*texto*/
-    color: #434e58;
+    color: var(--wl_text);
     font-size: 1em;
     font-family: 'Lato';
     margin-left: 5px;
@@ -100,7 +100,7 @@ export default {
 }
 
 .w-switch input:focus ~ div {
-  border: 1px solid #38ba8f;
+  border: 1px solid var(--wl_light);
 }
 
 /*------------Radio-------------*/
@@ -117,7 +117,7 @@ export default {
 .w-switch div span.ico-dot-circle-o{ display: none }
 .w-switch input:checked ~ div span.ico-circle-o{ display: none }
 .w-switch input:checked ~ div span.ico-dot-circle-o{ 
-  color: #2c77ba;
+  color: var(--wl_primary);
   display: flex;  
   align-items: center;
   justify-content: center;  
@@ -136,7 +136,7 @@ export default {
 .w-switch div span.ico-check-square-o{ display: none }
 .w-switch input:checked ~ div span.ico-square-o{ display: none }
 .w-switch input:checked ~ div span.ico-check-square-o{ 
-  color: #2c77ba; 
+  color: var(--wl_primary);
   display: flex;  
   align-items: center;
   justify-content: center;  

@@ -21,12 +21,10 @@ export default {
 .module-layout {
   height: 100%;
   padding-top: calc(25px + 4.5vh);
-  background: #e1e3e9;
 }
 
 .module-layout-container {
-  background: blue;
-  border: 1px solid #ccc;
+  border: 1px solid transparent;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -36,16 +34,16 @@ export default {
   display: flex;
   overflow-y: unset;
   overflow-x: auto;
-  background-color: #eee;
+  background-color: var(--wl_tab_bg);
   padding-top: 10px;
-  box-shadow: inset 0 -3px 6px -3px #AAAAAA;
+  box-shadow: inset 0 -3px 6px -3px var(--wl_gray);
 }
 
 .content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: var(--wl_form_bg);
   height: 100%;
 }
 </style>

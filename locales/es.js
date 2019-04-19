@@ -181,7 +181,7 @@ export default {
     },
     'filtere-list': {
       'title-new': 'Nuevo',
-      'title-press-butt': 'presiona el boton de "Nuevo" para crear un nuevo registro',
+      'title-press-butt': 'presiona el boton "Nuevo" para crear un nuevo registro',
     },
 
   },

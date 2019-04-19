@@ -3,6 +3,7 @@
 @import url('~/assets/fonts/AbrilFatface.css');
 @import url('~/assets/colors.css');
 @import url('~/assets/colors-hc.css');
+@import url('~/assets/resumen.css');
 
 * {
   margin:0;
@@ -84,7 +85,7 @@ html, body {
   padding: 15px;
   overflow-y: auto;
   background: rgb(237, 237, 237);
-  border: 1px solid #aaa;
+  border: 1px solid var(--wl_border);
   margin: 0 auto 10px;
 }
 

@@ -368,7 +368,7 @@ export default {
 }
 
 .foto_usuarios{
-    border:1px solid #bbb;
+    border:1px solid var(--wl_gray);
     min-width:150px !important;
     width:150px !important;
     height:190px;
@@ -380,7 +380,7 @@ export default {
 }
 
 .foto_usuarios > span:before{   
-    color:#ddd;
+    color:var(--wl_gray_light);
     font-size:120px;
     display:block;    
 }

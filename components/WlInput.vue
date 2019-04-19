@@ -12,7 +12,7 @@
 
     <div class="box_input_ico">
       <input 
-        :id="id" 
+        :id="id === '' ? name: id" 
         :ref="refName"
         v-validate="validate"
         :name="name" 
