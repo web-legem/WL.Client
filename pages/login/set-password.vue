@@ -1,7 +1,7 @@
 <template>
   <div>
     <wl-landing-page
-      :src="img"
+      :src="vipriImg"
       background-color="#8f956f"
     >
       <div class="basic-form">
@@ -116,7 +116,6 @@ export default {
   },
   data() {
     return {
-      img: imagesContext('./entrada.jpg'),
       password1:"",
       password2:"",
       colors: ['#F00', '#F90', '#FF0', '#9F0', '#0F0'],
@@ -127,6 +126,11 @@ export default {
     }
   },
   computed:{
+    vipriImg() {
+      if(!this.$store.state.highContrast)
+        return imagesContext('./vipri-light.jpg')
+      return imagesContext('./vipri-dark.jpg')
+    },
     showWidget(){
       var contentSpan = this.$refs.contentSpan; 
       if (this.password1 === '') {

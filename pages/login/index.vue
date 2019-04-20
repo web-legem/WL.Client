@@ -1,7 +1,7 @@
 <template>
   <div>
     <wl-landing-page
-      :src="img"
+      :src="vipriImg"
       background-color="#8f956f"
     >
       <div class="basic-form">
@@ -100,7 +100,6 @@ export default {
   },
   data() {
     return {
-      img: imagesContext('./entrada.jpg'),
       nickname:"",
       password:"",
       msgUpdate:"",
@@ -118,7 +117,12 @@ export default {
       redirectTo: "redirectTo",
       loogedIn: "loogedIn",
       passwordChanged: "passwordChanged",
-    }),    
+    }),
+    vipriImg() {
+      if(!this.$store.state.highContrast)
+        return imagesContext('./vipri-light.jpg')
+      return imagesContext('./vipri-dark.jpg')
+    },    
   },
   watch: {
     '$route'() {

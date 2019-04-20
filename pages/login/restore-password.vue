@@ -1,7 +1,7 @@
 <template>
   <div>
     <wl-landing-page
-      :src="img"
+      :src="vipriImg"
       background-color="#8f956f"
     >
       <div class="basic-form">
@@ -77,7 +77,6 @@ export default {
   },
   data() {
     return {
-      img: imagesContext('./entrada.jpg'),
       email:"",
       isSubmit: false,
     }
@@ -91,6 +90,11 @@ export default {
       loogedIn: "loogedIn",
       error: "error",
     }),
+    vipriImg() {
+      if(!this.$store.state.highContrast)
+        return imagesContext('./vipri-light.jpg')
+      return imagesContext('./vipri-dark.jpg')
+    },
   },
   //---------- override ----------
   created() {
