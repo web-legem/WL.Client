@@ -37,7 +37,7 @@
     </div>
 
     <div 
-      v-show="errors.has(name) && isSubmit"
+      v-show="validateError"
       class="msj-error"
     >
       <label>{{ errors.first(name) }}</label>
@@ -86,6 +86,9 @@ export default {
           return value 
         }
       }
+    },
+    validateError(){
+      return this.errors.has(this.name) && this.isSubmit
     },
   },
   methods: {

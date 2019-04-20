@@ -175,25 +175,35 @@
 
 /*menesajes de validacion*/
 
-.msj-error::before {
-  content: "\e1a9";
-  color: var(--wl_text_error); 
-  font-family: "iconos-legem";
-  font-size: 1rem;
-  left: -18px;
-  top: -2px;
-  position: absolute;
-}
-
 .msj-error {
-  color: var(--wl_text_error); 
-  font-family: "Lato";
-  font-size: .8rem;
-  margin-bottom: 4px;
-  margin-left: 18px;
   position: relative;
+  font-family: "Lato";
+  font-size: .9rem;
+  background: var(--wl_text_error);
+  color: white;  
+  margin-bottom: 4px;
+  padding: 4px;
+}
+.msj-error::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--wl_text_error);
+  position: absolute;
+  top:-8px;
+  left: 10px;
 }
 
+.msj-error label:before {
+  content: "\e1a9";
+  font-family: "iconos-legem";
+  font-size: 1rem;  
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+ 
 .msj-error.md {
   font-size: .9rem;
 }
