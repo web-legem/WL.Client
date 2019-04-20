@@ -100,7 +100,7 @@ export default {
 
 .mini_search button {
   border: none;
-  background: rgb(24, 156, 100);
+  background: var(--wl_light);
   color: #fff;
   position: absolute;
   font-size: 35px;

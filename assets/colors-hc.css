@@ -22,6 +22,9 @@
   --wl_text_error:     #ff4500;
   --wl_primary_hover:  rgba(0, 0, 0, 0.25); 
   --wl_primary_active: rgba(255, 255, 255, 0.25);
+
+  --wl_footer_bg:      #000000;
+  --wl_footer_text:    #9CDCFE;  
 }
 /* --wl_text_light:     #4F7E9E; */
 

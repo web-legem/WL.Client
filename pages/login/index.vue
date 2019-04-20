@@ -173,13 +173,13 @@ export default {
 }
 
 .btn-submit > div:first-child{
-  color: blue;
+  color: var(--wl_link);
   font-size: .8rem;
   align-self: flex-start;
 }
 
 .link-restore:visited{
-  color: blue;
+  color: var(--wl_link);
 }
 
 

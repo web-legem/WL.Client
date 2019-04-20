@@ -183,6 +183,14 @@ export default {
       'title-new': 'Nuevo',
       'title-press-butt': 'presiona el boton "Nuevo" para crear un nuevo registro',
     },
+    'footer':{
+      'siguenos':'Siguenos',
+      'contactenos':'Contactenos',
+      'universidad':'Universidad de Nariño',
+      'sitio':'Acerca del sitio',
+      'developers':'Desarrollado por:',
+      'copyright':'Copyright © 2019 - Universidad de Nariño - San Juan de Pasto - Colombia',
+    }
 
   },
 

@@ -182,6 +182,14 @@ export default {
       'title-new': 'New',
       'title-press-butt': 'Press the "New" button to create a new record',
     },
+    'footer':{
+      'siguenos':'Follow us',
+      'contactenos':'Contact us',
+      'universidad':'University of Nariño',
+      'sitio':'About Site',
+      'developers':'Developed by:',
+      'copyright':'Copyright © 2019 - University of Nariño - San Juan de Pasto - Colombia',
+    },
   },
 
   'search': {
