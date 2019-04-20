@@ -175,6 +175,13 @@
 
 /*menesajes de validacion*/
 
+.a_input.validate_error,
+.input_text_ico.validate_error,
+.input_text_btn.validate_error,
+.input_text_btn.validate_error {  
+  border-color: var(--wl_text_error);
+}
+
 .msj-error {
   position: relative;
   font-family: "Lato";

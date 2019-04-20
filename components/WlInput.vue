@@ -23,7 +23,7 @@
         :placeholder="placeholder" 
         :maxlength="max"
         class="a_input"
-        :class="{'disable':disable}"
+        :class="{'disable':disable, 'validate_error':validateError}"
         :autocomplete="autocomplete?'on':'off'"
         @input="onInput"
         @blur="onBlur"
