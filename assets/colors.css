@@ -5,13 +5,15 @@
   --wl_subtle:         #e0fcf3;
   --wl_btn_bg_ico:     rgba(0,0,0,.1);
   --wl_btn_content:    #ffffff;
-  --wl_btn_disable:    #999999;
+  --wl_btn_disable:    #727272;
   --wl_border:         #CCCCCC;
   --wl_gray_light:     #e1e1e1;
   --wl_gray:           #aaaaaa;
   --wl_form_bg:        #ffffff;
   --wl_tab_bg:         #e1e1e1;
+  --wl_tab_color:      #efeffe;
   --wl_tab_shw:        #CCCCCC;
+  --wl_tab_text:       #00796B;
   --wl_input_bg:       #ffffff;
   --wl_input_text:     #111111;  
   --wl_input_text_ph:  #444444;  

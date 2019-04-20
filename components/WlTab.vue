@@ -30,7 +30,7 @@ export default {
   background-color: var(--wl_form_bg);;
   padding: .8em 1.6em;
   margin: 0;
-  border-top: 3px solid var(--wl_form_bg);
+  border-top: 3px solid var(--wl_tab_color);
   border-right: 1px solid var(--wl_form_bg);
   border-left: 1px solid var(--wl_form_bg);
   border-bottom: 1px solid var(--wl_border);
@@ -47,6 +47,7 @@ export default {
   min-width: 10em;
   max-width: 12.5em;
   box-shadow: 1px -1px 4px 1px var(--wl_tab_shw);
+  background: var(--wl_tab_color);
 }
 
 .tab:first-child {
@@ -54,16 +55,19 @@ export default {
 }
 
 .tab:hover {
-  color: var(--wl_light);
+  color: var(--wl_tab_text);
   border-right: 1px solid var(--wl_border);
   border-left: 1px solid var(--wl_border);
+  border-top: 3px solid var(--wl_form_bg);
+  background: #ffffff;  
 }
 
 .tab.nuxt-link-active {
-  color: var(--wl_light);
-  border-top: 3px solid var(--wl_light);
+  color: var(--wl_tab_text);
+  border-top: 3px solid var(--wl_tab_text);
   border-bottom: 1px solid transparent;
   box-shadow: 0 0px 7px 2px var(--wl_tab_shw);
+  background: #ffffff;  
   z-index: 1;
 }
 
