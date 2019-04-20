@@ -59,7 +59,7 @@ export default {
   border-right: 1px solid var(--wl_border);
   border-left: 1px solid var(--wl_border);
   border-top: 3px solid var(--wl_form_bg);
-  background: #ffffff;  
+  background: var(--wl_form_bg);  
 }
 
 .tab.nuxt-link-active {
