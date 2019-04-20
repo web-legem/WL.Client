@@ -161,11 +161,13 @@ export default {
 }
 
 .btn-a11y.lang.nuxt-link-exact-active {
-  background: #23948a;
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);
 }
 
 .btn-a11y.selected {
-  background: #23948a;
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);
 }
 
 .ico-font:last-of-type {

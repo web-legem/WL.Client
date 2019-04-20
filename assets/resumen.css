@@ -1,9 +1,9 @@
 :root {
-  --wl_dark:           #064234;  
+  --wl_dark:           #00594F;  
   --wl_primary:        #00796B;
   --wl_light:          #38ba8f;
   --wl_subtle:         #e0fcf3;
-  --wl_btn_bg_ico:  rgba(0,0,0,.1);
+  --wl_btn_bg_ico:     rgba(0,0,0,.1);
   --wl_btn_content:    #ffffff;
   --wl_btn_disable:    #999999;
   --wl_border:         #CCCCCC;
@@ -16,11 +16,14 @@
   --wl_input_text:     #111111;  
   --wl_input_text_ph:  #444444;  
   --wl_text:           #434e58;
-  --wl_text_error:     #ff4500;
+  --wl_text_error:     #e40f0c;
   --wl_primary_hover:  rgba(255, 255, 255, 0.25);
   --wl_primary_active: rgba(0, 0, 0, 0.25);  
   --wl_link:           #0000ff;
 
   --wl_footer_bg:      #1F2B38;
   --wl_footer_text:    #e1e1e1;  
+  --wl_search_sha:     rgba(17, 21, 21, 0.3); 
+  --wl_search_sha_foc: rgba(0, 121, 107,.6);
+  
 }

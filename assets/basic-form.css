@@ -32,7 +32,7 @@
 }
 
 .form-basic-container {
-  background: white;
+  background: var(--wl_form_bg);
   padding: 20px;
   padding-top: 18px;
 }

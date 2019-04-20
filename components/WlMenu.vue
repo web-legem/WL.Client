@@ -475,14 +475,22 @@ button.accessibility {
 
 button.accessibility:focus,
 button.accessibility:hover {
-  background: #23948a;
+  background: var(--wl_primary);
 }
 
 button 	.ico2-accessibility {
   width: var(--header-height);
   height: var(--header-height);
   background: rgba(0, 0, 0, 0);
-  color: white;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+button:hover 	.ico2-accessibility {
+  width: var(--header-height);
+  height: var(--header-height);
+  background: rgba(0, 0, 0, 0);
+  color: var(--wl_btn_content);  
   font-size: 16px;
 }
 

@@ -81,16 +81,16 @@ export default {
   overflow: hidden;
   display: flex;
   transition: all .4s;
-  box-shadow: 0 0 0 8px var(--mini-se);
+  box-shadow: 0 0 0 8px var(--wl_search_sha);
 }
 
 .mini_search input {
   font-size: 2em;
   padding: 17px;
   border: none;
-  color: var(--mini-se-in);
+  color: #111111;
   flex: 1;
-  background: var(--mini-se-inb);
+  background: #ffffff;
   opacity: .8;
 }
 
@@ -100,8 +100,8 @@ export default {
 
 .mini_search button {
   border: none;
-  background: var(--wl_light);
-  color: #fff;
+  background: var(--wl_primary);
+  color:var(--wl_btn_content);
   position: absolute;
   font-size: 35px;
   right: 0;
@@ -111,12 +111,12 @@ export default {
 }
 
 .mini_search button:hover {
-  background: rgb(20, 108, 71);
+  background: var(--wl_dark);
 }
 
 .mini_search:focus-within {
   animation: a_crecer .3s;
-  box-shadow: 0 0 0 6px rgba(25, 156, 100, .6);
+  box-shadow: 0 0 0 6px var(--wl_search_sha_foc);
 }
 
 @keyframes a_crecer {

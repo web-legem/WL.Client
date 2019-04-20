@@ -1,12 +1,9 @@
 .high-contrast{
-  --wl_dark:           #064234;  
-  --wl_primary:        #E6D239;
-  --wl_light:          #FFE776;
-  --wl_subtle:         #feffd9;
+  --wl_dark:           #8abf4d;
   --wl_primary:        #b0f563;
   --wl_light:          #85e000;
   --wl_subtle:         #00131a;
-  --wl_btn_bg_ico:  rgba(0,0,0,.1);
+  --wl_btn_bg_ico:     rgba(0,0,0,.1);
   --wl_btn_content:    #111111;
   --wl_btn_disable:    #c0d4be;
   --wl_border:         #B4CADE;
@@ -22,9 +19,12 @@
   --wl_text_error:     #ff4500;
   --wl_primary_hover:  rgba(0, 0, 0, 0.25); 
   --wl_primary_active: rgba(255, 255, 255, 0.25);
+  --wl_link:           #5bc29f;
 
   --wl_footer_bg:      #000000;
-  --wl_footer_text:    #9CDCFE;  
+  --wl_footer_text:    #9cdcfe;  
+  --wl_search_sha:     rgba(176, 226, 226, 0.30);
+  --wl_search_sha_foc: rgba(176, 245, 99,.6);
 }
 /* --wl_text_light:     #4F7E9E; */
 
