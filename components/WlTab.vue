@@ -67,7 +67,7 @@ export default {
   border-top: 3px solid var(--wl_tab_text);
   border-bottom: 1px solid transparent;
   box-shadow: 0 0px 7px 2px var(--wl_tab_shw);
-  background: #ffffff;  
+  background: var(--wl_form_bg);
   z-index: 1;
 }
 

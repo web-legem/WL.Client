@@ -26,7 +26,7 @@
           <label class="texto_labels sm-space-top">
             {{ $t('admin.entities-type.label-documents-suport') }}
           </label>
-          <div class="cards">
+          <div class="hoja-container">
             <div
               v-for="docType in docTypes"
               :key="docType.id"            
@@ -47,7 +47,7 @@
                 >
                   <div>
                     <div class="ico-container">
-                      <span class="ico-file-text-o ico-note" />
+                      <span class="ico-file-text-o" />
                     </div>
                     <div class="name-container">                  
                       <p class="note-name">

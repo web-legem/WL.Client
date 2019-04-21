@@ -30,7 +30,10 @@
           <label class="texto_labels sm-space-top">
             {{ $t('admin.entities-type.label-documents-suport') }}
           </label>
-          <div class="cards">
+          <div 
+            class="hoja-container"
+            :class="{'disable':!isEdit}"
+          >
             <div
               v-for="docType in docTypes"
               :key="docType.id"
@@ -42,7 +45,7 @@
                   v-model="checked"
                   v-validate="{required:true}" 
                   :data-vv-as="$t('admin.entities-type.label-documents-suport')"
-                  disabled="!isEdit"
+                  :disabled="!isEdit"
                   :name="'form1.cards'"
                   :value="docType.id"
                   type="checkbox"
@@ -53,7 +56,7 @@
                 >
                   <div>
                     <div class="ico-container">
-                      <span class="ico-file-text-o ico-note" />
+                      <span class="ico-file-text-o" />                      
                     </div>
                     <div class="name-container">
                       <p class="note-name">
