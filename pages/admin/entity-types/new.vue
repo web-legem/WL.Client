@@ -63,7 +63,7 @@
             v-show="errors.has('form1.cards') && isSubmit"
             class="msj-error"
           >
-            <label>{{ errors.first('form1.cards') }}</label>
+            <strong>{{ errors.first('form1.cards') }}</strong>
           </div>     
         </form>
       </template>

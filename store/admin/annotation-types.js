@@ -1,3 +1,4 @@
+import errorHandler from '~/helpers/errorHandler'
 
 export const state = () => ({
   list: [],
@@ -30,9 +31,12 @@ export const mutations = {
     state.list = payload
   },
   loadingFailure(state, payload) {
+    console.log("sssssssssssssssssssssssssss");
+    let get = errorHandler(payload)
+    console.log("get",get);
     state.loading = false
     state.loaded = false
-    state.error = payload
+    state.error = get
   },
   select(state, annotationTypeId) {
     state.error = null
@@ -51,10 +55,18 @@ export const mutations = {
     state.isCreating = true
   },
   creatingError(state, error) {
+    console.log("sssssssssssssssssssssssssss1");
+
+    let get = errorHandler(payload)
+    console.log("get",get);
     state.loading = false
     state.error = error
   },
   updatingError(state, error) {
+    console.log("sssssssssssssssssssssssssss2");
+
+    let get = errorHandler(payload)
+    console.log("get",get);
     state.loading = false
     state.error = error
   },
@@ -81,7 +93,7 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/AnnotationType')
     .then(response => commit('loadingSuccess', response.data))
-    .catch(e => commit('loadingFailure', "'homero'"))
+    .catch(e => commit('loadingFailure', e))
   },
   create({ commit, dispatch }, newAnnotationType) {
     commit('waiting')

@@ -203,7 +203,7 @@
   left: 10px;
 }
 
-.msj-error label:before {
+.msj-error strong:before {
   content: "\e1a9";
   font-family: "iconos-legem";
   font-size: 1rem;  
