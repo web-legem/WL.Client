@@ -27,17 +27,17 @@ export default {
 
 <style lang="scss" scoped>
 .tab {
-  background-color: #fff;
+  background-color: var(--wl_form_bg);;
   padding: .8em 1.6em;
   margin: 0;
-  border-top: 3px solid white;
-  border-right: 1px solid #eee;
-  border-left: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 3px solid var(--wl_tab_color);
+  border-right: 1px solid var(--wl_form_bg);
+  border-left: 1px solid var(--wl_form_bg);
+  border-bottom: 1px solid var(--wl_border);
   cursor: pointer;
   font-weight: 600;
   text-align: center;
-  color: #555;
+  color: var(--wl_text);
   text-decoration: none;
   font-family: "Lato-Bold", Arial, Helvetica, sans-serif;
   font-size: .75rem;
@@ -46,7 +46,8 @@ export default {
   flex-direction: row;
   min-width: 10em;
   max-width: 12.5em;
-  box-shadow: 1px -1px 4px 1px #ccc;
+  box-shadow: 1px -1px 4px 1px var(--wl_tab_shw);
+  background: var(--wl_tab_color);
 }
 
 .tab:first-child {
@@ -54,20 +55,19 @@ export default {
 }
 
 .tab:hover {
-  // background-color: rgba(0, 0, 0, .01);
-  color: #2dbf85;
-  border-top: 3px solid rgba(0, 0, 0, .01);
-  border-right: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  // transition: ease-out .3s;
-  // font-size: .8rem;
+  color: var(--wl_tab_text);
+  border-right: 1px solid var(--wl_border);
+  border-left: 1px solid var(--wl_border);
+  border-top: 3px solid var(--wl_form_bg);
+  background: var(--wl_form_bg);  
 }
 
 .tab.nuxt-link-active {
-  color: #2dbf85;
-  border-top: 3px solid #2dbf85;
-  border-bottom: 1px solid #fff;
-  box-shadow: 0 0px 7px 2px #ccc;
+  color: var(--wl_tab_text);
+  border-top: 3px solid var(--wl_tab_text);
+  border-bottom: 1px solid transparent;
+  box-shadow: 0 0px 7px 2px var(--wl_tab_shw);
+  background: var(--wl_form_bg);
   z-index: 1;
 }
 

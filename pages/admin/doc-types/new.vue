@@ -8,14 +8,22 @@
       @wlclearerror="clearError"
     >
       <template slot="wl-form">
-        <wl-input 
-          v-model="name"
-          :title="$t('admin.document-type.title-name-doc-type')"
-          :max="50" 
-          :placeholder="$t('admin.document-type.place-enter-name-td')" 
-          :error-msg="'Este es un error'" 
-          :error="true"
-        />
+        <form 
+          name="form-doc-types"
+          data-vv-scope="form1"
+          @submit.prevent
+        >
+          <wl-input 
+            v-model="name"
+            :mode="'titleCase'"
+            :name="'form1.name'"
+            :title="$t('admin.document-type.title-name-doc-type')"
+            :max="50" 
+            :placeholder="$t('admin.document-type.place-enter-name-td')" 
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -39,7 +47,8 @@ export default {
   },
   data() {
     return {
-      name: ''
+      name: '',
+      isSubmit: false,
     }
   },
 
@@ -57,8 +66,13 @@ export default {
       this.$router.push(this.localePath({ name: 'admin-doc-types'}))
     },
     submit() {
-      this.create(this.name)
-        .then( _ => this.$router.push( this.localePath({ name: 'admin-doc-types' }) ));      
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true;
+        if (valid) {
+          this.create(this.name)
+          .then( _ => this.$router.push( this.localePath({ name: 'admin-doc-types' }) ));          
+        }
+      });      
     },
     ...mapActions('admin/document-types', {
       isCreating: 'isCreating',

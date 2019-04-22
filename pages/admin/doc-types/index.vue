@@ -6,6 +6,7 @@
     >
       <div slot="wl-form">
         <wl-input 
+          :name="'form1.name'"
           :title="$t('admin.document-type.title-name-doc-type')"
           :placeholder="$t('admin.document-type.place-enter-name-td')" 
           :max="0"

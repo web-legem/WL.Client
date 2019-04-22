@@ -1,3 +1,4 @@
+import errorHandler from '~/helpers/errorHandler'
 
 export const state = () => ({
   list: [],
@@ -32,7 +33,7 @@ export const mutations = {
   loadingFailure(state, payload) {
     state.loading = false
     state.loaded = false
-    state.error = payload
+    state.error = errorHandler(payload)
   },
   select(state, entityTypeId) {
     state.selectedId = entityTypeId
@@ -46,13 +47,13 @@ export const mutations = {
     state.selected = null
     state.isCreating = false
   },
-  creatingError(state, error) {
+  creatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
-  updatingError(state, error) {
+  updatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   changeName(state, newName) {
     state.selected.name = newName
@@ -60,9 +61,9 @@ export const mutations = {
   changeSupportedDocumentTypes(state, newValue) {
     state.selected.supportedDocumentTypesIds = newValue
   },
-  deletingError(state, error) {
+  deletingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   clearError(state) {
     state.error = null
@@ -100,7 +101,7 @@ export const actions = {
     return this.$axios.post('/api/EntityType', newEntityType)
       .then(_ => dispatch('loadData'))
       .catch(e => {
-        commit('creatingError', e.response.data.message)
+        commit('creatingError', e)
         throw e;
       })
   },
@@ -110,7 +111,7 @@ export const actions = {
     return this.$axios.put('/api/EntityType', modifiedEntityType)
       .then(_ => dispatch('loadData'))
       .catch(e => {
-        commit('updatingError', e.response.data.message)
+        commit('updatingError', e)
         throw e;
       }
       )
@@ -120,7 +121,7 @@ export const actions = {
     return this.$axios.delete('/api/EntityType/' + state.selectedId)
       .then(_ => dispatch('loadData'))
       .catch(e => {
-        commit('deletingError', e.response.data.message)
+        commit('deletingError', e)
         throw e;
       }
       )

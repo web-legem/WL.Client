@@ -19,16 +19,16 @@ import WlInstitutionalSimbols from '~/components/home/WlInstitutionalSimbols.vue
 export default {
   components: {
     WlInstitutionalSimbols
-  }
-  , props: {
+  },
+  props: {
     src: {
-      type: String
-      , required: true
-    }
-    , backgroundColor: {
-      type: String
-      , required: false
-      , default: '#5b789e'
+      type: String,
+      required: true,
+    },
+    backgroundColor: {
+      type: String,
+      required: false,
+      default: '#5b789e',
     }
   }
 }

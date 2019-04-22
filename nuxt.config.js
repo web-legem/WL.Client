@@ -19,6 +19,7 @@ module.exports = {
     , '@/assets/iconos-legem2/style.css'
     , '@/assets/escudos-legem/style.css'
     , '@/assets/inputs.css'
+    , '@/assets/basic-form.css'    
   ],
   /*
   ** Customize the progress bar color
@@ -45,7 +46,8 @@ module.exports = {
   },
   plugins: [
     '~/plugins/filters.js',
-    '~/plugins/vee-validate.js'
+    '~/plugins/vee-validate.js',
+    '~/plugins/axios.js',
   ],
   modules: [
     'nuxt-vuex-router-sync',
@@ -80,6 +82,9 @@ module.exports = {
   // axios: {
   //   host: '192.168.0.4'
   //   , port: '54037'
-  //   , retry: { retries: 0 }
+  // axios: {
+  //   host: '192.168.0.6',
+  //   port: '54037',
+  //   retry: { retries: 0 },
   // }
 }

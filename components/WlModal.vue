@@ -67,8 +67,7 @@
   height:40px;
   display:flex;
   justify-content:flex-end;
-  border-bottom: 1px solid #ccc;
-  background:#00796B;
+  background: var(--wl_primary);
 }
 
 .modal-close > button{
@@ -80,14 +79,14 @@
 }
 
 .modal-close > button:hover{
-  background:rgba(0, 0, 0, 0.10);
+  background:rgba(0, 0, 0, 0.25);
 }
 
 .modal-close > button > span{
   display:flex;
   justify-content:center;
   align-items:center;
-  color:#fff;
+  color: var(--wl_btn_content);
   font-size:1.3rem;
 }
 
@@ -100,7 +99,7 @@
     align-items:center;
     font-size: 1em;
     text-transform:capitalize;
-    color:#fff;
+    color: var(--wl_btn_content);
 }
 
 /* opacididad de la pantalla */
@@ -124,7 +123,7 @@
   display:flex;
   flex-direction:column;
   align-self:center;
-  background-color: #fff;
+  background-color: var(--wl_form_bg);;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.71);
 }
 
@@ -134,13 +133,12 @@
     max-height: 80vh;    
 }
 
-
 /*=========================================================*/
 /*Personalizacion del transclude*/
 .modal-contenido{
     display:flex;
     padding:15px;
-    color:#444;
+    color: var(--wl_text);
 }
 
 .modal-contenido > span{
@@ -161,33 +159,37 @@
     margin-top:20px;
     display:flex;
     justify-content:flex-end;
-    border-top:1px solid #bbb;
+    border-top:1px solid var(--wl_border);
     padding-top:5px;
     width:100%;
 }
 
 .modal-confirmacion button{
     margin-bottom:0;
-    background:white;
     display:flex;
     justify-content:center;
-    border:1px solid #ccc;
     cursor:pointer;
-    margin-left:5px;
-    color:#333;
+    margin-left:10px !important;
     text-transform:uppercase;
 }
 
-.modal-confirmacion button:hover{
-    background:#ddd;
+.modal-confirmacion button:before{
+  content:'';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
 }
 
-.modal-confirmacion button.green {
-    background: #0F745B;
-    border-color:#0F745B;
-    color:#fff;
+.modal-confirmacion button:hover:before{
+  background:var(--wl_primary_hover);
+  width: 100%;
 }
-.modal-confirmacion button.green:hover {
-    background: #099472;
+
+.modal-confirmacion button:active:before{
+  background:var(--wl_primary_active);
+  width: 100%;
 }
+
 </style>

@@ -111,15 +111,12 @@ export default {
 
 .link-list {
   flex-grow: 1;
-  border: 1px solid #ccc;
+  border: 1px solid var(--wl_border);
   overflow: auto;
   display: flex;
   flex-direction: column;
   position: relative;
 }
-
-// .link-u-list {
-// }
 
 .empty-list{
   display: flex;
@@ -134,11 +131,11 @@ export default {
 .empty-list span{
   margin-bottom: 10px;
   font-size: 3em;
-  color: #888;
+  color: var(--wl_gray);
 }
 
 .empty-list p{
-  color: #555;
+  color: var(--wl_text);
   text-align: center;
 }
 

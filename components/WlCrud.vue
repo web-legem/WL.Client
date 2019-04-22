@@ -68,7 +68,7 @@
     <!-- Modal Error -->
     <wl-modal
       v-if="error"
-      :title="$t('search.crud.title-info')"
+      :title="$t('components.crud.title-info')"
       @wlclose="clearErrorsa"
     >
       <template slot="wl-content">
@@ -81,7 +81,7 @@
             ico="ico-check"
             @click.native="clearError($event)"
           >
-            {{ $t('search.crud.butt-accept') }}
+            {{ $t('components.crud.butt-accept') }}
           </wl-button>
         </div>
       </template>
@@ -168,13 +168,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  border-bottom: solid 1px var(--box-controles);
+  border-bottom: solid 1px var(--wl_border);
   margin-bottom: 10px;
 }
 
 .controles_box_right.down {
   border-bottom: none;
-  border-top: solid 1px var(--box-controles-r);
+  border-top: solid 1px var(--wl_border);
   margin-bottom: 0;
   margin-top: 10px;
 }
@@ -192,6 +192,7 @@ export default {
 .content-modal{
   padding: 10px;
   min-width: 400px;
+  white-space: pre-line;
 }
 
 .content-modal-buttons{

@@ -76,16 +76,20 @@ html, body {
 /* control cuadros tipo entidad */
 
 /* Grid styles -------------------------------------------------*/
-.cards {
+.hoja-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   grid-gap: 15px;
   height: 40vh;
   padding: 15px;
   overflow-y: auto;
-  background: rgb(237, 237, 237);
-  border: 1px solid #aaa;
+  background: var(--wl_input_bg);
+  border: 1px solid var(--wl_gray);
   margin: 0 auto 10px;
+}
+
+.hoja-container.disable {
+  background: var(--wl_gray_light);
 }
 
 .block {
@@ -102,19 +106,8 @@ html, body {
   object-fit: cover;
 }
 
-.name-container{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 3px;
-  background: #eeffee;
-  overflow:hidden;
-  position: relative;
-}
-
 .note-name {
-  color: #111;
+  color: var(--wl_input_text);
   font-family: "lato";
   font-size: 13px;
   text-overflow:ellipsis;  
@@ -126,43 +119,61 @@ html, body {
   width: 110px; /*ancho de la hoja*/
   font-size: 1.1rem;
   position: relative;
-  background: #fff;
   cursor: pointer;
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
 }
 
-.note div {
+.note > div {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .ico-container{
   display: flex;
+  height: 100%;
   justify-content: center;
   flex-direction: column;
   text-align: center;
   position: relative;
+  flex: 70;
 }
 
-.ico-note {
-  font-size: 60px;
-  color: #444;
-  background:transparent;  
-  width: 100%;
-  height: 65%;
+.ico-container > span {
+  color: var(--wl_btn_disable);
+  font-size: 50px;
+  background: var(--wl_input_bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.name-container{
+  display: flex;
+  flex: 30;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 3px;
+  background:var(--wl_subtle);  
+  overflow:hidden;
+  position: relative;
 }
 
 .block input + label {
-  border: 1px solid #aaa;  
+  border: 1px solid var(--wl_gray);  
 }
 
 .block input:checked + label {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-  border: 2px solid #29c44b;
+  border: 2px solid var(--wl_primary);
 }
 
 .note:after {
@@ -173,7 +184,7 @@ html, body {
   bottom: 0;
   right: 80%;
   opacity: 0;
-  color: green;  
+  color: var(--wl_primary);
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
@@ -191,7 +202,7 @@ html, body {
   right: 0;
   padding-right: 4px;
   opacity: 1;
-  color: green;
+  color: var(--wl_primary);
 
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -230,10 +241,10 @@ html, body {
 .box-title {
   display: flex;
   align-items: center;
-  color: white;
+  color: var(--wl_btn_content);
   height: 35px;
   align-self: stretch;
-  background: #00796b;
+  background: var(--wl_dark);
   font-family: 'Lato';
   font-size: 1rem;
   padding-left: 10px;

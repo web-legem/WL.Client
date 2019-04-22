@@ -36,14 +36,13 @@ export default {
       'place-enter-name-entity': 'Escriba el nombre de la entidad',
       'title-email': 'Email',
       'place-enter-email': 'Escriba Email',
-      'title-select-doc-type': 'Seleccione del tipo de documento',
+      'title-select-entity-type': 'Seleccione el tipo entidad',      
     },
 
     'entities-type': {
       'title-name-enty-type': 'Nombre del tipo de entidad',
       'place-enter-name-type-enty': 'Escriba el nombre del tipo de  entidad',
-      'label-documents-suport': 'Documentos soportados:',
-
+      'label-documents-suport': 'Documentos soportados',
     },
 
   },
@@ -87,6 +86,12 @@ export default {
       'h-update-permissions': 'Actualizar permisos',
       'h-new-permission': 'Nuevo permiso',
       'h-not-selected': 'No seleccionado',
+      'title-name': 'Nombre de rol',
+      'place-enter-name': 'Ingrese nombre de rol',
+      'title-config-system': 'Configurar el sistema',
+      'title-create-doc': 'Gestionar documentos',
+      'title-delete-doc': 'Eliminar documentos',
+      'label-allow': 'Permitir',
     },
     'users-s': {
       'h-not-selected': 'No seleccionado',
@@ -106,6 +111,7 @@ export default {
       'place-enter-role-user': 'Ingrese rol de usuario',
       'title-state-user': 'Estado usuario',
       'label-active': 'Activo',
+      'label-restore-password': 'Restablecer contraseña',
     },
   },
 
@@ -176,8 +182,16 @@ export default {
     },
     'filtere-list': {
       'title-new': 'Nuevo',
-      'title-press-butt': 'presiona el boton de "Nuevo" para crear un nuevo registro',
+      'title-press-butt': 'presiona el boton "Nuevo" para crear un nuevo registro',
     },
+    'footer':{
+      'siguenos':'Siguenos',
+      'contactenos':'Contactenos',
+      'universidad':'Universidad de Nariño',
+      'sitio':'Acerca del sitio',
+      'developers':'Desarrollado por:',
+      'copyright':'Copyright © 2019 - Universidad de Nariño - San Juan de Pasto - Colombia',
+    }
 
   },
 

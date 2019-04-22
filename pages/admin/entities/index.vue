@@ -5,30 +5,37 @@
       :disable-buttons="true"
     >
       <template slot="wl-form">
-        <wl-input
-          :title="$t('admin.entitie-tab.title-name-entity')"
-          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
-          :max="0"
-          :disable="true"
-        />
-        <wl-input
-          class="sm-space-top"
-          :title="$t('admin.entitie-tab.title-email')"
-          :placeholder="$t('admin.entitie-tab.place-enter-email')"
-          :max="0"
-          :disable="true"
-        />
-        <wl-select
-          :id="'select'"
-          v-model="entityTypeId"
-          class="sm-space-top"
-          :disable="true"
-          :name="'select'"
-          :title="$t('admin.entitie-tab.title-select-doc-type')"
-          :list="emptyList"
-          :value-prop-name="'id'"
-          :label-prop-name="'name'"
-        />
+        <form 
+          name="form-entities"
+          data-vv-scope="form1"
+          @submit.prevent
+        >
+          <wl-input
+            :name="'form1.name'"
+            :title="$t('admin.entitie-tab.title-name-entity')"
+            :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
+            :max="0"
+            :disable="true"
+          />
+          <wl-input
+            :name="'form1.email'"
+            class="sm-space-top"
+            :title="$t('admin.entitie-tab.title-email')"
+            :placeholder="$t('admin.entitie-tab.place-enter-email')"
+            :max="0"
+            :disable="true"
+          />
+          <wl-select
+            v-model="entityTypeId"
+            :name="'form1.select'"
+            class="sm-space-top"
+            :disable="true"
+            :title="$t('admin.entitie-tab.title-select-entity-type')"
+            :list="emptyList"
+            :value-prop-name="'id'"
+            :label-prop-name="'name'"
+          />
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -46,13 +53,9 @@ export default {
   },
   data() {
     return {
-      emptyList : [{id:1,name:""}],
+      emptyList : [{id:"",name:"Seleccione un elemento"}],
       entityTypeId: ""
     }
   },
 }
 </script>
-
-<style>
-
-</style>

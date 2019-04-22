@@ -97,8 +97,8 @@ export const mutations = {
   changeState(state, newVal) {
     state.selected.state = newVal
   },
-  changeRol(state, newVal) {
-    state.selected.rol = newVal
+  changeRoleId(state, newVal) {
+    state.selected.roleId = newVal
   },
 }
 
@@ -131,14 +131,12 @@ export const actions = {
         throw e;
       })
   },
-  save({ commit, dispatch }, {modifiedUser, file, fileWasChange}) {
-    console.log("xxx1",modifiedUser);
-    console.log("xxx2",file);
-    console.log("xxx3",fileWasChange);
+  save({ commit, dispatch }, {modifiedUser, file, fileWasChange, restorePass}) {    
     let formData = new FormData();
     formData.append('value',JSON.stringify(modifiedUser))
     formData.append('files', file);
     formData.append('fileWasChange', fileWasChange);
+    formData.append('restorePass', restorePass);
     commit('waiting')
     return this.$axios.put('/api/User', formData, {headers: {'Content-Type': 'multipart/form-data'}})
       .then(_ => dispatch('loadData'))
@@ -191,7 +189,7 @@ export const actions = {
   changeState({ commit }, newVal) {
     commit('changeState', newVal)
   },
-  changeRol({ commit }, newVal) {
-    commit('changeRol', newVal)
+  changeRoleId({ commit }, newVal) {
+    commit('changeRoleId', newVal)
   },
 }

@@ -1,3 +1,4 @@
+import errorHandler from '~/helpers/errorHandler'
 
 export const state = () => ({
   list: [],
@@ -32,7 +33,7 @@ export const mutations = {
   loadingFailure(state, payload) {
     state.loading = false
     state.loaded = false
-    state.error = payload
+    state.error = errorHandler(payload)
   },
   select(state, entityId) {
     state.selectedId = entityId
@@ -46,13 +47,13 @@ export const mutations = {
     state.selected = null
     state.isCreating = false
   },
-  creatingError(state, error) {
+  creatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
-  updatingError(state, error) {
+  updatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   changeName(state, newName) {
     state.selected.name = newName
@@ -63,9 +64,9 @@ export const mutations = {
   changeEntityTypeId(state, newId) {
     state.selected.entityType = newId
   },
-  deletingError(state, error) {
+  deletingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   clearError(state) {
     state.error = null
@@ -83,7 +84,7 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/Entity')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', 'Error'))
+      .catch(e => commit('loadingFailure', e))
   },
 
   select({ commit }, entityId) {
@@ -106,31 +107,19 @@ export const actions = {
     commit('waiting')
     return this.$axios.post('/api/Entity', newEntity)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('creatingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('creatingError', e);throw e;})
   },
   save({ commit, dispatch }, modifiedEntity) {
     commit('waiting')
     return this.$axios.put('/api/Entity', modifiedEntity)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('updatingError', e.response.data.message)
-        throw e;
-      }      
-      )
+      .catch(e => {commit('updatingError', e);throw e;})
   },
   delete({ commit, state, dispatch }) {
     commit('waiting')
     return this.$axios.delete('/api/Entity/' + state.selectedId)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('deletingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('deletingError', e);throw e;})
   },
 
   changeName({ commit }, newName) {

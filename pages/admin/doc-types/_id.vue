@@ -2,7 +2,6 @@
   <div>
     <wl-crud
       :obj-select="objSelected"
-      :is-new="false"
       :error="error"
       @wlcancel="cancel"
       @wlupdate="update"
@@ -11,16 +10,24 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
-        <wl-input
-          v-if="objSelected"
-          v-model="name"
-          :disable="!isEdit"
-          :title="$t('admin.document-type.title-name-doc-type')"
-          :max="50"
-          :placeholder="$t('admin.document-type.place-enter-name-td')"
-          :error-msg="'Este es un error'"
-          :error="true"
-        />
+        <form 
+          name="form-doc-types"
+          data-vv-scope="form1"
+          @submit.prevent
+        >
+          <wl-input
+            v-if="objSelected"
+            v-model="name"
+            :mode="'titleCase'"
+            :name="'form1.name'"
+            :disable="!isEdit"
+            :title="$t('admin.document-type.title-name-doc-type')"
+            :max="50"
+            :placeholder="$t('admin.document-type.place-enter-name-td')"
+            :validate="{required:true}"
+            :is-submit="isSubmit"
+          />
+        </form>
       </template>
     </wl-crud>
   </div>
@@ -41,7 +48,8 @@
     },
     data() {
       return {
-        isEdit : false
+        isEdit : false,
+        isSubmit: false,
       }
     },
     computed: {
@@ -70,7 +78,12 @@
         this.delete().then( this.cancel )
       },
       update() {
-        this.save(this.objSelected).then( this.cancel )
+        this.$validator.validate('form1.*').then(valid => {
+          this.isSubmit = true;
+          if (valid) {
+            this.save(this.objSelected).then(this.cancel);      
+          }
+        });
       },
       startEdit(){
         this.isEdit = true;

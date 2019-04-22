@@ -42,13 +42,13 @@ export default {
 <style lang="scss" scoped>
 .btn-normal {
   position: relative;
-  background-color:var(--btn);
+  background-color: var(--wl_primary);
   font-family: "Century Gothic";
   font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
-  color: var(--btn-c);
+  color: var(--wl_btn_content);
   border: 0;
   margin: auto 0;
   padding: 8px 5px 8px 40px;
@@ -66,33 +66,17 @@ export default {
   text-align: left;
 }
 
-.btn-normal:hover {
-  background-color: var(--btn-con);
-}
-
-.btn-normal:active {
-  background-color: var(--btn-con-a);
-}
-
 .btn-normal:disabled {
   pointer-events: none;
-  background: rgba(0, 0, 0, 0.4); /*falta variable  en colors*/
+  background: var(--wl_btn_disable);
 }
 
 .btn-normal.azul {
-  background-color: var(--btn-con-i);
-}
-
-.btn-normal.azul:hover {
-  background-color: var(--btn-con-h);
-}
-
-.btn-normal.azul:active {
-  background-color:var(--btn-con-ac);
+  background-color: var(--wl_btn_blue);
 }
 
 .tamano_botones_1 {
-  background: var(--botones-t);
+  background: var(--wl_btn_bg_ico);
   height: 100%;
   width: 35px;
   position: absolute;
@@ -110,13 +94,13 @@ export default {
 
 .btn_sin_ico {
   position: relative;
-  background-color:var(--btn-sin);
+  background-color:var(--wl_primary);
   font-family: "Century Gothic";
   font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
-  color: var(--btn-sin-i);
+  color: var(--wl_btn_content);
   border: 0;
   margin: auto 0;
   padding: 8px 5px 8px 8px;
@@ -137,22 +121,10 @@ export default {
   text-align: left;
 }
 
-.btn_sin_ico:hover,
-.btn-only-ico:hover {
-  background-color: var(--btn-sin-h);
-}
-
-.btn_sin_ico:active,
-.btn-only-ico:active {
-  -webkit-transition: all 0.05s;
-  -o-transition: all 0.05s;
-  transition: all 0.05s;
-  background-color: var(--bnt-sin-a);
-}
-
 .btn-only-ico {
+  position: relative;
   border: 0;
-  background: var(--btn-in);
+  background: var(--wl_primary);
   cursor: pointer;
   min-height: 35px;
   min-width: 35px;
@@ -160,11 +132,11 @@ export default {
 
 .btn-only-ico.disable {
   pointer-events: none;
-  background: #555; /*falta variable en colors*/
+  background: var(--wl_btn_disable);
 }
 
 .btn-only-ico.disable > span:before {
-  color: #ebebeb;/*falta variable en colors*/
+  color: var(--wl_btn_content);
 }
 
 .btn-only-ico > span {
@@ -173,15 +145,33 @@ export default {
 
 .btn-only-ico > span:before {
   font-size: 20px;
-  color: white;/*falta variable en colors*/
+  color: var(--wl_btn_content);
   width: 100%;
 }
 
-button.danger {
-  background-color: tomato;
+.btn-normal:before,
+.btn_sin_ico:before,
+.btn-only-ico:before,
+{
+  content:'';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
 }
 
-button.danger:hover {
-  background: pink;
+.btn-normal:hover:before,
+.btn_sin_ico:hover:before,
+.btn-only-ico:hover:before {
+  background:var(--wl_primary_hover);
+  width: 100%;
+}
+
+.btn-normal:active:before,
+.btn_sin_ico:active:before,
+.btn-only-ico:active:before {
+  background:var(--wl_primary_active);
+  width: 100%;
 }
 </style>

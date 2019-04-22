@@ -1,17 +1,30 @@
 <template>
-  <wl-master-detail-layout>
-    <wl-filtered-list slot="master">
-      <wl-list-item
-        v-for="permission in permissions"
-        :key="permission.id"
-        route="persons-permissions-id"
-        active-route="persons-permissions"
-        :item-id="permission.id"
+  <wl-master-detail-layout :has-detail="isSelected || isCreating">
+    <wl-filtered-list 
+      slot="master"
+      :list="roles"
+      :filter-condition="filter"
+      @add="create"
+    >
+      <template
+        slot="list"
+        slot-scope="{ filteredList }"
       >
-        {{ permission.name }}
-      </wl-list-item>
+        <wl-list-item 
+          v-for="rol in filteredList" 
+          :key="rol.id"
+          route="persons-permissions-id"
+          active-route="persons-permissions"
+          :item-id="rol.id"
+        >
+          {{ rol.name }}
+        </wl-list-item>   
+      </template>
     </wl-filtered-list>
-    <div slot="details">
+    <div 
+      slot="details"
+      class="details"
+    >
       <nuxt-child />
     </div>
   </wl-master-detail-layout>
@@ -28,40 +41,41 @@ export default {
     return {
       title: this.$t('persons.permissions.module-name')
     }
-  }
-  , components: {
-    WlMasterDetailLayout
-    , WlListItem
-    , WlFilteredList
-  }
-  , nuxtI18n: {
-    paths: {
-      es: 'permisos'
-      , en: 'permissions'
-    }
-  }
-  , data() {
-    return {
-      permissions: [
-        {id: 1, name: 'Administración'}
-        , {id: 2, name: 'Gestión Documental'}
-        , {id: 3, name: 'Anotaciones'}
-        , {id: 4, name: 'Super Usuario'}
-      ]
-    }
-  }
-  , computed: {
+  },
+  components: {
+    WlMasterDetailLayout,
+    WlListItem,
+    WlFilteredList,
+  },
+  nuxtI18n: {
+    paths: {es: 'permisos', en: 'permissions'}
+  },
+  computed: {
     ...mapGetters('persons/permissions', {
-      users: 'permissions'
-    })
-  }
-  , methods: {
-    ...mapActions('persons/permissions', {
-      loadData: 'loadData'
-    })
-  }
-  // , fetch({store, params}) {
-  //   return store.dispatch('persons/permissions/loadData')
-  // }
+      roles: 'list',
+      isCreating: 'isCreating',
+      isSelected: 'isSelected',
+      selected: 'selected',
+    }),
+    filter() {
+      return (filter) => (rol) => 
+          filter == null || filter.length < 0
+          || rol.name.toLowerCase().search(filter.toLowerCase()) >= 0 
+    }
+  },
+  fetch({ store, params }) {
+    return store.dispatch("persons/permissions/loadData")
+  },
+  methods: {
+    create() {
+      this.$router.push( this.localePath({name: "persons-permissions-new"}))
+    },    
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+.details {
+  padding: calc(1em + .5vw);
+}
+</style>

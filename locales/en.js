@@ -36,14 +36,13 @@ export default {
       'place-enter-name-entity': 'Write entity name',
       'title-email': 'Email',
       'place-enter-email': 'Write email',
-      'title-select-doc-type': 'Select document type',
+      'title-select-entity-type': 'Select entity type',
     },
 
     'entities-type': {
       'title-name-enty-type': 'Entity type name',
       'place-enter-name-type-enty': 'Write entity type name',
-      'label-documents-suport': 'Documents supported:',
-
+      'label-documents-suport': 'Documents supported',
     },
 
   },
@@ -88,6 +87,12 @@ export default {
       'h-update-permissions': 'update permissions',
       'h-new-permission': 'New permission',
       'h-not-selected': 'Not selected',
+      'title-name': 'Role name',
+      'place-enter-name': 'Enter role name',
+      'title-config-system': 'Configure the system',
+      'title-create-doc': 'Manage documents',
+      'title-delete-doc': 'Delete documents',
+      'label-allow': 'Allow',
     },
     'users-s': {
       'h-not-selected': 'Not selected',
@@ -107,6 +112,7 @@ export default {
       'place-enter-role-user': 'Enter user role',
       'title-state-user': 'User state',
       'label-active': 'Active',
+      'label-restore-password': 'Restore password',
     },
   },
 
@@ -176,6 +182,14 @@ export default {
     'filtere-list': {
       'title-new': 'New',
       'title-press-butt': 'Press the "New" button to create a new record',
+    },
+    'footer':{
+      'siguenos':'Follow us',
+      'contactenos':'Contact us',
+      'universidad':'University of Nariño',
+      'sitio':'About Site',
+      'developers':'Developed by:',
+      'copyright':'Copyright © 2019 - University of Nariño - San Juan de Pasto - Colombia',
     },
   },
 
