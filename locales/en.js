@@ -159,7 +159,7 @@ export default {
       'label-login': 'Sing in',
       'label-admin': 'Administration',
       'label-doc-man': 'Documentary management',
-      'label-annot': 'Annotationes',
+      'label-annot': 'Annotations',
       'label-user': 'Users',
     },
     'modal': {

@@ -183,29 +183,6 @@ export default {
       showSubModules: false,
       showSubUser: false,      
       showMenu: false,
-
-      modules: [
-        {
-          label: this.$t('components.menu.label-admin'),
-          icon: 'ico-tasks',
-          link: 'admin',
-        },
-        {
-          label:  this.$t('components.menu.label-doc-man'),
-          icon: 'ico-stack-overflow',
-          link: 'doc-management',
-        },
-        {
-          label:this.$t('components.menu.label-annot'),
-          icon: 'ico-files-o',
-          link: 'annotations',
-        },
-        {
-          label: this.$t('components.menu.label-user'),
-          icon: 'ico-users',
-          link: 'persons',
-        }
-      ]
     }
   },
   computed: {
@@ -236,6 +213,30 @@ export default {
           icon: 'ico-sign-in',
           link: 'login',
           show: this.loogedIn != undefined && this.loogedIn == false,
+        }
+      ]
+    },    
+    modules(){
+      return [
+        {
+          label: this.$t('components.menu.label-admin'),
+          icon: 'ico-tasks',
+          link: 'admin',
+        },
+        {
+          label:  this.$t('components.menu.label-doc-man'),
+          icon: 'ico-stack-overflow',
+          link: 'doc-management',
+        },
+        {
+          label:this.$t('components.menu.label-annot'),
+          icon: 'ico-files-o',
+          link: 'annotations',
+        },
+        {
+          label: this.$t('components.menu.label-user'),
+          icon: 'ico-users',
+          link: 'persons',
         }
       ]
     },
