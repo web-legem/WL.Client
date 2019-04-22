@@ -1,3 +1,5 @@
+import errorHandler from '~/helpers/errorHandler'
+
 export const state = () => ({
   loogedIn: false,
   credential: null,
@@ -42,12 +44,11 @@ export const mutations = {
     state.error = null
   },
   setPasswordFailure(state, ex) {
-    console.log(ex);
-    state.error = ex.response.data.message;
+    state.error = errorHandler(ex)    
   },
   loginFailure(state, ex) {
-    console.log(ex);  
     state.loogedIn = false
+    // state.error = errorHandler(ex)    
     state.error = (ex.response.data.message == "ERROR_CREDENTIAL") ?
       "Hubo un problema al iniciar sesion, vuelva a intentar" :
       "Nombre de usuario y/o contraseña incorrectos"

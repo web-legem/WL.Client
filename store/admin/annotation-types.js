@@ -31,12 +31,9 @@ export const mutations = {
     state.list = payload
   },
   loadingFailure(state, payload) {
-    console.log("sssssssssssssssssssssssssss");
-    let get = errorHandler(payload)
-    console.log("get",get);
     state.loading = false
     state.loaded = false
-    state.error = get
+    state.error = errorHandler(payload)
   },
   select(state, annotationTypeId) {
     state.error = null
@@ -54,21 +51,13 @@ export const mutations = {
   isCreating(state) {
     state.isCreating = true
   },
-  creatingError(state, error) {
-    console.log("sssssssssssssssssssssssssss1");
-
-    let get = errorHandler(payload)
-    console.log("get",get);
+  creatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
-  updatingError(state, error) {
-    console.log("sssssssssssssssssssssssssss2");
-
-    let get = errorHandler(payload)
-    console.log("get",get);
+  updatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   changeName(state, newName) {
     state.selected.name = newName
@@ -76,9 +65,9 @@ export const mutations = {
   changeRoot(state, newRoot) {
     state.selected.root = newRoot
   },
-  deletingError(state, error) {
+  deletingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   clearError(state) {
     state.error = null
@@ -99,31 +88,19 @@ export const actions = {
     commit('waiting')
     return this.$axios.post('/api/AnnotationType', newAnnotationType)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('creatingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('creatingError', e);throw e;})
   },
   save({ commit, dispatch }, modifiedAnnotationType) {
     commit('waiting')
     return this.$axios.put('/api/AnnotationType', modifiedAnnotationType)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('updatingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('updatingError', e);throw e;})
   },
   delete({ commit, state, dispatch }) {
     commit('waiting')
     return this.$axios.delete('/api/AnnotationType/' + state.selectedId)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('deletingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('deletingError', e);throw e;})
   },
 
   select({ commit }, annotationTypeId) {

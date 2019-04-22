@@ -1,4 +1,4 @@
-import { throwError } from "rxjs";
+import oracle from '../helpers/oracleErrors'
 
 export default function errorHandler(ex) {
   
@@ -11,11 +11,14 @@ export default function errorHandler(ex) {
 
   if (ex.response) {
     if (ex.response.data && ex.response.data.message) {
-      console.log("xxx1",ex.response.data.message);
-      return "Error desconocido 0"
+      
+      error.name = exception.oracle;
+      console.log("xxxxxxx",ex.response.data.message);
+      error.message = oracle(ex.response.data.message);
+      return error;
     } else {
-      console.log("xxx2",ex.response);
-      return "Error desconocido 1"
+      error.message =  ex.response
+      return error;
     }
   } else {
     //mostrar solamente si es debug

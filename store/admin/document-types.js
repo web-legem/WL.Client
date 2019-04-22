@@ -1,3 +1,4 @@
+import errorHandler from '~/helpers/errorHandler'
 
 export const state = () => ({
   list: [],
@@ -31,7 +32,7 @@ export const mutations = {
   },
   loadingFailure(state, payload) {
     state.loading = false
-    state.error = payload
+    state.error = errorHandler(payload)    
   },
   select(state, docTypeId) {
     state.error = null
@@ -49,20 +50,21 @@ export const mutations = {
   isCreating(state) {
     state.isCreating = true
   },
-  creatingError(state, error) {
+  creatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)    
   },
-  updatingError(state, error) {
+  updatingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
+
   },
   changeName(state, newName) {
     state.selected.name = newName
   },  
-  deletingError(state, error) {
+  deletingError(state, payload) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(payload)
   },
   clearError(state) {
     state.error = null
@@ -95,31 +97,19 @@ export const actions = {
     commit('waiting')
     return this.$axios.post('/api/DocumentType', { name: newDocName })
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('creatingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('creatingError', e);throw e;})
   },
   save({commit, dispatch}, modifiedDocType) {
     commit('waiting')
     return this.$axios.put('/api/DocumentType', modifiedDocType)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('updatingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('updatingError', e);throw e;})
   },
   delete({commit, state, dispatch}) {
     commit('waiting')
     return this.$axios.delete('/api/DocumentType/' + state.selectedId )
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('deletingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('deletingError', e);throw e;})
   },
   changeName({commit}, newName) {
     commit('changeName', newName)

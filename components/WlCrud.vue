@@ -192,6 +192,7 @@ export default {
 .content-modal{
   padding: 10px;
   min-width: 400px;
+  white-space: pre-line;
 }
 
 .content-modal-buttons{
