@@ -79,6 +79,7 @@ export default {
 .chip-container {
   width: 100%;
   border: 1px solid #ccc;
+  border-color: #ccc;
   min-height: 34px;
   display: flex;
   flex-wrap: wrap;

@@ -40,20 +40,22 @@
           >
             {{ $t('search.co-search.search') }}
           </div>
-          <div
-            v-if="showNoResultsPage && !hasSearchError"
+          <wl-error-message 
+            v-if="showNoResultsPage && hasSearchError"
+            icon="ico-cloud"
           >
             {{ $t('search.co-search.not-found') }}
-          </div>
-          <div
-            v-if="showNoResultsPage && hasSearchError"
+          </wl-error-message>
+          <wl-error-message 
+            v-if="showNoResultsPage && !hasSearchError"
+            icon="ico-cloud"
           >
             {{ $t('search.co-search.network-error') }}
-          </div>
-        </div>
-      </template>
-    </wl-master-detail-layout>
-  </div>
+          </wl-error-message>
+      </div>
+    </template>
+  </wl-master-detail-layout>
+</div>
 </template>
 
 <script>
@@ -63,6 +65,7 @@ import WlSearchFilters from '~/components/search/WlSearchFilters.vue'
 import WlOrderControls from '~/components/search/WlOrderControls.vue'
 import WlPageControls from '~/components/search/WlPageControls.vue'
 import WlSearchResult from '~/components/search/WlSearchResult.vue'
+import WlErrorMessage from '~/components/WlErrorMessage.vue'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 
 import {mapActions, mapGetters, mapState} from 'vuex'
@@ -75,6 +78,7 @@ export default {
     WlOrderControls,
     WlPageControls,
     WlSearchResult,
+    WlErrorMessage,
   },
   props: {
     routeName: {

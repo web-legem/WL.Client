@@ -74,7 +74,7 @@ module.exports = {
   axios: {
     // proxyHeaders: false,
     host: 'localhost'
-    , port: '54037'
+    , port: '5000'
     , retry: {  retries: 0 }
   },
   // axios: {
