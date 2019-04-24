@@ -156,7 +156,6 @@ export default {
     'upload-document': { 'label-name': 'Subir documento' },
   },
 
-
   'components': {
     'webcam': {
       'label-foto-user': 'Fotografia de usuario',
@@ -177,7 +176,6 @@ export default {
       'alert-act-webcam': 'Active la camara por favor',
       'alert-ex-pro-webcam': 'Existe problemas con su camara',
     },
-
     'menu': {
       'butt-module': 'Modulos',
       'label-serch': 'Busqueda',
@@ -202,7 +200,7 @@ export default {
       'butt-accept': 'Aceptar',
       'butt-cancel': 'Cancelar',
       'title-confirm': 'Confirmación',
-      'div-sure-delete': '¿Esta Seguro De Eliminar?',
+      'div-sure-delete': '¿Esta Seguro De Eliminar ',
       'title-info': 'Información',
     },
     'filtere-list': {
@@ -217,7 +215,6 @@ export default {
       'developers':'Desarrollado por:',
       'copyright':'Copyright © 2019 - Universidad de Nariño - San Juan de Pasto - Colombia',
     }
-
   },
 
   'search': {
@@ -228,7 +225,7 @@ export default {
       'div-desc': 'Descripción:',
     },
     'annotation-list': {
-      'title-annot-enter': 'Anotaciones Entrantes',
+      'title-annot-enter': 'Annotaciones Entrantes',
       'title-annot-go-out': 'Anotaciones Salientes',
     },
     'doc-control': {
@@ -283,8 +280,8 @@ export default {
     },
 
   },
+  
   'annotations': {
     '': '',
   },
-
 }
