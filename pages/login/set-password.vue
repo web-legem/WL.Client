@@ -10,36 +10,40 @@
           class="basic-form-box"
         >
           <div class="box-title">
-            Actualizar Contraseña 
-          </div>          
-          <p 
-            v-if="isPathAllow && !isTokenAllow"          
-            class="msg-pass"
-          >
-            Esta usando el documento como contraseña del sitio, debe actualizar su contraseña para ingresar            
-          </p>
-          <div />
+            {{ $t("login.title-set-password") }}
+          </div>                    
           <form 
             class="form-basic-container" 
             name="set-password"
             data-vv-scope="form1"
             @submit.prevent="sendSetPassword()"
-          >                  
+          >               
+            <div
+              v-if="isPathAllow && !isTokenAllow"          
+              class="wl_msg info md"
+            >
+              <strong>   
+                {{ $t("login.msg-document-password") }}
+              </strong>   
+            </div>
+            <div />   
             <div>
               <div
                 v-show="error"
-                class="msj-error md"
+                class="wl_msg error md"
               >
-                {{ error }}
+                <strong>                
+                  {{ error }}
+                </strong>                
               </div>
             </div>     
             <!----------------------------------------------------->
             <wl-input
               v-model="password1"
               :ref-name="'passwordOrg'"
-              :title=" $t('persons.users-s.title-password')"
+              :title="$t('login.password')"
               :max="100"
-              :placeholder="$t('persons.users-s.place-enter-passord')"
+              :placeholder="$t('login.enter-password')"
               :name="'form1.passwordOrg'"
               :type="'password'" 
               :validate="{required:true, min: 6}"
@@ -62,15 +66,15 @@
                 <span />
               </div>
               <p>
-                nivel de seguridad: {{ showWidget.level }}
+                {{ $t("login.lbl-security-level") }}: {{ showWidget.level }}
               </p>
             </div>
 
             <wl-input
               v-model="password2"
-              :title="'Confirmar contraseña'"
+              :title="$t('login.confirm-password')"
               :max="100"
-              :placeholder="$t('persons.users-s.place-enter-passord')"
+              :placeholder="$t('login.enter-password')"
               :name="'form1.confirm_password'" 
               :type="'password'" 
               :validate="{required:true, confirmed:password1}"
@@ -83,7 +87,7 @@
                   :ico="'ico-sign-in'"                 
                   :type="'submit'"
                 >
-                  Actualizar
+                  {{ $t("login.btn-update") }}
                 </wl-button>
               </div>
             </div>
@@ -119,7 +123,11 @@ export default {
       password1:"",
       password2:"",
       colors: ['#F00', '#F90', '#FF0', '#9F0', '#0F0'],
-      valors: ['muy bajo', 'bajo', 'medio', 'alto', 'muy alto'],
+      valors: [ this.$t('login.muy-bajo'),
+                this.$t('login.bajo'),
+                this.$t('login.medio'),
+                this.$t('login.alto'),
+                this.$t('login.muy-alto')],
       isSubmit: false,
       isTokenAllow: false,
       userIdRestore:null,

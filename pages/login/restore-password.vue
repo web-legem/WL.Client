@@ -7,37 +7,42 @@
       <div class="basic-form">
         <div class="basic-form-box">
           <div class="box-title">
-            Restaurar Contraseña 
-          </div>          
-          <p class="msg-pass">
-            Enviaremos un link a su correo para restaurar su contraseña.
-          </p>
-          <div />
+            {{ $t("login.title-restore") }}
+          </div> 
           <form 
             class="form-basic-container" 
             name="set-password"
             data-vv-scope="form1"
             @submit.prevent="sendRestorePassword()"
-          >                  
-            <div>
-              <div
-                v-show="error"
-                class="msj-error md"
-              >
-                {{ error }}
-              </div>
-            </div>     
+          >    
+            <div class="wl_msg md info">
+              <strong>
+                {{ $t("login.msg-send-link") }}            
+              </strong>
+            </div>                               
             <!----------------------------------------------------->
             <wl-input
               v-model="email"
-              :title="'Correo electronico'"
+              :mode="'noSpace'"
+              :title="$t('login.email')"
+              :name="'form1.email'" 
               :max="100"
-              :placeholder="$t('persons.users-s.place-enter-passord')"
-              :name="'form1.confirm_password'" 
+              :placeholder="$t('login.enter-email')"
               :type="'email'"
               :validate="{required:true}"
               :is-submit="isSubmit"
             />
+            <!----------------------------------------------------->            
+            <div>
+              <div
+                v-show="error"
+                class="msj-error"
+              >
+                <strong>
+                  {{ error }}
+                </strong>                
+              </div>
+            </div>
             <!----------------------------------------------------->            
             <div class="flex-container col center btn-submit">          
               <div>
@@ -45,7 +50,7 @@
                   :ico="'ico-long-arrow-right'"                 
                   :type="'submit'"
                 >
-                  Enviar
+                  {{ $t("login.btn-send") }}
                 </wl-button>
               </div>
             </div>

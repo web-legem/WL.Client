@@ -177,9 +177,15 @@
 
 .a_input.validate_error,
 .input_text_ico.validate_error,
-.input_text_btn.validate_error,
 .input_text_btn.validate_error {  
   border-color: var(--wl_text_error);
+}
+
+.a_input.validate_error:focus,
+.input_text_ico.validate_error:focus,
+.input_text_btn.validate_error:focus {
+  
+  background: var(--wl_bg_error);;
 }
 
 .msj-error {
@@ -209,21 +215,6 @@
   font-size: 1rem;  
   margin-right: 5px;
   vertical-align: -3px;
-}
- 
-.msj-error.md {
-  font-size: .9rem;
-}
-
-.msj-success {
-  color: var(--wl_primary);
-  font-family: "Lato";
-  font-size: .7rem;
-  margin-bottom: 4px;
-}
-
-.msj-success.md {
-  font-size: .9rem;
 }
 
 /*TEXTO PARA LOS LABELS*/

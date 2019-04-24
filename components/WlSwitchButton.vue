@@ -20,8 +20,14 @@
         @change="$emit('input', $event.target.checked)"
       >
       <div>
-        <span :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " />
-        <span :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " />
+        <span 
+          :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " 
+          @click="value = !value" 
+        />
+        <span 
+          :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " 
+          @click="value = !value" 
+        />
         <label :for="id"> 
           {{ label }}
         </label>
@@ -57,6 +63,10 @@ export default {
 
 .w-switch.disable{  
   pointer-events: none;
+}
+.w-switch.disable div span{  
+  pointer-events: none;
+  color: var(--wl_gray) !important;
 }
 
 .w-switch div{  

@@ -115,6 +115,31 @@ export default {
     },
   },
 
+  'login':{
+    'title-login':'Iniciar Sesión',
+    'title-set-password':'Actualizar Contraseña',
+    'title-restore':' Restaurar Contraseña',
+    'forgotten-password':'He olvidado mi contraseña',
+    'btn-enter':'Ingresar',
+    'btn-update':'Actualizar',
+    'btn-send':'Enviar',    
+    'msg-document-password':'Esta usando el documento como contraseña del sitio, debe actualizar su contraseña para ingresar.',            
+    'msg-send-link':'Enviaremos un link a su correo para restaurar su contraseña.',
+    'lbl-security-level':'nivel de seguridad',
+    'email':'Correo electronico',
+    'enter-email':'Ingrese correo electronico',
+    'user':'Usuario',
+    'password':'Contraseña',
+    'enter-user':'Ingrese nombre de usuario',
+    'enter-password':'Ingrese contraseña',
+    'confirm-password':'Confirmar contrasñea',
+    'muy-bajo':'muy bajo',
+    'bajo':'bajo',
+    'medio':'medio',
+    'alto':'alto',
+    'muy-alto':'muy alto',
+  },
+
   'documents': {
     'module-name': 'Documentos',
     'document-type': { 'label-name': 'Tipo de documento' },
@@ -130,7 +155,6 @@ export default {
     'error-created-document': { 'label-name': 'Error al crear documento' },
     'upload-document': { 'label-name': 'Subir documento' },
   },
-
 
   'components': {
     'webcam': {
@@ -152,7 +176,6 @@ export default {
       'alert-act-webcam': 'Active la camara por favor',
       'alert-ex-pro-webcam': 'Existe problemas con su camara',
     },
-
     'menu': {
       'butt-module': 'Modulos',
       'label-serch': 'Busqueda',
@@ -177,11 +200,11 @@ export default {
       'butt-accept': 'Aceptar',
       'butt-cancel': 'Cancelar',
       'title-confirm': 'Confirmación',
-      'div-sure-delete': '¿Esta Seguro De Eliminar?',
+      'div-sure-delete': '¿Esta Seguro De Eliminar ',
       'title-info': 'Información',
     },
     'filtere-list': {
-      'title-new': 'Nuevo',
+      'title-new': 'Nuevo Registro',
       'title-press-butt': 'presiona el boton "Nuevo" para crear un nuevo registro',
     },
     'footer':{
@@ -192,7 +215,6 @@ export default {
       'developers':'Desarrollado por:',
       'copyright':'Copyright © 2019 - Universidad de Nariño - San Juan de Pasto - Colombia',
     }
-
   },
 
   'search': {
@@ -203,7 +225,7 @@ export default {
       'div-desc': 'Descripción:',
     },
     'annotation-list': {
-      'title-annot-enter': 'Anotaciones Entrantes',
+      'title-annot-enter': 'Annotaciones Entrantes',
       'title-annot-go-out': 'Anotaciones Salientes',
     },
     'doc-control': {
@@ -258,8 +280,8 @@ export default {
     },
 
   },
+  
   'annotations': {
     '': '',
   },
-
 }
