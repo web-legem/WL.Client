@@ -72,7 +72,10 @@
       @wlclose="clearErrorsa"
     >
       <template slot="wl-content">
-        <div ref="errormsg" class="generic-box-vertical content-modal">
+        <div 
+          ref="errormsg" 
+          class="generic-box-vertical content-modal"
+        >
           <p v-html="error.message" />    
         </div>
         <div class="modal-confirmacion content-modal-buttons">

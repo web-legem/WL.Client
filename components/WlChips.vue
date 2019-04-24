@@ -9,12 +9,11 @@
       <span 
         class="ico ico2-cross" 
         @click.prevent.stop="deleteChip(i)"
-      >
-      </span>
+      />
     </div>
     <input 
-      class="a_input"
       v-model="currentInput" 
+      class="a_input"
       @keypress.enter="saveChip" 
       @keydown.delete="backspaceDelete"
     >

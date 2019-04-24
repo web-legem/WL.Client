@@ -21,12 +21,12 @@
       >
       <div>
         <span 
-          @click="value = !value" 
           :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " 
+          @click="value = !value" 
         />
         <span 
-          @click="value = !value" 
           :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " 
+          @click="value = !value" 
         />
         <label :for="id"> 
           {{ label }}

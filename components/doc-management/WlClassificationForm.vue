@@ -79,9 +79,7 @@
         :list="documentTypes"
         :empty-msg="$t('doc-management.classify-doc.please-select-one')"
       />
-      <wl-chips
-        v-model="tags"
-      ></wl-chips>
+      <wl-chips v-model="tags" />
       <div
         class="action-container"
       >
@@ -102,7 +100,6 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
-
     </form>
   </div>
 </template>

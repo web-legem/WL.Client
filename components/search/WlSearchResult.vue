@@ -11,7 +11,10 @@
       </nuxt-link>
     </div>
 
-    <div class="contenido_tarjeta" v-if="document.issue">
+    <div 
+      v-if="document.issue"
+      class="contenido_tarjeta" 
+    >
       {{ document.issue | limit(400) }}
     </div>
 

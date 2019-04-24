@@ -57,7 +57,7 @@ export default {
     id: { type: String, default: "" },
     isRequired: { type: Boolean, default: false },
     type: { type: String, default: "text" },
-    max: { type: Number, required: false },
+    max: { type: Number, required: false, default: Number.MAX_SAFE_INTEGER },
     disable: { type: Boolean, default: false },
     error: { type: Boolean, default: false },
     errorMsg: { type: String, default: "" },
