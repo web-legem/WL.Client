@@ -250,3 +250,49 @@ html, body {
   padding-left: 10px;
   font-weight: bold;
 }
+
+
+/* ----------------------------------- */
+/* labels errores-ok */
+
+.wl_msg {
+  position: relative;
+  font-family: "Lato";
+  font-size: 1rem;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.wl_msg.info {
+  color: white;  
+  background: var(--wl_text_info);
+}
+
+.wl_msg.ok {
+  color: white;  
+  background: var(--wl_primary);
+}
+
+.wl_msg.error {
+  color: white;  
+  background: var(--wl_text_error);  
+}
+
+.wl_msg.info strong:before {content: "\e0c9"}
+.wl_msg.error strong:before {content: "\e1a9"}
+.wl_msg.ok strong:before {content: "\e013"}
+
+.wl_msg strong:before {
+  font-family: "iconos-legem";
+  font-size: 1rem;  
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+.wl_msg.md {
+  font-size: .9rem;
+}
+
+
+/* FIN labels errores-ok */
+/* ----------------------------------- */

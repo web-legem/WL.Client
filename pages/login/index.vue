@@ -7,7 +7,7 @@
       <div class="basic-form">
         <div class="basic-form-box">
           <div class="box-title">
-            Ingresar al Sistema
+            {{ $t("login.title-login") }}            
           </div>
 
           <form 
@@ -18,23 +18,27 @@
           >              
             <div
               v-show="msgReturn"
-              class="msj-success md"
-            >              
-              {{ msgReturn }}
+              class="wl_msg ok md"
+            >          
+              <strong>
+                {{ msgReturn }}
+              </strong>
             </div>
             <div
               v-show="error"
-              class="msj-error md"
+              class="wl_msg error md"
             >
-              {{ getMsgInfo }}
+              <strong>                
+                {{ getMsgInfo }}
+              </strong>                
             </div>    
             <!----------------------------------------------------->
             <wl-input
               v-model="nickname"
               :name="'form1.user'"
               :input-ico="'ico-user'"
-              :title="'Usuario'"
-              :placeholder="'usuario'"
+              :title="$t('login.user')"
+              :placeholder="$t('login.enter-user')"
               :max="100"
               :autocomplete="true"
               :validate="{required:true}"
@@ -45,8 +49,8 @@
               :name="'form1.password'"
               :input-ico="'ico-lock'"
               :type="'password'"
-              :title="'Password'"
-              :placeholder="'contraseña'"
+              :title="$t('login.password')"
+              :placeholder="$t('login.enter-password')"
               :max="100"
               :validate="{required:true}"
               :is-submit="true"
@@ -59,7 +63,7 @@
                   :to="localePath({ name: 'login-restore-password' })"
                   class="link-restore"
                 >
-                  He olvidado mi contraseña
+                  {{ $t("login.forgotten-password") }}
                 </nuxt-link>
               </div>
               <div>                
@@ -67,7 +71,7 @@
                   :ico="'ico-sign-in'"        
                   :type="'input'"         
                 >
-                  Ingresar
+                  {{ $t("login.btn-enter") }}
                 </wl-button>
               </div>
             </div>

@@ -75,8 +75,17 @@ export const mutations = {
     state.clearPasswordChanged = null
   },
   setRestoreSuccess(state, response){
+    state.error = null;
   },
   setRestoreFailure(state,ex){
+    if(ex.response && ex.response.data){
+      if(ex.response.data.errorType == "ORA1403"){            
+        state.error = "Este correo no esta registrado en el sistema";
+        return
+      }
+    }
+    state.error = "Se presento un error, por favor recarge la pagina."+
+                  "\nSi el problema persiste contacte con el administrador";
   },  
   verifyTokenSuccess(state, response){    
       state.error = null;    

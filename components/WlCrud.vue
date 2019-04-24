@@ -72,8 +72,8 @@
       @wlclose="clearErrorsa"
     >
       <template slot="wl-content">
-        <div class="generic-box-vertical content-modal">
-          {{ error }}
+        <div ref="errormsg" class="generic-box-vertical content-modal">
+          <p v-html="error.message" />    
         </div>
         <div class="modal-confirmacion content-modal-buttons">
           <wl-button 
@@ -189,10 +189,11 @@ export default {
   margin-left: 10px;
 }
 
-.content-modal{
-  padding: 10px;
+.content-modal{  
   min-width: 400px;
-  white-space: pre-line;
+  max-width: 600px;
+  padding: 10px;  
+  margin-bottom: -10px;
 }
 
 .content-modal-buttons{

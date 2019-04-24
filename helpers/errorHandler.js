@@ -10,11 +10,10 @@ export default function errorHandler(ex) {
   let error = new Error();
 
   if (ex.response) {
-    if (ex.response.data && ex.response.data.message) {
-      
+    if (ex.response.data) {
+
       error.name = exception.oracle;
-      console.log("xxxxxxx",ex.response.data.message);
-      error.message = oracle(ex.response.data.message);
+      error.message = oracle(ex.response.data);
       return error;
     } else {
       error.message =  ex.response
