@@ -22,7 +22,7 @@
             <div>
               <div 
                 v-for="document in results"
-                :key="document.file.id"
+                :key="document.documentId"
               >
                 <wl-search-result
                   :document="document"

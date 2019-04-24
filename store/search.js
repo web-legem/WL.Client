@@ -94,7 +94,7 @@ export const actions = {
     commit('loadSearch')
     commit('loadTotalCount')
     return Promise.all([
-      this.$axios.get('/api/ClassifiedFile', {
+      this.$axios.get('/api/Document/search', {
         params: {
           ...query,
           pageSize: 1, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
@@ -102,7 +102,7 @@ export const actions = {
       })
       .then(response => commit('searchSuccessful', response.data))
       .catch(e => commit('searchFailure', e)),
-      this.$axios.get('/api/ClassifiedFile/count', {
+      this.$axios.get('/api/Document/search/count', {
         params: { ...query }
       }).then(result => commit('totalCountSuccessful', result.data))
       .catch(e => commit('totalCountFailure', e))

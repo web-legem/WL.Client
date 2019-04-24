@@ -49,13 +49,6 @@ export default {
       validFile: false,
     }
   },
-  methods: {
-    showPdf(fileUrl) {
-      console.log(fileUrl)
-      this.fileUrl = fileUrl
-      this.validFile = true
-    },
-  },
   asyncData(context) {
     return Promise.all([
       context.app.$axios.get('/api/Entity')
@@ -64,6 +57,13 @@ export default {
       entities: results[0].data
       , documentTypes: results[1].data
     }))
+  },
+  methods: {
+    showPdf(fileUrl) {
+      console.log(fileUrl)
+      this.fileUrl = fileUrl
+      this.validFile = true
+    },
   },
 }
 </script>
