@@ -69,7 +69,6 @@ export default {
     },
   },
 
-
   'persons': {
     'module-name': 'Persons',
     'users': { 'module-name': 'Users' },
@@ -114,6 +113,31 @@ export default {
       'label-active': 'Active',
       'label-restore-password': 'Restore password',
     },
+  },
+
+  'login':{
+    'title-login':'Login',
+    'title-set-password':'Update Password',
+    'title-restore':'Restore Password',
+    'forgotten-password':'I forgot my password',
+    'btn-enter':'Enter',
+    'btn-update':'Update',
+    'btn-send':'Send',    
+    'msg-document-password':'You are using the document as a password for the site, you must update your password to enter.',            
+    'msg-send-link':'We will send a link to your email to restore your password.',
+    'lbl-security-level':'security level',
+    'email':'Email',
+    'enter-email':'Enter email',
+    'user':'User',
+    'password':'Password',
+    'enter-user':'Enter user name',
+    'enter-password':'Enter password',    
+    'confirm-password':'Confirm password',
+    'muy-bajo':'very low',
+    'bajo':'low',
+    'medio':'medium',
+    'alto':'high',
+    'muy-alto':'very high',
   },
 
   'documents': {
@@ -180,7 +204,7 @@ export default {
       'title-info': 'Information',
     },
     'filtere-list': {
-      'title-new': 'New',
+      'title-new': 'New record',
       'title-press-butt': 'Press the "New" button to create a new record',
     },
     'footer':{

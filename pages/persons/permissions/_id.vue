@@ -17,7 +17,6 @@
         >
           <wl-input
             v-if="objSelected"
-            :id="'chk1'"
             v-model="name"
             :mode="'titleCase'"
             :name="'form1.name'"
@@ -31,7 +30,7 @@
 
           <wl-switch-button 
             v-if="objSelected"               
-            :id="'chk2'"
+            :id="'chk1'"
             v-model="configSystem"       
             :name="'form1.configSystem'"       
             :type="'checkbox'" 
@@ -41,7 +40,7 @@
           />
           <wl-switch-button 
             v-if="objSelected"               
-            :id="'chk3'"
+            :id="'chk2'"
             v-model="createDoc"       
             :name="'form1.createDoc'"       
             :type="'checkbox'" 
@@ -50,7 +49,8 @@
             :label=" $t('persons.permission.label-allow')"
           />
           <wl-switch-button 
-            v-if="objSelected"               
+            v-if="objSelected" 
+            :id="'chk3'"
             v-model="deleteDoc"       
             :name="'form1.deleteDoc'"       
             :type="'checkbox'" 

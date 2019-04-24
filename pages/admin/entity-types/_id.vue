@@ -38,7 +38,10 @@
               v-for="docType in docTypes"
               :key="docType.id"
             >
-              <div class="block">
+              <div 
+                class="block"
+                :class="{'disable':!isEdit}"
+              >
                 <input
                   v-if="objSelected"
                   :id="docType.id"

@@ -40,7 +40,7 @@
           if(fromButton){
             this.$emit('wlclose',$event.target.value)
           }else{
-            if(overlayClose){
+            if(this.overlayClose){
               this.$emit('wlclose',$event.target.value)
             }
           }

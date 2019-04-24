@@ -25,7 +25,7 @@
               v-for="docType in docTypes"
               :key="docType.id"
             >
-              <div class="block">
+              <div class="block disable">
                 <input
                   :id="docType.id"
                   disabled="!isEdit"

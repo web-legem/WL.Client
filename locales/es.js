@@ -115,6 +115,31 @@ export default {
     },
   },
 
+  'login':{
+    'title-login':'Iniciar Sesión',
+    'title-set-password':'Actualizar Contraseña',
+    'title-restore':' Restaurar Contraseña',
+    'forgotten-password':'He olvidado mi contraseña',
+    'btn-enter':'Ingresar',
+    'btn-update':'Actualizar',
+    'btn-send':'Enviar',    
+    'msg-document-password':'Esta usando el documento como contraseña del sitio, debe actualizar su contraseña para ingresar.',            
+    'msg-send-link':'Enviaremos un link a su correo para restaurar su contraseña.',
+    'lbl-security-level':'nivel de seguridad',
+    'email':'Correo electronico',
+    'enter-email':'Ingrese correo electronico',
+    'user':'Usuario',
+    'password':'Contraseña',
+    'enter-user':'Ingrese nombre de usuario',
+    'enter-password':'Ingrese contraseña',
+    'confirm-password':'Confirmar contrasñea',
+    'muy-bajo':'muy bajo',
+    'bajo':'bajo',
+    'medio':'medio',
+    'alto':'alto',
+    'muy-alto':'muy alto',
+  },
+
   'documents': {
     'module-name': 'Documentos',
     'document-type': { 'label-name': 'Tipo de documento' },
@@ -181,7 +206,7 @@ export default {
       'title-info': 'Información',
     },
     'filtere-list': {
-      'title-new': 'Nuevo',
+      'title-new': 'Nuevo Registro',
       'title-press-butt': 'presiona el boton "Nuevo" para crear un nuevo registro',
     },
     'footer':{

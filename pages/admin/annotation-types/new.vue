@@ -29,7 +29,7 @@
             :name="'form1.root'"
             class="sm-space-top"
             :title="$t('admin.annotation-type.title-annotation-root')"
-            :max="50"
+            :max="5"
             :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
             :validate="{required:true}"
             :is-submit="isSubmit"
