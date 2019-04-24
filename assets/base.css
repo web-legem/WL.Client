@@ -88,10 +88,6 @@ html, body {
   margin: 0 auto 10px;
 }
 
-.hoja-container.disable {
-  background: var(--wl_gray_light);
-}
-
 .block {
   position: relative;  
 }
@@ -212,6 +208,29 @@ html, body {
   display: block;
   overflow: hidden;
 }
+
+.hoja-container.disable {
+  background: var(--wl_gray_light);
+}
+
+.hoja-container.disable .name-container{
+  background: var(--wl_btn_disable);
+}
+
+.hoja-container.disable .note-name{
+  color: var(--wl_input_bg);
+}
+
+.block.disable input:checked + label {
+  border: 2px solid var(--wl_input_bg);
+}
+
+.block.disable input:checked + label::after {
+  color: var(--wl_input_bg);
+}
+
+/* Fin hojas */
+/*-------------------------------------------------*/
 
 .box_duo_input {
   display: flex;
