@@ -16,7 +16,7 @@ export default {
     'entity-type-name': { 'label-name': 'Entity type name ' },
     'enter-entity-type-name': { '-name': 'Enter the entity type name' },
     'enter-email': { 'placeholder-name': 'Enter email' },
-    'invalid-email': { 'alert-name': 'Invalid mail ' },
+    'invalid-email': { 'alert-name': 'Invalid email ' },
     'search-entity-type': { 'module-name': 'Search entity type' },
     'issuing-entity': { 'label-name': 'Issuing entity' },
     'write-issuing-entity-': { 'placeholder-name': 'Write Issuing entity' },
@@ -26,10 +26,10 @@ export default {
       'place-enter-name-td': 'Write document type name',
     },
     'annotation-type': {
-      'title-name-annotation-type': 'Name Annotation type',
+      'title-name-annotation-type': 'Annotation type name',
       'place-enter-name-ta': 'Write name of the annotation type',
-      'title-annotation-root': 'Root annotation',
-      'place-enter-annotation-root': 'Write root annotation',
+      'title-annotation-root': 'Annotation root',
+      'place-enter-annotation-root': 'Write annotation root',
     },
     'entitie-tab': {
       'title-name-entity': 'Entity name',
@@ -42,7 +42,7 @@ export default {
     'entities-type': {
       'title-name-enty-type': 'Entity type name',
       'place-enter-name-type-enty': 'Write entity type name',
-      'label-documents-suport': 'Documents supported',
+      'label-documents-suport': 'Supported documents',
     },
 
   },
@@ -180,7 +180,7 @@ export default {
       'butt-module': 'Module',
       'label-serch': 'Search',
       'label-home': 'Home',
-      'label-login': 'Sing in',
+      'label-login': 'Sign in',
       'label-admin': 'Administration',
       'label-doc-man': 'Documentary management',
       'label-annot': 'Annotations',
@@ -200,7 +200,7 @@ export default {
       'butt-accept': 'Accept',
       'butt-cancel': 'Cancel',
       'title-confirm': 'Confirmation',
-      'div-sure-delete': '¿Is sure to eliminate?',
+      'div-sure-delete': 'Are you sure to eliminate ',
       'title-info': 'Information',
     },
     'filtere-list': {
@@ -224,6 +224,10 @@ export default {
       'butt-see-more': 'See more',
       'div-desc': 'Description:',
     },
+    'annotation-list': {
+      'title-annot-enter': 'Entry annotations',
+      'title-annot-go-out': 'Outgoing annotations',
+    },
     'doc-control': {
       'h-doc-title': 'Document title',
     },
@@ -237,11 +241,11 @@ export default {
     },
     'order-control': {
       'title-filter': 'Filters',
-      'butt-show-search-adva': 'show advanced search',
+      'butt-show-search-adva': 'Show advanced search',
       'label-entitie': 'Entity',
       'label-type-doc': 'Document type',
       'label-number': 'Number',
-      'label-date': 'year of publication',
+      'label-date': 'Publication year',
       'label-relevance': 'Relevance',
     },
     'page-controls': {
@@ -276,7 +280,7 @@ export default {
     },
 
   },
-
+  
   'annotations': {
     '': '',
   },
