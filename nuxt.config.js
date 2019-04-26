@@ -26,7 +26,9 @@ module.exports = {
   */
   loading: { 
     color: 'var(--wl_light)',
-    height: '4px'
+    failedColor: 'var(--wl_text_error)',
+    height: '3px',
+    continuous: true
   },
   /*
   ** Build configuration

@@ -2,7 +2,7 @@
   <div class="tarjeta_busqueda">    
     <div class="titulo_tarjeta">
       <nuxt-link 
-        :to="localePath({ name: routeName, params: {id: document.documentId} })"
+        :to="localePath({ name: routeName, params: {id: document.id} })"
         class="link-bold"
       >        
         {{ documentTypeName }}
@@ -25,7 +25,7 @@
 
     <div class="control_tarjeta">
       <a 
-        :href="$axios.defaults.baseURL + 'api/File/' + document.documentId"
+        :href="$axios.defaults.baseURL + 'api/Document/download/' + document.id"
         download
         :title="$t('search.search-result.title-down')"
       >
