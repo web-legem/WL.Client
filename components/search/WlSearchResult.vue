@@ -2,27 +2,30 @@
   <div class="tarjeta_busqueda">    
     <div class="titulo_tarjeta">
       <nuxt-link 
-        :to="localePath({ name: routeName, params: {id: document.file.id} })"
+        :to="localePath({ name: routeName, params: {id: document.documentId} })"
         class="link-bold"
       >        
         {{ documentTypeName }}
-        {{ document.document.number }}
-        {{ $t('search.search-result.a-del') }} {{ document.document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
+        {{ document.number }}
+        {{ $t('search.search-result.a-del') }} {{ document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
       </nuxt-link>
     </div>
 
-    <div class="contenido_tarjeta">
-      {{ document.file.issue | limit(400) }}
+    <div 
+      v-if="document.issue"
+      class="contenido_tarjeta" 
+    >
+      {{ document.issue | limit(400) }}
     </div>
 
     <div class="subcontenido_tarjeta">
       <a>{{ $t('search.search-result.a-entity') }}<i>{{ entityName }} </i> | </a>
-      <a>{{ $t('search.search-result.a-date') }} <i>{{ document.document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
+      <a>{{ $t('search.search-result.a-date') }} <i>{{ document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
     </div>
 
     <div class="control_tarjeta">
       <a 
-        :href="$axios.defaults.baseURL + 'api/File/' + document.file.id"
+        :href="$axios.defaults.baseURL + 'api/File/' + document.documentId"
         download
         :title="$t('search.search-result.title-down')"
       >
@@ -53,10 +56,10 @@ export default {
       documentTypes: 'documentTypes',
     }),
     entityName(){
-      return this.entities.find(x => x.id == this.document.document.entityId).name
+      return this.entities.find(x => x.id == this.document.entityId).name
     },
     documentTypeName() {
-      return this.documentTypes.find(x => x.id == this.document.document.documentTypeId).name
+      return this.documentTypes.find(x => x.id == this.document.documentTypeId).name
     }
   }
 }

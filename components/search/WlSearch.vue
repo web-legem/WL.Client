@@ -22,7 +22,7 @@
             <div>
               <div 
                 v-for="document in results"
-                :key="document.file.id"
+                :key="document.documentId"
               >
                 <wl-search-result
                   :document="document"
@@ -34,28 +34,31 @@
             </div>
             <wl-page-controls class="bottom-pager" />
           </div>
-          <div
+
+          <wl-error-message
             v-if="searching"
-            class="errors"
+            icon="ico-cloud"
           >
             {{ $t('search.co-search.search') }}
-          </div>
+          </wl-error-message>
+
           <wl-error-message 
             v-if="showNoResultsPage && hasSearchError"
             icon="ico-cloud"
           >
             {{ $t('search.co-search.not-found') }}
           </wl-error-message>
+
           <wl-error-message 
             v-if="showNoResultsPage && !hasSearchError"
             icon="ico-cloud"
           >
             {{ $t('search.co-search.network-error') }}
           </wl-error-message>
-      </div>
-    </template>
-  </wl-master-detail-layout>
-</div>
+        </div>
+      </template>
+    </wl-master-detail-layout>
+  </div>
 </template>
 
 <script>

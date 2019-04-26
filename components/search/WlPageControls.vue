@@ -6,6 +6,7 @@
       :title="$t('search.page-controls.title-previ')"
       class="icon"
       data-icon="G"
+      ico="ico-arrow-left"
       @click.native="previous()"
     />
     <label
@@ -33,6 +34,7 @@
       :title="$t('search.page-controls.title-next')"
       class="icon"
       data-icon="H"
+      ico="ico-arrow-right"
       @click.native="next"
     />
   </div>
