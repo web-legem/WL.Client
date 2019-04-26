@@ -2,18 +2,18 @@
   <div class="contenedor_simbolos">
     <div>
       <div>
-        <img src="~/assets/img/acreditacion.png">
+          <img 
+            alt="Acreditación Institucional"
+            src="~/assets/img/acreditacion.png">
       </div>
       <div>
-        <img src="~/assets/img/planeacion.png">
-      </div>
-      <div>
-        <img src="~/assets/img/years-111.png">
+        <img 
+          alt="Planeación y desarrollo Universidad de Nariño"
+          src="~/assets/img/planeacion.png">
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
 }
