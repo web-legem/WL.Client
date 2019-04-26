@@ -2,14 +2,16 @@
   <div class="contenedor_simbolos">
     <div>
       <div>
-          <img 
-            alt="Acreditación Institucional"
-            src="~/assets/img/acreditacion.png">
+        <img 
+          alt="Acreditación Institucional"
+          src="~/assets/img/acreditacion.png"
+        >
       </div>
       <div>
         <img 
           alt="Planeación y desarrollo Universidad de Nariño"
-          src="~/assets/img/planeacion.png">
+          src="~/assets/img/planeacion.png"
+        >
       </div>
     </div>
   </div>
