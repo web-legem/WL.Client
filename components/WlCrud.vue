@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="controles_box_right">        
+    <div class="controles_box_right">         
       <wl-button 
         v-show="!isNew"
         :disable="disableButtons"
@@ -77,7 +77,12 @@
           ref="errormsg" 
           class="generic-box-vertical content-modal"
         >
-          <p v-html="error.message" />    
+          <p 
+            v-for="(mensaje, index) in mensajes" 
+            :key="index"
+          >    
+            {{ mensaje }}
+          </p>
         </div>
         <div class="modal-confirmacion content-modal-buttons">
           <wl-button 
@@ -127,6 +132,15 @@ export default {
       curObject: null,
       showDialog: false,
     };
+  },
+  computed:{
+    mensajes(){
+      if(this.error.message){        
+        return this.error.message.split("<br/>")
+      }else{
+        return this.error.message
+      }
+    },
   },
   created() {
     this.curObject = this.objSelect;

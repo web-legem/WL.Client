@@ -16,22 +16,25 @@ export default function data(data){
     'U_EMAIL':'Email',
     'U_ROLEID':'Rol',
     'ROLE_NAME':'Nombre de Rol',
+    'SUPERAK':'Documento',
     'E':'Entidades',
-    'TE':'Tipo Entidades',
-    'TD':'Tipo Documentos',
+    'ENTTYPE':'Tipo Entidades',
+    'DOCTYPE':'Tipo Documentos',
     'DOC':'Documentos',
     'DS':'Documentos Soportados',
+    'ANO':'Anotaciones',
+    'USR':'Usarios'
   }
 
   let typeDic = {
-    'ValidEmail':'Error: Correo no valido.\nCampo: $campo',
-    'EmptyField':'Error: No se permite contenido vacio.\nCampo: $campo',
-    'NullValue':'Error: No se permite valores nulos o vacios.\nCampo: $campo',
-    'EmptyArray':'Error: Es obligatorio completar alguna selección.\nCampo: $campo',
-    'MaxLength':'Error: Se ha excedido la longitud maxima del campo.\nCampo: $campo',
-    'InvalidId':'Error: No se econtro una petición valida.\nCampo: $campo',
-    'DateMustHavePassed':'Error: La fecha debe ser menor.\nCampo: $campo',
-    'DateMustBeAfter':'Error: La fecha debe ser mayor.\nCampo: $campo',
+    'ValidEmail':'Error: Correo no valido.<br/>Campo: $campo',
+    'EmptyField':'Error: No se permite contenido vacio.<br/>Campo: $campo',
+    'NullValue':'Error: No se permite valores nulos o vacios.<br/>Campo: $campo',
+    'EmptyArray':'Error: Es obligatorio completar alguna selección.<br/>Campo: $campo',
+    'MaxLength':'Error: Se ha excedido la longitud maxima del campo.<br/>Campo: $campo',
+    'InvalidId':'Error: No se econtro una petición valida.<br/>Campo: $campo',
+    'DateMustHavePassed':'Error: La fecha debe ser menor.<br/>Campo: $campo',
+    'DateMustBeAfter':'Error: La fecha debe ser mayor.<br/>Campo: $campo',
     'ORA1':'Error: Ya existe un registro con los mismos datos<br/>Campo: $campo',
     'ORA6512':'Error: Existen "$campo" asociados a este registro.',
   }
@@ -41,6 +44,7 @@ export default function data(data){
     data = data[0];
   }  
 
+  console.log("data: ",data);
   let type = data.errorType;
   let field = data.fieldNames;
   let msg = data.message;
