@@ -69,7 +69,7 @@
               <div>                
                 <wl-button                 
                   :ico="'ico-sign-in'"        
-                  :type="'input'"         
+                  :type="'submit'"     
                 >
                   {{ $t("login.btn-enter") }}
                 </wl-button>

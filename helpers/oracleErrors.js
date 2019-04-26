@@ -15,7 +15,10 @@ export default function data(data){
     'U_PASSWORD':'Contraseña',
     'U_EMAIL':'Email',
     'U_ROLEID':'Rol',
+    'ROLE_NAME':'Nombre de Rol',
     'E':'Entidades',
+    'TE':'Tipo Entidades',
+    'TD':'Tipo Documentos',
     'DOC':'Documentos',
     'DS':'Documentos Soportados',
   }
@@ -30,7 +33,7 @@ export default function data(data){
     'DateMustHavePassed':'Error: La fecha debe ser menor.\nCampo: $campo',
     'DateMustBeAfter':'Error: La fecha debe ser mayor.\nCampo: $campo',
     'ORA1':'Error: Ya existe un registro con los mismos datos<br/>Campo: $campo',
-    'ORA6512':'Error: Existen registros asociados a este registro.\nProvenientes de: $campo',
+    'ORA6512':'Error: Existen "$campo" asociados a este registro.',
   }
 
   if(Array.isArray(data)){

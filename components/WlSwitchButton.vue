@@ -87,8 +87,8 @@ export default {
   padding:0;
   border:0;
 }
-.w-switch div:hover span,
-.w-switch div:hover label
+.w-switch div span:hover,
+.w-switch div label:hover
  { color:var(--wl_primary); }
  
 .w-switch div span{ 
