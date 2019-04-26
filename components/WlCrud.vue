@@ -25,6 +25,7 @@
       <wl-button 
         v-show="isEdit || isNew" 
         :ico="'ico-floppy-o'" 
+        :type="'submit'"
         @click.native="ok($event)"
       >
         {{ $t('components.crud.butt-accept') }}
@@ -51,7 +52,7 @@
         <div class="modal-confirmacion confirm-dialog content-modal-buttons">
           <wl-button 
             class="green"
-            ico="ico-trash" 
+            ico="ico-trash"             
             @click.native="okModal($event)"            
           >
             {{ $t('components.crud.butt-delete') }}

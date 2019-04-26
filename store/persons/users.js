@@ -1,3 +1,5 @@
+import errorHandler from '~/helpers/errorHandler'
+
 export const state = () => ({
   list: [],
   selectedId: null,
@@ -39,7 +41,7 @@ export const mutations = {
   loadingFailure(state, payload) {
     state.loading = false
     state.loaded = false
-    state.error = payload
+    state.error = errorHandler(payload)
   },
   select(state, userId) {
     state.error = null
@@ -59,15 +61,15 @@ export const mutations = {
   },
   creatingError(state, error) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(error)
   },
   updatingError(state, error) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(error)
   },
   deletingError(state, error) {
     state.loading = false
-    state.error = error
+    state.error = errorHandler(error)
   },
   clearError(state) {
     state.error = null
@@ -107,13 +109,13 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/User')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', e))
+      .catch(e => {commit('loadingFailure', e);throw e;})
   },
   getUser({ commit },{userId}) {
     commit('loading')
     return this.$axios.get('/api/User/'+userId)
       .then(response => commit('loadingSuccessSingle', response.data))
-      .catch(e => commit('loadingFailure', e))
+      .catch(e => {commit('loadingFailure', e);throw e;})
       //este metodo se uso para la ventana da cfg que se quito    
   },  
   create({ commit, dispatch }, {newUser, file}) {    
@@ -126,10 +128,7 @@ export const actions = {
       formData,
       { headers: {'Content-Type': 'multipart/form-data' }})
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('creatingError', e.response.data.message)
-        throw e;
-      })
+      .catch(e => {commit('creatingError', e);throw e;})
   },
   save({ commit, dispatch }, {modifiedUser, file, fileWasChange, restorePass}) {    
     let formData = new FormData();
@@ -140,21 +139,13 @@ export const actions = {
     commit('waiting')
     return this.$axios.put('/api/User', formData, {headers: {'Content-Type': 'multipart/form-data'}})
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('updatingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('updatingError', e);throw e;})
   },
   delete({ commit, state, dispatch }) {
     commit('waiting')
     return this.$axios.delete('/api/User/' + state.selectedId)
       .then(_ => dispatch('loadData'))
-      .catch(e => {
-        commit('deletingError', e.response.data.message)
-        throw e;
-      }
-      )
+      .catch(e => {commit('deletingError', e);throw e;})
   },
   select({ commit }, userId) {
     commit('select', userId)
