@@ -58,8 +58,8 @@ export const mutations = {
     state.loogedIn = false
     state.credential = null
     state.user = null
-    state.error = null    
-    localStorage.removeItem('credential')
+    state.error = null
+    this.$cookies.remove('credential')
     this.$axios.setToken(false)
   },
   initCredential(state){
