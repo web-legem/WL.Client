@@ -76,7 +76,8 @@ module.exports = {
         , xl: Infinity
       },
       defaultBreakpoint: 'lg',
-    }]
+    }],
+    ['cookie-universal-nuxt', { alias: 'cookie' }]
   ],
   
   axios: {
