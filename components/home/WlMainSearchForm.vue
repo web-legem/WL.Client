@@ -11,7 +11,12 @@
         action=""
         @submit.prevent
       >
-        <label for="mini_search" class="hide-text">Search</label>
+        <label 
+          for="mini_search" 
+          class="hide-text"
+        >
+          Search
+        </label>
         <input
           id="mini_search" 
           v-model="wordsToSearch"
@@ -22,7 +27,9 @@
           id="search-button"
           class="ico2-search"
           @click="search()"
-        ><span class="hide-text">Search</span></button>
+        >
+          <span class="hide-text">Search</span>
+        </button>
       </form>
     </div>
   </div>
