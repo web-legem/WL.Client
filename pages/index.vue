@@ -14,7 +14,6 @@
 import WlLandingPage from '~/components/WlLandingPage.vue'
 import WlMainSearchForm from '~/components/home/WlMainSearchForm.vue'
 import WlFooter from '~/components/home/WlFooter.vue'
-import { imagesContext } from '~/helpers/imagesContext'
 import {mapActions} from 'vuex'
 
 export default {
@@ -26,8 +25,8 @@ export default {
   , computed: {
     vipriImg() {
       if(!this.$store.state.highContrast)
-        return imagesContext('./vipri-light.jpg')
-      return imagesContext('./vipri-dark.jpg')
+        return '/img/vipri-light.jpg'
+      return '/img/vipri-dark.jpg'
     }
   },
   beforeMount(){

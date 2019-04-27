@@ -84,7 +84,6 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { imagesContext } from '~/helpers/imagesContext'
 import WlLandingPage from '~/components/WlLandingPage.vue'
 import WlInput from "~/components/WlInput.vue";
 import WlButton from "~/components/WlButton.vue";
@@ -124,8 +123,8 @@ export default {
     }),
     vipriImg() {
       if(!this.$store.state.highContrast)
-        return imagesContext('./vipri-light.jpg')
-      return imagesContext('./vipri-dark.jpg')
+        return '/img/vipri-light.jpg'
+      return '/img/vipri-dark.jpg'
     },    
   },
   watch: {

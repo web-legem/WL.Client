@@ -2,16 +2,10 @@
   <div class="contenedor_simbolos">
     <div>
       <div>
-        <img 
-          alt="Acreditación Institucional"
-          src="~/assets/img/acreditacion.png"
-        >
+        <div class="acreditacion" />
       </div>
       <div>
-        <img 
-          alt="Planeación y desarrollo Universidad de Nariño"
-          src="~/assets/img/planeacion.png"
-        >
+        <div class="planeacion" />
       </div>
     </div>
   </div>
@@ -47,5 +41,23 @@ export default {
 
 @media only screen and (min-width : 320px) {/* > 320*/
   .contenedor_simbolos div div img{height:70px;}
+}
+
+.planeacion {
+  background-image: url('/img/planeacion.png');
+  height: 70px;
+  width: 150px;
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+
+.acreditacion {
+  background-image: url('/img/acreditacion.png');
+  height: 70px;
+  width: 45px;
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
 }
 </style>
