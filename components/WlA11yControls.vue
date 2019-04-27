@@ -5,46 +5,62 @@
     @mousedown.stop="reportMouseDown()"
     @focusout="hideA11yPanelOnBlur(true)"
   >
-    <label><span class="ico2-contrast" /> {{ $t('components.controls-la.label-contrast') }}</label>
-    <div>
-      <button 
-        id="btn-light"
-        :class="[!$store.state.highContrast ? 'selected' : '' ]"
-        class="btn-a11y ico-sun-o" 
-        @click.stop="changeTheme('light')"
-        @focus="showA11yPanel"
-      />
-      <button
-        :class="[$store.state.highContrast ? 'selected' : '']"
-        class="btn-a11y ico-moon-o"
-        @click.stop="changeTheme('dark')"
-        @focus="showA11yPanel"
-      />
+    <div role="group" aria-labelledby="contrast-label" class="vertical">
+      <div id="contrast-label" class="label">
+        <span class="ico2-contrast" /> {{ $t('components.controls-la.label-contrast') }}
+      </div>
+      <div>
+        <button 
+          id="btn-light"
+          :class="[!$store.state.highContrast ? 'selected' : '' ]"
+          class="btn-a11y ico-sun-o" 
+          @click.stop="changeTheme('light')"
+          @focus="showA11yPanel"
+        >
+          <span class="hide-text">{{ $t('normalMode') }}</span>
+        </button>
+        <button
+          :class="[$store.state.highContrast ? 'selected' : '']"
+          class="btn-a11y ico-moon-o"
+          @click.stop="changeTheme('dark')"
+          @focus="showA11yPanel"
+        >
+          <span class="hide-text">{{ $t('highContrastMode') }}</span>
+        </button>
+      </div>
     </div>
-    <label><span class="ico2-earth" /> {{ $t('components.controls-la.label-language') }}</label>
-    <div>
-      <nuxt-link
-        v-for="locale in $i18n.locales"
-        :key="locale.code"
-        :to="switchLocalePath(locale.code)"
-        class="btn-a11y lang"
-        @focus.native="showA11yPanel"
-        @click.native.stop
-      >
-        {{ locale.name }}
-      </nuxt-link>
+
+    <div role="group" aria-labelledby="lang-label" class="vertical">
+      <div id="lang-label" class="label"><span class="ico2-earth" /> {{ $t('components.controls-la.label-language') }}</div>
+      <div class="link-container">
+        <nuxt-link
+          v-for="locale in $i18n.locales"
+          :key="locale.code"
+          :to="switchLocalePath(locale.code)"
+          class="btn-a11y lang"
+          @focus.native="showA11yPanel"
+          @click.native.stop
+        >
+          {{ locale.name }}
+        </nuxt-link>
+      </div>
     </div>
-    <label><span class="ico2-font-size" /> {{ $t('components.controls-la.label-font-size') }}</label>
-    <div>
-      <button
-        v-for="(size, index) in $store.state.fontSizes"
-        :key="index"
-        :style="{fontSize: size / 100 / 1.2 + 'em'}"
-        :class="[ size == $store.state.fontSize ? 'selected': '' ]"
-        class="btn-a11y ico-font"
-        @focus.stop="showA11yPanel"
-        @click.stop="setFontSize(size)"
-      />
+
+    <div role="group" aria-labelledby="font-label" class="vertical">
+      <div id="font-label" class="label"><span class="ico2-font-size" /> {{ $t('components.controls-la.label-font-size') }}</div>
+      <div class="ico-fonts">
+        <button
+          v-for="(sizeAndLabel, index) in $store.state.fontSizes"
+          :key="index"
+          :style="{fontSize: sizeAndLabel.size / 100 / 1.2 + 'em'}"
+          :class="[ sizeAndLabel.size == $store.state.fontSize.size ? 'selected': '' ]"
+          class="btn-a11y ico-font"
+          @focus.stop="showA11yPanel"
+          @click.stop="setFontSize(sizeAndLabel.size)"
+        >
+          <span class="hide-text">{{ $t(sizeAndLabel.label) }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -141,23 +157,20 @@ export default {
   display: flex;
 }
 
-.a11y-ctrls > label {
+.label {
   margin: .5em 0;
 }
 
-.a11y-ctrls > label:first-of-type {
+.label:first-of-type {
   margin:  0 0 .5em 0;
 }
 
 .btn-a11y.lang {
   width: auto;
-  padding: 0 .5em;
+  padding: 10px .5em;
   height: 35px;
   font-size: .7em;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .btn-a11y.lang.nuxt-link-exact-active {
@@ -170,7 +183,38 @@ export default {
   color: var(--wl_btn_content);
 }
 
+.ico-fonts {
+  display: flex;
+  flex-direction: row;
+}
+
+.ico-font {
+  align-self: flex-end;
+}
+
 .ico-font:last-of-type {
   margin: 0;
 }
+
+.hide-text {
+  height: 1px;
+  left: -900em;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+
 </style>

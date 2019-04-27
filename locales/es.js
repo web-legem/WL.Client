@@ -2,6 +2,16 @@ export default {
   'home': 'Inicio',
   'changeTheme': 'Cambiar Tema',
 
+  'normalMode': 'Modo normal',
+  'highContrastMode': 'Modo alto contraste',
+
+  'smallFont': 'Tamaño de la fuente pequeño',
+  'normalFont': 'Tamaño de la fuente mediano',
+  'bigFont': 'Tamaño de la fuente grande',
+
+  'accessibilityOptions': 'Opciones de accesibilidad',
+  'logout': 'Cerrar sesión',
+
   'admin': {
     'module-name': 'Administración',
     'doc-types': { 'module-name': 'Tipos de Documento' },

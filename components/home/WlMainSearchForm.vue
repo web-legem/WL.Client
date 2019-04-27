@@ -1,9 +1,9 @@
 <template>
   <div class="contenido_nombre_buscador">
     <div class="site-name">
-      <p>
+      <h1 class="site-name">
         Legem 
-      </p>
+      </h1>
     </div>
     <div class="contenedor_mini_search">
       <form
@@ -11,15 +11,18 @@
         action=""
         @submit.prevent
       >
+        <label for="mini_search" class="hide-text">Search</label>
         <input
           id="mini_search" 
           v-model="wordsToSearch"
           type="text"
+          aria-labelledby="search-button"
         >
         <button
+          id="search-button"
           class="ico2-search"
           @click="search()"
-        />
+        ><span class="hide-text">Search</span></button>
       </form>
     </div>
   </div>
@@ -131,7 +134,7 @@ export default {
   } 
 
   .site-name {
-    font-size:5em;
+    font-size: 15px;
   }
 }
 
@@ -141,7 +144,7 @@ export default {
   } 
 
   .site-name {
-    font-size:5em;
+    font-size: 5rem;
   }
 }
 
@@ -155,5 +158,14 @@ export default {
   .contenedor_mini_search{
     width:50%;
   }
+}
+
+.hide-text {
+  height: 1px;
+  left: -900em;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
 }
 </style>

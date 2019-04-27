@@ -2,6 +2,16 @@ export default {
   'home': 'Home',
   'changeTheme': 'Change Theme',
 
+  'normalMode': 'Normal mode',
+  'highContrastMode': 'High contrast mode',
+
+  'smallFont': 'Small font size',
+  'normalFont': 'Medium font size',
+  'bigFont': 'Big font size',
+
+  'accessibilityOptions': 'Accessibility options',
+  'logout': 'Logout',
+
   'admin': {
     'module-name': 'Administration',
     'doc-types': { 'module-name': 'Document Types' },

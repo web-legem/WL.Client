@@ -6,9 +6,9 @@
     >
       <div class="basic-form">
         <div class="basic-form-box">
-          <div class="box-title">
+          <h1 class="box-title">
             {{ $t("login.title-login") }}            
-          </div>
+          </h1>
 
           <form 
             class="form-basic-container" 

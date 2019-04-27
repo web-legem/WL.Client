@@ -3,8 +3,12 @@
 export const state = () => ({
   highContrast : false
   , showA11yPanel: false
-  , fontSize: 100
-  , fontSizes: [ 100, 125, 150 ]
+  , fontSize: { size: 100, label: 'smallFont'}
+  , fontSizes: [ 
+    { size: 100, label: 'smallFont'},
+    { size: 125, label: 'normalFont'}, 
+    { size: 150, label: 'bigFont'} 
+  ]
   , mouseDownA11yPanel: false
   , showBorder: false
 })
@@ -20,7 +24,7 @@ export const mutations = {
     state.showA11yPanel = false
   }
   , changeFontSize(state, fontSize) {
-    state.fontSize = fontSize
+    state.fontSize = state.fontSizes.find(x => x.size == fontSize);
   }
   , setMouseDownA11yPanel(state, isDown) {
     state.mouseDownA11yPanel = isDown

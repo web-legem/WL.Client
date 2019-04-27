@@ -14,14 +14,12 @@
         <hr>
         <a
           class="ico-facebook-square ico_f"
-          title="Facebook"
           href="https://www.facebook.com/udenar"
-        />
+        ><span class="hide-text">Facebook</span></a>
         <a
           class="ico-twitter-square ico_f"
-          title="Twitter"
           href="https://twitter.com/Udenar"
-        />
+        ><span class="hide-text">Twitter</span></a>
         <br>
         <span class="ico-university f_link">
           <a
@@ -141,5 +139,14 @@ export default {
 
 @media (max-width: 300px) { 
   .a_mini_footer>div{min-width:10px}
+}
+
+.hide-text {
+  height: 1px;
+  left: -900em;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;  
 }
 </style>

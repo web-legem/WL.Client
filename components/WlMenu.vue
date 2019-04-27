@@ -142,7 +142,7 @@
                       :class="'ico-sign-out'"
                       class="ico"
                     />
-                    Cerrar sesion
+                    {{ $t("logout") }}
                   </div>
                 </nuxt-link>
               </li>
@@ -159,6 +159,7 @@
       @blur="hideA11yPanelOnBlur(true)"
     >
       <span class="ico ico2-accessibility" />
+      <span class="hide-text">{{ $t('accessibilityOptions') }}</span>
     </button> 
     <transition name="slide-fade-vertical">
       <wl-a11y-controls
@@ -195,26 +196,37 @@ export default {
       credential: "credential",      
     }), 
     menuItems(){
-      return [
+      let modules = [
         {
           label:this.$t('components.menu.label-serch'),
           icon: 'ico-search',
           link: 'search',
           show: 'true',
         },
-        {
-          label: this.$t('components.menu.label-home'),
-          icon: 'ico-home',
-          link: 'index',
-          show: 'true',
-        },
-        {
-          label: this.$t('components.menu.label-login'),
-          icon: 'ico-sign-in',
-          link: 'login',
-          show: this.loogedIn != undefined && this.loogedIn == false,
-        }
       ]
+      let home = {
+        label: this.$t('components.menu.label-home'),
+        icon: 'ico-home',
+        link: 'index',
+        show: 'true',
+      }
+
+      let login = {
+        label: this.$t('components.menu.label-login'),
+        icon: 'ico-sign-in',
+        link: 'login',
+        show: this.loogedIn != undefined && this.loogedIn == false,
+      }
+
+      if(this.$route.path != this.localePath('home')){
+        modules.push(home)
+      }
+
+      if(this.$route.path != this.localePath('login')){
+        modules.push(login)
+      }
+
+      return modules
     },    
     modules(){
       return [
@@ -533,5 +545,14 @@ button:hover 	.ico2-accessibility {
 
 .slide-border-leave-active {
   animation: 1s subiendo;
+}
+
+.hide-text {
+  height: 1px;
+  left: -900em;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
 }
 </style>
