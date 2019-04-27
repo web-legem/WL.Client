@@ -9,6 +9,6 @@ function getToken(ctx) {
     if (credential && credential.token) {
         return credential.token;
     } else {
-        return "none";
+        return "";
     }
 }
