@@ -17,9 +17,11 @@ export default function data(data){
     'U_ROLEID':'Rol',
     'ROLE_NAME':'Nombre de Rol',
     'SUPERAK':'Documento',
-    'E':'Entidades',
-    'ENTTYPE':'Tipo Entidades',
-    'DOCTYPE':'Tipo Documentos',
+
+    'ENT':'Entidades',
+    'ENTTYP':'Tipo Entidades',
+    'DOCTYP':'Tipo Documentos',
+    'ANOTYP':'Tipo Anotacion',
     'DOC':'Documentos',
     'DS':'Documentos Soportados',
     'ANO':'Anotaciones',
@@ -35,8 +37,10 @@ export default function data(data){
     'InvalidId':'Error: No se econtro una petición valida.<br/>Campo: $campo',
     'DateMustHavePassed':'Error: La fecha debe ser menor.<br/>Campo: $campo',
     'DateMustBeAfter':'Error: La fecha debe ser mayor.<br/>Campo: $campo',
-    'ORA1':'Error: Ya existe un registro con los mismos datos<br/>Campo: $campo',
-    'ORA6512':'Error: Existen "$campo" asociados a este registro.',
+    
+    'NotFound':'No se encontro el registro',
+    'uniqueConstraintViolated':'Error: Ya existe un registro con los mismos datos<br/>Campo: $campo',
+    'IntegrityConstraintViolated':'Error: Existen "$campo" asociados a este registro.',
   }
 
   if(Array.isArray(data)){

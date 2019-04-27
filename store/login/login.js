@@ -30,7 +30,8 @@ export const mutations = {
     state.error = null
 
     if (state.credential.token) {
-      localStorage.setItem('credential', JSON.stringify(state.credential));      
+      this.$cookies.set('credential', state.credential)   
+      // localStorage.setItem('credential', JSON.stringify(state.credential));   
       // let credential = JSON.parse(localStorage.getItem('credential'));
       // this.$axios.setToken(credential.token)
     }
@@ -62,9 +63,8 @@ export const mutations = {
     this.$axios.setToken(false)
   },
   initCredential(state){
-    if(localStorage.getItem('credential')){
-      state.credential = JSON.parse(localStorage.getItem('credential'))
-      // this.$axios.setToken(state.credential.token)
+    if(this.$cookies.get('credential')){
+      state.credential = this.$cookies.get('credential')
       state.loogedIn = true
     }
   },

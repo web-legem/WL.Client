@@ -2,7 +2,7 @@
   <div>
     <div class="controles_box_right">         
       <wl-button 
-        v-show="!isNew"
+        v-show="!isNew && !wasNotFound"
         :disable="disableButtons"
         :ico="'ico-pencil'"
         @click.native="startEdit($event)"
@@ -10,7 +10,7 @@
         {{ $t('components.crud.butt-edit') }}
       </wl-button>
       <wl-button 
-        v-show="!isNew"
+        v-show="!isNew && !wasNotFound"
         :disable="disableButtons || isEdit"
         :ico="'ico-trash'"                 
         @click.native="remove()"
@@ -140,6 +140,9 @@ export default {
       }else{
         return this.error.message
       }
+    },
+    wasNotFound(){      
+        return this.error == 'notFound';
     },
   },
   created() {
