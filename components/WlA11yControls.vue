@@ -5,8 +5,15 @@
     @mousedown.stop="reportMouseDown()"
     @focusout="hideA11yPanelOnBlur(true)"
   >
-    <div role="group" aria-labelledby="contrast-label" class="vertical">
-      <div id="contrast-label" class="label">
+    <div 
+      role="group" 
+      aria-labelledby="contrast-label" 
+      class="vertical"
+    >
+      <div 
+        id="contrast-label" 
+        class="label"
+      >
         <span class="ico2-contrast" /> {{ $t('components.controls-la.label-contrast') }}
       </div>
       <div>
@@ -30,8 +37,18 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="lang-label" class="vertical">
-      <div id="lang-label" class="label"><span class="ico2-earth" /> {{ $t('components.controls-la.label-language') }}</div>
+    <div 
+      role="group" 
+      aria-labelledby="lang-label" 
+      class="vertical"
+    >
+      <div 
+        id="lang-label" 
+        class="label"
+      >
+        <span class="ico2-earth" /> 
+        {{ $t('components.controls-la.label-language') }}
+      </div>
       <div class="link-container">
         <nuxt-link
           v-for="locale in $i18n.locales"
@@ -46,8 +63,18 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="font-label" class="vertical">
-      <div id="font-label" class="label"><span class="ico2-font-size" /> {{ $t('components.controls-la.label-font-size') }}</div>
+    <div 
+      role="group" 
+      aria-labelledby="font-label" 
+      class="vertical"
+    >
+      <div 
+        id="font-label" 
+        class="label"
+      >
+        <span class="ico2-font-size" /> 
+        {{ $t('components.controls-la.label-font-size') }}
+      </div>
       <div class="ico-fonts">
         <button
           v-for="(sizeAndLabel, index) in $store.state.fontSizes"

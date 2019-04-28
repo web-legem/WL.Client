@@ -1,15 +1,14 @@
-
-export default function ({ $axios }) {     
-  $axios.onRequest((config) => {
-    config.headers.common['Authorization'] = getToken()
-  })  
+export default function (ctx) {
+  ctx.$axios.onRequest((config) => {
+    config.headers.common['Authorization'] = getToken(ctx)
+  })
 }
 
-function getToken(){
-  let credential = JSON.parse(localStorage.getItem('credential'));
+function getToken(ctx) {
+  let credential = ctx.app.$cookies.get('credential');
   if (credential && credential.token) {
-    return credential.token ;
+    return credential.token;
   } else {
-    return "none";
+    return "";
   }
 }

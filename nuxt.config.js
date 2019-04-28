@@ -77,7 +77,7 @@ module.exports = {
       },
       defaultBreakpoint: 'lg',
     }],
-    ['cookie-universal-nuxt', { alias: 'cookie' }]
+    ['cookie-universal-nuxt', { alias: 'cookies' }],
   ],
   
   axios: {
