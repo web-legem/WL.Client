@@ -44,24 +44,17 @@ export default function data(data){
   }
 
   if(Array.isArray(data)){
-    console.log("xxx1");
     data = data[0];
   }  
 
-  console.log("data: ",data);
   let type = data.errorType;
   let field = data.fieldNames;
   let msg = data.message;
-  console.log("xxxx2");
   if(type && field){
-    console.log("xxxx3");
     type = typeDic[type];
-    console.log("xxxx4");
     if(type){
-      console.log("xxxx5");
       field = fieldDic[field];
       if(field){
-        console.log("xxxx6");
         return type.replace("$campo",field);
       }
       return "Error en la base de datos, contacte al administrador"

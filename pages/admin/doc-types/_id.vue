@@ -72,7 +72,8 @@
     beforeDestroy() {this.clearSelection()},
     methods: {
       cancel() {
-        this.$router.push( this.localePath({ name: 'admin-doc-types'}))
+        this.$router.push( this.localePath({ name: 'admin-doc-types'}));
+        this.clearError();
       },
       drop () {
         this.delete().then( this.cancel )

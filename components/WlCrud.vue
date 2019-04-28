@@ -19,7 +19,7 @@
       </wl-button>
     </div>
 
-    <slot name="wl-form" />
+    <slot name="wl-form" />    
 
     <div class="controles_box_right down">
       <wl-button 
@@ -88,7 +88,7 @@
           <wl-button 
             class="green"
             ico="ico-check"
-            @click.native="clearError($event)"
+            @click.native="getActionModal($event)"
           >
             {{ $t('components.crud.butt-accept') }}
           </wl-button>
@@ -141,8 +141,11 @@ export default {
         return this.error.message
       }
     },
-    wasNotFound(){      
-        return this.error == 'notFound';
+    wasNotFound(){
+      if(this.error && this.error.name == "WLError"){
+        return true;
+      }
+      return false
     },
   },
   created() {
@@ -180,6 +183,13 @@ export default {
     clearErrorsa(){
       this.$emit('wlclearerror');
     },
+    getActionModal($event){
+      if(this.wasNotFound){
+        this.$emit('wlcancel',$event.target.value);
+      }else{
+        this.clearError($event)
+      }
+    }
   }
 };
 </script>
