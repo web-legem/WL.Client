@@ -11,7 +11,7 @@ export default function data(data){
     'U_FIRSTNAME':'Nombre',
     'U_LASTNAME':'Apellido',
     'U_DOCUMENT':'Documento',
-    'U_NICKNAME':'Usuario',
+    'U_NICKNAME':'Nombre de Usuario',
     'U_PASSWORD':'Contraseña',
     'U_EMAIL':'Email',
     'U_ROLEID':'Rol',
@@ -25,7 +25,8 @@ export default function data(data){
     'DOC':'Documentos',
     'DS':'Documentos Soportados',
     'ANO':'Anotaciones',
-    'USR':'Usarios'
+    'USR':'Usarios',
+    '':'empty',
   }
 
   let typeDic = {
@@ -41,12 +42,14 @@ export default function data(data){
     'NotFound':'No se encontro el registro',
     'uniqueConstraintViolated':'Error: Ya existe un registro con los mismos datos<br/>Campo: $campo',
     'IntegrityConstraintViolated':'Error: Existen "$campo" asociados a este registro.',
+
+    'NotAllowedEdit':'No esta permitido modificar este registro',
   }
 
   if(Array.isArray(data)){
     data = data[0];
   }  
-
+  
   let type = data.errorType;
   let field = data.fieldNames;
   let msg = data.message;
