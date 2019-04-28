@@ -42,6 +42,9 @@ export const mutations = {
       .filter(x => x.id == Number.parseInt(annotationTypeId))
       .map(x => JSON.parse(JSON.stringify(x)))
       .pop()
+    if(state.selected == null ||  state.selected == undefined){
+      state.error = errorHandler(new Error("WL_NotFound"));
+    }
   },
   clearSelection(state) {
     state.selectedId = null

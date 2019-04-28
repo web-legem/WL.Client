@@ -139,6 +139,7 @@ export default {
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "admin-entities" }));
+      this.clearError();
     },
     drop() {
       this.delete().then(this.cancel);

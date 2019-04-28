@@ -4,6 +4,7 @@
       <div class="filter-add">
         <wl-input-filter
           v-model="filter"
+          :name="'filtro'"
           class="filter"
         />
         <div>

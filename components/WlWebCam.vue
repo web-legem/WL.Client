@@ -193,13 +193,12 @@ export default {
           alert("The following error occured: " + err);
         })                    
       } else {
-          alert( $t('components.webcam.alert-no-sup-webcam'));
-          console.log("getUserMedia not supported");
+          alert( this.$t('components.webcam.alert-no-sup-webcam'));
       }    
     },
     errorOpenCamera(error){
         if ((error.name == 'NotAllowedError') || (error.name == 'PermissionDismissedError')) {        
-          alert( $t('components.webcam.alert-act-web-fun'))
+          alert( this.$t('components.webcam.alert-act-web-fun'))
           this.closeCamera();
       }
     },
@@ -289,11 +288,10 @@ export default {
           imgAux.src = canvas.toDataURL("image/jpeg");
           this.isStreaming = false;
         } else {
-          alert( $t('components.webcam.alert-act-webcam'));
+          alert( this.$t('components.webcam.alert-act-webcam'));
         }
       } catch (error){                      
-        alert( $t('components.webcam.alert-ex-pro-webcam'));
-        console.log(error);
+        alert( this.$t('components.webcam.alert-ex-pro-webcam'));
       }
     },
     savePhoto() {
@@ -352,8 +350,7 @@ export default {
         this.foto = true;
         this.showCamera = false;
       } catch (error){
-        alert( $t('components.webcam.alert-ex-pro-webcam'));
-        console.log(error);
+        alert( this.$t('components.webcam.alert-ex-pro-webcam'));
         this.showCamera = false;
       }
     },

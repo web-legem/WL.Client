@@ -163,9 +163,7 @@ export default {
   asyncData(context) {
     return context.app.$axios
       .get("/api/Role")
-      .then(response => {
-        console.log("r",response.data);
-        return {roles:response.data}})
+      .then(response => {return {roles:response.data}})
       .catch(e => console.log(e));
   },
   created() {

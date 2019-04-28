@@ -121,6 +121,7 @@ export default {
   methods: {
     cancel() {
       this.$router.push(this.localePath({ name: "persons-permissions" }));
+      this.clearError();
     },
     drop() {
       this.delete().then(this.cancel);

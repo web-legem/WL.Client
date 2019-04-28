@@ -253,6 +253,7 @@ export default {
     },
     cancel() {
       this.$router.push(this.localePath({ name: "persons-users" }));
+      this.clearError();
     },
     drop() {
       this.delete().then(this.cancel);

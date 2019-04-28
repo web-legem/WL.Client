@@ -9,8 +9,14 @@
         @click.native="reload"
       />
 
+      <label 
+        :for="name"         
+        class="hide-text"
+      >
+        Filter
+      </label>
       <input 
-        :id="id"                          
+        :id="id === '' ? name: id"
         v-model="internalValue" 
         :name="name"
         :disabled="disable"
@@ -120,5 +126,14 @@ export default {
 
 .ico_input_text > span:before {
   align-self: center;
+}
+
+.hide-text {
+  height: 1px;
+  left: -900em;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
 }
 </style>
