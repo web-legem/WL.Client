@@ -39,7 +39,7 @@
 <script>
 export default {
   props: {
-    id: { type: String, default: "" },
+    id: { type: String, default: "", required: true },
     name: { type: String, default: "" },
     type: { type: String, default: "" },    
     value: { type: Boolean, default: false },
