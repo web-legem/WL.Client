@@ -5,53 +5,47 @@
       :disable-buttons="true"
     >
       <template slot="wl-form">
-        <form 
-          name="form-entity-types"
-          data-vv-scope="form1"
-          @submit.prevent
-        >
-          <wl-input
-            :name="'form1.name'"
-            :title="$t('admin.entities-type.title-name-enty-type')"
-            :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
-            :max="0"
-            :disable="true"
-          /> 
-          <label class="texto_labels sm-space-top">
-            {{ $t('admin.entities-type.label-documents-suport') }}
-          </label>
-          <div class="hoja-container disable">
-            <div
-              v-for="docType in docTypes"
-              :key="docType.id"
-            >
-              <div class="block disable">
-                <input
-                  :id="docType.id"
-                  disabled="!isEdit"
-                  :name="docType.id"
-                  :value="docType.id"
-                  type="checkbox"
-                >
-                <label
-                  :for="docType.id"
-                  class="note checked"
-                >
-                  <div>
-                    <div class="ico-container">
-                      <span class="ico-file-text-o" />                      
-                    </div>
-                    <div class="name-container">
-                      <p class="note-name">
-                        {{ docType.name }}
-                      </p>
-                    </div>
+        <wl-input
+          :name="'form1.name'"
+          :title="$t('admin.entities-type.title-name-enty-type')"
+          :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
+          :max="0"
+          :disable="true"
+        /> 
+        <label class="texto_labels sm-space-top">
+          {{ $t('admin.entities-type.label-documents-suport') }}
+        </label>
+        <div class="hoja-container disable">
+          <div
+            v-for="docType in docTypes"
+            :key="docType.id"
+          >
+            <div class="block disable">
+              <input
+                :id="docType.id"
+                disabled="!isEdit"
+                :name="docType.id"
+                :value="docType.id"
+                type="checkbox"
+              >
+              <label
+                :for="docType.id"
+                class="note checked"
+              >
+                <div>
+                  <div class="ico-container">
+                    <span class="ico-file-text-o" />                      
                   </div>
-                </label>
-              </div>
+                  <div class="name-container">
+                    <p class="note-name">
+                      {{ docType.name }}
+                    </p>
+                  </div>
+                </div>
+              </label>
             </div>
           </div>
-        </form>
+        </div>
       </template>
     </wl-crud>
   </div>

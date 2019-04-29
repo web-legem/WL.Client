@@ -1,44 +1,51 @@
 <template>
   <div>
-    <div class="controles_box_right">         
-      <wl-button 
-        v-show="!isNew && !wasNotFound"
-        :disable="disableButtons"
-        :ico="'ico-pencil'"
-        @click.native="startEdit($event)"
-      >
-        {{ $t('components.crud.butt-edit') }}
-      </wl-button>
-      <wl-button 
-        v-show="!isNew && !wasNotFound"
-        :disable="disableButtons || isEdit"
-        :ico="'ico-trash'"                 
-        @click.native="remove()"
-      >
-        {{ $t('components.crud.butt-delete') }}
-      </wl-button>
-    </div>
+    <form 
+      name="form-general"
+      data-vv-scope="form1"
+      @submit.prevent
+    >
+      <div class="controles_box_right">         
+        <wl-button 
+          v-show="!isNew && !wasNotFound"
+          :disable="disableButtons"
+          :ico="'ico-pencil'"
+          @click.native="startEdit($event)"
+        >
+          {{ $t('components.crud.butt-edit') }}
+        </wl-button>
+        <wl-button 
+          v-show="!isNew && !wasNotFound"
+          :disable="disableButtons || isEdit"
+          :ico="'ico-trash'"                 
+          @click.native="remove()"
+        >
+          {{ $t('components.crud.butt-delete') }}
+        </wl-button>
+      </div>
 
-    <slot name="wl-form" />    
+      <slot name="wl-form" />    
 
-    <div class="controles_box_right down">
-      <wl-button 
-        v-show="isEdit || isNew" 
-        :ico="'ico-floppy-o'" 
-        :type="'submit'"
-        @click.native="ok($event)"
-      >
-        {{ $t('components.crud.butt-accept') }}
-      </wl-button>
-      
-      <wl-button 
-        v-show="isEdit || isNew"
-        :ico="'ico-times'"  
-        @click.native="cancel($event)"
-      >
-        {{ $t('components.crud.butt-cancel') }}
-      </wl-button>
-    </div>
+      <div class="controles_box_right down">
+        <wl-button 
+          v-show="isEdit || isNew" 
+          :ico="'ico-floppy-o'" 
+          :type="'submit'"
+          @click.native="ok($event)"
+        >
+          {{ $t('components.crud.butt-accept') }}
+        </wl-button>
+        
+        <wl-button 
+          v-show="isEdit || isNew"
+          :ico="'ico-times'"  
+          @click.native="cancel($event)"
+        >
+          {{ $t('components.crud.butt-cancel') }}
+        </wl-button>
+      </div>
+    </form>
+
     <!-- Modal confirmacion -->
     <wl-modal
       v-if="showDialog"

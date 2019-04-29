@@ -8,47 +8,41 @@
       @wlclearerror="clearError"
     >
       <template slot="wl-form">
-        <form 
-          name="form-permission"
-          data-vv-scope="form1"
-          @submit.prevent
-        >
-          <wl-input
-            v-model="name"
-            :mode="'titleCase'"
-            :name="'form1.name'"
-            :title="$t('persons.permission.title-name')"
-            :max="100"
-            :placeholder="$t('persons.permission.place-enter-name')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
+        <wl-input
+          v-model="name"
+          :mode="'titleCase'"
+          :name="'form1.name'"
+          :title="$t('persons.permission.title-name')"
+          :max="100"
+          :placeholder="$t('persons.permission.place-enter-name')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
 
-          <wl-switch-button 
-            :id="'chk1'"  
-            v-model="configSystem"  
-            :name="'form1.configSystem'"       
-            :type="'checkbox'" 
-            :title=" $t('persons.permission.title-config-system')"
-            :label=" $t('persons.permission.label-allow')"
-          />
-          <wl-switch-button 
-            :id="'chk2'"     
-            v-model="createDocuments"       
-            :name="'form1.createDocuments'"       
-            :type="'checkbox'" 
-            :title=" $t('persons.permission.title-create-doc')"
-            :label=" $t('persons.permission.label-allow')"
-          />
-          <wl-switch-button 
-            :id="'chk3'"
-            v-model="deleteDocuments"       
-            :name="'form1.deleteDocuments'"       
-            :type="'checkbox'" 
-            :title=" $t('persons.permission.title-delete-doc')"
-            :label=" $t('persons.permission.label-allow')"
-          />
-        </form>
+        <wl-switch-button 
+          :id="'chk1'"  
+          v-model="configSystem"  
+          :name="'form1.configSystem'"       
+          :type="'checkbox'" 
+          :title=" $t('persons.permission.title-config-system')"
+          :label=" $t('persons.permission.label-allow')"
+        />
+        <wl-switch-button 
+          :id="'chk2'"     
+          v-model="createDocuments"       
+          :name="'form1.createDocuments'"       
+          :type="'checkbox'" 
+          :title=" $t('persons.permission.title-create-doc')"
+          :label=" $t('persons.permission.label-allow')"
+        />
+        <wl-switch-button 
+          :id="'chk3'"
+          v-model="deleteDocuments"       
+          :name="'form1.deleteDocuments'"       
+          :type="'checkbox'" 
+          :title=" $t('persons.permission.title-delete-doc')"
+          :label=" $t('persons.permission.label-allow')"
+        />
       </template>
     </wl-crud>
   </div>

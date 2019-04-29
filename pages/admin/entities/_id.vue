@@ -9,53 +9,47 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">
-        <form 
-          name="form-entities"
-          data-vv-scope="form1"
-          @submit.prevent
-        >   
-          <wl-input
-            v-if="selected"
-            v-model="name"
-            :name="'form1.name'"
-            :mode="'titleCase'"
-            :disable="!isEdit"
-            :title="$t('admin.entitie-tab.title-name-entity')"
-            :max="100"
-            :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-          <wl-input
-            v-if="selected"
-            v-model="email"
-            :type="'email'"
-            :name="'form1.email'"
-            :mode="'noSpace'"
-            class="sm-space-top"
-            :disable="!isEdit"
-            :title="$t('admin.entitie-tab.title-email')"
-            :max="100"
-            :placeholder="$t('admin.entitie-tab.place-enter-email')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-          <wl-select
-            v-if="selected"
-            :id="'select'"
-            v-model="entityTypeId"
-            :name="'form1.select'"
-            class="sm-space-top"
-            :disable="!isEdit"
-            :title="$t('admin.entitie-tab.title-select-entity-type')"            
-            :list="entityTypes"
-            :value-prop-name="'id'"
-            :label-prop-name="'name'"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-        </form>
+      <template slot="wl-form">        
+        <wl-input
+          v-if="selected"
+          v-model="name"
+          :name="'form1.name'"
+          :mode="'titleCase'"
+          :disable="!isEdit"
+          :title="$t('admin.entitie-tab.title-name-entity')"
+          :max="100"
+          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
+        <wl-input
+          v-if="selected"
+          v-model="email"
+          :type="'email'"
+          :name="'form1.email'"
+          :mode="'noSpace'"
+          class="sm-space-top"
+          :disable="!isEdit"
+          :title="$t('admin.entitie-tab.title-email')"
+          :max="100"
+          :placeholder="$t('admin.entitie-tab.place-enter-email')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
+        <wl-select
+          v-if="selected"
+          :id="'select'"
+          v-model="entityTypeId"
+          :name="'form1.select'"
+          class="sm-space-top"
+          :disable="!isEdit"
+          :title="$t('admin.entitie-tab.title-select-entity-type')"            
+          :list="entityTypes"
+          :value-prop-name="'id'"
+          :label-prop-name="'name'"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
       </template>
     </wl-crud>
   </div>

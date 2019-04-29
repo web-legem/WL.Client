@@ -10,141 +10,135 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">   
-        <form 
-          name="form-user"
-          data-vv-scope="form1"
-          @submit.prevent
-        >  
-          <div class="box_duo_input">          
-            <div>
-              <wl-web-cam
-                :disable="!isEdit"
-                :photo-file="photoUrl"
-                :is-loading="isLoading"
-                :loading-success="loadingSuccess"
-                :trash="showTrash"
-                @new-file="newFile($event)"
-                @was-change="setPhotoState($event)"   
-                @loading-success="setLoadingSuccess($event)"   
-                @show-trash="setShowTrash($event)" 
-              />            
-            </div>
-            <div>
-              <wl-input
-                v-if="objSelected"
-                v-model="firstName"
-                :mode="'titleCase'"
-                :name="'form1.firstname'"
-                :disable="!isEdit"
-                :title=" $t('persons.users-s.title-name')"
-                :max="100"
-                :placeholder=" $t('persons.users-s.place-enter-name')"
-                :validate="{required:true}"
-                :is-submit="isSubmit"
-              />
-              <wl-input
-                v-if="objSelected"
-                v-model="lastName"
-                :mode="'titleCase'"
-                :name="'form1.lastname'"
-                :disable="!isEdit"                
-                :title=" $t('persons.users-s.title-lastname')"
-                :max="100"
-                :placeholder=" $t('persons.users-s.place-enter-lastname')"
-                :validate="{required:true}"
-                :is-submit="isSubmit"
-              />
-              <wl-input
-                v-if="objSelected"
-                v-model="nickname"
-                :mode="'noSpace'"
-                :name="'form1.nickname'"
-                :disable="!isEdit"
-                :title=" $t('persons.users-s.title-name-user')"
-                :max="50"
-                :placeholder=" $t('persons.users-s.place-enter-name-user')"
-                :validate="{required:true}"
-                :is-submit="isSubmit"
-              />
-            </div>
+      <template slot="wl-form">           
+        <div class="box_duo_input">          
+          <div>
+            <wl-web-cam
+              :disable="!isEdit"
+              :photo-file="photoUrl"
+              :is-loading="isLoading"
+              :loading-success="loadingSuccess"
+              :trash="showTrash"
+              @new-file="newFile($event)"
+              @was-change="setPhotoState($event)"   
+              @loading-success="setLoadingSuccess($event)"   
+              @show-trash="setShowTrash($event)" 
+            />            
           </div>
-          <div class="box_duo_input">          
-            <div>
-              <wl-input
-                v-if="objSelected"
-                v-model="document"
-                :mode="'onlyNumber'"
-                :name="'form1.document'"
-                :disable="!isEdit"
-                :title=" $t('persons.users-s.title-id')"
-                :max="50"
-                :placeholder=" $t('persons.users-s.place-enter-id')"
-                :validate="{required:true}"
-                :is-submit="isSubmit"
-              />
-            </div>
-            <div>
-              <wl-input
-                v-if="objSelected"
-                v-model="email"
-                :mode="'noSpace'"
-                :type="'email'"
-                :name="'form1.email'"
-                :disable="!isEdit"
-                :title="$t('persons.users-s.title-email')"
-                :max="100"
-                :placeholder=" $t('persons.users-s.place-enter-email')"
-                :validate="{required:true}"
-                :is-submit="isSubmit"
-              />
-            </div>
-          </div>        
-          <div class="box_duo_input">                        
-            <div>
-              <wl-select
-                v-if="objSelected"
-                :id="'select'"
-                v-model="roleId"
-                :name="'form1.select'"
-                :disable="!isEdit"
-                :list="roles"
-                :title="$t('persons.users-s.title-role-user')"
-                value-prop-name="id"
-                label-prop-name="name"
-                :validate="{required:true}"
-                :is-submit="isSubmit"
-              />
-            </div>
-            <div>
-              <wl-switch-button 
-                v-if="objSelected"    
-                :id="'chk1'"           
-                v-model="state"       
-                :name="'form1.state'"       
-                :type="'checkbox'" 
-                :disable="!isEdit"
-                :title=" $t('persons.users-s.title-state-user')"
-                :label=" $t('persons.users-s.label-active')"
-              />
-            </div>
+          <div>
+            <wl-input
+              v-if="objSelected"
+              v-model="firstName"
+              :mode="'titleCase'"
+              :name="'form1.firstname'"
+              :disable="!isEdit"
+              :title=" $t('persons.users-s.title-name')"
+              :max="100"
+              :placeholder=" $t('persons.users-s.place-enter-name')"
+              :validate="{required:true}"
+              :is-submit="isSubmit"
+            />
+            <wl-input
+              v-if="objSelected"
+              v-model="lastName"
+              :mode="'titleCase'"
+              :name="'form1.lastname'"
+              :disable="!isEdit"                
+              :title=" $t('persons.users-s.title-lastname')"
+              :max="100"
+              :placeholder=" $t('persons.users-s.place-enter-lastname')"
+              :validate="{required:true}"
+              :is-submit="isSubmit"
+            />
+            <wl-input
+              v-if="objSelected"
+              v-model="nickname"
+              :mode="'noSpace'"
+              :name="'form1.nickname'"
+              :disable="!isEdit"
+              :title=" $t('persons.users-s.title-name-user')"
+              :max="50"
+              :placeholder=" $t('persons.users-s.place-enter-name-user')"
+              :validate="{required:true}"
+              :is-submit="isSubmit"
+            />
           </div>
-          <div class="box_duo_input">            
-            <div>
-              <wl-switch-button 
-                v-if="objSelected"         
-                :id="'chk2'"      
-                v-model="restorePass"  
-                :name="'form1.restore'"            
-                :type="'checkbox'" 
-                :disable="!isEdit"
-                :title=" $t('persons.users-s.label-restore-password')"
-                :label=" $t('persons.users-s.label-restore-password')"
-              />
-            </div>
-            <div />
+        </div>
+        <div class="box_duo_input">          
+          <div>
+            <wl-input
+              v-if="objSelected"
+              v-model="document"
+              :mode="'onlyNumber'"
+              :name="'form1.document'"
+              :disable="!isEdit"
+              :title=" $t('persons.users-s.title-id')"
+              :max="50"
+              :placeholder=" $t('persons.users-s.place-enter-id')"
+              :validate="{required:true}"
+              :is-submit="isSubmit"
+            />
           </div>
-        </form>
+          <div>
+            <wl-input
+              v-if="objSelected"
+              v-model="email"
+              :mode="'noSpace'"
+              :type="'email'"
+              :name="'form1.email'"
+              :disable="!isEdit"
+              :title="$t('persons.users-s.title-email')"
+              :max="100"
+              :placeholder=" $t('persons.users-s.place-enter-email')"
+              :validate="{required:true}"
+              :is-submit="isSubmit"
+            />
+          </div>
+        </div>        
+        <div class="box_duo_input">                        
+          <div>
+            <wl-select
+              v-if="objSelected"
+              :id="'select'"
+              v-model="roleId"
+              :name="'form1.select'"
+              :disable="!isEdit"
+              :list="roles"
+              :title="$t('persons.users-s.title-role-user')"
+              value-prop-name="id"
+              label-prop-name="name"
+              :validate="{required:true}"
+              :is-submit="isSubmit"
+            />
+          </div>
+          <div>
+            <wl-switch-button 
+              v-if="objSelected"    
+              :id="'chk1'"           
+              v-model="state"       
+              :name="'form1.state'"       
+              :type="'checkbox'" 
+              :disable="!isEdit"
+              :title=" $t('persons.users-s.title-state-user')"
+              :label=" $t('persons.users-s.label-active')"
+            />
+          </div>
+        </div>
+        <div class="box_duo_input">            
+          <div>
+            <wl-switch-button 
+              v-if="objSelected"         
+              :id="'chk2'"      
+              v-model="restorePass"  
+              :name="'form1.restore'"            
+              :type="'checkbox'" 
+              :disable="!isEdit"
+              :title=" $t('persons.users-s.label-restore-password')"
+              :label=" $t('persons.users-s.label-restore-password')"
+            />
+          </div>
+          <div />
+        </div>
       </template>
     </wl-crud>    
   </div>

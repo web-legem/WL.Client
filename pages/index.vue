@@ -1,5 +1,6 @@
 <template>
   <div>
+    hola
     <wl-landing-page
       :src="vipriImg"
       background-color="#5b789e"

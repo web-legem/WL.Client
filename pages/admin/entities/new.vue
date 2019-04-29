@@ -8,44 +8,38 @@
       @wlclearerror="clearError"
     >
       <template slot="wl-form">
-        <form 
-          name="form-entities"
-          data-vv-scope="form1"
-          @submit.prevent
-        >
-          <wl-input
-            v-model="name"
-            :name="'form1.name'"
-            :title="$t('admin.entitie-tab.title-name-entity')"
-            :max="100"
-            :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
+        <wl-input
+          v-model="name"
+          :name="'form1.name'"
+          :title="$t('admin.entitie-tab.title-name-entity')"
+          :max="100"
+          :placeholder="$t('admin.entitie-tab.place-enter-name-entity')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
 
-          <wl-input
-            v-model="email"
-            :name="'form1.email'"
-            :type="'email'"
-            class="sm-space-top"
-            :title="$t('admin.entitie-tab.title-email')"
-            :max="100"
-            :placeholder="$t('admin.entitie-tab.place-enter-email')" 
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-          <wl-select
-            v-model="entityTypeId"
-            :name="'form1.select'"
-            class="sm-space-top"
-            :list="entityTypes"
-            :title="$t('admin.entitie-tab.title-select-entity-type')"
-            value-prop-name="id"
-            label-prop-name="name"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-        </form>
+        <wl-input
+          v-model="email"
+          :name="'form1.email'"
+          :type="'email'"
+          class="sm-space-top"
+          :title="$t('admin.entitie-tab.title-email')"
+          :max="100"
+          :placeholder="$t('admin.entitie-tab.place-enter-email')" 
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
+        <wl-select
+          v-model="entityTypeId"
+          :name="'form1.select'"
+          class="sm-space-top"
+          :list="entityTypes"
+          :title="$t('admin.entitie-tab.title-select-entity-type')"
+          value-prop-name="id"
+          label-prop-name="name"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
       </template>
     </wl-crud>
   </div>

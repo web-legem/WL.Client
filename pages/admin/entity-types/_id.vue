@@ -9,75 +9,69 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">
-        <form 
-          name="form-entity-types"
-          data-vv-scope="form1"
-          @submit.prevent
+      <template slot="wl-form">        
+        <wl-input
+          v-if="objSelected"
+          v-model="name"
+          :mode="'titleCase'"
+          :name="'form1.name'"
+          :disable="!isEdit"
+          :title="$t('admin.entities-type.title-name-enty-type')"
+          :max="100"
+          :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
+        <label class="texto_labels sm-space-top">
+          {{ $t('admin.entities-type.label-documents-suport') }}
+        </label>
+        <div 
+          class="hoja-container"
+          :class="{'disable':!isEdit}"
         >
-          <wl-input
-            v-if="objSelected"
-            v-model="name"
-            :mode="'titleCase'"
-            :name="'form1.name'"
-            :disable="!isEdit"
-            :title="$t('admin.entities-type.title-name-enty-type')"
-            :max="100"
-            :placeholder="$t('admin.entities-type.place-enter-name-type-enty')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-          <label class="texto_labels sm-space-top">
-            {{ $t('admin.entities-type.label-documents-suport') }}
-          </label>
-          <div 
-            class="hoja-container"
-            :class="{'disable':!isEdit}"
+          <div
+            v-for="docType in docTypes"
+            :key="docType.id"
           >
-            <div
-              v-for="docType in docTypes"
-              :key="docType.id"
+            <div 
+              class="block"
+              :class="{'disable':!isEdit}"
             >
-              <div 
-                class="block"
-                :class="{'disable':!isEdit}"
+              <input
+                v-if="objSelected"
+                :id="docType.id"
+                v-model="checked"
+                v-validate="{required:true}" 
+                :data-vv-as="$t('admin.entities-type.label-documents-suport')"
+                :disabled="!isEdit"
+                :name="'form1.cards'"
+                :value="docType.id"
+                type="checkbox"
               >
-                <input
-                  v-if="objSelected"
-                  :id="docType.id"
-                  v-model="checked"
-                  v-validate="{required:true}" 
-                  :data-vv-as="$t('admin.entities-type.label-documents-suport')"
-                  :disabled="!isEdit"
-                  :name="'form1.cards'"
-                  :value="docType.id"
-                  type="checkbox"
-                >
-                <label
-                  :for="docType.id"
-                  class="note checked"
-                >
-                  <div>
-                    <div class="ico-container">
-                      <span class="ico-file-text-o" />                      
-                    </div>
-                    <div class="name-container">
-                      <p class="note-name">
-                        {{ docType.name }}
-                      </p>
-                    </div>
+              <label
+                :for="docType.id"
+                class="note checked"
+              >
+                <div>
+                  <div class="ico-container">
+                    <span class="ico-file-text-o" />                      
                   </div>
-                </label>
-              </div>
+                  <div class="name-container">
+                    <p class="note-name">
+                      {{ docType.name }}
+                    </p>
+                  </div>
+                </div>
+              </label>
             </div>
           </div>
-          <div 
-            v-show="errors.has('form1.cards') && isSubmit"
-            class="msj-error"
-          >
-            <strong>{{ errors.first('form1.cards') }}</strong>
-          </div>
-        </form>
+        </div>
+        <div 
+          v-show="errors.has('form1.cards') && isSubmit"
+          class="msj-error"
+        >
+          <strong>{{ errors.first('form1.cards') }}</strong>
+        </div>
       </template>
     </wl-crud>
   </div>

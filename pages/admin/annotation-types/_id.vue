@@ -9,38 +9,32 @@
       @wlclearerror="clearError"
       @wlstartedit="startEdit"
     >
-      <template slot="wl-form">
-        <form 
-          name="form-annotation"
-          data-vv-scope="form1"
-          @submit.prevent
-        >   
-          <wl-input
-            v-if="objSelected"
-            v-model="name"
-            :mode="'noSpace|titleCase'"
-            :name="'form1.name'"
-            :disable="!isEdit"
-            :title="$t('admin.annotation-type.title-name-annotation-type')"
-            :max="100"
-            :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-          <wl-input
-            v-if="objSelected"
-            v-model="root"
-            :mode="'noSpace|titleCase'"
-            :name="'form1.root'"
-            class="sm-space-top"
-            :disable="!isEdit"
-            :title="$t('admin.annotation-type.title-annotation-root')"
-            :max="5"
-            :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"            
-          />
-        </form>
+      <template slot="wl-form">        
+        <wl-input
+          v-if="objSelected"
+          v-model="name"
+          :mode="'noSpace|titleCase'"
+          :name="'form1.name'"
+          :disable="!isEdit"
+          :title="$t('admin.annotation-type.title-name-annotation-type')"
+          :max="100"
+          :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
+        <wl-input
+          v-if="objSelected"
+          v-model="root"
+          :mode="'noSpace|titleCase'"
+          :name="'form1.root'"
+          class="sm-space-top"
+          :disable="!isEdit"
+          :title="$t('admin.annotation-type.title-annotation-root')"
+          :max="5"
+          :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"            
+        />        
       </template>      
     </wl-crud>
   </div>

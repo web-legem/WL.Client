@@ -10,24 +10,18 @@
       @wlstartedit="startEdit"
     >
       <template slot="wl-form">
-        <form 
-          name="form-doc-types"
-          data-vv-scope="form1"
-          @submit.prevent
-        >
-          <wl-input
-            v-if="objSelected"
-            v-model="name"
-            :mode="'titleCase'"
-            :name="'form1.name'"
-            :disable="!isEdit"
-            :title="$t('admin.document-type.title-name-doc-type')"
-            :max="50"
-            :placeholder="$t('admin.document-type.place-enter-name-td')"
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-        </form>
+        <wl-input
+          v-if="objSelected"
+          v-model="name"
+          :mode="'titleCase'"
+          :name="'form1.name'"
+          :disable="!isEdit"
+          :title="$t('admin.document-type.title-name-doc-type')"
+          :max="50"
+          :placeholder="$t('admin.document-type.place-enter-name-td')"
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
       </template>
     </wl-crud>
   </div>

@@ -7,23 +7,17 @@
       @wlcreate="submit"
       @wlclearerror="clearError"
     >
-      <template slot="wl-form">
-        <form 
-          name="form-doc-types"
-          data-vv-scope="form1"
-          @submit.prevent
-        >
-          <wl-input 
-            v-model="name"
-            :mode="'titleCase'"
-            :name="'form1.name'"
-            :title="$t('admin.document-type.title-name-doc-type')"
-            :max="50" 
-            :placeholder="$t('admin.document-type.place-enter-name-td')" 
-            :validate="{required:true}"
-            :is-submit="isSubmit"
-          />
-        </form>
+      <template slot="wl-form">        
+        <wl-input 
+          v-model="name"
+          :mode="'titleCase'"
+          :name="'form1.name'"
+          :title="$t('admin.document-type.title-name-doc-type')"
+          :max="50" 
+          :placeholder="$t('admin.document-type.place-enter-name-td')" 
+          :validate="{required:true}"
+          :is-submit="isSubmit"
+        />
       </template>
     </wl-crud>
   </div>

@@ -5,27 +5,21 @@
       :disable-buttons="true"
     >
       <template slot="wl-form">
-        <form 
-          name="form-annotation"
-          data-vv-scope="form1"
-          @submit.prevent
-        >
-          <wl-input
-            :name="'form1.name'"            
-            :title="$t('admin.annotation-type.title-name-annotation-type')"
-            :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
-            :disable="true"
-            :max="0"
-          />
-          <wl-input
-            :name="'form1.root'"
-            :title="$t('admin.annotation-type.title-annotation-root')"
-            :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
-            :disable="true"
-            :max="0"
-            class="sm-space-top"
-          />
-        </form>
+        <wl-input
+          :name="'form1.name'"            
+          :title="$t('admin.annotation-type.title-name-annotation-type')"
+          :placeholder="$t('admin.annotation-type.place-enter-name-ta')"
+          :disable="true"
+          :max="0"
+        />
+        <wl-input
+          :name="'form1.root'"
+          :title="$t('admin.annotation-type.title-annotation-root')"
+          :placeholder="$t('admin.annotation-type.place-enter-annotation-root')"
+          :disable="true"
+          :max="0"
+          class="sm-space-top"
+        />
       </template>
     </wl-crud>
   </div>
