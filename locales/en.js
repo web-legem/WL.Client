@@ -67,6 +67,10 @@ export default {
       'butt-cancel': 'Cancel',
       'h-select-doc-no-classify-a-Classify': 'Choose an unclassified file to classify it',
       'first-doc': 'First document',
+      'document-type': 'Document type',
+      'entity': 'Entity',
+      'number': 'Number',
+      'publication-date': 'Publication date',
 
     },
     'upload-doc': {
@@ -195,6 +199,7 @@ export default {
       'label-doc-man': 'Documentary management',
       'label-annot': 'Annotations',
       'label-user': 'Users',
+      'user-options': 'User'
     },
     'modal': {
       'title-clos-dia': 'Close dialog',
@@ -286,12 +291,17 @@ export default {
       'title-add-filter': 'Add filter',
     },
     'year-filter': {
-      'label-year-publ': 'Year of publication',
+      'label-year-publ': 'Publication year',
     },
 
   },
   
   'annotations': {
-    '': '',
+    'annotation-type': 'Annotation type',
+    'show-more': 'Show more',
+    'description': 'Description',
+    'in-annotations': 'Entry annotations',
+    'out-annotations': 'Out annotations',
+    'create-annotation': 'Create annotations',
   },
 }

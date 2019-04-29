@@ -8,13 +8,13 @@
         >
           {{ annotation.document }}
         </nuxt-link>
-        <button class="ico-pencil icon" />
+        <!-- <button class="ico-pencil icon" /> -->
         <button class="ico-trash icon" />
       </h3>
     </div>
     <div class="type">
-      Tipo de Anotación:
-      {{ annotation.annotationType.name }}
+      {{ $t('annotations.annotation-type') }}:
+      <span lang="es">{{ annotation.annotationType.name }}</span>
     </div>
     <div class="control">
       <button
@@ -22,14 +22,14 @@
         class="button-control"
         @click="showDetails(annotation.id)"
       >
-        Ver más
+        {{ $t('annotations.show-more') }}
       </button>
     </div>
     <div
       v-if="isSelected"
       class="description"
     >
-      <div>Descriptión:</div>
+      <div>{{ $t('annotations.description') }}:</div>
       <div>
         {{ annotation.description }}
       </div>

@@ -2,6 +2,7 @@
   <div class="tarjeta_busqueda">    
     <div class="titulo_tarjeta">
       <nuxt-link 
+        v-if="documentTypes && documentTypes.length > 0"
         :to="localePath({ name: routeName, params: {id: document.id} })"
         class="link-bold"
       >        
@@ -18,7 +19,10 @@
       {{ document.issue | limit(400) }}
     </div>
 
-    <div class="subcontenido_tarjeta">
+    <div 
+      v-if="entities && entities.length > 0"
+      class="subcontenido_tarjeta"
+    >
       <a>{{ $t('search.search-result.a-entity') }}<i>{{ entityName }} </i> | </a>
       <a>{{ $t('search.search-result.a-date') }} <i>{{ document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
     </div>

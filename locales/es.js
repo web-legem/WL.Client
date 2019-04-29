@@ -67,6 +67,10 @@ export default {
       'butt-cancel': 'Cancelar',
       'h-select-doc-no-classify-a-Classify': 'Elige un archivo no clasificado para clasificarlo',
       'first-doc': 'Primer Documento',
+      'document-type': 'Tipo documento',
+      'entity': 'Entidad',
+      'number': 'Número',
+      'publication-date': 'Fecha de publicación'
 
     },
     'upload-doc': {
@@ -195,6 +199,7 @@ export default {
       'label-doc-man': 'Gestión Documental',
       'label-annot': 'Anotaciones',
       'label-user': 'Usuarios',
+      'user-options': 'Usuario'
     },
     'modal': {
       'title-clos-dia': 'Cerrar Dialogo',
@@ -292,6 +297,11 @@ export default {
   },
   
   'annotations': {
-    '': '',
+    'annotation-type': 'Tipo de anotación',
+    'show-more': 'Ver más',
+    'description': 'Descripción',
+    'in-annotations': 'Anotaciones entrantes',
+    'out-annotations': 'Anotaciones salientes',
+    'create-annotation': 'Crear annotaciones',
   },
 }

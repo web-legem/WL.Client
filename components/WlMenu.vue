@@ -117,7 +117,7 @@
                 <span
                   class="ico ico-user"
                 />
-                Usuarios
+                {{ $t('components.menu.user-options') }}
                 <div class="avatar-usu">                  
                   <img 
                     alt="" 
@@ -197,13 +197,15 @@ export default {
     }), 
     menuItems(){
       let modules = [
-        {
-          label:this.$t('components.menu.label-serch'),
-          icon: 'ico-search',
-          link: 'search',
-          show: 'true',
-        },
       ]
+
+      let search = {
+        label:this.$t('components.menu.label-serch'),
+        icon: 'ico-search',
+        link: 'search',
+        show: 'true',
+      }
+
       let home = {
         label: this.$t('components.menu.label-home'),
         icon: 'ico-home',
@@ -218,13 +220,14 @@ export default {
         show: this.loogedIn != undefined && this.loogedIn == false,
       }
 
-      if(this.$route.path != this.localePath('home')){
+      if(!this.$route.name.startsWith('index') )
         modules.push(home)
-      }
 
-      if(this.$route.path != this.localePath('login')){
+      if(!this.$route.name.startsWith('search'))
+        modules.push(search)
+
+      if(!this.$route.name.startsWith('login'))
         modules.push(login)
-      }
 
       return modules
     },    

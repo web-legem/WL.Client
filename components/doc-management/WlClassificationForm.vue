@@ -45,23 +45,23 @@
       <wl-input
         id="number"
         v-model="number"
-        title="Number"
         type="text"
         name="number"
         placeholder="por ejemplo: 029"
+        :title="$t('doc-management.classify-doc.number')"
       />
       <wl-input 
         id="date" 
         v-model="date"
-        title="Fecha publicación"
         type="date" 
         name="date" 
         placeholer="p.e.: 07/30/2018"
+        :title="$t('doc-management.classify-doc.publication-date')"
       />
       <wl-select 
         id="entityId"
         v-model="entityId"
-        title="Entidad"
+        :title="$t('doc-management.classify-doc.entity')"
         value-prop-name="id"
         label-prop-name="name"
         name="entityId" 
@@ -71,11 +71,11 @@
       <wl-select 
         id="documentTypeId"
         v-model="documentTypeId"
-        title="Tipo Documento"
         value-prop-name="id"
         label-prop-name="name"
         name="documentTypeId" 
         class="select"
+        :title="$t('doc-management.classify-doc.document-type')"
         :list="documentTypes"
         :empty-msg="$t('doc-management.classify-doc.please-select-one')"
       />
