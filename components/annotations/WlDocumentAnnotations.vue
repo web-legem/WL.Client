@@ -2,9 +2,13 @@
   <div class="document-annotations">
     <div class="first-line">
       <h1 class="document-header">
+        <!-- TODO - formar el titulo del documento -->
         Document Title
       </h1>
-      <button class="ico2-plus icon" />
+      <nuxt-link 
+        class="ico2-plus icon" 
+        :to="localePath({name: 'annotations-document-id-new'})" 
+      />
       <slot name="controls" />
     </div>
     <wl-annotations
@@ -57,6 +61,7 @@ export default {
   border-radius: 50%;
   background-position: center;
   transition: background 0.8s;
+  text-decoration: none;
 }
 
 .icon:hover {

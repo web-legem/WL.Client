@@ -42,6 +42,12 @@ export default {
     WlClassificationForm,
     WlErrorMessage,
   },
+  nuxtI18n: {
+    paths: {
+      es: 'cargar-documento'
+      , en: 'upload-document'
+    }
+  },
   data() {
     return {
       fileUrl: '',
