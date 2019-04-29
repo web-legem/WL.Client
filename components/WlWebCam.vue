@@ -25,14 +25,16 @@
           <input 
             id="input_usu_foto"
             ref="inputToLoad"
+            title="archivo foto de usuario"
             type="file" 
             :disabled="disable" 
             @change="loadPhoto"
           >
           <input 
             id="hidden_input" 
-            type="hidden" 
             name="filename"
+            title="fotografia de usuario"
+            type="hidden" 
           >
         </div>
         <div class="botonera_camara">
@@ -139,6 +141,7 @@
             ref="imgAux"
             class="img-aux"
             src=""
+            alt="auxiliar"
           >          
         </div>
       </div>

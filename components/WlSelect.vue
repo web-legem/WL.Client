@@ -11,7 +11,7 @@
     </label>
     <div class="a_select">
       <select 
-        :id="id"
+        :id="id === '' ? name: id"         
         v-validate="validate"
         :name="name" 
         :data-vv-as="title"
