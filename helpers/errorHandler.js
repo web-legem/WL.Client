@@ -16,6 +16,16 @@ export default function errorHandler(ex) {
       error.message = oracle(ex.response.data);
       return error;
     } else {
+      const code = parseInt(ex.response && ex.response.status)
+
+      if(code){
+        switch (code) {
+          case 401:
+            return new Error("Lo sentimos, pero usted no esta autorizado para acceder a esta pagina")            
+          case 404:
+            return new Error("Lo sentimos, no encontró la pagina solicitada")          
+        }
+      }
       error.message = ex.response
       return error;
     }

@@ -79,19 +79,29 @@ module.exports = {
     }],
     ['cookie-universal-nuxt', { alias: 'cookies' }],
   ],
+
+  messages: {
+    loading: 'Carganado...',
+    error_404: 'Lo sentimos, no encontró la pagina solicitada',
+    server_error: 'Server error',
+    nuxtjs: 'Nuxt.js',
+    back_to_home: 'Ir al inicio',
+    server_error_details:
+      'An error occurred in the application and your page could not be served. If you are the application owner, check your logs for details.',
+    client_error: 'Error',
+    client_error_details:
+      'An error occurred while rendering the page. Check developer tools console for details.'
+    },
   
-  axios: {
-    // proxyHeaders: false,
-    host: 'localhost'
-    , port: '5000'
-    , retry: {  retries: 0 }
-  },
   // axios: {
-  //   host: '192.168.0.4'
-  //   , port: '54037'
-  //  axios: {
-  //    host: '192.168.0.6',
-  //    port: '54037',
-  //   retry: { retries: 0 },
-  //  }
+  //   // proxyHeaders: false,
+  //   host: 'localhost'
+  //   , port: '5000'
+  //   , retry: {  retries: 0 }
+  // },
+   axios: {
+     host: '192.168.0.6',
+     port: '54037',
+    retry: { retries: 0 },
+   }
 }

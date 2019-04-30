@@ -109,7 +109,7 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/User')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => {commit('loadingFailure', e);throw e;})
+      .catch(e => {commit('loadingFailure', e);throw errorHandler(e);})
   },
   getUser({ commit },{userId}) {
     commit('loading')

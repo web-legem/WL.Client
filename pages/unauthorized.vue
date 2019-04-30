@@ -1,39 +1,25 @@
 <template>
-<div>
-  <div :style="{ backgroundImage: 'url(' + src + ')'
-                , backgroundColor: backgroundColor }" class="before" />
-
-  <div class="landing-page">
-    <div class="contenido_nombre_buscador">
-      <div class="site-name">
-        <h1 class="site-name">
-          Legem
-        </h1>
+  <div>
+    <div class="before" />
+    <div class="landing-page">
+      <div class="contenido_nombre_buscador">
+        <div class="site-name">
+          <div class="status">            
+            <h1 class="ico-hand-paper-o" /><h1>401</h1>
+          </div>
+          <h2>Lo sentimos, pero usted no esta autorizado para visitar este sitio</h2>
+          <div class="link">
+            <nuxt-link
+              :to="localePath({ name: 'index' })"
+            >
+              Ir a inicio
+            </nuxt-link>
+          </div>
+        </div>
       </div>
+      <wl-institutional-simbols />
     </div>
-    <wl-institutional-simbols />
   </div>
-
-  <!-- <div class="container">
-    <div id="notfound">
-      <div class="notfound-bg"></div>
-      <div class="notfound">
-        <div class="notfound-404">
-          <h1>404</h1>
-        </div>
-        <h2>we are sorry, but the page you requested was not found</h2>
-        <a href="#" class="home-btn">Go Home</a>
-        <a href="#" class="contact-btn">Contact us</a>
-        <div class="notfound-social">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-pinterest"></i></a>
-          <a href="#"><i class="fa fa-google-plus"></i></a>
-        </div>
-      </div>
-    </div>
-  </div> -->
-</div>
 </template>
 
 <script>
@@ -70,140 +56,62 @@ export default {
   position: absolute;
   top: 0;
   z-index: -1;
+  background-color:#1C2D38;
 }
 
-.container {
-  background: #1C2D38;
+.site-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-self: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-family: 'Lato';
+  color: white;
+  font-size: 1.5em;
+  cursor: default;
 }
 
-#notfound {
-  height: 100vh;
-  padding-top: 10vh;
-}
 
-#notfound .notfound {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.notfound {
-  max-width: 910px;
-  width: 100%;
-  line-height: 1.4;
+h1,h2,h3,h4,h5{
   text-align: center;
 }
 
-.notfound .notfound-404 {
-  position: relative;
-  height: 200px;
+h1{
+  margin-bottom: 10px;
 }
 
-.notfound .notfound-404 h1 {
-  font-family: 'Montserrat', sans-serif;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  font-size: 220px;
-  font-weight: 900;
-  margin: 0px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 10px;
+h2{
+  font-size: .9em;
 }
 
-.notfound h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
+a,h2{
   margin-top: 20px;
-  margin-bottom: 15px;
 }
 
-.notfound .home-btn,
-.notfound .contact-btn {
-  font-family: 'Montserrat', sans-serif;
-  display: inline-block;
-  font-weight: 700;
+a:link, a:visited {
+  background-color: #1C2D38;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  text-align: center;
   text-decoration: none;
-  background-color: transparent;
-  border: 2px solid transparent;
-  text-transform: uppercase;
-  padding: 13px 25px;
-  font-size: 18px;
-  border-radius: 40px;
-  margin: 7px;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-}
-
-.notfound .home-btn:hover,
-.notfound .contact-btn:hover {
-  opacity: 0.9;
-}
-
-.notfound .home-btn {
-  color: rgba(255, 0, 36, 0.7);
-  background: #fff;
-}
-
-.notfound .contact-btn {
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.notfound-social {
-  margin-top: 25px;
-}
-
-.notfound-social>a {
   display: inline-block;
-  height: 40px;
-  line-height: 40px;
-  width: 40px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0px 6px;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
 }
 
-.notfound-social>a:hover {
-  color: rgba(255, 0, 36, 0.7);
-  background-color: #fff;
-  border-radius: 50%;
+a:hover, a:active {
+  background-color:#0B1216;
+  color: white;
 }
 
-@media only screen and (max-width: 767px) {
-  .notfound .notfound-404 h1 {
-    font-size: 182px;
-  }
+.status{
+  display: flex;
 }
 
-@media only screen and (max-width: 480px) {
-  .notfound .notfound-404 {
-    height: 146px;
-  }
-
-  .notfound .notfound-404 h1 {
-    font-size: 146px;
-  }
-
-  .notfound h2 {
-    font-size: 16px;
-  }
-
-  .notfound .home-btn,
-  .notfound .contact-btn {
-    font-size: 14px;
-  }
+.status > h1{
+  display: flex;
+  margin-right: 10px;
 }
+
 </style>

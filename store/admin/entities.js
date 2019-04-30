@@ -84,7 +84,7 @@ export const actions = {
     commit('loading')
     return this.$axios.get('/api/Entity')
       .then(response => commit('loadingSuccess', response.data))
-      .catch(e => commit('loadingFailure', e))
+      .catch(e => {commit('loadingFailure', e);throw errorHandler(e);})    
   },
 
   select({ commit }, entityId) {

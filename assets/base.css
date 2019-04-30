@@ -312,6 +312,29 @@ html, body {
   font-size: .9rem;
 }
 
+.__nuxt-error-page{
+  background:#131f27;
+}
+
+.title{
+  color: white !important;
+}
+
+.error-link:link,
+.error-link:visited{
+  background-color: #131f27;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.error-link:hover, .error-link:active {
+  background-color:#0B1216;
+  color: white;
+}
 
 /* FIN labels errores-ok */
 /* ----------------------------------- */
