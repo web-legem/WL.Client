@@ -20,7 +20,7 @@ export default function errorHandler(ex) {
       return error;
     }
   } else {
-    if (ex.message.startsWith("WL")) {
+    if (ex.message != undefined && ex.message.startsWith("WL")) {
       error.name = 'WLError';
       switch (ex.message) {
         case "WL_NotFound":

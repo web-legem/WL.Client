@@ -220,13 +220,13 @@ export default {
         show: this.loogedIn != undefined && this.loogedIn == false,
       }
 
-      if(!this.$route.name.startsWith('index') )
+      if(this.$route.name && !this.$route.name.startsWith('index') )
         modules.push(home)
 
-      if(!this.$route.name.startsWith('search'))
+      if(this.$route.name && !this.$route.name.startsWith('search'))
         modules.push(search)
 
-      if(!this.$route.name.startsWith('login'))
+      if(this.$route.name && !this.$route.name.startsWith('login'))
         modules.push(login)
 
       return modules
