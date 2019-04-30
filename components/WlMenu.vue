@@ -335,7 +335,8 @@ export default {
   width: 100%;
   height: var(--header-height);
   min-height: 45px;
-  background: rgba(0, 0, 0, 0.9);
+  // background: rgba(0, 0, 0, 0.9);
+  background: #020813;
   border-bottom: 1px solid #6c767d;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   z-index: 2;
@@ -345,7 +346,8 @@ export default {
 }
 
 .menu.small {
-  background: #11171e;
+  // background: #11171e;
+  background: #020813;
 }
 
 .nav {
@@ -375,7 +377,8 @@ ul.modules {
 ul.modules.small {
   flex-direction: column;
   align-content: flex-start;
-  background: rgba(0, 0, 0, 0.9);
+  background: #020813;
+  // background: rgba(0, 0, 0, 0.9);
   width: 100vw;
 }
 
@@ -466,7 +469,8 @@ button.module.small {
 
 .sub-module {
   display: flex;
-  background: rgba(0, 0, 0, 0.9);
+  // background: rgba(0, 0, 0, 0.9);
+  background: #020813;
   color: white;
   cursor: pointer;
   height: 40px;
@@ -512,7 +516,9 @@ button:hover 	.ico2-accessibility {
 
 .btn-menu {
   min-width: var(--header-height);
-  background: rgba(0, 0, 0, 0);
+  // background: rgba(0, 0, 0, 0);
+
+  background: #020813;
   border: none;
   padding: 0;
   font-size: 1.5rem;

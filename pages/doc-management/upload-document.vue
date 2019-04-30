@@ -52,7 +52,6 @@ export default {
     return {
       fileUrl: '',
       fileUploaded: true,
-      validFile: false,
     }
   },
   asyncData(context) {
@@ -66,9 +65,7 @@ export default {
   },
   methods: {
     showPdf(fileUrl) {
-      console.log(fileUrl)
       this.fileUrl = fileUrl
-      this.validFile = true
     },
   },
 }

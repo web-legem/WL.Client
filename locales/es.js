@@ -80,6 +80,7 @@ export default {
       'p-drag-here': ' ó arrastrelo aquí',
       'butt-upload-file': 'Subir archivo',
       'wl-upload-doc': 'Carga de documentos',
+      'number-placeholder': 'Por ejemplo: 029',
     },
   },
 

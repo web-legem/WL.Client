@@ -1,9 +1,8 @@
 <template>
   <div>
-    hola
     <wl-landing-page
       :src="vipriImg"
-      background-color="#5b789e"
+      background-color="#000"
     >
       <wl-main-search-form />
     </wl-landing-page>

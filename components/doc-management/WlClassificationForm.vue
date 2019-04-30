@@ -3,7 +3,9 @@
     class="form"
   >
     <form
-      action=""
+      name="classification-form"
+      data-vv-scope="form1"
+      @submit.prevent
     >
       <h3>
         {{ $t('doc-management.upload-doc.form-title') }}
@@ -43,43 +45,47 @@
         />
       </label>
       <wl-input
-        id="number"
         v-model="number"
-        type="text"
-        name="number"
-        placeholder="por ejemplo: 029"
+        mode="onlyNumber"
+        name="form1.number"
+        :placeholder="$t('doc-management.upload-doc.number-placeholder')"
+        :validate="{required: true}"
         :title="$t('doc-management.classify-doc.number')"
+        :is-submit="true"
       />
       <wl-input 
-        id="date" 
         v-model="date"
         type="date" 
         name="date" 
         placeholer="p.e.: 07/30/2018"
         :title="$t('doc-management.classify-doc.publication-date')"
+        :validate="{required: true}"
+        :is-submit="true"
       />
       <wl-select 
-        id="entityId"
         v-model="entityId"
-        :title="$t('doc-management.classify-doc.entity')"
+        name="form1.entity" 
         value-prop-name="id"
         label-prop-name="name"
-        name="entityId" 
         class="select"
+        :title="$t('doc-management.classify-doc.entity')"
         :list="entities"
+        :validate="{required: true}"
+        :is-submit="true"
       />
       <wl-select 
-        id="documentTypeId"
         v-model="documentTypeId"
+        name="form1.documentType" 
         value-prop-name="id"
         label-prop-name="name"
-        name="documentTypeId" 
         class="select"
         :title="$t('doc-management.classify-doc.document-type')"
         :list="documentTypes"
-        :empty-msg="$t('doc-management.classify-doc.please-select-one')"
+        :validate="{required: true}"
+        :is-submit="true"
       />
-      <wl-chips v-model="tags" />
+        <!-- :empty-msg="$t('doc-management.classify-doc.please-select-one')" -->
+      <!-- <wl-chips v-model="tags" /> -->
       <div
         class="action-container"
       >
@@ -110,7 +116,7 @@ import {mapGetters, mapActions} from 'vuex'
 import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
-import WlChips from '~/components/WlChips.vue'
+// import WlChips from '~/components/WlChips.vue'
 
 export default {
   components: {
@@ -118,7 +124,7 @@ export default {
     WlSelect,
     WlButton,
     WlButton,
-    WlChips,
+    // WlChips,
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -159,29 +165,35 @@ export default {
       'loadData'
     ]),
     classify() {
-      let formData = new FormData()
-      formData.append('files', this.file)
-      const form = JSON.stringify({
-        documentTypeId: this.documentTypeId,
-        entityId: this.entityId,
-        number: this.number,
-        publicationDate: this.date
+      this.$validator.validate('form1.*').then(valid => {
+        this.isSubmit = true
+        if(valid){
+          let formData = new FormData()
+          formData.append('files', this.file)
+          const form = JSON.stringify({
+            documentTypeId: this.documentTypeId,
+            entityId: this.entityId,
+            number: this.number,
+            publicationDate: this.date
+          })
+          formData.append('value', form )
+
+
+          this.$axios.post(
+            '/api/Document',
+            formData,
+            {
+              headers: { 'Content-Type': 'multipart/form-data'},
+              onUploadProgress: (progressEvent) => {
+                this.uploadPercentage = Number.parseInt(
+                  Math.round(progressEvent.loaded * 100) / progressEvent.total)
+              }
+            })
+          .then(console.log)
+          .catch(console.log)
+        }
       })
-      formData.append('value', form )
 
-
-      this.$axios.post(
-        '/api/Document',
-        formData,
-        {
-          headers: { 'Content-Type': 'multipart/form-data'},
-          onUploadProgress: (progressEvent) => {
-            this.uploadPercentage = Number.parseInt(
-              Math.round(progressEvent.loaded * 100) / progressEvent.total)
-          }
-        })
-      .then(console.log)
-      .catch(console.log)
     },
     clear(){
       this.date = moment(Date.now())
@@ -259,6 +271,10 @@ h3 {
   outline-offset: 4px;
   padding: 1rem 0;
   margin: 16px;
+  cursor: grab;
+  :active {
+    cursor: grabbing;
+  }
 }
 
 input[type="file"] {

@@ -131,4 +131,8 @@ export default {
   color:var(--wl_text);
   background: var(--wl_form_bg);
 }
+
+.msj-error {
+  margin-top: 8px;
+}
 </style>
