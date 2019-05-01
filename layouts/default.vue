@@ -1,9 +1,20 @@
 <template>
   <div :class="{'high-contrast': highContrast }">
-    <wl-menu />
-
-    <div class="nuxt">
-      <nuxt />
+    <a 
+      id="a_top"
+      class="to_top" 
+      href="#top"      
+    >
+      {{ $t('components.menu.to-top') }}
+    </a>
+    <div 
+      id="top" 
+      name="top"
+    >
+      <wl-menu />
+      <div class="nuxt">
+        <nuxt />
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +36,29 @@ export default {
       }
       return this.$store.state.highContrast
     }
-  }
+  },
+  created () {
+    if (process.browser) { 
+      window.addEventListener('scroll', this.handleScroll);
+    }
+  },
+  destroyed () {
+    if (process.browser) { 
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+  },
+  methods: {
+    handleScroll (event) {
+      if (process.browser) { 
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("a_top").style.display = "block";
+        } else {
+          document.getElementById("a_top").style.display = "none";
+        }
+      }
+    }
+  },
+
 }
 </script>
 

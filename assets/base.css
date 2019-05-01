@@ -48,7 +48,6 @@ html, body {
 /* containers */
 .box_duo_input > div {
   flex: 1;
-  min-width: 250px;
 }
 
 /* Extra Small Devices, Phones */
@@ -105,7 +104,7 @@ html, body {
 .note-name {
   color: var(--wl_input_text);
   font-family: "lato";
-  font-size: 13px;
+  font-size: 1.1em;;
   text-overflow:ellipsis;  
 }
 
@@ -113,7 +112,7 @@ html, body {
   display: inline-block;
   height: 130px; /*alto de la hoja*/
   width: 110px; /*ancho de la hoja*/
-  font-size: 1.1rem;
+  font-size: 1.1em;
   position: relative;
   cursor: pointer;
   -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
@@ -140,7 +139,7 @@ html, body {
 
 .ico-container > span {
   color: var(--wl_btn_disable);
-  font-size: 50px;
+  font-size: xx-large;
   background: var(--wl_input_bg);
   display: flex;
   align-items: center;
@@ -309,7 +308,7 @@ html, body {
 }
 
 .wl_msg.md {
-  font-size: .9rem;
+  font-size: .9em;
 }
 
 .__nuxt-error-page{
@@ -338,3 +337,23 @@ html, body {
 
 /* FIN labels errores-ok */
 /* ----------------------------------- */
+
+.to_top{
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color:var(--wl_primary); /* Set a background color */
+  color: var(--wl_btn_content); /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: large; /* Increase font size */
+}
+
+.to_top:hover {
+  background-color: var(--wl_dark); /* Add a dark-grey background on hover */
+}

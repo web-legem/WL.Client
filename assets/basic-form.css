@@ -9,10 +9,7 @@
 
 .basic-form-box {
   display: flex;
-  flex-direction: column;
-  width: 40%;
-  max-width: 420px;
-  min-width: 420px;
+  flex-direction: column;  
   margin: 0 auto;
   box-shadow: 0px 0px 6px 1px var(--wl_form_sha1)
 }
@@ -35,4 +32,28 @@
   background: var(--wl_form_bg);
   padding: 20px;
   padding-top: 18px;
+}
+
+@media only screen and (max-width : 320px) {
+  .basic-form-box{
+    width:95%;
+  }
+}
+
+@media only screen and (min-width : 320px) {
+  .basic-form-box{
+    width:90%;
+  } 
+}
+
+@media only screen and (min-width : 480px) {
+  .basic-form-box{
+    width:65%;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .basic-form-box{
+    width:40%;
+  }
 }

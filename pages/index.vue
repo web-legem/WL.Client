@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div>    
     <wl-landing-page
       :src="vipriImg"
       background-color="#000"
@@ -18,9 +18,9 @@ import {mapActions} from 'vuex'
 
 export default {
   components: { 
-    WlLandingPage
-    , WlMainSearchForm
-    , WlFooter
+    WlLandingPage,
+    WlMainSearchForm,
+    WlFooter,
   }
   , computed: {
     vipriImg() {

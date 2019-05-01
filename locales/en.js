@@ -200,7 +200,8 @@ export default {
       'label-doc-man': 'Documentary management',
       'label-annot': 'Annotations',
       'label-user': 'Users',
-      'user-options': 'User'
+      'user-options': 'User',
+      'to-top':'Go top'
     },
     'modal': {
       'title-clos-dia': 'Close dialog',

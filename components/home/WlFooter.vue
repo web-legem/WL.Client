@@ -23,7 +23,6 @@
         <br>
         <span class="ico-university f_link">
           <a
-            :title="$t('components.footer.universidad')"
             class="f_link"
             href="http://www.udenar.edu.co/"
           >
@@ -82,7 +81,6 @@ export default {
   flex: 1;
   margin:10px 40px;
   padding:0 30px;
-  min-width:200px;
   color:var(--wl_footer_text);
 }
 

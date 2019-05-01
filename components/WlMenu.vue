@@ -33,7 +33,7 @@
         :class="{small: $mq == 'sm'}"
         class="modules"
       >
-        <li
+      <li 
           ref="submodulesContainer"
           :class="{small: $mq == 'sm'}"
           @focusout="checkIfFocusLost($event)"
@@ -503,7 +503,7 @@ button 	.ico2-accessibility {
   height: var(--header-height);
   background: rgba(0, 0, 0, 0);
   color: #ffffff;
-  font-size: 16px;
+  font-size: large;
 }
 
 button:hover 	.ico2-accessibility {
@@ -511,7 +511,7 @@ button:hover 	.ico2-accessibility {
   height: var(--header-height);
   background: rgba(0, 0, 0, 0);
   color: var(--wl_btn_content);  
-  font-size: 16px;
+  font-size: large;
 }
 
 .btn-menu {
@@ -521,7 +521,7 @@ button:hover 	.ico2-accessibility {
   background: #020813;
   border: none;
   padding: 0;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   color: white;
 }
 

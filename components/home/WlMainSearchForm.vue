@@ -25,10 +25,13 @@
         >
         <button
           id="search-button"
-          class="ico2-search"
+          type="submit"
           @click="search()"
-        >
-          <span class="hide-text">Search</span>
+        >          
+          <span class="ico2-search" />            
+          <span class="hide-text">
+            Search
+          </span>
         </button>
       </form>
     </div>
@@ -113,7 +116,8 @@ export default {
   background: var(--wl_primary);
   color:var(--wl_btn_content);
   position: absolute;
-  font-size: 35px;
+  height: 100%;
+  width: 60px;
   right: 0;
   padding: 13px;
   cursor: pointer;
@@ -122,6 +126,15 @@ export default {
 
 .mini_search button:hover {
   background: var(--wl_dark);
+}
+
+.mini_search button span:first-child {
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  height: 100%;
 }
 
 .mini_search:focus-within {
@@ -141,7 +154,7 @@ export default {
   } 
 
   .site-name {
-    font-size: 15px;
+    font-size: 2em;
   }
 }
 
@@ -151,7 +164,7 @@ export default {
   } 
 
   .site-name {
-    font-size: 5rem;
+    font-size: 2.4em;
   }
 }
 
@@ -168,11 +181,7 @@ export default {
 }
 
 .hide-text {
-  height: 1px;
-  left: -900em;
+  font-size: 0em;  
   overflow: hidden;
-  position: absolute;
-  top: auto;
-  width: 1px;
 }
 </style>

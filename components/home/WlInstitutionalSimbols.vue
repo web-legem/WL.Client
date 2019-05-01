@@ -46,8 +46,8 @@ export default {
 .planeacion {
   background-image: url('/img/planeacion.png');
   height: 70px;
-  width: 150px;
-  background-size:     cover;
+  width: 120px;
+  background-size: 100% 100%;
   background-repeat:   no-repeat;
   background-position: center center;
 }
@@ -55,8 +55,8 @@ export default {
 .acreditacion {
   background-image: url('/img/acreditacion.png');
   height: 70px;
-  width: 45px;
-  background-size:     cover;
+  width: 40px;
+  background-size: 100% 100%;
   background-repeat:   no-repeat;
   background-position: center center;
 }
