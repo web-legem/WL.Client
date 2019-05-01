@@ -228,6 +228,7 @@ export default {
       'siguenos':'Follow us',
       'contactenos':'Contact us',
       'universidad':'University of Nariño',
+      'direccion':'Torobajo - Calle 18 Carrera 50',
       'sitio':'About Site',
       'developers':'Developed by:',
       'copyright':'Copyright © 2019 - University of Nariño - San Juan de Pasto - Colombia',

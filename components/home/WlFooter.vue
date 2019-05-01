@@ -4,8 +4,8 @@
       <div id="f_1">
         <p>{{ $t('components.footer.contactenos') }}</p>
         <hr>
-        <span class="ico-university ico_f2" /> Universidad de Nariño<br>
-        <span class="ico2-location2 ico_f2" /> Torobajo - Calle 18 Carrera 50<br>
+        <span class="ico-university ico_f2" />  {{ $t('components.footer.universidad') }} <br>
+        <span class="ico2-location2 ico_f2" /> {{ $t('components.footer.direccion') }}<br>
         <span class="ico-phone ico_f2" /> PBX: (2)-7311449 - 18000957071<br>
         <span class="ico-envelope ico_f2" /> E-mail: planeacion@udenar.edu.co
       </div>
