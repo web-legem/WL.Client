@@ -251,12 +251,15 @@ export default {
         {
           label: this.$t('components.menu.label-user'),
           icon: 'ico-users',
-          link: 'persons',
+          link: 'persons-users',
         }
       ]
     },
     showSsr() {
       return this.$options.filters.mq(this.$mq, { xs: false, mid: true })
+    },
+    getUserName(){
+      return "nombre de usuario";
     }
   },
   watch: {

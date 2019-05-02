@@ -1,9 +1,12 @@
 <template>
   <div>
     <div>
-      <span class="texto_labels ">  
-        {{ $t('components.webcam.label-foto-user') }}
-      </span>
+      <label
+       class="texto_labels "
+       for="input_usu_foto"
+      >  
+        {{ $t('components.webcam.label-foto-user') }}        
+      </label>
       <div class="box_fotografia">
         <div class="foto_usuarios">
           <wl-load2 

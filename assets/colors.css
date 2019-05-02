@@ -23,6 +23,7 @@
   --wl_bg_error:       #fce0e0;
   --wl_primary_hover:  rgba(255, 255, 255, 0.25);
   --wl_primary_active: rgba(0, 0, 0, 0.25);  
+  --wl_loading_bg:     rgba(255, 255, 255, 0.8);
   --wl_link:           #0000ff;
 
   --wl_footer_bg:      #1F2B38;

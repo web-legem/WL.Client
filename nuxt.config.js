@@ -24,12 +24,7 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { 
-    color: 'var(--wl_light)',
-    failedColor: 'var(--wl_text_error)',
-    height: '3px',
-    continuous: true
-  },
+  loading: '~/components/loading.vue',
   /*
   ** Build configuration
   */

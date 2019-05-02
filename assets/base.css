@@ -366,3 +366,13 @@ html, body {
   background-color: var(--wl_dark);
   color: var(--wl_btn_content);
 }
+
+.nuxt-progress {
+  background: var(--wl_light) !important;
+  color:black !important;
+}
+
+.nuxt-progress-failed {
+  background: var(--wl_text_error) !important;
+  color:white !important;
+}

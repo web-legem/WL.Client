@@ -1,7 +1,7 @@
 <template>
   <div>
     <label 
-      :for="name" 
+      :for="id === '' ? name: id" 
       class="texto_labels"
     >
       {{ title }}
@@ -17,6 +17,7 @@
         :data-vv-as="title"
         :value="value"
         :disabled="disable == true"
+        :title="title"
         @input="$emit('input',$event.target.value)"
       >
         <option 

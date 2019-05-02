@@ -12,6 +12,7 @@
       <input 
         :id="id" 
         :name="name" 
+        ref="perro"
         :checked="value"
         :disabled="disable == true"
         :type="type" 
@@ -22,12 +23,12 @@
         <span 
           v-if="value == undefined || value==false"
           :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " 
-          @click="value = !value" 
+          @click="trigger" 
         />
         <span 
           v-if="value == true"
           :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " 
-          @click="value = !value" 
+          @click="trigger" 
         />
         <label :for="id"> 
           {{ label }}
@@ -51,6 +52,11 @@ export default {
     error: { type: Boolean, default: false },
     errorMsg: { type: String, default: "" }
   },  
+  methods: {
+  	trigger () {
+    	this.$refs.perro.click()
+    }
+  }
 }
 </script>
 
