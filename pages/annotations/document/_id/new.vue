@@ -3,52 +3,73 @@
     class="form"
   >
     <form
-      action=""
+      name="form-new-annotation"
+      data-vv-scope="form1"
+      @submit.prevent
     >
       <h3>
         {{ $t('annotations.create-annotation') }}
       </h3>
 
-      <wl-input
-        id="number"
-        v-model="number"
-        title="Number"
-        type="text"
-        name="number"
-        placeholder="por ejemplo: 029"
-      />
-
-      <wl-input 
-        id="date" 
-        v-model="date"
-        title="Fecha publicación"
-        type="date" 
-        name="date" 
-        placeholer="p.e.: 07/30/2018"
-      />
-
       <wl-select 
-        id="entityId"
-        v-model="entityId"
-        title="Entidad"
+        v-model="annotationTypeId"
+        name="form1.annotationType" 
+        :title="$t('annotations.new.annotation-type')"
         value-prop-name="id"
         label-prop-name="name"
-        name="entityId" 
         class="select"
-        :list="entities"
+        :list="annotationTypes"
+        :validate="{ required: true }"
+        :is-submit="isSubmit"
       />
 
-      <wl-select 
-        id="documentTypeId"
-        v-model="documentTypeId"
-        title="Tipo Documento"
-        value-prop-name="id"
-        label-prop-name="name"
-        name="documentTypeId" 
-        class="select"
-        :list="documentTypes"
-        :empty-msg="$t('doc-management.classify-doc.please-select-one')"
-      />
+      <fieldset>
+        <legend>{{ $t('annotations.new.to-doc') }}</legend>
+        <wl-input
+          v-model="number"
+          mode="onlyNumber"
+          name="form1.number"
+          :placeholder="$t('annotations.new.number-placeholder')"
+          :validate="{ required: true }"
+          :title="$t('annotations.new.number')"
+          :is-submit="isSubmit"
+        />
+
+        <wl-input 
+          v-model="date"
+          :title="$t('annotations.new.pub-date')"
+          type="date" 
+          name="form1.date" 
+          :placeholer="$t('annotations.new.pub-date-placeholder')"
+          :validate="{ required: true }"
+          :is-submit="isSubmit"
+        />
+
+        <wl-select 
+          v-model="entityId"
+          name="form1.entity" 
+          value-prop-name="id"
+          label-prop-name="name"
+          class="select"
+          :title="$t('annotations.new.entity')"
+          :list="entities"
+          :validate="{ required: true }"
+          :is-submit="isSubmit"
+        />
+
+        <wl-select 
+          v-model="documentTypeId"
+          name="form1.documentType" 
+          :title="$t('annotations.new.doc-type')"
+          value-prop-name="id"
+          label-prop-name="name"
+          class="select"
+          :list="documentTypes"
+          :empty-msg="$t('doc-management.classify-doc.please-select-one')"
+          :validate="{ required: true }"
+          :is-submit="isSubmit"
+        />
+      </fieldset>
 
       <div
         class="action-container"
@@ -57,6 +78,7 @@
           type="button"
           class="action"
           ico="ico-check"
+          @click="create"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
         </wl-button>
@@ -64,6 +86,7 @@
           type="button"
           class="action"
           ico="ico-times"
+          @click.native="returnToAnnotations"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
@@ -88,6 +111,55 @@ export default {
   nuxtI18n: {
     paths: { es: 'nuevo', en: 'new' }
   },
+  data() {
+    return {
+      date: moment(Date.now())
+        .locale(this.$store.state.i18n.locale)
+        .format('YYYY-MM-DD'),
+      number: "",
+      entityId: null,
+      documentTypeId: null,
+      annotationTypeId: null,
+      isSubmit: false,
+    }
+  },
+  asyncData(context) {
+    var entitiesPromise = context.app.$axios.get("/api/Entity")
+    var documentTypesPromise = context.app.$axios.get("/api/DocumentType")
+    var annoattionTypesPromise = context.app.$axios.get("/api/AnnotationType")
+    return Promise.all([
+        entitiesPromise,
+        documentTypesPromise,
+        annoattionTypesPromise,
+      ])
+      .then(results => ({
+        entities: results[0].data,
+        documentTypes: results[1].data,
+        annotationTypes: results[2].data,
+      }))
+  },
+  methods: {
+    returnToAnnotations() {
+      console.log('return to annotations')
+      this.$router.replace(this.localePath(({ name: 'annotations-document-id' })))
+    },
+    create(){
+      this.$validator.validate('form1.*').then( valid => {
+        this.isSubmit = true
+        if(valid){
+          this.$axios.post('/api/Annotation', {
+            fromDocumentId: this.$route.params.id,
+            toDocumentTypeId: this.documentTypeId,
+            toEntityId: this.entityId,
+            toPublicationYear: moment(this.date, "YYYY-MM-DD").format("YYYY"),
+            toNumber: this.number,
+            annotationTypeId: this.annotationTypeId,
+            description: this.description
+          })
+        }
+      })
+    }
+  }
 }
 </script>
 

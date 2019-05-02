@@ -93,15 +93,15 @@ module.exports = {
       'An error occurred while rendering the page. Check developer tools console for details.'
     },
   
-  // axios: {
-  //   // proxyHeaders: false,
-  //   host: 'localhost'
-  //   , port: '5000'
-  //   , retry: {  retries: 0 }
-  // },
-   axios: {
-     host: '192.168.0.6',
-     port: '54037',
-    retry: { retries: 0 },
-   }
+  axios: {
+    // proxyHeaders: false,
+    host: 'localhost'
+    , port: '5000'
+    , retry: {  retries: 0 }
+  },
+  //  axios: {
+  //    host: '192.168.0.6',
+  //    port: '54037',
+  //   retry: { retries: 0 },
+  //  }
 }

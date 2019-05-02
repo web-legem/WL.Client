@@ -3,7 +3,7 @@
     <div class="title">
       <h3 class="document-title">
         <nuxt-link
-          :to="localePath({ name: 'search-id', params: { id: 2 }})"
+          :to="localePath({ name: 'annotations-document-id', params: { id: 2 }})"
           class="title-link"
         >
           {{ annotation.document }}
@@ -16,9 +16,12 @@
       {{ $t('annotations.annotation-type') }}:
       <span lang="es">{{ annotation.annotationType.name }}</span>
     </div>
-    <div class="control">
+    <div 
+      v-if="annotation.description"
+      class="control" 
+    >
       <button
-        title="Ver mas"
+        :title="$t('annotations.list.view-more')"
         class="button-control"
         @click="showDetails(annotation.id)"
       >
