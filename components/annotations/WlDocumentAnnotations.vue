@@ -2,7 +2,7 @@
   <div class="document-annotations">
     <div class="first-line">
       <h1 class="document-header">
-        {{  getDocumentTitle(this.document) }} 
+        {{ getDocumentTitle(document) }} 
       </h1>
       <nuxt-link 
         class="ico2-plus icon" 
@@ -53,7 +53,8 @@ export default {
         direction: this.determineDirection(x),
         annotationType: this.getAnnotationType(x.annotationTypeId),
         document: this.getDocumentTitleFromAnnotation(x),
-        description: x.description
+        description: x.description,
+        documentId: this.getDocumentId(x)
       }))
     }
   },
@@ -64,9 +65,9 @@ export default {
       .name
     },
     determineDirection(annotation){
-      return this.isDestinyAnnotation(annotation)
-        ? 'IN' 
-        : 'OUT'
+      return this.currentDocumeentIsDestinyIn(annotation)
+        ? 'OUT' 
+        : 'IN'
     },
     getAnnotationType(annotationTypeId){
       console.log(annotationTypeId)
@@ -76,11 +77,16 @@ export default {
       return `${ this.getDocumentTypeName(document) } ${ document.number } ${ this.$t('annotations.list.of') } ${ document.publicationDate.substring(0,4) }`
     },
     getDocumentTitleFromAnnotation(annotation){
-      return this.isDestinyAnnotation(annotation)
-        ? this.getDocumentTitle(annotation.to)
-        : this.getDocumentTitle(annotation.from)
+      return this.currentDocumeentIsDestinyIn(annotation)
+        ? this.getDocumentTitle(annotation.from)
+        : this.getDocumentTitle(annotation.to)
     },
-    isDestinyAnnotation(annotation){
+    getDocumentId(annotation){
+      return this.currentDocumeentIsDestinyIn(annotation)
+      ? annotation.from.id
+      : annotation.to.id
+    },
+    currentDocumeentIsDestinyIn(annotation){
       return annotation.to.id == this.document.id
     }
   },

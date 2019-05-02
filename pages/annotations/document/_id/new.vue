@@ -23,6 +23,8 @@
         :is-submit="isSubmit"
       />
 
+      <wl-text-area></wl-text-area>
+
       <fieldset>
         <legend>{{ $t('annotations.new.to-doc') }}</legend>
         <wl-input
@@ -101,12 +103,14 @@ import {mapGetters, mapActions} from 'vuex'
 import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
+import WlTextArea from '~/components/WlTextArea.vue'
 
 export default {
   components: {
     WlInput,
     WlSelect,
     WlButton,
+    WlTextArea,
   },
   nuxtI18n: {
     paths: { es: 'nuevo', en: 'new' }
@@ -155,7 +159,9 @@ export default {
             toNumber: this.number,
             annotationTypeId: this.annotationTypeId,
             description: this.description
-          })
+          }).then(result => {
+            this.$router.replace(this.localePath({ name: 'annotations-document-id'}))
+          });
         }
       })
     }

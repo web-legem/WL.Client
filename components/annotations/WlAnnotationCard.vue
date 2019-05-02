@@ -3,13 +3,16 @@
     <div class="title">
       <h3 class="document-title">
         <nuxt-link
-          :to="localePath({ name: 'annotations-document-id', params: { id: 2 }})"
+          :to="localePath({ name: 'annotations-document-id', params: { id: annotation.documentId }})"
           class="title-link"
         >
           {{ annotation.document }}
         </nuxt-link>
         <!-- <button class="ico-pencil icon" /> -->
-        <button class="ico-trash icon" />
+        <button 
+          class="ico-trash icon" 
+          @click="deleteAnnotation"
+        />
       </h3>
     </div>
     <div class="type">
@@ -73,6 +76,10 @@ export default {
   methods: {
     showDetails(annotationId) {
       this.$emit('show-annotation', annotationId)
+    },
+    deleteAnnotation(){
+      this.$axios.delete(`/api/Annotation/${this.annotation.id}`)
+        .then(result => location.reload())
     }
   }
 }

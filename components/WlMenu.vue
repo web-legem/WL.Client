@@ -251,7 +251,7 @@ export default {
         {
           label: this.$t('components.menu.label-user'),
           icon: 'ico-users',
-          link: 'persons',
+          link: 'persons-users',
         }
       ]
     },

@@ -19,7 +19,7 @@ module.exports = {
     , '@/assets/iconos-legem2/style.css'
     , '@/assets/escudos-legem/style.css'
     , '@/assets/inputs.css'
-    , '@/assets/basic-form.css'    
+    , '@/assets/basic-form.css'
   ],
   /*
   ** Customize the progress bar color
