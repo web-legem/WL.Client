@@ -11,24 +11,21 @@
         action=""
         @submit.prevent
       >
-        <label 
-          for="mini_search" 
-          class="hide-text"
-        >
-          Search
-        </label>
         <input
           id="mini_search" 
           v-model="wordsToSearch"
           type="text"
+          aria-label="buscar"
+          title="buscar"
         >
         <button
           id="search-button"
           type="submit"
+          role="button" 
+          aria-label="buscar"
           @click="search()"
-          title="buscar"
         >          
-          <span class="ico2-search" />                      
+          <span class="ico2-search" />      
         </button>
       </form>
     </div>
@@ -180,7 +177,12 @@ export default {
 }
 
 .hide-text {
-  font-size: 0em;  
+  height: 0px;  
+  font-size: 1em;  
+  background: #111111;
+  color: #ffffff;
   overflow: hidden;
+  position: absolute;
+  left: -9999;
 }
 </style>
