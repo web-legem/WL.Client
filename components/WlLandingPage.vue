@@ -1,8 +1,7 @@
 <template>
   <div>
     <div
-      :style="{ backgroundImage: 'url(' + src + ')'
-                , backgroundColor: backgroundColor }"
+      :style="{ backgroundImage: 'url(' + src + ')'}"
       class="before"
     />
 
@@ -24,11 +23,6 @@ export default {
     src: {
       type: String,
       required: true,
-    },
-    backgroundColor: {
-      type: String,
-      required: false,
-      default: '#5b789e',
     }
   }
 }
@@ -44,6 +38,8 @@ export default {
 }
 
 .before {
+  background: #082244;
+  color:white;
   background-size: cover;
   width: 100%;
   height: 100%;

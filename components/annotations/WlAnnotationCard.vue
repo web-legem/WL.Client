@@ -93,6 +93,7 @@ export default {
 
 .document-title {
   flex-grow: 1;
+  background: red;
   color: #00796b;
   font-size: 1em;
   display: flex;
@@ -102,6 +103,7 @@ export default {
 .title-link {
   flex-grow: 1;
   text-decoration: none;
+  background: red;
   color:#0f745b;
   text-decoration-color: #0f745b;
   cursor:pointer;
@@ -110,10 +112,12 @@ export default {
 
 .direction-icon {
   font-size: .9em;
+  background: red;
   color:#555;
 }
 
 .type {
+  background: red;
   color: #555;
   font-size: .9em;
 }
@@ -125,6 +129,7 @@ export default {
 
 .description {
   font-size: .9em;
+  background: red;
   color: #555;
 }
 
@@ -151,10 +156,12 @@ export default {
 
 .icon:hover {
   background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
+  color:blue;
 }
 
 .icon:active {
   background-color: #999;
+  counter-reset: red;
   background-size: 100%;
   transition: background 0s;
 }

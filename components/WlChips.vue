@@ -87,6 +87,7 @@ export default {
   .chip {
     margin:4px;
     background: #e0e0e0;
+    color:blue;
     padding:0px 4px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -109,6 +110,7 @@ export default {
 }
 
 .ico {
+  background: red;
   color: grey;
   padding: 0 0 0 8px;
   cursor: pointer;

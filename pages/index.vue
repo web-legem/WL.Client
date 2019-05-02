@@ -2,7 +2,6 @@
   <div>    
     <wl-landing-page
       :src="vipriImg"
-      background-color="#000"
     >
       <wl-main-search-form />
     </wl-landing-page>

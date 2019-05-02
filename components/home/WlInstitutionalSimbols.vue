@@ -18,6 +18,7 @@ export default {
 <style lang="scss" scoped>
 .contenedor_simbolos {
   background: rgba(0, 0, 0, .6);
+  color:white;
   align-items: flex-end;
   justify-content: flex-end;
   width: 100%;

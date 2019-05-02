@@ -23,6 +23,7 @@
     position: absolute;
     border-radius:50%;
     background: var(--wl_primary);
+    color: var(--wl_gray_light);
 }
 
 .circulo_carga:before{

@@ -45,7 +45,7 @@ export default {
 
 .list-item {
   background-color: var(--wl_form_bg);
-  color:var(--documento-p);
+  color: var(--wl_input_text);  
   border-bottom: 1px solid var(--wl_border);
   min-height: 2.5em;
   margin: auto 0;
@@ -56,18 +56,13 @@ export default {
 
 .list-item:hover,
 .list-item:active {
-  background-color: var(--wl_gray_light);
+  background: var(--wl_gray_light);
+  color: var(--wl_input_text);
 }
 
 .list-item > div {
   align-self: center;
   padding: .5em 1em;
-  color: var(--wl_input_text);
-}
-
-
-.list-item.list-item.nuxt-link-active div{
-  color: var(--wl_input_text);
 }
 
 .list-item > div::after {
@@ -77,12 +72,12 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 1.2em;
-  color: var(--wl_btn_content);
   right: 50%;
   opacity: 0;
   width: 2em;
   transition: linear .3s;
   background-color: var(--wl_light);
+  color: var(--wl_btn_content);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -91,6 +86,7 @@ export default {
 
 .list-item.list-item.nuxt-link-active {
   background-color: var(--wl_subtle);
+  color: var(--wl_input_text);
 }
 
 .list-item.nuxt-link-active > div::after {

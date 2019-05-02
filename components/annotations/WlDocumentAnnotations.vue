@@ -45,19 +45,20 @@ export default {
 .document-header {
   flex-grow: 1;
   font-size: 1.4rem;
+  background: blue;
   color: #00796b;
   padding: 10px;
 }
 
 .icon {
   font-size: 1.4rem;
+  background-color: transparent;
   color: #00796b;
   margin: 10px;
   padding: 5px;
   padding-bottom: 5px;
   cursor: pointer;
   margin-left: 5px;
-  background-color: transparent;
   border-radius: 50%;
   background-position: center;
   transition: background 0.8s;
@@ -66,10 +67,12 @@ export default {
 
 .icon:hover {
   background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
+  color: red;
 }
 
 .icon:active {
   background-color: #999;
+  color:blue;
   background-size: 100%;
   transition: background 0s;
 }

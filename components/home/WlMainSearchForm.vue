@@ -21,17 +21,14 @@
           id="mini_search" 
           v-model="wordsToSearch"
           type="text"
-          aria-labelledby="search-button"
         >
         <button
           id="search-button"
           type="submit"
           @click="search()"
+          title="buscar"
         >          
-          <span class="ico2-search" />            
-          <span class="hide-text">
-            Search
-          </span>
+          <span class="ico2-search" />                      
         </button>
       </form>
     </div>
@@ -67,14 +64,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  background: transparent;
+  color: white;
 }
 
 .site-name {
   align-self: center;
   padding-top: 20px;
   padding-bottom: 30px;
-  font-family: 'Abril Fatface', cursive;
-  color: white;
+  font-family: 'Abril Fatface', cursive;  
   text-shadow: 1px 1px 2px rgba(140, 140, 140, .6), -1px -1px 3px rgba(0, 0, 0, .67);
   cursor: default;
 }
@@ -101,9 +99,9 @@ export default {
   font-size: 2em;
   padding: 17px;
   border: none;
-  color: #111111;
   flex: 1;
   background: #ffffff;
+  color: #111111;
   opacity: .8;
 }
 
@@ -126,10 +124,11 @@ export default {
 
 .mini_search button:hover {
   background: var(--wl_dark);
+  color: var(--wl_btn_content);
 }
 
 .mini_search button span:first-child {
-  background: var(--wl_primary);
+  background: transparent;
   color: var(--wl_btn_content);
   display: flex;
   justify-content: center;

@@ -4,37 +4,48 @@
       <div id="f_1">
         <p>{{ $t('components.footer.contactenos') }}</p>
         <hr>
-        <span class="ico-university ico_f2" />  {{ $t('components.footer.universidad') }} <br>
-        <span class="ico2-location2 ico_f2" /> {{ $t('components.footer.direccion') }}<br>
-        <span class="ico-phone ico_f2" /> PBX: (2)-7311449 - 18000957071<br>
-        <span class="ico-envelope ico_f2" /> E-mail: planeacion@udenar.edu.co
+        <ul class="contac_container">
+          <li><span class="ico-university ico_f2" />{{ $t('components.footer.universidad') }}</li>
+          <li><span class="ico2-location2 ico_f2" /> Torobajo - Calle 18 Carrera 50</li>
+          <li><span class="ico-phone ico_f2" /> PBX: (2)-7311449 - 18000957071</li>        
+          <li><span class="ico-envelope ico_f2" /> E-mail: planeacion@udenar.edu.co</li>
+        </ul>        
       </div>
       <div id="f_2">
         <p>{{ $t('components.footer.siguenos') }}</p>
         <hr>
-        <a
-          class="ico-facebook-square ico_f"
-          href="https://www.facebook.com/udenar"
-        ><span class="hide-text">Facebook</span></a>
-        <a
-          class="ico-twitter-square ico_f"
-          href="https://twitter.com/Udenar"
-        ><span class="hide-text">Twitter</span></a>
-        <br>
-        <span class="ico-university f_link">
+        <div class="links_container">
+          <ul class="navigation">
+            <li>
+              <a
+                class="ico-facebook-square ico_f"
+                href="https://www.facebook.com/udenar"
+              ><span class="hide-text">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="ico-twitter-square ico_f"
+                href="https://twitter.com/Udenar"
+              ><span class="hide-text">Twitter</span>
+              </a>
+            </li>
+          </ul>        
           <a
             class="f_link"
             href="http://www.udenar.edu.co/"
           >
-            {{ $t('components.footer.universidad') }}
+            <span class="ico-university f_link">
+              {{ $t('components.footer.universidad') }}
+            </span>
           </a>
-        </span>
+        </div>
       </div>
 
       <div id="f_3">
         <p>{{ $t('components.footer.sitio') }}</p>
         <hr>
-        <br>{{ $t('components.footer.developers') }}<br>
+        <p> {{ $t('components.footer.developers') }} </p>
         Adriana Rodriguez - Andres Solarte - Mario Florez
       </div>
     </div>
@@ -51,13 +62,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ul.navigation {
+ list-style: none; 
+ padding: 0;
+}
+ul.navigation li {
+ display: block; 
+ float: left;
+ padding: 10px;
+}
+
+ul.contac_container{
+  list-style: none; 
+  padding: 0;
+}
+
 .a_footer {
   background: var(--wl_footer_bg);
+  color: var(--wl_footer_text);
   width: 100%;
   min-height: 30vh;
   display: flex;
   flex-direction: column;
-  color: var(--wl_footer_text);
   line-height: 1.7;
   font-size: 1em;
 }
@@ -72,8 +98,8 @@ export default {
 .sub_footer2{
   text-align:center;
   padding:10px;
+  background: #131A22;
   color:var(--wl_footer_text);
-  background:rgba(255,255,255,.08);
 }
 
 .sub_footer1 > div {
@@ -81,6 +107,7 @@ export default {
   flex: 1;
   margin:10px 40px;
   padding:0 30px;
+  background: transparent;
   color:var(--wl_footer_text);
 }
 
@@ -90,6 +117,7 @@ export default {
 }
 
 .sub_footer1>div>p{
+  background: transparent;
   color:var(--wl_footer_text);
 }
 
@@ -98,18 +126,21 @@ export default {
 }
 
 .f_link{
+  background: transparent;
   color:var(--wl_footer_text);
   cursor:pointer;
 }
 
 .ico_f{
+  background: transparent;
   color:var(--wl_footer_text);
   font-size:xx-large;
   cursor:pointer;
 }
 
 .ico_f:hover,.f_link:hover{
-  color: #38ba8f;
+  background: transparent;
+  color: var(--wl-light);
 }
 
 #f_3 > img{
@@ -147,4 +178,12 @@ export default {
   top: auto;
   width: 1px;  
 }
+
+.links_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>

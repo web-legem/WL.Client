@@ -110,6 +110,7 @@ export default {
 }
 
 .icon {
+  background: red;
   color: white;
 }
 

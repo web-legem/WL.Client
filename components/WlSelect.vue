@@ -76,6 +76,7 @@ export default {
   border-right: none;
   position: relative;
   margin-bottom: 2px;
+  overflow: hidden;
 }
 
 .a_select select:disabled {
@@ -92,12 +93,12 @@ export default {
 .a_select input {
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: var(--wl_input_bg);
   width: 100%;
   height: 35px;
   overflow: hidden;
   border: 1px solid var(--wl_gray);
   padding: 0 10px;
+  background: var(--wl_input_bg);
   color: var(--wl_input_text);
 }
 
@@ -105,6 +106,7 @@ export default {
   font-family: "iconos-legem";
   font-size: 25px;
   font-weight: 900;
+  background: transparent;
   color: var(--wl_gray);
   content: "\71";
   position: absolute;
@@ -123,13 +125,14 @@ export default {
   outline: 0;
   border-color: var(--wl_light);
   background: var(--wl_subtle);
+  color: var(--wl_input_text);  
   border-width: 2px;
 }
 
 .a_select select option {
   padding: 0 10px;
-  color:var(--wl_text);
   background: var(--wl_form_bg);
+  color:var(--wl_text);
 }
 
 .msj-error {

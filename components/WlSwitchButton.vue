@@ -66,6 +66,7 @@ export default {
 }
 .w-switch.disable div span{  
   pointer-events: none;
+  background: blue;
   color: var(--wl_gray) !important;
 }
 
@@ -92,12 +93,14 @@ export default {
  { color:var(--wl_primary); }
  
 .w-switch div span{ 
+  background: blue;
   color: var(--wl_gray);
   display: flex;  
   align-items: center;
   justify-content: center;  
 }
 .w-switch div label{/*texto*/
+    background: blue;
     color: var(--wl_text);
     font-size: 1em;
     font-family: 'Lato';
@@ -127,6 +130,7 @@ export default {
 .w-switch div span.ico-dot-circle-o{ display: none }
 .w-switch input:checked ~ div span.ico-circle-o{ display: none }
 .w-switch input:checked ~ div span.ico-dot-circle-o{ 
+  background: red;
   color: var(--wl_primary);
   display: flex;  
   align-items: center;
@@ -146,6 +150,7 @@ export default {
 .w-switch div span.ico-check-square-o{ display: none }
 .w-switch input:checked ~ div span.ico-square-o{ display: none }
 .w-switch input:checked ~ div span.ico-check-square-o{ 
+  background: red;
   color: var(--wl_primary);
   display: flex;  
   align-items: center;

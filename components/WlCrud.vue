@@ -232,6 +232,7 @@ export default {
   max-width: 600px;
   padding: 10px;  
   margin-bottom: -10px;
+  background: transparent;
   color: var(--wl_text);
 }
 
