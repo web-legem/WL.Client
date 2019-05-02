@@ -30,6 +30,7 @@
         v-show="isVisible"
         class="btn_cancel" 
         :title="$t('search.input-filter.title-rem-filt')"
+        :aria-label="$t('search.input-filter.title-rem-filt')"
         @click="clearText()"
       >
         <span class="ico-plus" />

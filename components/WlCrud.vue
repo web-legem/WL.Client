@@ -54,7 +54,7 @@
     >
       <template slot="wl-content">
         <div class="generic-box-vertical content-modal">
-          <div>{{ $t('components.crud.div-sure-delete') }} "{{ objSelect.name }}"?</div>
+          <div>{{ $t('components.crud.div-sure-delete') }} "{{ getElementName }}"?</div>
         </div>
         <div class="modal-confirmacion confirm-dialog content-modal-buttons">
           <wl-button 
@@ -130,6 +130,7 @@ export default {
       default: null
     },
     disableButtons: {type: Boolean, default: false },
+    elementName: {type: String, default: "" },
   },
   data() {
     return {
@@ -154,6 +155,13 @@ export default {
       }
       return false
     },
+    getElementName(){
+      if(this.elementName){
+        return this.objSelect[this.elementName]
+      }else{
+        return this.objSelect.name
+      }
+    }
   },
   created() {
     this.curObject = this.objSelect;
@@ -228,8 +236,7 @@ export default {
 }
 
 .content-modal{  
-  min-width: 400px;
-  max-width: 600px;
+  width: 100%;
   padding: 10px;  
   margin-bottom: -10px;
   background: transparent;

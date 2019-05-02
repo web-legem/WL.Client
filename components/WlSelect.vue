@@ -104,7 +104,7 @@ export default {
 
 .a_select:before {
   font-family: "iconos-legem";
-  font-size: 25px;
+  font-size: x-large;
   font-weight: 900;
   background: transparent;
   color: var(--wl_gray);

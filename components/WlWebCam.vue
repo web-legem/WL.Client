@@ -1,9 +1,9 @@
 <template>
   <div>
     <div>
-      <label class="texto_labels ">  
+      <span class="texto_labels ">  
         {{ $t('components.webcam.label-foto-user') }}
-      </label>
+      </span>
       <div class="box_fotografia">
         <div class="foto_usuarios">
           <wl-load2 
@@ -26,12 +26,14 @@
             id="input_usu_foto"
             ref="inputToLoad"
             title="archivo foto de usuario"
+            aria-label="archivo foto"
             type="file" 
             :disabled="disable" 
             @change="loadPhoto"
           >
           <input 
             id="hidden_input" 
+            aria-label="archivo foto"
             name="filename"
             title="fotografia de usuario"
             type="hidden" 
@@ -382,7 +384,7 @@ export default {
 .foto_usuarios > span:before{   
     background: transparent;
     color:var(--wl_gray_light);
-    font-size:120px;
+    font-size:800%;
     display:block;    
 }
 

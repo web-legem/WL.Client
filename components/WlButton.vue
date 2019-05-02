@@ -4,6 +4,7 @@
     :class="[btnStyle, btnInverso, btnDisable]" 
     :title="title"
     @click="$emit('click', $event)"
+    :aria-label="onlyIcon ? title : '' "
   >
     <span :class="[ico,size,icoInverso]" />
     <slot />
@@ -52,7 +53,7 @@ export default {
   border: 0;
   margin: auto 0;
   padding: 8px 5px 8px 40px;
-  min-width: 110px;
+  min-width: 8rem;
   cursor: pointer;
 }
 
@@ -107,7 +108,7 @@ export default {
   border: 0;
   margin: auto 0;
   padding: 8px 5px 8px 8px;
-  min-width: 110px;
+  min-width: 8rem;
   cursor: pointer;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
@@ -145,7 +146,7 @@ export default {
 }
 
 .btn-only-ico > span:before {
-  font-size: 20px;
+  font-size: large;
   width: 100%;
 }
 

@@ -22,9 +22,9 @@
           :validate="{required:true}"
           :is-submit="isSubmit"
         />
-        <label class="texto_labels sm-space-top">
+        <span class="texto_labels sm-space-top">
           {{ $t('admin.entities-type.label-documents-suport') }}
-        </label>
+        </span>
         <div 
           class="hoja-container"
           :class="{'disable':!isEdit}"

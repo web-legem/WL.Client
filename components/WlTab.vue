@@ -4,9 +4,9 @@
     class="tab"
   >
     <span :class="[icon, 'ico']" />
-    <span class="tab-name">
+    <h1 class="tab-name">
       <slot />
-    </span>
+    </h1>
   </nuxt-link>
 </template>
 
@@ -79,5 +79,6 @@ export default {
 .tab-name {
   align-self: center;
   text-align: start;
+  font-size: .75rem;
 }
 </style>

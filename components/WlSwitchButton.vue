@@ -1,11 +1,10 @@
 <template>
   <div>
-    <label 
-      :for="name" 
+    <span 
       class="texto_labels"
     >
       {{ title }}
-    </label>
+    </span>
     <div 
       class="w-switch"
       :class="{'disable':disable}"
@@ -21,10 +20,12 @@
       >
       <div>
         <span 
+          v-if="value == undefined || value==false"
           :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " 
           @click="value = !value" 
         />
         <span 
+          v-if="value == true"
           :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " 
           @click="value = !value" 
         />
@@ -66,7 +67,7 @@ export default {
 }
 .w-switch.disable div span{  
   pointer-events: none;
-  background: blue;
+  background: transparent;
   color: var(--wl_gray) !important;
 }
 
@@ -90,22 +91,25 @@ export default {
 }
 .w-switch div span:hover,
 .w-switch div label:hover
- { color:var(--wl_primary); }
+{ 
+  background: transparent;
+  color:var(--wl_primary); 
+}
  
 .w-switch div span{ 
-  background: blue;
+  background: transparent;
   color: var(--wl_gray);
   display: flex;  
   align-items: center;
   justify-content: center;  
 }
 .w-switch div label{/*texto*/
-    background: blue;
-    color: var(--wl_text);
-    font-size: 1em;
-    font-family: 'Lato';
-    margin-left: 5px;
-    cursor:pointer;
+  background: transparent;
+  color: var(--wl_text);
+  font-size: 1em;
+  font-family: 'Lato';
+  margin-left: 5px;
+  cursor:pointer;
 }
 
 .w-switch input ~ div {
@@ -120,17 +124,17 @@ export default {
 .w-switch div span.ico-circle-o:before{
     vertical-align: text-bottom;
     line-height: .9;    
-    font-size: 20px;
+    font-size: x-large;
 }
 .w-switch div span.ico-dot-circle-o:before{
     vertical-align: text-bottom;
     line-height: .9;    
-    font-size: 20px;
+    font-size: x-large;
 }
 .w-switch div span.ico-dot-circle-o{ display: none }
 .w-switch input:checked ~ div span.ico-circle-o{ display: none }
 .w-switch input:checked ~ div span.ico-dot-circle-o{ 
-  background: red;
+  background: transparent;
   color: var(--wl_primary);
   display: flex;  
   align-items: center;
@@ -140,17 +144,17 @@ export default {
 .w-switch div span.ico-square-o:before{
     vertical-align: text-bottom;
     line-height: .9;    
-    font-size: 20px;
+    font-size: x-large;
 }
 .w-switch div span.ico-check-square-o:before{
     vertical-align: text-bottom;
     line-height: .9;    
-    font-size: 20px;
+    font-size: x-large;
 }
 .w-switch div span.ico-check-square-o{ display: none }
 .w-switch input:checked ~ div span.ico-square-o{ display: none }
 .w-switch input:checked ~ div span.ico-check-square-o{ 
-  background: red;
+  background: transparent;
   color: var(--wl_primary);
   display: flex;  
   align-items: center;
