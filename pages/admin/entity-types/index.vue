@@ -12,9 +12,9 @@
           :max="0"
           :disable="true"
         /> 
-        <label class="texto_labels sm-space-top">
+        <span class="texto_labels sm-space-top">
           {{ $t('admin.entities-type.label-documents-suport') }}
-        </label>
+        </span>
         <div class="hoja-container disable">
           <div
             v-for="docType in docTypes"

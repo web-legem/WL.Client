@@ -14,7 +14,7 @@
         />
 
         <wl-switch-button 
-          :id="'r1'"
+          :id="'rr1'"
           :name="'form1.configSystem'"       
           :type="'checkbox'" 
           :title=" $t('persons.permission.title-config-system')"
@@ -22,7 +22,7 @@
           :disable="true"
         />
         <wl-switch-button 
-          :id="'r2'"
+          :id="'rr2'"
           :name="'form1.createDocuments'"       
           :type="'checkbox'" 
           :title=" $t('persons.permission.title-create-doc')"
@@ -30,7 +30,7 @@
           :disable="true"
         />
         <wl-switch-button 
-          :id="'r3'"
+          :id="'rr3'"
           :name="'form1.deleteDocuments'"       
           :type="'checkbox'" 
           :title=" $t('persons.permission.title-delete-doc')"

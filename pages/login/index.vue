@@ -172,22 +172,23 @@ export default {
 <style lang="scss" scoped>
 
 .olvide_contraseña{
-    margin-top:20px;
-    display:inline-block;
-    font-family: 'Lato';
-    font-size:small;
+  margin-top:20px;
+  display:inline-block;
+  font-family: 'Lato';
+  font-size:small;
 }
 
 .btn-submit > div:first-child{
+  background: transparent;
   color: var(--wl_link);
   font-size: .8rem;
   align-self: flex-start;
 }
 
 .link-restore:visited{
+  background: transparent;
   color: var(--wl_link);
 }
-
 
 .btn-submit > div:last-child{
   margin-top: 20px;

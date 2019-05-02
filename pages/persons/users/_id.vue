@@ -4,6 +4,7 @@
       :obj-select="objSelected"
       :is-new="false"
       :error="error"
+      :element-name="'lastName'"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"

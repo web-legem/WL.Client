@@ -83,10 +83,6 @@ export default {
 </script>
 
 <style lang="scss">
-.entity-type-label {
-  color: #2dbf85;
-}
-
 .details {
   padding: calc(1em + .5vw);
 }

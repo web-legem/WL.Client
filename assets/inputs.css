@@ -88,6 +88,14 @@
   color: var(--wl_input_text_ph);
 }
 
+.a_input.disable::placeholder,
+.input_text_ico.disable::placeholder,
+.input_text_btn.disable::placeholder {
+  background: transparent;
+  color: var(--wl_input_text)
+}
+
+
 /* ---FIN placeholder en mozilla y chrome----*/
 
 .a_input:-webkit-autofill,

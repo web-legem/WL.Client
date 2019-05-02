@@ -74,7 +74,7 @@ export const mutations = {
     state.selected.name = newName
   },
   changeConfigSystem(state, val) {
-    state.selected.ConfigSystem = val
+    state.selected.configSystem = val
   },
   changeCreateDoc(state, val) {
     state.selected.createDocuments = val
