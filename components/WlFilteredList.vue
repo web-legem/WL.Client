@@ -132,10 +132,12 @@ export default {
 .empty-list span{
   margin-bottom: 10px;
   font-size: 3em;
+  background: transparent;
   color: var(--wl_gray);
 }
 
 .empty-list p{
+  background: transparent;
   color: var(--wl_text);
   text-align: center;
 }

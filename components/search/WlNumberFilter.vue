@@ -122,6 +122,7 @@ export default {
 }
 
 .wl-number-filter h3 {
+  background: blue;
   color: green;
   padding-bottom: 5px;
   border-bottom: 1px solid green;

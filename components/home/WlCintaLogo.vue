@@ -38,7 +38,7 @@
     <div class="contenedor_nombre_escudo">
       <span
         class="escudo-udenar"
-        style="fill:white; color:white; font-size:90px; top:10px;position:absolute; left:30px;"
+        style=""
       />
     </div>
   </div>
@@ -59,9 +59,18 @@ export default {
   top: -5px; 
   z-index: 1;    
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.85));
+  background: transparent;
+  color:white; 
+}
+.escudo-udenar{
+  position:absolute; 
+  top:10px;
+  left:30px;
+  fill:white;   
+  font-size:90px; 
 }
 
 .escudo-udenar:before {
-  content: "\10ffff";
+  content: "\10ffff";  
 }
 </style>

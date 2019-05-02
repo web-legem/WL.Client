@@ -52,13 +52,15 @@ export default {
 .pdf-viewer {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .75);
+  background-color: blue;
+  color:white;
 }
 
 .pdf {
   width: 100%;
   height: 100%;
   display: block;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: blue;
+  color:white;
 }
 </style>

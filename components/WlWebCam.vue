@@ -380,6 +380,7 @@ export default {
 }
 
 .foto_usuarios > span:before{   
+    background: transparent;
     color:var(--wl_gray_light);
     font-size:120px;
     display:block;    

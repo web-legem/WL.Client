@@ -35,6 +35,7 @@ export default {
   overflow-y: unset;
   overflow-x: auto;
   background-color: var(--wl_tab_bg);
+  color: var(--wl_text);
   padding-top: 10px;
   box-shadow: inset 0 -3px 6px -3px var(--wl_gray);
 }
@@ -44,6 +45,7 @@ export default {
   display: flex;
   flex-direction: column;
   background: var(--wl_form_bg);
+  color: var(--wl_text);
   height: 100%;
 }
 </style>

@@ -91,12 +91,14 @@ export default {
 
 .document-title {
   flex-grow: 1;
+  background: blue;
   color: #00796b;
   font-size: 1em;
 }
 
 .title-link {
   text-decoration: none;
+  background: blue;
   color:#0f745b;
   text-decoration-color: #0f745b;
   cursor:pointer;
@@ -105,10 +107,12 @@ export default {
 
 .direction-icon {
   font-size: .9em;
+  background: blue;
   color:#555;
 }
 
 .type {
+  background: blue;
   color: #555;
   font-size: .9em;
 }
@@ -120,12 +124,13 @@ export default {
 
 .description {
   font-size: .9em;
+  background: blue;
   color: #555;
 }
 
-.button-control {
-  color: #0f745b;
+.button-control {  
   background: white;
+  color: #0f745b;
   cursor: pointer;
 }
 

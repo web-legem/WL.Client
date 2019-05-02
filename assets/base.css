@@ -83,6 +83,7 @@ html, body {
   padding: 15px;
   overflow-y: auto;
   background: var(--wl_input_bg);
+  color: red;
   border: 1px solid var(--wl_gray);
   margin: 0 auto 10px;
 }
@@ -102,7 +103,6 @@ html, body {
 }
 
 .note-name {
-  color: var(--wl_input_text);
   font-family: "lato";
   font-size: 1.1em;;
   text-overflow:ellipsis;  
@@ -138,9 +138,9 @@ html, body {
 }
 
 .ico-container > span {
-  color: var(--wl_btn_disable);
   font-size: xx-large;
   background: var(--wl_input_bg);
+  color: var(--wl_btn_disable);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,6 +156,7 @@ html, body {
   text-align: center;
   padding: 3px;
   background:var(--wl_subtle);  
+  color: var(--wl_input_text);
   overflow:hidden;
   position: relative;
 }
@@ -179,6 +180,7 @@ html, body {
   bottom: 0;
   right: 80%;
   opacity: 0;
+  background: transparent;
   color: var(--wl_primary);
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
@@ -197,6 +199,7 @@ html, body {
   right: 0;
   padding-right: 4px;
   opacity: 1;
+  background: transparent;
   color: var(--wl_primary);
 
   -webkit-transition: all 0.3s ease-out;
@@ -210,13 +213,16 @@ html, body {
 
 .hoja-container.disable {
   background: var(--wl_gray_light);
+  color: var(--wl_text);
 }
 
 .hoja-container.disable .name-container{
   background: var(--wl_btn_disable);
+  color: var(--wl_btn_content);
 }
 
 .hoja-container.disable .note-name{
+  background: transparent;
   color: var(--wl_input_bg);
 }
 
@@ -225,6 +231,7 @@ html, body {
 }
 
 .block.disable input:checked + label::after {
+  background: transparent;
   color: var(--wl_input_bg);
 }
 
@@ -259,10 +266,10 @@ html, body {
 .box-title {
   display: flex;
   align-items: center;
-  color: var(--wl_btn_content);
   height: 35px;
   align-self: stretch;
   background: var(--wl_dark);
+  color: var(--wl_btn_content);
   font-family: 'Lato';
   font-size: 1rem;
   padding-left: 10px;
@@ -282,18 +289,18 @@ html, body {
 }
 
 .wl_msg.info {
-  color: white;  
   background: var(--wl_text_info);
+  color: white;  
 }
 
 .wl_msg.ok {
-  color: white;  
   background: var(--wl_primary);
+  color: white;  
 }
 
 .wl_msg.error {
-  color: white;  
   background: var(--wl_text_error);  
+  color: white;  
 }
 
 .wl_msg.info strong:before {content: "\e0c9"}
@@ -313,9 +320,11 @@ html, body {
 
 .__nuxt-error-page{
   background:#131f27;
+  color: white !important;
 }
 
 .title{
+  background:#131f27;
   color: white !important;
 }
 
@@ -355,5 +364,6 @@ html, body {
 }
 
 .to_top:hover {
-  background-color: var(--wl_dark); /* Add a dark-grey background on hover */
+  background-color: var(--wl_dark);
+  color: var(--wl_btn_content);
 }

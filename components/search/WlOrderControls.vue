@@ -155,6 +155,7 @@ export default { components: { WlModal,
 .ordering {
   padding: 0 4px 4px ;
   background: white;
+  color:blue;
   font-size: .9rem;
 }
 
@@ -164,6 +165,7 @@ export default { components: { WlModal,
 }
 
 .order-icon {
+  background: blue;
   color: #00696b;
   padding: 0;
 }

@@ -90,6 +90,7 @@ export default {
 }
 
 .titulo_tarjeta a {
+  background: blue;
   color:#0f745b;
   -moz-text-decoration-color: #0f745b;
   text-decoration-color: #0f745b;
@@ -97,6 +98,7 @@ export default {
 }
 
 .contenido_tarjeta {
+  background: blue;
   color:#222;
   font-size: .8rem;
   font-family: 'Lato';
@@ -105,6 +107,7 @@ export default {
 
 .subcontenido_tarjeta {
   padding-top:5px;
+  background: blue;
   color:#666;
   font-size: .8rem;
   font-family: 'Lato';
@@ -126,6 +129,7 @@ export default {
 }
 
 .control_tarjeta > a {
+  background: blue;
   color:#0f745b;
   text-decoration:none;
   cursor:pointer;
@@ -136,6 +140,7 @@ export default {
 }
 
 .link_tarjeta {
+  background: blue;
   color:#0f745b;
   text-decoration:none;
   cursor:pointer;
@@ -145,6 +150,7 @@ export default {
 }
 
 .link_tarjeta:hover {
+  background: blue;
   color:#444;
 }
 
@@ -172,6 +178,7 @@ export default {
   padding:10px;
   margin-bottom:10px;
   background:#fefefe;
+  color:red;
   box-shadow: 0 0 0 1px #ddd,1px 1px 1px rgba(0, 0, 0, 0.44)  ;
   display:flex;
 }
@@ -183,6 +190,7 @@ export default {
 .tarjeta_anotacion > div:first-child span:before {
   font-size:45px;        
   color:#2c77ba;
+  background: red;
   height:100%;
   display:flex;
   align-items:center;
@@ -194,6 +202,7 @@ export default {
 
 .tarjeta_anotacion:hover {
   background:#C6E2EE;
+  color:red;
   cursor:pointer;
 }
 
@@ -202,6 +211,7 @@ export default {
   display:flex;
   padding:10px;
   background:#fff;
+  color:blue;
   border:1px solid #dde;
 }
 
@@ -217,6 +227,7 @@ export default {
   height:100%;
   display:flex;
   color:#27ae60;
+  background: blue;
   align-items:center;
 }
 
@@ -228,10 +239,12 @@ export default {
 .documento_actual > div:last-child > p:first-child {
   font-size: .8rem;
   color:#27ae60;
+  background: blue;
 }
 
 .documento_actual p {
   color:#555;
+  background: blue;
   font-size: .8rem;
   font-family: 'Lato';
 }
@@ -252,11 +265,13 @@ export default {
   margin:0;
   font-size: .8rem;
   color:#2c77ba;
+  background: red;
 }
 
 .subcontenido_tarjeta.anotacion {
   padding:0;
   color:#34495e; 
+  background: red;
   font-family: 'Lato';
 }
 .subcontenido_tarjeta.anotacion i {
@@ -267,6 +282,7 @@ export default {
 .tipo_anotacion p {
   text-decoration:none;
   color:#34495e;
+  background: red;
   font-size: .8rem;
   font-family: 'Lato';
 }

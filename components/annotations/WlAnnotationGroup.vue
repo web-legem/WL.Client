@@ -108,6 +108,7 @@ export default {
 
 .group-toggle:hover {
   background: lightgrey;
+  color:red;
 }
 
 .toggle-group-icon {

@@ -76,26 +76,48 @@ export default {
 <style lang="scss" scoped>
 .btn_cancel {
   flex-basis: 35px;
-  background:var(--btn-can);
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);
   display: block;
-  border: 1px solid var(--btn-can-b);
   border-left: none !important;
   width: 100%;
   height: 35px;
-  color: var(--btn-can-c);
   font-size: large;
   font-size-adjust: -webkit- 0.8;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
+}
+
+.btn_cancel:before,
+{
+  content:'';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+}
+
+.btn_cancel:hover:before {
+  background:var(--wl_primary_hover);
+  color: var(--wl_btn_content);
+  width: 100%;
+}
+
+.btn_cancel:active:before {
+  background:var(--wl_primary_active);
+  color: var(--wl_btn_content);
+  width: 100%;
 }
 
 .btn_cancel:disabled {
-  background:var(--btn-can-d);
+  background:var(--wl_btn_disable);
+  color:var(--wl_btn_content);  
 }
 
 .btn_cancel span {
   display: flex;
-  color: var(--btn-can-s);
 }
 
 .btn_cancel span:before {
@@ -110,30 +132,7 @@ export default {
   transform: rotate(45deg);
 }
 
-.ico_input_text {
-  background: var(--ico-inpt);
-  color: var(--ico-inpt-c);
-  display: flex;
-  justify-content: center;
-  font-size: x-large;
-  height: 100%;
-}
-
-.ico_input_text > span {
-  height: 100%;
-  display: flex;  
-}
-
-.ico_input_text > span:before {
-  align-self: center;
-}
-
 .hide-text {
-  height: 1px;
-  left: -900em;
-  overflow: hidden;
-  position: absolute;
-  top: auto;
-  width: 1px;
+  font-size: 0em;  
 }
 </style>

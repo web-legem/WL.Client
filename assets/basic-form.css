@@ -19,8 +19,8 @@
   display:inline-block;
   font-family: 'Lato';
   font-size: 1.1rem;
-  color: var(--wl_text);
   background: var(--wl_form_bg);
+  color: var(--wl_text);
   border-bottom: 1px solid var(--wl_border);
 }
 
@@ -30,6 +30,7 @@
 
 .form-basic-container {
   background: var(--wl_form_bg);
+  color:var(--wl_text);
   padding: 20px;
   padding-top: 18px;
 }

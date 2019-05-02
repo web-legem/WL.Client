@@ -33,6 +33,7 @@ export default {
 }
 
 .error-message {
+  background: transparent;
   color: grey;
   border: 2px dashed grey;
   width: 70%;

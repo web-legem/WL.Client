@@ -123,7 +123,8 @@
   display:flex;
   flex-direction:column;
   align-self:center;
-  background-color: var(--wl_form_bg);;
+  background-color: var(--wl_form_bg);
+  color: var(--wl_text);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.71);
 }
 
@@ -138,7 +139,6 @@
 .modal-contenido{
     display:flex;
     padding:15px;
-    color: var(--wl_text);
 }
 
 .modal-contenido > span{
@@ -184,11 +184,13 @@
 
 .modal-confirmacion button:hover:before{
   background:var(--wl_primary_hover);
+  color:var(--wl_btn_content);
   width: 100%;
 }
 
 .modal-confirmacion button:active:before{
   background:var(--wl_primary_active);
+  color:var(--wl_btn_content);
   width: 100%;
 }
 

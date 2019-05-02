@@ -2,7 +2,6 @@
   <div>
     <wl-landing-page
       :src="vipriImg"
-      background-color="#fff"
     >
       <div class="basic-form">
         <div class="basic-form-box">

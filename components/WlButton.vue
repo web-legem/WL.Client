@@ -69,14 +69,17 @@ export default {
 .btn-normal:disabled {
   pointer-events: none;
   background: var(--wl_btn_disable);
+  color: var(--wl_btn_content);
 }
 
 .btn-normal.azul {
-  background-color: var(--wl_btn_blue);
+  background: var(--wl_btn_blue);
+  color: var(--wl_btn_content);
 }
 
 .tamano_botones_1 {
   background: var(--wl_btn_bg_ico);
+  color: var(--wl_btn_content);
   height: 100%;
   width: 35px;
   position: absolute;
@@ -94,12 +97,12 @@ export default {
 
 .btn_sin_ico {
   position: relative;
-  background-color:var(--wl_primary);
   font-family: "Century Gothic";
   font-size: 0.7em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04rem;
+  background: var(--wl_primary);
   color: var(--wl_btn_content);
   border: 0;
   margin: auto 0;
@@ -125,6 +128,7 @@ export default {
   position: relative;
   border: 0;
   background: var(--wl_primary);
+  color: var(--wl_btn_content);
   cursor: pointer;
   min-height: 35px;
   min-width: 35px;
@@ -133,9 +137,6 @@ export default {
 .btn-only-ico.disable {
   pointer-events: none;
   background: var(--wl_btn_disable);
-}
-
-.btn-only-ico.disable > span:before {
   color: var(--wl_btn_content);
 }
 
@@ -145,7 +146,6 @@ export default {
 
 .btn-only-ico > span:before {
   font-size: 20px;
-  color: var(--wl_btn_content);
   width: 100%;
 }
 
@@ -165,6 +165,7 @@ export default {
 .btn_sin_ico:hover:before,
 .btn-only-ico:hover:before {
   background:var(--wl_primary_hover);
+  color: var(--wl_btn_content);
   width: 100%;
 }
 
@@ -172,6 +173,7 @@ export default {
 .btn_sin_ico:active:before,
 .btn-only-ico:active:before {
   background:var(--wl_primary_active);
+  color: var(--wl_btn_content);
   width: 100%;
 }
 </style>

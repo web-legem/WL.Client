@@ -133,11 +133,13 @@ export default {
 
 <style lang="scss" scoped>
 .wl-search-filters {
+  background: blue;
   border: 1px solid gray;
   padding: 16px;
 }
 
 .wl-search-filters h3 {
+  background: blue;
   color: #00696b;
   padding-bottom: 5px;
   border-bottom: 1px solid #00696b;

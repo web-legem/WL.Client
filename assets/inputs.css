@@ -7,7 +7,7 @@
   display: flex;
   height: 35px;
   margin-bottom: 8px;
-  padding: 0
+  padding: 0;
 }
 
 .box_input_ico div:first-child {
@@ -24,15 +24,9 @@
 
 /*estilos genrales input text*/
 
-.a_input,
-/*input normal*/
-
-.input_text_btn,
-/*Input con boton*/
-
-.input_text_ico
-/*Input con icono como en filtros busqueda ó como el de login*/
-
+.a_input,/*input normal*/
+.input_text_btn,/*Input con boton*/
+.input_text_ico/*Input con icono como en filtros busqueda ó como el de login*/
   {
   padding: 0 10px;
   border: 1px solid var(--wl_gray);
@@ -68,25 +62,20 @@
 /*Eventos de los inputs*/
 
 .input_text_btn:focus:hover,
-.input_text_btn:focus:hover~button,
 .input_text_ico:focus~button:active {
   border-color: var(--wl_light);  
 }
 
-.input_text_btn:focus~button>span {
-  visibility: visible
-}
-
 .input_text_btn:focus~button:hover {
-  background: var(--wl_subtle);  
+  background: var(--wl_dark);  
+  color: var(--wl_btn_content);
 }
 
 /*------ hover para los input -------*/
 
 .a_input:hover,
 .input_text_ico:hover,
-.input_text_btn:hover,
-.input_text_btn:hover~button {
+.input_text_btn:hover {
   border-color: var(--wl_primary);
 }
 
@@ -95,6 +84,7 @@
 .a_input::placeholder,
 .input_text_ico::placeholder,
 .input_text_btn::placeholder {
+  background: transparent;
   color: var(--wl_input_text_ph);
 }
 
@@ -111,12 +101,12 @@
 
 .a_input:focus,
 .input_text_ico:focus,
-.input_text_btn:focus,
-.input_text_btn:focus~button {
+.input_text_btn:focus{
   outline: 0;
   border-color: var(--wl_light);
   border-width: 2px;
   background: var(--wl_subtle);
+  color:var(--wl_input_text);
 }
 
 /*Input con evento ERROR .......................................*/
@@ -165,8 +155,7 @@
 
 .a_input.disable:hover,
 .input_text_ico.disable:hover,
-.input_text_btn.disable:hover,
-.input_text_btn.disable:hover~button {
+.input_text_btn.disable:hover {
   pointer-events: none;
   border-color:  var(--wl_gray);  
 }
@@ -183,9 +172,9 @@
 
 .a_input.validate_error:focus,
 .input_text_ico.validate_error:focus,
-.input_text_btn.validate_error:focus {
-  
-  background: var(--wl_bg_error);;
+.input_text_btn.validate_error:focus {  
+  background: var(--wl_bg_error);
+  color: var(--wl_input_text);
 }
 
 .msj-error {
@@ -221,6 +210,7 @@
 
 .texto_labels {
   display: block;
+  background: transparent;
   color: var(--wl_text);
   font-size: 1em;
   font-family: 'Lato';

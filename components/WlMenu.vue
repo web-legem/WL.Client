@@ -335,8 +335,8 @@ export default {
   width: 100%;
   height: var(--header-height);
   min-height: 45px;
-  // background: rgba(0, 0, 0, 0.9);
-  background: #020813;
+  background:var(--wl_menu_bg);
+  color: white;
   border-bottom: 1px solid #6c767d;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   z-index: 2;
@@ -346,8 +346,8 @@ export default {
 }
 
 .menu.small {
-  // background: #11171e;
-  background: #020813;
+  background:var(--wl_menu_bg);
+  color: white;
 }
 
 .nav {
@@ -363,7 +363,8 @@ export default {
   position: fixed;
   top: var(--header-height);
   flex-direction: column;
-  background: #11171e;
+  background:var(--wl_menu_bg);
+  color: white;
 }
 
 ul.modules {
@@ -377,8 +378,8 @@ ul.modules {
 ul.modules.small {
   flex-direction: column;
   align-content: flex-start;
-  background: #020813;
-  // background: rgba(0, 0, 0, 0.9);
+  background:var(--wl_menu_bg);
+  color: white;
   width: 100vw;
 }
 
@@ -409,7 +410,8 @@ ul.modules.small > li {
   height: inherit;
   font-family: "Lato", sans-serif;
   font-size: 1em;
-  color: #fff;
+  background: transparent;
+  color: white;
   text-decoration: none;
   align-items: center;
 }
@@ -433,6 +435,7 @@ ul.modules.small > li {
   width: 0;
   height: 4px;
   background: white;
+  color: black;
   left: 50%;
   bottom: 0;
   transition: all .5s;
@@ -444,7 +447,8 @@ ul.modules.small > li {
 }
 
 button.module {
-  background: inherit;
+  background:transparent;
+  color: white;
 }
 
 button.module.small {
@@ -469,8 +473,7 @@ button.module.small {
 
 .sub-module {
   display: flex;
-  // background: rgba(0, 0, 0, 0.9);
-  background: #020813;
+  background:var(--wl_menu_bg);
   color: white;
   cursor: pointer;
   height: 40px;
@@ -487,7 +490,8 @@ button.module.small {
 button.accessibility {
   min-width: var(--header-height);
   min-height: var(--header-height);
-  background: rgba(0, 0, 0, 0);
+  background: var(--wl_menu_bg);
+  color:white;
   border: none;
   padding: 0;
   align-self: flex-end;
@@ -496,33 +500,32 @@ button.accessibility {
 button.accessibility:focus,
 button.accessibility:hover {
   background: var(--wl_primary);
-}
-
-button 	.ico2-accessibility {
-  width: var(--header-height);
-  height: var(--header-height);
-  background: rgba(0, 0, 0, 0);
-  color: #ffffff;
-  font-size: large;
+  color: var(--wl_btn_content);
 }
 
 button:hover 	.ico2-accessibility {
   width: var(--header-height);
   height: var(--header-height);
-  background: rgba(0, 0, 0, 0);
+  background: var(--wl_primary);
   color: var(--wl_btn_content);  
+  font-size: large;
+}
+
+button 	.ico2-accessibility {
+  width: var(--header-height);
+  height: var(--header-height);
+  background: transparent;
+  color: white;
   font-size: large;
 }
 
 .btn-menu {
   min-width: var(--header-height);
-  // background: rgba(0, 0, 0, 0);
-
-  background: #020813;
+  background: var(--wl_menu_bg);
+  color: white;
   border: none;
   padding: 0;
   font-size: 1.5em;
-  color: white;
 }
 
 .avatar-usu{
@@ -531,6 +534,7 @@ button:hover 	.ico2-accessibility {
   height: var(--header-height);
   width: auto;  
   background: #555;
+  color:white;
 }
 
 .avatar-usu  > img{  

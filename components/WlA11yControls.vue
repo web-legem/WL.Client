@@ -148,11 +148,11 @@ export default {
 
 .btn-a11y {
   background: rgba(68, 81, 107, .24);
+  color: white;
   border: 1px solid rgba(141, 164, 180, .57);
   padding: 0;
   width: 45px;
   height: 45px;
-  color: white;
   font-size: large;
   margin-right: 10px;
   cursor: pointer;

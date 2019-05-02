@@ -228,6 +228,7 @@ export default {
 }
 
 h3 {
+  background: red;
   color: #00696b;
   padding-bottom: 5px;
   border-bottom: 1px solid #00696b;
