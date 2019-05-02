@@ -5,9 +5,10 @@
   >
     <wl-load2 
       v-if="true" 
+      :error="error"
     />      
     <p class="">
-      Procesando ... 
+      {{ $t('components.loading.loading') }}              
     </p>
   </div>
 </template>
@@ -21,15 +22,20 @@ export default {
   },
 
   data: () => ({
-    loading: false
+    loading: false,
+    error: false,
   }),
   methods: {
     start() {
+      this.error = false
       this.loading = true
     },
     finish() {
       this.loading = false
     },
+    fail(){
+      this.error = true
+    }
   }
 }
 </script>
