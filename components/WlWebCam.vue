@@ -2,8 +2,8 @@
   <div>
     <div>
       <label
-       class="texto_labels "
-       for="input_usu_foto"
+        class="texto_labels "
+        for="input_usu_foto"
       >  
         {{ $t('components.webcam.label-foto-user') }}        
       </label>

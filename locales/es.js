@@ -315,6 +315,8 @@ export default {
       'doc-type': 'Tipo documento',
       'annotation-type': 'Tipo anotación',
       'to-doc': 'Documento anotado',
+      'description': 'Descripción',
+      'description-placeholder': 'Descripción de la anotación',
     },
     'list':{
       'of': 'de',

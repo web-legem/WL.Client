@@ -23,7 +23,14 @@
         :is-submit="isSubmit"
       />
 
-      <wl-text-area></wl-text-area>
+      <wl-text-area
+        v-model="description"
+        mode=""
+        name="form1.description"
+        :placeholder="$t('annotations.new.description-placeholder')"
+        :title="$t('annotations.new.description')"
+        :is-submit="isSubmit"
+      />
 
       <fieldset>
         <legend>{{ $t('annotations.new.to-doc') }}</legend>
@@ -121,6 +128,7 @@ export default {
         .locale(this.$store.state.i18n.locale)
         .format('YYYY-MM-DD'),
       number: "",
+      description: "",
       entityId: null,
       documentTypeId: null,
       annotationTypeId: null,

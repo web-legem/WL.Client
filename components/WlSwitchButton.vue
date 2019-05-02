@@ -11,8 +11,8 @@
     >
       <input 
         :id="id" 
-        :name="name" 
         ref="perro"
+        :name="name" 
         :checked="value"
         :disabled="disable == true"
         :type="type" 

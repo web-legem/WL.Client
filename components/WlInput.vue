@@ -48,7 +48,7 @@
 <script>
 export default {
   props: {
-    refName: { type: String, default: "" },    
+    refName: { type: String, default: "" },
     value: { type: String, default: "" },
     title: { type: String, default: "" },
     name: { type: String, default: "" },
