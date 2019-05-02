@@ -196,13 +196,7 @@ export default {
 
     },
     clear(){
-      this.date = moment(Date.now())
-        .locale(this.$store.state.i18n.locale)
-        .format('YYYY-MM-DD')
-      this.number = ''
-      this.documentTypeId = null
-      this.entityId = null
-      this.file = null
+      location.reload()
     },
     handleFileToUpload(){
       this.file = this.$refs.file.files[0]

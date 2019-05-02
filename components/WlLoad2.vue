@@ -3,7 +3,8 @@
     <div class="container-circulo">
       <div 
         class="load_list" 
-        :class="{'error':error}"/>
+        :class="{'error':error}"
+      />
     </div>
   </div>
 </template>

@@ -24,7 +24,7 @@ export default {
   }
   , computed: {
     url() {
-      return this.$axios.defaults.baseURL +  'api/Document/download/' + this.fileId
+      return this.$axios.defaults.baseURL +  'api/Search/file/download/' + this.fileId
     }
   }
   , mounted() {
