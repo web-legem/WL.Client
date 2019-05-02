@@ -33,7 +33,7 @@
         :class="{small: $mq == 'sm'}"
         class="modules"
       >
-      <li 
+        <li 
           ref="submodulesContainer"
           :class="{small: $mq == 'sm'}"
           @focusout="checkIfFocusLost($event)"

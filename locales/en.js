@@ -306,5 +306,19 @@ export default {
     'in-annotations': 'Entry annotations',
     'out-annotations': 'Out annotations',
     'create-annotation': 'Create annotations',
+    'new': {
+      'number': 'Number',
+      'number-placeholder': 'for example: 029',
+      'pub-date': 'Publication date',
+      'pub-date-placeholder': 'f.e.: 07/30/2018',
+      'entity': 'Entity',
+      'doc-type': 'Document type',
+      'annotation-type': 'Annotation type',
+      'to-doc': 'Annotated document',
+    },
+    'list':{
+      'of': 'of',
+      'view-more': 'View more',
+    }
   },
 }

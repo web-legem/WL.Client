@@ -306,5 +306,19 @@ export default {
     'in-annotations': 'Anotaciones entrantes',
     'out-annotations': 'Anotaciones salientes',
     'create-annotation': 'Crear annotaciones',
+    'new': {
+      'number': 'Número',
+      'number-placeholder': 'Por ejemplo: 029',
+      'pub-date': 'Fecha de publicación',
+      'pub-date-placeholder': 'f.e.: 07/30/2018',
+      'entity': 'Entidad',
+      'doc-type': 'Tipo documento',
+      'annotation-type': 'Tipo anotación',
+      'to-doc': 'Documento anotado',
+    },
+    'list':{
+      'of': 'de',
+      'view-more': 'Ver mas',
+    }
   },
 }

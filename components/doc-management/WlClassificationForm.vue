@@ -84,7 +84,7 @@
         :validate="{required: true}"
         :is-submit="true"
       />
-        <!-- :empty-msg="$t('doc-management.classify-doc.please-select-one')" -->
+      <!-- :empty-msg="$t('doc-management.classify-doc.please-select-one')" -->
       <!-- <wl-chips v-model="tags" /> -->
       <div
         class="action-container"
