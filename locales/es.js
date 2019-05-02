@@ -232,7 +232,10 @@ export default {
       'sitio':'Acerca del sitio',
       'developers':'Desarrollado por:',
       'copyright':'Copyright © 2019 - Universidad de Nariño - San Juan de Pasto - Colombia',
-    }
+    },
+    'loading':{
+      'loading':'Procesando...'
+    },
   },
 
   'search': {

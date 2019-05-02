@@ -1,10 +1,20 @@
 <template>
   <div>
     <div class="container-circulo">
-      <div class="load_list" />
+      <div 
+        class="load_list" 
+        :class="{'error':error}"/>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    error: { type: Boolean, default: false },
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .container-circulo{
@@ -22,6 +32,11 @@
   height: 60px;
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.5s linear infinite;
+}
+
+.load_list.error{
+  border: 5px solid var(--wl_text_error);
+  border-top: 5px solid var(--wl_text_error);
 }
 
 @-webkit-keyframes spin {

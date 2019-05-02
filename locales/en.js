@@ -233,6 +233,9 @@ export default {
       'developers':'Developed by:',
       'copyright':'Copyright © 2019 - University of Nariño - San Juan de Pasto - Colombia',
     },
+    'loading':{
+      'loading':'Loading...'
+    },
   },
 
   'search': {
