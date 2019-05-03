@@ -75,6 +75,7 @@ export default {
       'entity': 'Entity',
       'number': 'Number',
       'publication-date': 'Publication date',
+      'file-format-error': 'Not supported format. Choose a .pdf document'
 
     },
     'upload-doc': {

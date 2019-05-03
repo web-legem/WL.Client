@@ -13,6 +13,7 @@
       <label
         for="file"
         class="upload-document"
+        :class="{ 'format-error': fileFormatError, 'format-correct': fileFormatCorrect }"
         @drop.prevent.stop="handleDropFile($event)"
         @dragover.prevent.stop
       >
@@ -25,7 +26,8 @@
           @change="handleFileToUpload"
         >
         <span
-          class="ico ico-upload"
+          class="ico"
+          :class="classIcon"
           @drop.prevent.stop="handleDropFile($event)"
           @drop.prevent="handleDropFile($event)"
         />
@@ -37,12 +39,13 @@
           <span v-else>
             <strong>{{ $t('doc-management.upload-doc.p-choose-file') }} </strong>{{ $t('doc-management.upload-doc.p-drag-here') }} 
           </span>
-        </p>
-        <progress
-          id="progress"
-          :value.prop="uploadPercentage" 
-          max="100" 
-        />
+          <span 
+            v-if="fileFormatError" 
+            class="file-error"
+          >
+            <strong>{{ $t('doc-management.classify-doc.file-format-error') }} </strong>
+          </span>
+        </p> 
       </label>
       <wl-input
         v-model="number"
@@ -151,6 +154,22 @@ export default {
     ...mapGetters('doc-management/classify-document', {
       isAlreadyClassified: 'isAlreadyClassified'
     }),
+    fileFormatError() {
+      return this.file ? !this.file.name.endsWith('.pdf') : false
+    },
+    fileFormatCorrect() {
+      return this.file ? this.file.name.endsWith('pdf') : false
+    },
+    icon() {
+      return this.fileFormatError
+        ? 'ico-times-circle'
+        : (this.fileFormatCorrect
+          ? 'ico-check-circle-o'
+          : 'ico-upload')
+    },
+    classIcon() {
+     return [this.icon, this.fileFormatError ? 'format-error': ''] 
+    },
   }
   , watch: {
     '$route.params.id'(){
@@ -177,8 +196,6 @@ export default {
             publicationDate: this.date
           })
           formData.append('value', form )
-
-
           this.$axios.post(
             '/api/Document',
             formData,
@@ -272,17 +289,44 @@ h3 {
   }
 }
 
+.upload-document.format-error {
+  outline: 2px dashed var(--wl_text_error)
+}
+
 input[type="file"] {
   display: none;
 }
 
-.ico-upload {
+.ico {
   display: block;
   font-size: 3rem;
   color:var(--wl_gray);
 }
 
+.ico-times-circle {
+  color: var(--wl_text_error)
+}
+
+.ico-check-circle-o {
+  color: var(--wl_primary);
+}
+
 .next {
   align-self: flex-end;
 }
+
+.format-error {
+  background: var(--wl_bg_error);
+  color: var(--wl_text_error);
+}
+
+.format-correct {
+  background: var(--wl_subtle);
+  color: var(--wl_primary);
+}
+
+.file-error {
+  display: block;
+}
+
 </style>

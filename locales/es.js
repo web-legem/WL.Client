@@ -74,8 +74,8 @@ export default {
       'document-type': 'Tipo documento',
       'entity': 'Entidad',
       'number': 'Número',
-      'publication-date': 'Fecha de publicación'
-
+      'publication-date': 'Fecha de publicación',
+      'file-format-error': 'Formato no soportado. Elige un documento .pdf.'
     },
     'upload-doc': {
       'form-title': 'Subir documento',
