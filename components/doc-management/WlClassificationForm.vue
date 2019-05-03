@@ -293,6 +293,10 @@ h3 {
   outline: 2px dashed var(--wl_text_error)
 }
 
+.upload-document.format-correct {
+  outline: 2px dashed var(--wl_primary)
+}
+
 input[type="file"] {
   display: none;
 }

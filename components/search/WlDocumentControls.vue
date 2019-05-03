@@ -1,14 +1,20 @@
 <template>
   <div class="document-controls">
     <h1 class="document-title">
-      {{ $t('search.doc-control.h-doc-title') }}
+      {{ documentTitle }} 
     </h1>
+    <span class="ico ico-upload" />
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    documentTitle: {
+      type: String,
+      required: true,
+    },
+  },
 }
 </script>
 
