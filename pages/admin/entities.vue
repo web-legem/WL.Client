@@ -27,6 +27,7 @@
     </wl-filtered-list>
 
     <div
+      id="details"
       slot="details"
       class="details"
     >

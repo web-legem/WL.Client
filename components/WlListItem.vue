@@ -3,6 +3,8 @@
     <nuxt-link
       :to="localePath(params)"
       class="list-item"
+      lang="es-Co"
+      :title="$t('show-record')"
     >
       <div>
         <slot />

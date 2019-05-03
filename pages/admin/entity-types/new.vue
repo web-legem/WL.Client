@@ -18,48 +18,50 @@
           :validate="{required:true}"
           :is-submit="isSubmit"
         />
-        <span class="texto_labels sm-space-top">
-          {{ $t('admin.entities-type.label-documents-suport') }}
-        </span>
-        <div class="hoja-container">
-          <div
-            v-for="docType in docTypes"
-            :key="docType.id"            
+        <fieldset>
+          <legend class="texto_labels sm-space-top">
+            {{ $t('admin.entities-type.label-documents-suport') }}
+          </legend>
+          <div class="hoja-container">
+            <div
+              v-for="docType in docTypes"
+              :key="docType.id"            
+            >
+              <div class="block">              
+                <input
+                  :id="docType.id"
+                  v-model="checked"
+                  v-validate="{required:true}" 
+                  :data-vv-as="$t('admin.entities-type.label-documents-suport')"
+                  :name="'form1.cards'"
+                  :value="docType.id"
+                  type="checkbox"
+                >
+                <label 
+                  :for="docType.id"
+                  class="note checked"
+                >
+                  <div>
+                    <div class="ico-container">
+                      <span class="ico-file-text-o" />
+                    </div>
+                    <div class="name-container">                  
+                      <p class="note-name">
+                        {{ docType.name }}
+                      </p>                  
+                    </div>
+                  </div>
+                </label>
+              </div>                  
+            </div>
+          </div>   
+          <div 
+            v-show="errors.has('form1.cards') && isSubmit"
+            class="msj-error"
           >
-            <div class="block">              
-              <input
-                :id="docType.id"
-                v-model="checked"
-                v-validate="{required:true}" 
-                :data-vv-as="$t('admin.entities-type.label-documents-suport')"
-                :name="'form1.cards'"
-                :value="docType.id"
-                type="checkbox"
-              >
-              <label 
-                :for="docType.id"
-                class="note checked"
-              >
-                <div>
-                  <div class="ico-container">
-                    <span class="ico-file-text-o" />
-                  </div>
-                  <div class="name-container">                  
-                    <p class="note-name">
-                      {{ docType.name }}
-                    </p>                  
-                  </div>
-                </div>
-              </label>
-            </div>                  
-          </div>
-        </div>   
-        <div 
-          v-show="errors.has('form1.cards') && isSubmit"
-          class="msj-error"
-        >
-          <strong>{{ errors.first('form1.cards') }}</strong>
-        </div>     
+            <strong>{{ errors.first('form1.cards') }}</strong>
+          </div>     
+        </fieldset>
       </template>
     </wl-crud>
   </div>

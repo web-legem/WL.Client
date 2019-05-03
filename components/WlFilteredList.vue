@@ -21,6 +21,13 @@
     <div class="link-list"> 
       <div class="list-content">
         <ul class="link-u-list">
+          <a
+            class="skip"
+            href="#details"
+            tabindex="0"
+          >
+            {{ $t('go-to-record') }}
+          </a>
           <slot
             name="list" 
             :filtered-list="filtered"
@@ -32,7 +39,7 @@
         >
           <span class="ico2-files-empty" />
           <p>
-            {{ $t('components.filtere-list.title-press-butt') }}  
+            {{ $t('components.filtere-list.title-press-butt') }}
           </p>    
         </div>
       </div>
@@ -142,4 +149,7 @@ export default {
   text-align: center;
 }
 
+.skip {
+  display: none;
+}
 </style>

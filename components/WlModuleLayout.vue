@@ -2,10 +2,20 @@
   <div class="module-layout">
     <div class="module-layout-container">
       <nav class="tabs-container">
+        <a 
+          class="skip" 
+          href="#module-content" 
+          tabindex="0"
+        >
+          {{ $t('go-to-module') }}
+        </a>
         <slot name="tabs" />
       </nav>
 
-      <div class="content">
+      <div
+        id="module-content"
+        class="content" 
+      >
         <slot />
       </div>
     </div>
@@ -47,5 +57,9 @@ export default {
   background: var(--wl_form_bg);
   color: var(--wl_text);
   height: 100%;
+}
+
+.skip {
+  display: none;
 }
 </style>

@@ -6,9 +6,15 @@
         <hr>
         <ul class="contac_container">
           <li><span class="ico-university ico_f2" />{{ $t('components.footer.universidad') }}</li>
-          <li><span class="ico2-location2 ico_f2" /> Torobajo - Calle 18 Carrera 50</li>
+          <li>
+            <span
+              class="ico2-location2 ico_f2" 
+              lang="es-CO" 
+            /> 
+            Torobajo - Calle 18 Carrera 50
+          </li>
           <li><span class="ico-phone ico_f2" /> PBX: (2)-7311449 - 18000957071</li>        
-          <li><span class="ico-envelope ico_f2" /> E-mail: planeacion@udenar.edu.co</li>
+          <li><span class="ico-envelope ico_f2" />E-mail: planeacion@udenar.edu.co</li>
         </ul>        
       </div>
       <div id="f_2">
@@ -46,7 +52,7 @@
         <p>{{ $t('components.footer.sitio') }}</p>
         <hr>
         <p> {{ $t('components.footer.developers') }} </p>
-        Adriana Rodriguez - Andres Solarte - Mario Florez
+        <span lang="es-CO">Adriana Rodriguez - Andres Solarte - Mario Florez</span>
       </div>
     </div>
     <div class="sub_footer2">
