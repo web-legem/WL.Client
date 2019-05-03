@@ -56,8 +56,8 @@ export default {
   },
   asyncData(context) {
     return Promise.all([
-      context.app.$axios.get('/api/Entity')
-      , context.app.$axios.get('/api/DocumentType')
+      context.app.$axios.get('/api/Document/entities')
+      , context.app.$axios.get('/api/Document/documentTypes')
     ]).then(results => ({
       entities: results[0].data
       , documentTypes: results[1].data

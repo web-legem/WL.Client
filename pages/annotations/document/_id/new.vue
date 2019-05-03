@@ -136,9 +136,9 @@ export default {
     }
   },
   asyncData(context) {
-    var entitiesPromise = context.app.$axios.get("/api/Entity")
-    var documentTypesPromise = context.app.$axios.get("/api/DocumentType")
-    var annoattionTypesPromise = context.app.$axios.get("/api/AnnotationType")
+    var entitiesPromise = context.app.$axios.get("/api/Annotation/entities")
+    var documentTypesPromise = context.app.$axios.get("/api/Annotation/documentTypes")
+    var annoattionTypesPromise = context.app.$axios.get("/api/Annotation/annotationTypes")
     return Promise.all([
         entitiesPromise,
         documentTypesPromise,
