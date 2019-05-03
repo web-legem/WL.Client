@@ -165,7 +165,7 @@ export default {
 
 .wl-select-filter h3 {
   background: red;
-  color: green;
+  color: blueviolet;
   padding-bottom: 5px;
   border-bottom: 1px solid green;
   margin-bottom: 8px;

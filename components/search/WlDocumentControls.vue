@@ -18,12 +18,12 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid var(--wl_gray);
 }
 
 .document-title {
   font-size: 1.4rem;
-  background: blue;
-  color: #00796b;
+  background: transparent;
+  color: var(--wl_primary);
 }
 </style>

@@ -109,9 +109,4 @@ export default {
   margin: auto 16px;
 }
 
-.icon {
-  background: red;
-  color: white;
-}
-
 </style>

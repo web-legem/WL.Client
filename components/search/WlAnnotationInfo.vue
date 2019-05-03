@@ -78,7 +78,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--wl_gray);
   font-size: 1rem;
 }
 
@@ -91,29 +91,29 @@ export default {
 
 .document-title {
   flex-grow: 1;
-  background: blue;
-  color: #00796b;
+  background: transparent;
+  color: greenyellow;
   font-size: 1em;
 }
 
 .title-link {
   text-decoration: none;
-  background: blue;
-  color:#0f745b;
-  text-decoration-color: #0f745b;
+  background: transparent;
+  color: var(--wl_primary);
+  text-decoration-color:var(--wl_primary);
   cursor:pointer;
   font-size: 1em;
 }
 
 .direction-icon {
   font-size: .9em;
-  background: blue;
-  color:#555;
+  background: greenyellow;
+  color: var(wl_gray);
 }
 
 .type {
-  background: blue;
-  color: #555;
+  background: transparent;
+  color: var(wl_text);
   font-size: .9em;
 }
 
@@ -124,13 +124,13 @@ export default {
 
 .description {
   font-size: .9em;
-  background: blue;
-  color: #555;
+  background: transparent;
+  color: var(--wl_text);
 }
 
 .button-control {  
-  background: white;
-  color: #0f745b;
+  background: transparent;
+  color: var(--wl_primary);
   cursor: pointer;
 }
 

@@ -217,15 +217,15 @@ export default {
   display: flex;
   padding: 16px;
   flex-direction: column;
-  border: 1px solid gray;
+  border: 1px solid var(--wl_gray);
   margin: calc(1em + .5vw);
 }
 
 h3 {
-  background: red;
-  color: #00696b;
+  background: transparent;
+  color: var(--wl_primary);
   padding-bottom: 5px;
-  border-bottom: 1px solid #00696b;
+  border-bottom: 1px solid  var(--wl_primary);
   margin-bottom: 8px;
 }
 
@@ -255,14 +255,14 @@ h3 {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  background: #ddd;
-  color: gray;
+  background: var(--wl_tab_color);
+  color: var(--wl_text);
   max-width: 650px;
   width: 90%;
   display: flex;
   flex-direction: column;
   text-align: center;
-  outline: 2px dashed #ccc;
+  outline: 2px dashed var(--wl_gray);
   outline-offset: 4px;
   padding: 1rem 0;
   margin: 16px;
@@ -276,24 +276,10 @@ input[type="file"] {
   display: none;
 }
 
-.drop-area {
-  background: #ddd;
-  color: gray;
-  max-width: 650px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  outline: 2px dashed #ccc;
-  outline-offset: 4px;
-  padding: 2rem 0;
-  margin: 10px 0;
-}
-
 .ico-upload {
   display: block;
   font-size: 3rem;
-  color: gray;
+  color:var(--wl_gray);
 }
 
 .next {

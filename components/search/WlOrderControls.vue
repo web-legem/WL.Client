@@ -154,19 +154,17 @@ export default { components: { WlModal,
 
 .ordering {
   padding: 0 4px 4px ;
-  background: white;
-  color:blue;
   font-size: .9rem;
+  background: transparent;
+  color: var(--wl_primary);
 }
 
 .ordering.reverse,
 .ordering.enabled {
-  border-bottom: 2px solid #00696b;
+  border-bottom: 2px solid var(--wl_primary);
 }
 
 .order-icon {
-  background: blue;
-  color: #00696b;
   padding: 0;
 }
 </style>

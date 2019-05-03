@@ -71,46 +71,43 @@ export default {
 
 <style>
 .tarjeta_busqueda {
-  overflow:hidden;
-  display: -webkit-flex;
+  overflow:hidden;  
   display: flex;
   flex-direction:column;
   justify-content:center;
   align-self:center;
   position:relative;
   padding:15px;
+  font-family: 'Lato';
 }
 
 .titulo_tarjeta {
   display:flex; 
-  font-family: 'Lato';
   font-size:.9rem;
   line-height:normal;
   padding-bottom:5px;
 }
 
 .titulo_tarjeta a {
-  background: blue;
-  color:#0f745b;
-  -moz-text-decoration-color: #0f745b;
-  text-decoration-color: #0f745b;
+  background: transparent;
+  color:var(--wl_primary);
+  -moz-text-decoration-color:var(--wl_primary);
+  text-decoration-color: var(--wl_primary);
   cursor:pointer;
 }
 
 .contenido_tarjeta {
-  background: blue;
-  color:#222;
+  background: transparent;
+  color: var(--wl_text_dark);
   font-size: .8rem;
-  font-family: 'Lato';
   text-align:justify;
 }
 
 .subcontenido_tarjeta {
   padding-top:5px;
-  background: blue;
-  color:#666;
+  background: transparent;
+  color:var(--wl_text);
   font-size: .8rem;
-  font-family: 'Lato';
   text-align:justify;
 }
 
@@ -125,39 +122,17 @@ export default {
   padding-top:5px;   
   padding-bottom:10px;
   margin-bottom:-10px;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid var(--wl_gray);
 }
 
 .control_tarjeta > a {
-  background: blue;
-  color:#0f745b;
+  background: transparent;
+  color: var(--wl_primary);
   text-decoration:none;
   cursor:pointer;
   font-size: .8rem;
-  font-family: 'Lato';
   position:relative;
   padding-left:5px;
-}
-
-.link_tarjeta {
-  background: blue;
-  color:#0f745b;
-  text-decoration:none;
-  cursor:pointer;
-  font-size: .8rem;
-  font-family: 'Lato';
-  position:relative;
-}
-
-.link_tarjeta:hover {
-  background: blue;
-  color:#444;
-}
-
-.link_tarjeta > span {
-  position:absolute;
-  left:-14px;
-  top:1px;
 }
 
 .control_tarjeta > a:first-child {

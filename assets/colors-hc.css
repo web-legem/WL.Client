@@ -17,7 +17,9 @@
   --wl_input_bg:       #141414;
   --wl_input_text:     #9CDCFE;
   --wl_input_text_ph:  #cccccc;  
+  --wl_text_light:     #aaaaaa;
   --wl_text:           #eeeeee;
+  --wl_text_dark:      #ffffff;
   --wl_text_error:     #b12727;
   --wl_text_info:      #2927b1;
   --wl_bg_error:       #fce0e0;

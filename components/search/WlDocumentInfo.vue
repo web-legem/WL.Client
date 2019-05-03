@@ -29,7 +29,7 @@ export default {
 
 .component-title {
   padding: 16px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid red;
 }
 
 .annotation-list {

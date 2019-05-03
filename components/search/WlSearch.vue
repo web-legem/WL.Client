@@ -153,7 +153,7 @@ export default {
 .pager-content {
   flex-grow: 1;
   margin-top: 4px;
-  border-top: 1px solid grey;
+  border-top: 1px solid var(--wl_gray);
   padding-top: 16px;
 }
 
