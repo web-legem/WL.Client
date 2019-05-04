@@ -31,6 +31,7 @@
           v-for="item in list"
           :key="item.id"
           :value="item[valuePropName]"
+          lang="es-CO"
         >
           {{ item[labelPropName] }}
         </option>      

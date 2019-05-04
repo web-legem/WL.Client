@@ -28,7 +28,7 @@
       class="description"
     >
       <div> {{ $t('search.annotation-inf.div-desc') }}</div>
-      <div>
+      <div lang="es-CO">
         {{ annotation.description }}
       </div>
     </div>

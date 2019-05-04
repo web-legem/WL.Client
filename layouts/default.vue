@@ -3,7 +3,7 @@
     <a 
       id="a_top"
       class="to_top" 
-      href="#top"      
+      href="#main-content"      
     >
       {{ $t('components.menu.to-top') }}
     </a>
@@ -12,7 +12,10 @@
       name="top"
     >
       <wl-menu />
-      <div class="nuxt">
+      <div 
+        id="main-content"
+        class="nuxt"
+      >
         <nuxt />
       </div>
     </div>

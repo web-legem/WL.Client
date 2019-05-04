@@ -36,7 +36,7 @@
       class="description"
     >
       <div>{{ $t('annotations.description') }}:</div>
-      <div>
+      <div lang="es-CO">
         {{ annotation.description }}
       </div>
     </div>

@@ -5,6 +5,7 @@
         v-if="documentTypes && documentTypes.length > 0"
         :to="localePath({ name: routeName, params: {id: document.id} })"
         class="link-bold"
+        lang="es-CO"
       >        
         {{ documentTypeName }}
         {{ document.number }}
@@ -15,6 +16,7 @@
     <div 
       v-if="document.issue"
       class="contenido_tarjeta" 
+      lang="es-CO"
     >
       {{ document.issue | limit(400) }}
     </div>
@@ -33,7 +35,7 @@
         download
         :title="$t('search.search-result.title-down')"
       >
-        <span class="ico-download" />{{ 'Descargar' }}
+        <span class="ico-download" />{{ $t('search.search-result.download') }}
       </a>
       <slot />
     </div>

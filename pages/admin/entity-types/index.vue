@@ -12,40 +12,42 @@
           :max="0"
           :disable="true"
         /> 
-        <span class="texto_labels sm-space-top">
-          {{ $t('admin.entities-type.label-documents-suport') }}
-        </span>
-        <div class="hoja-container disable">
-          <div
-            v-for="docType in docTypes"
-            :key="docType.id"
-          >
-            <div class="block disable">
-              <input
-                :id="docType.id"
-                disabled="!isEdit"
-                :name="docType.id"
-                :value="docType.id"
-                type="checkbox"
-              >
-              <label
-                :for="docType.id"
-                class="note checked"
-              >
-                <div>
-                  <div class="ico-container">
-                    <span class="ico-file-text-o" />                      
+        <fieldset>
+          <legend class="texto_labels sm-space-top">
+            {{ $t('admin.entities-type.label-documents-suport') }}
+          </legend>
+          <div class="hoja-container disable">
+            <div
+              v-for="docType in docTypes"
+              :key="docType.id"
+            >
+              <div class="block disable">
+                <input
+                  :id="docType.id"
+                  disabled="!isEdit"
+                  :name="docType.id"
+                  :value="docType.id"
+                  type="checkbox"
+                >
+                <label
+                  :for="docType.id"
+                  class="note checked"
+                >
+                  <div>
+                    <div class="ico-container">
+                      <span class="ico-file-text-o" />                      
+                    </div>
+                    <div class="name-container">
+                      <p class="note-name">
+                        {{ docType.name }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="name-container">
-                    <p class="note-name">
-                      {{ docType.name }}
-                    </p>
-                  </div>
-                </div>
-              </label>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+        </fieldset>
       </template>
     </wl-crud>
   </div>

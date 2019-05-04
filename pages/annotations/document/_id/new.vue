@@ -32,8 +32,10 @@
         :is-submit="isSubmit"
       />
 
-      <fieldset>
-        <legend>{{ $t('annotations.new.to-doc') }}</legend>
+      <fieldset class="fieldset">
+        <legend class="texto_labels">
+          {{ $t('annotations.new.to-doc') }}
+        </legend>
         <wl-input
           v-model="number"
           mode="onlyNumber"
@@ -219,5 +221,10 @@ h3 {
 
 .next {
   align-self: flex-end;
+}
+
+.fieldset {
+  border: 1px solid var(--wl_gray);
+  padding: 16px;
 }
 </style>

@@ -22,56 +22,59 @@
           :validate="{required:true}"
           :is-submit="isSubmit"
         />
-        <span class="texto_labels sm-space-top">
-          {{ $t('admin.entities-type.label-documents-suport') }}
-        </span>
-        <div 
-          class="hoja-container"
-          :class="{'disable':!isEdit}"
-        >
-          <div
-            v-for="docType in docTypes"
-            :key="docType.id"
+        <fieldset>
+          <legend class="texto_labels sm-space-top">
+            {{ $t('admin.entities-type.label-documents-suport') }}
+          </legend>
+          <div 
+            class="hoja-container"
+            :class="{'disable':!isEdit}"
           >
-            <div 
-              class="block"
-              :class="{'disable':!isEdit}"
+            <div
+              v-for="docType in docTypes"
+              :key="docType.id"
             >
-              <input
-                v-if="objSelected"
-                :id="docType.id"
-                v-model="checked"
-                v-validate="{required:true}" 
-                :data-vv-as="$t('admin.entities-type.label-documents-suport')"
-                :disabled="!isEdit"
-                :name="'form1.cards'"
-                :value="docType.id"
-                type="checkbox"
+              <div 
+                class="block"
+                :class="{'disable':!isEdit}"
               >
-              <label
-                :for="docType.id"
-                class="note checked"
-              >
-                <div>
-                  <div class="ico-container">
-                    <span class="ico-file-text-o" />                      
+                <input
+                  v-if="objSelected"
+                  :id="docType.id"
+                  v-model="checked"
+                  v-validate="{required:true}" 
+                  :data-vv-as="$t('admin.entities-type.label-documents-suport')"
+                  :disabled="!isEdit"
+                  :name="'form1.cards'"
+                  :value="docType.id"
+                  type="checkbox"
+                >
+                <label
+                  :for="docType.id"
+                  class="note checked"
+                >
+                  <div>
+                    <div class="ico-container">
+                      <span class="ico-file-text-o" />                      
+                    </div>
+                    <div class="name-container">
+                      <p class="note-name">
+                        {{ docType.name }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="name-container">
-                    <p class="note-name">
-                      {{ docType.name }}
-                    </p>
-                  </div>
-                </div>
-              </label>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-        <div 
-          v-show="errors.has('form1.cards') && isSubmit"
-          class="msj-error"
-        >
-          <strong>{{ errors.first('form1.cards') }}</strong>
-        </div>
+
+          <div 
+            v-show="errors.has('form1.cards') && isSubmit"
+            class="msj-error"
+          >
+            <strong>{{ errors.first('form1.cards') }}</strong>
+          </div>
+        </fieldset>
       </template>
     </wl-crud>
   </div>

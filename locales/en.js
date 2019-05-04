@@ -12,6 +12,10 @@ export default {
   'accessibilityOptions': 'Accessibility options',
   'logout': 'Logout',
 
+  'show-record': 'Show record',
+  'go-to-module': 'Go to module content',
+  'go-to-record': 'Go to edit record',
+
   'admin': {
     'module-name': 'Administration',
     'doc-types': { 'module-name': 'Document Types' },
@@ -71,6 +75,7 @@ export default {
       'entity': 'Entity',
       'number': 'Number',
       'publication-date': 'Publication date',
+      'file-format-error': 'Not supported format. Choose a .pdf document'
 
     },
     'upload-doc': {
@@ -289,6 +294,7 @@ export default {
     },
     'search-result': {
       'a-entity': 'Entity:',
+      'download': 'Download',
       'a-date': 'Date:',
       'a-del': 'Of',
       'title-down': '"Download',

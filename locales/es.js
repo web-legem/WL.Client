@@ -12,6 +12,10 @@ export default {
   'accessibilityOptions': 'Opciones de accesibilidad',
   'logout': 'Cerrar sesión',
 
+  'show-record': 'Ver registro',
+  'go-to-module': 'Ir al contenido del modulo',
+  'go-to-record': 'Ir al editar del registro',
+
   'admin': {
     'module-name': 'Administración',
     'doc-types': { 'module-name': 'Tipos de Documento' },
@@ -70,8 +74,8 @@ export default {
       'document-type': 'Tipo documento',
       'entity': 'Entidad',
       'number': 'Número',
-      'publication-date': 'Fecha de publicación'
-
+      'publication-date': 'Fecha de publicación',
+      'file-format-error': 'Formato no soportado. Elige un documento .pdf.'
     },
     'upload-doc': {
       'form-title': 'Subir documento',
@@ -289,6 +293,7 @@ export default {
     },
     'search-result': {
       'a-entity': 'Entidad:',
+      'download': 'Descargar',
       'a-date': 'Fecha:',
       'a-del': 'del',
       'title-down': '"Descargar',
