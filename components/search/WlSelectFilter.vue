@@ -1,59 +1,29 @@
 <template>
-  <div class="wl-select-filter">
-    <div
-      v-if="existItem"
-      class="filter"
-    >
-      <label for="entidad">
+  <div>
+    <div class="filter">
+      <label 
+        class="texto_labels"      
+        for="select"
+      >
         {{ label }}
       </label>
-      <div class="control">
-        <input
-          id="entidad"
-          :value="findItem()[labelPropName]"
-          name="entidad"
-          type="text"
-          class="a_input"
-          disabled
-        >
-        <wl-button
-          :only-icon="true" 
-          :title="$t('search.select-filter.title-add-filter')"
-          ico="ico2-minus"
-          class="danger"
-          @click.native="disableFilter"
-        />
-      </div>
-    </div>
-
-    <div
-      v-if="!existItem"
-      class="filter"
-    >
-      <label for="entidad">
-        {{ label }}
-      </label>
-      <div class="control">
-        <select 
-          id="entidad"
-          ref="select"
+      <div class="box_input_ico">
+        <wl-select
+          :id="'select'"
           v-model="selectedItem"
-          name="entidad" 
-          class="a_input"
-        >
-          <option 
-            v-for="item in list"
-            :key="item.id"
-            :value="item[valuePropName]"
-          >
-            {{ item[labelPropName] }}
-          </option>
-        </select>
+          :list="list"
+          :disable="existItem==true"
+          :title="label"
+          value-prop-name="id"
+          :label-prop-name="labelPropName"
+          :hide-label="true"
+        />
         <wl-button
           :only-icon="true" 
-          :title="$t('search.select-filter.title-add-filter')"
-          ico="ico2-plus"
-          @click.native="enableFilter"
+          :title="existItem ? $t('search.select-filter.title-remove-filter'):$t('search.select-filter.title-add-filter')"
+          :ico="existItem ? 'ico2-minus':'ico2-plus'"
+          :remove="existItem==true"
+          @click.native="actionFilter"
         />
       </div>
     </div>
@@ -62,11 +32,13 @@
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import WlSelect from '~/components/WlSelect.vue'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 
 export default {
   components: {
     WlButton,
+    WlSelect,
   },
   props: {
     param: {
@@ -92,7 +64,7 @@ export default {
   },
   data() {
     return {
-      selectedItem: 0,
+      selectedItem: "",
     }
   },
   computed: {
@@ -103,6 +75,12 @@ export default {
     isFilterEnabled() {
       const filter = this.$route.query[this.param];
       return filter != null && filter != undefined
+    },
+    getItem: {
+      get: function() {
+        return this.selectedItem;
+      },
+      set: function(value) {return this.selectedItem = value}
     }
   },
   mounted() {
@@ -110,12 +88,22 @@ export default {
       this.disableFilter()
     }
   },
+  mounted(){
+    this.getItem = this.$route.query[this.param];
+  },
   methods: {
     canActivateFilter() {
       return this.selectedItem != 0
     },
     findItem(){
       return this.list.find(x => x[this.valuePropName] == this.$route.query[this.param])
+    },
+    actionFilter(){
+      if(this.existItem){
+        this.disableFilter()
+      }else{
+        this.enableFilter()
+      }
     },
     enableFilter() {
       let query = this.getModifiableQueryParams()
@@ -128,6 +116,7 @@ export default {
       let query = this.getModifiableQueryParams()
       delete query[this.param]
       this.navigateWith(query)
+      this.getItem = ""
     },
     navigateWith(query){
       this.$router.push(this.localePath({
@@ -150,24 +139,8 @@ export default {
 }
 
 .filter {
+  width: 100%;
   margin-bottom: 16px;
 }
 
-.control {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.control select {
-  flex-grow: 1;
-}
-
-.wl-select-filter h3 {
-  background: red;
-  color: blueviolet;
-  padding-bottom: 5px;
-  border-bottom: 1px solid green;
-  margin-bottom: 8px;
-}
 </style>

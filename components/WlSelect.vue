@@ -1,6 +1,7 @@
 <template>
   <div>
     <label 
+      v-if="!hideLabel"
       :for="id === '' ? name: id" 
       class="texto_labels"
     >
@@ -55,13 +56,14 @@ export default {
     disable: { type: Boolean, default: false },
     error: { type: Boolean, default: false },
     errorMsg: { type: String, default: "" },
-    emptyMsg: { type: String, default: "Seleccione una Opción" },
+    emptyMsg: { type: String, default: "Seleccione un Elemento" },
     list: { type: Array, required: true },
     valuePropName: { type: String,required: true },
     labelPropName: { type: String, required: true },
     value: { type: String, default: ""  },
     validate: { type: Object, default: function(){ return{} } },
     isSubmit: { type: Boolean, default: false },
+    hideLabel: { type: Boolean, default: false },
   },
   data() {
     return {     

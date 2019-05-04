@@ -1,7 +1,7 @@
 <template>
   <button 
     :disabled="disable" 
-    :class="[btnStyle, btnInverso, btnDisable]" 
+    :class="[btnStyle, btnInverso, btnDisable, btnRemove]" 
     :title="title"
     :aria-label="onlyIcon ? title : '' "
     @click="$emit('click', $event)"
@@ -19,6 +19,7 @@ export default {
     onlyIcon: { type: Boolean, default: false },
     disable: { type: Boolean, default: false },
     inverso: { type: Boolean, default: false },
+    remove: { type: Boolean, default: false }
   },
   computed: {
     btnInverso() {
@@ -31,8 +32,11 @@ export default {
       return this.onlyIcon ? "btn-only-ico" : "btn-normal";
     },
     btnDisable() {
-    return  this.disable ? "disable": "";
+      return  this.disable ? "disable": "";
     },
+    btnRemove() {
+      return  this.remove ? "remove": "";
+    },    
     size() {
       return this.onlyIcon ? "" : "tamano_botones_1";
     },
@@ -177,4 +181,10 @@ export default {
   color: var(--wl_btn_content);
   width: 100%;
 }
+
+.btn-only-ico.remove{
+  background: var(--wl_text_error);
+  color:white;
+}
+
 </style>

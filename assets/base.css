@@ -376,3 +376,68 @@ html, body {
   background: var(--wl_text_error) !important;
   color:white !important;
 }
+
+.msj-error {
+  position: relative;
+  font-family: "Lato";
+  font-size: .9em;
+  background: var(--wl_text_error);
+  color: white;  
+  margin-bottom: 4px;
+  padding: 4px;
+}
+.msj-error::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--wl_text_error);
+  position: absolute;
+  top:-8px;
+  left: 10px;
+}
+
+.msj-error strong:before {
+  content: "\e1a9";
+  font-family: "iconos-legem";
+  font-size: 1em;  
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+/*TEXTO PARA LOS LABELS*/
+
+.texto_labels {
+  display: block;
+  background: transparent;
+  color: var(--wl_text);
+  font-size: 1em;
+  font-family: 'Lato';
+  margin-bottom: 2px;
+}
+
+.texto_labels.bold {
+  font-family: "Lato-Bold";
+}
+
+/* -------------------------------------------- */
+/*cajas para los input con botonoes e iconos*/
+
+.box_input_btn,
+.box_input_ico {
+  display: flex;
+  height: 35px;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+.box_input_ico div:first-child {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1
+}
+
+.box_input_ico div:last-child {
+  flex-basis: 35px
+}
