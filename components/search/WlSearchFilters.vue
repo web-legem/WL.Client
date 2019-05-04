@@ -1,11 +1,12 @@
 <template>
   <div class="wl-search-filters">
-    <h3>
+    <h1>
       {{ $t('search.search-filters.h-search-ava') }}
-    </h3> 
+    </h1> 
     <div class="active-filters">
       <wl-select-filter
         v-if="entities"
+        id="id_entites"
         :list="entities"
         param="entityId"
         :label="$t('search.search-filters.label-entity')"
@@ -14,6 +15,7 @@
       />
       <wl-select-filter
         v-if="documentTypes"
+        id="id_documents"
         :list="documentTypes"
         param="documentTypeId"
         :label="$t('search.search-filters.label-doc-type')"
@@ -139,10 +141,11 @@ export default {
   padding: 16px;
 }
 
-.wl-search-filters h3 {
+.wl-search-filters h1 {
   padding-bottom: 5px;
   border-bottom: 1px solid var(--wl_primary);
   margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 
 .filter {

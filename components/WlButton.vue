@@ -61,6 +61,21 @@ export default {
   cursor: pointer;
 }
 
+.btn-normal > span {
+  display:inline-block;
+  vertical-align:middle;
+  height: 100%;
+}
+
+.btn-normal > span:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: large;
+}
+
 .btn-normal::-moz-focus-inner {
   margin-top: -2px;
   margin-bottom: -2px;
@@ -170,6 +185,13 @@ export default {
   left: 0px;
   width: 0px;
   height: 100%;
+}
+
+.btn-normal:focus,
+.btn_sin_ico:focus,
+.btn-only-ico:focus,
+{
+  outline: #FF0D99 dotted 2px;
 }
 
 .btn-normal:hover:before,

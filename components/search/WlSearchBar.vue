@@ -6,9 +6,15 @@
     @submit.prevent="searchWords()"
   >
     <div class="box_input_ico">
+      <label 
+        for="form1.search"         
+        class="hide-text"
+      >
+        buscar
+      </label>
       <wl-input
-        id="input"
-        ref="input"
+        id="form1.search"
+        ref="form1.search"
         v-model="words"
         name="form1.search"
         type="search"     
@@ -82,6 +88,10 @@ export default {
 
 .wl-search-bar div {
   flex: 1;
+}
+
+.hide-text {
+  font-size: 0em;  
 }
 
 </style>

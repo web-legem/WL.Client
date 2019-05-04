@@ -142,4 +142,15 @@ export default {
 .msj-error {
   margin-top: 8px;
 }
+
+.a_select select:-moz-focusring {
+    background: var(--wl_subtle);
+    color: transparent;
+    text-shadow: 0 0 0 var(--wl_text);
+}
+.a_select select option:not(:checked) {
+  background:  var(--wl_form_bg);
+  color: var(--wl_text); /* prevent <option>s from becoming transparent as well */
+}
+
 </style>

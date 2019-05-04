@@ -531,6 +531,10 @@ button 	.ico2-accessibility {
   font-size: 1.5em;
 }
 
+.module:focus{
+  outline: #fff dotted 1px;
+}
+
 .avatar-usu{
   margin-left: 10px;  
   --header-height: calc(25px + 4.5vh);

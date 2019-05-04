@@ -20,6 +20,10 @@ html, body {
   font-family: 'Lato';
 }
 
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
 .sm-space-top {
   margin-top: 10px;
 }

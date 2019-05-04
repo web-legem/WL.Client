@@ -159,12 +159,18 @@ export default { components: { WlModal,
   color: var(--wl_text);
 }
 
+.ordering:focus {
+  outline: 1px dotted var(--wl_primary);
+  outline-offset: -1px;
+}
+
 .ordering.reverse,
 .ordering.enabled {
   border-bottom: 2px solid var(--wl_primary);
 }
 
 .order-icon {
+  background: transparent;
   color: var(--wl_primary);
   padding: 0;
 }

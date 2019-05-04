@@ -4,35 +4,26 @@
       :only-icon="true"
       :disable="!hasPrevious"
       :title="$t('search.page-controls.title-previ')"
-      class="icon"
       data-icon="G"
       ico="ico-arrow-left"
       @click.native="previous()"
     />
-    <label
+    <span
       for="page"
       class="page-label"
     >
-      {{ $t('search.page-controls.page') }} 
-      <input 
-        v-if="false"
-        id="page"
-        :value="page"
-        type="number" 
-        name="page"
-      >
+      {{ $t('search.page-controls.page') }}     
       <span
         v-if="true"
       >
         {{ page }}
         / {{ numberOfPages }}
       </span>
-    </label>
+    </span>
     <wl-button
       :only-icon="true"
       :disable="!hasNext"
       :title="$t('search.page-controls.title-next')"
-      class="icon"
       data-icon="H"
       ico="ico-arrow-right"
       @click.native="next"
@@ -97,7 +88,6 @@ export default {
 
 <style lang="scss" scoped>
 .wl-page-controls {
-  overflow-y: auto;
   display: flex;
   justify-content: center;
   padding: 0 16px;

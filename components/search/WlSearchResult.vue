@@ -25,8 +25,8 @@
       v-if="entities && entities.length > 0"
       class="subcontenido_tarjeta"
     >
-      <a>{{ $t('search.search-result.a-entity') }}<i>{{ entityName }} </i> | </a>
-      <a>{{ $t('search.search-result.a-date') }} <i>{{ document.publicationDate | date($store.state.i18n.locale, 'LL') }} </i> | </a>
+      <a>{{ $t('search.search-result.a-entity') }}<span>{{ entityName }} </span> | </a>
+      <a>{{ $t('search.search-result.a-date') }} <span>{{ document.publicationDate | date($store.state.i18n.locale, 'LL') }} </span> | </a>
     </div>
 
     <div class="control_tarjeta">
@@ -110,7 +110,11 @@ export default {
   background: transparent;
   color:var(--wl_text);
   font-size: .8rem;
-  text-align:justify;
+}
+
+
+.subcontenido_tarjeta span {
+  font-style: italic;
 }
 
 .control_tarjeta {
@@ -151,144 +155,10 @@ export default {
     text-decoration:underline;
 }
 
-.tarjeta_anotacion {
-  padding:10px;
-  margin-bottom:10px;
-  background:#fefefe;
-  color:red;
-  box-shadow: 0 0 0 1px #ddd,1px 1px 1px rgba(0, 0, 0, 0.44)  ;
-  display:flex;
-}
-
-.tarjeta_anotacion > div:first-child {
-  margin-right:10px;
-}
-
-.tarjeta_anotacion > div:first-child span:before {
-  font-size:45px;        
-  color:#2c77ba;
-  background: red;
-  height:100%;
-  display:flex;
-  align-items:center;
-}
-
-.tarjeta_anotacion > div:last-child {
-  flex:1;
-}
-
-.tarjeta_anotacion:hover {
-  background:#C6E2EE;
-  color:red;
-  cursor:pointer;
-}
-
-.documento_actual {
-  margin:5px 0;
-  display:flex;
-  padding:10px;
-  background:#fff;
-  color:blue;
-  border:1px solid #dde;
-}
-
-.documento_actual > div:first-child {
-  margin-right:10px;
-  display:flex;
-  align-items:center;
-  align-self:stretch;
-}
-
-.documento_actual > div:first-child span:before {
-  font-size:45px;  
-  height:100%;
-  display:flex;
-  color:#27ae60;
-  background: blue;
-  align-items:center;
-}
-
-
-.documento_actual > div:last-child {
-  margin-bottom:3px;
-}
-
-.documento_actual > div:last-child > p:first-child {
-  font-size: .8rem;
-  color:#27ae60;
-  background: blue;
-}
-
-.documento_actual p {
-  color:#555;
-  background: blue;
-  font-size: .8rem;
-  font-family: 'Lato';
-}
-
-.documento_actual  p  i {
-  font-style:normal;
-  font-family: 'Lato';
-}
-
-.titulo_tarjeta.anotacion {
-  padding:0;
-  margin:0;
-}
-
-.titulo_tarjeta.anotacion  a {
-  font-family: 'Lato';
-  padding:0;
-  margin:0;
-  font-size: .8rem;
-  color:#2c77ba;
-  background: red;
-}
-
-.subcontenido_tarjeta.anotacion {
-  padding:0;
-  color:#34495e; 
-  background: red;
-  font-family: 'Lato';
-}
-.subcontenido_tarjeta.anotacion i {
-  font-style:normal;
-  font-family: 'Lato';
-}
-
-.tipo_anotacion p {
-  text-decoration:none;
-  color:#34495e;
-  background: red;
-  font-size: .8rem;
-  font-family: 'Lato';
-}
-.tipo_anotacion p i {
-  font-family: 'Lato';
-  font-style: normal;
-}
-
-@media only screen and (min-width : 0)  {
-  .tarjeta_anotacion > div:first-child,
-  .documento_actual > div:first-child {           
-    display:none;
-  }
-}
-
-@media only screen and (min-width : 480px)  {
-  .tarjeta_anotacion > div:first-child,
-  .documento_actual > div:first-child {     
-    display:unset;
-  }
-}
-
 .link-bold {
   font-weight: bold;
   text-decoration: none;
   font-size: 1rem;
 }
 
-.tarjeta-busqueda {
-  font-size: .8rem;
-}
 </style>

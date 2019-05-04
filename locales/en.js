@@ -289,14 +289,14 @@ export default {
       'h-search-ava': 'Advanced search',
       'label-entity': 'Entity',
       'label-doc-type': 'Document type',
-      'title-add-filter': 'Add filter',
-      'title-rem-filt': 'Remove filter',
+      'title-add-fil': 'Add filter',
+      'title-rem-fil': 'Remove filter',
     },
     'search-result': {
       'a-entity': 'Entity:',
       'download': 'Download',
       'a-date': 'Date:',
-      'a-del': 'Of',
+      'a-del': 'of',
       'title-down': '"Download',
     },
     'year-filter': {

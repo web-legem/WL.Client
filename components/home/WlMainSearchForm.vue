@@ -124,6 +124,13 @@ export default {
   color: var(--wl_btn_content);
 }
 
+.mini_search button:focus{
+  -webkit-box-shadow: inset 0px 0px 0px 1px #FF0D99;
+  -moz-box-shadow: inset 0px 0px 0px 1px #FF0D99;
+  box-shadow: inset 0px 0px 0px 1px #FF0D99;
+}
+
+
 .mini_search button span:first-child {
   background: transparent;
   color: var(--wl_btn_content);

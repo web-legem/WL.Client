@@ -3,13 +3,13 @@
     <div class="filter">
       <label 
         class="texto_labels"      
-        for="select"
+        :for="id"
       >
         {{ label }}
       </label>
       <div class="box_input_ico">
         <wl-select
-          :id="'select'"
+          :id="id"
           v-model="selectedItem"
           :list="list"
           :disable="existItem==true"
@@ -61,6 +61,7 @@ export default {
       type: String,
       required: true
     },
+    id: { type: String, default: "",required: true },
   },
   data() {
     return {
