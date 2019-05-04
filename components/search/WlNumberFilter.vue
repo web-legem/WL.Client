@@ -16,12 +16,12 @@
           :title=" $t('search.number-filter.label-num-doc')"
           :max="20"
           :min="1"
-          :placeholder=" $t('persons.users-s.place-enter-id')"
+          :placeholder=" $t('search.number-filter.placeholder')"
           :hide-label="true"
         />
         <wl-button 
           :only-icon="true"
-          :title="showNumberFilter? $t('search.number-filter.title-remove-fil'): $t('search.number-filter.title-add-fil')"
+          :title="showNumberFilter? $t('search.search-filters.title-rem-fil'): $t('search.search-filters.title-add-fil')"
           :ico="showNumberFilter? 'ico2-minus':'ico2-plus'"
           :remove="showNumberFilter"
           @click.native="actionFilter"

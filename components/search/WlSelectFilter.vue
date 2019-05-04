@@ -20,7 +20,7 @@
         />
         <wl-button
           :only-icon="true" 
-          :title="existItem ? $t('search.select-filter.title-remove-filter'):$t('search.select-filter.title-add-filter')"
+          :title="existItem ? $t('search.search-filters.title-rem-fil'): $t('search.search-filters.title-add-fil')"
           :ico="existItem ? 'ico2-minus':'ico2-plus'"
           :remove="existItem==true"
           @click.native="actionFilter"

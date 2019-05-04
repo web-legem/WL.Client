@@ -45,6 +45,7 @@ export default {
   flex-direction: row;
   width: 100%;
   height: 100%;
+  background: var(--wl_form_bg);
 }
 
 .master {

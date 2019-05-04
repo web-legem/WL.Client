@@ -146,12 +146,18 @@ export default {
 }
 
 .btn-only-ico > span {
-  display: flex;
+  display:inline-block;
+  vertical-align:middle;
+  height: 100%;
 }
 
 .btn-only-ico > span:before {
-  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   width: 100%;
+  font-size: large;
 }
 
 .btn-normal:before,

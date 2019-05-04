@@ -1,47 +1,61 @@
 <template>
   <form
-    action="" 
     class="wl-search-bar"
-    @submit.prevent
+    name="form-login"
+    data-vv-scope="form1"            
+    @submit.prevent="searchWords()"
   >
-    <input
-      ref="input"
-      :value="wordsToSearch"
-      type="search" 
-      class="a_input"
-      @search="searchWords($refs.input.value)"
-    >
-    <wl-button 
-      :only-icon="true"
-      :title="$t('search.search-bar.title-search-bar')"
-      ico="ico-search" 
-      @click.native="searchWords($refs.input.value)"
-    />
+    <div class="box_input_ico">
+      <wl-input
+        id="input"
+        ref="input"
+        v-model="words"
+        name="form1.search"
+        type="search"     
+        title="buscador"
+        :max="100"
+        :min="3"
+        :hide-label="true"
+      />
+
+      <wl-button 
+        :type="'submit'"
+        :only-icon="true"
+        :title="$t('search.search-bar.title-search-bar')"
+        ico="ico-search" 
+        @click.native="searchWords()"
+      />
+    </div>
   </form>
 </template>
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import WlInput from '~/components/WlInput.vue'
 import { removeLangExtension } from '~/helpers/routeManipulation'
 
 export default {
   components: {
     WlButton,
+    WlInput,
   },
-  computed: {
-    wordsToSearch() {
-      return this.$route.query.wordsToSearch || ''
-    },
+   data() {
+    return {
+      words:"",
+    }
+  },
+  mounted(){
+    this.words = this.$route.query.wordsToSearch || '';
   },
   methods: {
-    searchWords(wordsToSearch) {
-      this.navigateWith(this.addOrRemoveWordsToQuery(wordsToSearch))
+    searchWords() {
+      this.navigateWith(this.addOrRemoveWordsToQuery(this.words))
     },
-    addOrRemoveWordsToQuery(wordsToSearch) {
+    addOrRemoveWordsToQuery(val) {
       let query = this.getModifiableQueryParams()
 
-      if(wordsToSearch.length > 0)
-        query.wordsToSearch = wordsToSearch
+      if(val.length > 0)
+        query.wordsToSearch = val
       else 
         delete query.wordsToSearch
 
@@ -65,4 +79,9 @@ export default {
   display: flex;
   flex-direction: row;
 }
+
+.wl-search-bar div {
+  flex: 1;
+}
+
 </style>

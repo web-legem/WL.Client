@@ -76,7 +76,6 @@ export default {
       'number': 'Number',
       'publication-date': 'Publication date',
       'file-format-error': 'Not supported format. Choose a .pdf document'
-
     },
     'upload-doc': {
       'form-title': 'Upload document',
@@ -259,11 +258,10 @@ export default {
     },
     'input-filter': {
       'title-update': 'Update',
-      'title-rem-filt': 'Remove filter',
     },
     'number-filter': {
       'label-num-doc': 'Document number',
-      'title-add-fil': 'Add filter',
+      'placeholder' : 'E.g. 0534',
     },
     'order-control': {
       'title-filter': 'Filters',
@@ -291,6 +289,8 @@ export default {
       'h-search-ava': 'Advanced search',
       'label-entity': 'Entity',
       'label-doc-type': 'Document type',
+      'title-add-filter': 'Add filter',
+      'title-rem-filt': 'Remove filter',
     },
     'search-result': {
       'a-entity': 'Entity:',
@@ -299,11 +299,9 @@ export default {
       'a-del': 'Of',
       'title-down': '"Download',
     },
-    'select-filter': {
-      'title-add-filter': 'Add filter',
-    },
     'year-filter': {
       'label-year-publ': 'Publication year',
+      'placeholder' : 'E.g. 2010',
     },
 
   },

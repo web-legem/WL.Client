@@ -156,7 +156,7 @@ export default { components: { WlModal,
   padding: 0 4px 4px ;
   font-size: .9rem;
   background: transparent;
-  color: var(--wl_primary);
+  color: var(--wl_text);
 }
 
 .ordering.reverse,
@@ -165,6 +165,7 @@ export default { components: { WlModal,
 }
 
 .order-icon {
+  color: var(--wl_primary);
   padding: 0;
 }
 </style>

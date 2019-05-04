@@ -107,6 +107,8 @@ export default {
   margin: 0 16px;
   display: block;
   margin: auto 16px;
+  background: transparent;
+  color: var(--wl_text);
 }
 
 </style>

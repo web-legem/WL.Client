@@ -18,23 +18,29 @@
           :title=" $t('search.year-filter.label-year-publ')"
           :max="max"
           :min="min"
-          :placeholder=" $t('persons.users-s.place-enter-id')"
+          :placeholder=" $t('search.year-filter.placeholder')"
           :hide-label="true"
         />        
         <div 
           v-show="!showPublicationFilter"
           class="increment_container"
         >
-          <button @click="increaseNumber">
+          <button 
+            title="incrementar"
+            @click="increaseNumber"
+          >
             +
           </button>
-          <button @click="decreaseNumber">
+          <button 
+            title="diminuir"            
+            @click="decreaseNumber"
+          >
             -
           </button>        
         </div>
         <wl-button 
           :only-icon="true"
-          :title="showPublicationFilter? $t('search.select-filter.title-remove-filter'): $t('search.select-filter.title-add-filter')"
+          :title="showPublicationFilter? $t('search.search-filters.title-rem-fil'): $t('search.search-filters.title-add-fil')"
           :ico="showPublicationFilter? 'ico2-minus':'ico2-plus'"
           :remove="showPublicationFilter==true"
           @click.native="actionFilter"

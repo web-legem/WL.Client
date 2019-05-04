@@ -258,11 +258,10 @@ export default {
     },
     'input-filter': {
       'title-update': 'Actualizar',
-      'title-rem-filt': 'Quitar filtro',
     },
     'number-filter': {
       'label-num-doc': 'Número de documento',
-      'title-add-fil': 'Agregar Filtro',
+      'placeholder' : 'Ej: 0534',
     },
     'order-control': {
       'title-filter': 'Filtros',
@@ -290,6 +289,8 @@ export default {
       'h-search-ava': 'Busqueda avanzada',
       'label-entity': 'Entidad',
       'label-doc-type': 'Tipo Documento',
+      'title-add-fil': 'Agregar Filtro',
+      'title-rem-fil': 'Quitar filtro',      
     },
     'search-result': {
       'a-entity': 'Entidad:',
@@ -298,11 +299,9 @@ export default {
       'a-del': 'del',
       'title-down': '"Descargar',
     },
-    'select-filter': {
-      'title-add-filter': 'Agregar Filtro',
-    },
     'year-filter': {
       'label-year-publ': 'Año de publicación',
+      'placeholder' : 'Ej: 2010',
     },
 
   },
