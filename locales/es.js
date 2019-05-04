@@ -258,6 +258,7 @@ export default {
     },
     'input-filter': {
       'title-update': 'Actualizar',
+      'title-rem-filt': 'Limpiar',
     },
     'number-filter': {
       'label-num-doc': 'Número de documento',
