@@ -537,16 +537,17 @@ button 	.ico2-accessibility {
 
 .avatar-usu{
   margin-left: 10px;  
-  --header-height: calc(25px + 4.5vh);
+  --header-height: calc(24px + 4.5vh);
   height: var(--header-height);
-  width: auto;  
+  width: auto; 
   background: #555;
-  color:white;
+  color:white;  
+  display: flex;
 }
 
 .avatar-usu  > img{  
-  width: 100%;
-  height:100%;
+  height: 100%;
+  align-self: center;
 }
 
 @keyframes bajando {
