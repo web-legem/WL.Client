@@ -121,7 +121,7 @@
                 <div class="avatar-usu">                  
                   <img 
                     alt="" 
-                    :src="credential.photo"
+                    :src="getPhoto"
                   >
                 </div>
               </div>
@@ -260,6 +260,12 @@ export default {
     },
     getUserName(){
       return "nombre de usuario";
+    },
+    getPhoto(){
+      if(this.credential && this.credential.photo && this.credential.photo != "none"){      
+        return this.credential.photo                           
+      }
+      return'/img/usuario.png';
     }
   },
   watch: {
