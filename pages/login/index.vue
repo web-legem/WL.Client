@@ -73,6 +73,10 @@
                   {{ $t("login.btn-enter") }}
                 </wl-button>
               </div>
+              <div 
+                v-if="loading" 
+                class="progress-line" 
+              />
             </div>
           </form>
         </div>
@@ -119,6 +123,7 @@ export default {
       redirectTo: "redirectTo",
       loogedIn: "loogedIn",
       passwordChanged: "passwordChanged",
+      loading: "loading",
     }),
     vipriImg() {
       if(!this.$store.state.highContrast)

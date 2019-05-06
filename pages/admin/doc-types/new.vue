@@ -3,6 +3,7 @@
     <wl-crud 
       :is-new="true"
       :error="error" 
+      :is-loading="loading"
       @wlcancel="cancel"
       @wlcreate="submit"
       @wlclearerror="clearError"
@@ -48,7 +49,8 @@ export default {
 
   computed:{
     ...mapGetters('admin/document-types',{
-      error : 'error'
+      error : 'error',
+      loading: "loading",
     })
   },
 

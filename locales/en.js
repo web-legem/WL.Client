@@ -223,6 +223,7 @@ export default {
       'title-confirm': 'Confirmation',
       'div-sure-delete': 'Are you sure to eliminate ',
       'title-info': 'Information',
+      'loading': 'processing...',
     },
     'filtere-list': {
       'title-new': 'New record',

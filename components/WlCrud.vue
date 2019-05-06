@@ -5,7 +5,7 @@
       data-vv-scope="form1"
       @submit.prevent
     >
-      <div class="controles_box_right">         
+      <div class="controles_box_right">             
         <wl-button 
           v-show="!isNew && !wasNotFound"
           :disable="disableButtons"
@@ -27,6 +27,16 @@
       <slot name="wl-form" />    
 
       <div class="controles_box_right down">
+        <div
+          v-if="isLoading"
+          class="progress-container"
+        >        
+          <div class="progress-line" />            
+          <span>
+            {{ $t('components.crud.loading') }}
+          </span>
+        </div>    
+
         <wl-button 
           v-show="isEdit || isNew" 
           :ico="'ico-floppy-o'" 
@@ -131,6 +141,7 @@ export default {
     },
     disableButtons: {type: Boolean, default: false },
     elementName: {type: String, default: "" },
+    isLoading: {type: Boolean, default: false },
   },
   data() {
     return {
@@ -248,4 +259,11 @@ export default {
   margin-top: 10px;
 }
 
+.progress-container{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  font-size: .9rem;
+  margin-top: 10px;
+}
 </style>

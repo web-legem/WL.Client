@@ -3,7 +3,7 @@
     class="wl-search-bar"
     name="form-login"
     data-vv-scope="form1"            
-    @submit.prevent="searchWords()"
+    @submit.prevent=""
   >
     <div class="box_input_ico">
       <label 
@@ -23,6 +23,17 @@
         :min="3"
         :hide-label="true"
       />
+
+      <button 
+        v-show="isVisible"
+        :type="'button'"
+        class="btn_cancel" 
+        :title="$t('search.input-filter.title-rem-filt')"
+        :aria-label="$t('search.input-filter.title-rem-filt')"
+        @click="clearText()"
+      >
+        <span class="ico-plus" />
+      </button>
 
       <wl-button 
         :type="'submit'"
@@ -50,6 +61,11 @@ export default {
       words:"",
     }
   },
+  computed:{
+    isVisible() {
+      return this.words.length > 0;
+    }
+  },
   mounted(){
     this.words = this.$route.query.wordsToSearch || '';
   },
@@ -75,6 +91,10 @@ export default {
     },
     getModifiableQueryParams() {
       return { ...this.$route.query, page: 1 }
+    },
+    clearText() {
+      console.log("hdjasaskjdhaskjdh");
+      this.words ="";
     },
   }
 }

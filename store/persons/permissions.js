@@ -16,6 +16,7 @@ export const getters = {
   isSelected: (state) => state.selectedId != null,
   isCreating: (state) => state.isCreating,
   error: (state) => state.error,
+  loading: (state) => state.loading,
 }
 
 export const mutations = {
@@ -91,29 +92,35 @@ export const actions = {
       .then(response => commit('loadingSuccess', response.data))
       .catch(e => {commit('loadingFailure', e);})
   },
-  create({ commit, dispatch }, data) {
-    commit('waiting')
-    let role = {
-      name: data.name,
-      configSystem: data.permissions[0]  ? 1:0,
-      createDocuments: data.permissions[1] ? 1:0,
-      deleteDocuments: data.permissions[2] ? 1:0,
+  create({ commit, state, dispatch }, data) {
+    if(!state.loading){
+      commit('waiting')
+      let role = {
+        name: data.name,
+        configSystem: data.permissions[0]  ? 1:0,
+        createDocuments: data.permissions[1] ? 1:0,
+        deleteDocuments: data.permissions[2] ? 1:0,
+      }
+      return this.$axios.post('/api/Role', role)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('creatingError', e);throw e;})
     }
-    return this.$axios.post('/api/Role', role)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('creatingError', e);throw e;})
   },
-  save({ commit, dispatch }, data) {
-    commit('waiting')
-    return this.$axios.put('/api/Role', data)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('updatingError', e);throw e;})
+  save({ commit, state, dispatch }, data) {
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.put('/api/Role', data)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('updatingError', e);throw e;})
+    }
   },
   delete({ commit, state, dispatch }) {
-    commit('waiting')
-    return this.$axios.delete('/api/Role/' + state.selectedId)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('deletingError', e);throw e;})
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.delete('/api/Role/' + state.selectedId)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('deletingError', e);throw e;})
+    }
   },
 
   select({ commit }, roleId) {

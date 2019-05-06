@@ -223,6 +223,7 @@ export default {
       'title-confirm': 'Confirmación',
       'div-sure-delete': '¿Esta Seguro De Eliminar ',
       'title-info': 'Información',
+      'loading': 'Procesando...',
     },
     'filtere-list': {
       'title-new': 'Nuevo Registro',
@@ -238,7 +239,7 @@ export default {
       'copyright':'Copyright © 2019 - Universidad de Nariño - San Juan de Pasto - Colombia',
     },
     'loading':{
-      'loading':'Procesando...'
+      'loading':'Cargando...'
     },
   },
 

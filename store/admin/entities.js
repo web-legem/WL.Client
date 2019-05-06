@@ -16,6 +16,7 @@ export const getters = {
   isSelected: (state) => state.selectedId != null,
   isCreating: (state) => state.isCreating,
   error: (state) => state.error,
+  loading: (state) => state.loading,
 }
 
 export const mutations = {
@@ -103,23 +104,29 @@ export const actions = {
     commit('isCreating')
   },
 
-  create({ commit, dispatch }, newEntity) {
-    commit('waiting')
-    return this.$axios.post('/api/Entity', newEntity)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('creatingError', e);throw e;})
+  create({ commit, state, dispatch }, newEntity) {
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.post('/api/Entity', newEntity)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('creatingError', e);throw e;})
+    }
   },
-  save({ commit, dispatch }, modifiedEntity) {
-    commit('waiting')
-    return this.$axios.put('/api/Entity', modifiedEntity)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('updatingError', e);throw e;})
+  save({ commit, state, dispatch }, modifiedEntity) {
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.put('/api/Entity', modifiedEntity)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('updatingError', e);throw e;})
+    }
   },
   delete({ commit, state, dispatch }) {
-    commit('waiting')
-    return this.$axios.delete('/api/Entity/' + state.selectedId)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('deletingError', e);throw e;})
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.delete('/api/Entity/' + state.selectedId)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('deletingError', e);throw e;})
+    }
   },
 
   changeName({ commit }, newName) {
