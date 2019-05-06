@@ -52,6 +52,10 @@
                   {{ $t("login.btn-send") }}
                 </wl-button>
               </div>
+              <div 
+                v-if="loading" 
+                class="progress-line" 
+              />
             </div>
           </form>
         </div>
@@ -92,6 +96,7 @@ export default {
       credential: "credential",
       loogedIn: "loogedIn",
       error: "error",
+      loading: "loading",
     }),
     vipriImg() {
       if(!this.$store.state.highContrast)
