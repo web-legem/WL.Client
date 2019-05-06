@@ -3,6 +3,7 @@
     <wl-crud
       :obj-select="objSelected"
       :error="error"
+      :is-loading="loading"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
@@ -82,7 +83,8 @@ export default {
   computed: {
     ...mapGetters("persons/permissions", {
       objSelected: "selected",
-      error: "error"
+      error: "error",
+      loading: "loading",
     }),
     name: {
       get() {return this.objSelected.name},

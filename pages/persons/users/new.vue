@@ -3,6 +3,7 @@
     <wl-crud
       :is-new="true"
       :error="error"
+      :is-loading="loading"
       @wlcancel="cancel" 
       @wlcreate="submit"
       @wlclearerror="clearError"
@@ -151,7 +152,8 @@ export default {
   },
   computed: {
     ...mapGetters("persons/users", {
-      error: "error"
+      error: "error",
+      loading: "loading",
     })
   },
   asyncData(context) {

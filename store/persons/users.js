@@ -16,6 +16,7 @@ export const getters = {
   isSelected: (state) => state.selectedId != null,
   isCreating: (state) => state.isCreating,
   error: (state) => state.error,
+  loading: (state) => state.loading,
 }
  
 export const mutations = {
@@ -118,34 +119,40 @@ export const actions = {
       .catch(e => {commit('loadingFailure', e);throw e;})
       //este metodo se uso para la ventana da cfg que se quito    
   },  
-  create({ commit, dispatch }, {newUser, file}) {    
-    let formData = new FormData();
-    formData.append('value',JSON.stringify(newUser))
-    formData.append('files', file);
-    commit('waiting')
-    return this.$axios.post(
-      '/api/User',
-      formData,
-      { headers: {'Content-Type': 'multipart/form-data' }})
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('creatingError', e);throw e;})
+  create({ commit, state, dispatch }, {newUser, file}) {    
+    if(!state.loading){
+      commit('waiting')
+      let formData = new FormData();
+      formData.append('value',JSON.stringify(newUser))
+      formData.append('files', file);
+      return this.$axios.post(
+        '/api/User',
+        formData,
+        { headers: {'Content-Type': 'multipart/form-data' }})
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('creatingError', e);throw e;})
+    }
   },
-  save({ commit, dispatch }, {modifiedUser, file, fileWasChange, restorePass}) {    
-    let formData = new FormData();
-    formData.append('value',JSON.stringify(modifiedUser))
-    formData.append('files', file);
-    formData.append('fileWasChange', fileWasChange);
-    formData.append('restorePass', restorePass);
-    commit('waiting')
-    return this.$axios.put('/api/User', formData, {headers: {'Content-Type': 'multipart/form-data'}})
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('updatingError', e);throw e;})
+  save({ commit, state, dispatch }, {modifiedUser, file, fileWasChange, restorePass}) {  
+    if(!state.loading){
+      commit('waiting')
+      let formData = new FormData();
+      formData.append('value',JSON.stringify(modifiedUser))
+      formData.append('files', file);
+      formData.append('fileWasChange', fileWasChange);
+      formData.append('restorePass', restorePass);
+      return this.$axios.put('/api/User', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('updatingError', e);throw e;})
+    }
   },
   delete({ commit, state, dispatch }) {
-    commit('waiting')
-    return this.$axios.delete('/api/User/' + state.selectedId)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('deletingError', e);throw e;})
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.delete('/api/User/' + state.selectedId)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('deletingError', e);throw e;})
+    }
   },
   select({ commit }, userId) {
     commit('select', userId)

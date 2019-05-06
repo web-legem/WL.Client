@@ -3,6 +3,7 @@
     <wl-crud
       :obj-select="objSelected"
       :error="error"
+      :is-loading="loading"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
@@ -50,6 +51,7 @@
       ...mapGetters('admin/document-types', {
         objSelected: 'selected',
         error: "error",
+        loading: "loading",
       }),
       name: {
         get() {return this.objSelected.name},

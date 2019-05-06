@@ -5,7 +5,7 @@
       data-vv-scope="form1"
       @submit.prevent
     >
-      <div class="controles_box_right">         
+      <div class="controles_box_right">             
         <wl-button 
           v-show="!isNew && !wasNotFound"
           :disable="disableButtons"
@@ -27,6 +27,16 @@
       <slot name="wl-form" />    
 
       <div class="controles_box_right down">
+        <div
+          v-if="isLoading"
+          class="progress-container"
+        >        
+          <div class="progress-line" />            
+          <span>
+            {{ $t('components.crud.loading') }}
+          </span>
+        </div>    
+
         <wl-button 
           v-show="isEdit || isNew" 
           :ico="'ico-floppy-o'" 
@@ -131,6 +141,7 @@ export default {
     },
     disableButtons: {type: Boolean, default: false },
     elementName: {type: String, default: "" },
+    isLoading: {type: Boolean, default: false },
   },
   data() {
     return {
@@ -248,4 +259,39 @@ export default {
   margin-top: 10px;
 }
 
+.progress-container{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  font-size: .9rem;
+  margin-top: 10px;
+}
+
+.progress-line, .progress-line:before {
+  height: 12px;
+  width: 100%;
+}
+.progress-line {
+  background-color: var(--wl_gray_light);
+  color: var(--wl_text);
+  display: -webkit-flex;
+  display: flex;
+}
+.progress-line:before {
+  background-color: var(--wl_light);
+  color: var(--wl_text);
+  content: '';
+  -webkit-animation: running-progress 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: running-progress 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@-webkit-keyframes running-progress {
+  0% { margin-left: 0px; margin-right: 100%; }
+  50% { margin-left: 25%; margin-right: 0%; }
+  100% { margin-left: 100%; margin-right: 0; }
+}
+@keyframes running-progress {
+  0% { margin-left: 0px; margin-right: 100%; }
+  50% { margin-left: 25%; margin-right: 0%; }
+  100% { margin-left: 100%; margin-right: 0; }
+}
 </style>

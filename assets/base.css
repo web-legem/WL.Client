@@ -445,3 +445,72 @@ button::-moz-focus-inner {
 .box_input_ico div:last-child {
   flex-basis: 35px
 }
+
+
+/* limpiar filtro -------------------------------  */
+
+.btn_cancel {
+  flex-basis: 35px;
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);
+  display: block;
+  border-left: none !important;
+  width: 100%;
+  height: 35px;
+  font-size: large;
+  font-size-adjust: -webkit- 0.8;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.btn_cancel:before,
+{
+  content:'';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+}
+
+.btn_cancel:hover:before {
+  background:var(--wl_primary_hover);
+  color: var(--wl_btn_content);
+  width: 100%;
+}
+
+.btn_cancel:active:before {
+  background:var(--wl_primary_active);
+  color: var(--wl_btn_content);
+  width: 100%;
+}
+
+.btn_cancel:disabled {
+  background:var(--wl_btn_disable);
+  color:var(--wl_btn_content);  
+}
+
+.btn_cancel span {
+  display: flex;
+}
+
+.btn_cancel span:before {
+  height: 100%;
+  width: 100%;
+  align-self: center;
+  justify-content: center;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.btn_cancel:focus
+{
+  outline: #FF0D99 dotted 2px;
+}
+
+/* FIN limpiar filtro -------------------------------  */
+

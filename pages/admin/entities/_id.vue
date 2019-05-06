@@ -3,6 +3,7 @@
     <wl-crud
       :obj-select="selected"
       :error="error"
+      :is-loading="loading"
       @wlcancel="cancel"
       @wlupdate="update"
       @wldelete="drop"
@@ -79,7 +80,8 @@ export default {
   computed: {
     ...mapGetters("admin/entities", {
       selected: "selected",
-      error: "error"
+      error: "error",
+      loading: "loading",
     }),
     name: {
       get() {

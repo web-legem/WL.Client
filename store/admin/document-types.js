@@ -16,6 +16,7 @@ export const getters = {
   isSelected: (state) => state.selectedId != null,
   isCreating: (state) => state.isCreating,
   error: (state) => state.error,
+  loading: (state) => state.loading,
 }
 
 export const mutations = {
@@ -93,23 +94,29 @@ export const actions = {
   isCreating({commit}) {
     commit('isCreating')
   },
-  create({commit, dispatch}, newDocName) {
-    commit('waiting')
-    return this.$axios.post('/api/DocumentType', { name: newDocName })
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('creatingError', e);throw e;})
+  create({commit, state, dispatch}, newDocName) {
+    if(!state.loading){
+      commit('waiting')
+        return this.$axios.post('/api/DocumentType', { name: newDocName })
+          .then(_ => dispatch('loadData'))
+          .catch(e => {commit('creatingError', e);throw e;})
+    }    
   },
-  save({commit, dispatch}, modifiedDocType) {
-    commit('waiting')
-    return this.$axios.put('/api/DocumentType', modifiedDocType)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('updatingError', e);throw e;})
+  save({commit, state, dispatch}, modifiedDocType) {
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.put('/api/DocumentType', modifiedDocType)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('updatingError', e);throw e;})
+    }
   },
   delete({commit, state, dispatch}) {
-    commit('waiting')
-    return this.$axios.delete('/api/DocumentType/' + state.selectedId )
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('deletingError', e);throw e;})
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.delete('/api/DocumentType/' + state.selectedId )
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('deletingError', e);throw e;})
+    }
   },
   changeName({commit}, newName) {
     commit('changeName', newName)

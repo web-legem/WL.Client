@@ -16,6 +16,7 @@ export const getters = {
   isSelected: (state) => state.selectedId != null,
   isCreating: (state) => state.isCreating,
   error: (state) => state.error,
+  loading: (state) => state.loading,
 }
 
 export const mutations = {
@@ -87,23 +88,29 @@ export const actions = {
     .then(response => commit('loadingSuccess', response.data))
     .catch(e => {commit('loadingFailure', e);})
   },
-  create({ commit, dispatch }, newAnnotationType) {
-    commit('waiting')
-    return this.$axios.post('/api/AnnotationType', newAnnotationType)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('creatingError', e);throw e;})
+  create({ commit, state, dispatch }, newAnnotationType) {
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.post('/api/AnnotationType', newAnnotationType)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('creatingError', e);throw e;})
+    }
   },
-  save({ commit, dispatch }, modifiedAnnotationType) {
-    commit('waiting')
-    return this.$axios.put('/api/AnnotationType', modifiedAnnotationType)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('updatingError', e);throw e;})
+  save({ commit, state, dispatch }, modifiedAnnotationType) {
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.put('/api/AnnotationType', modifiedAnnotationType)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('updatingError', e);throw e;})
+    }
   },
   delete({ commit, state, dispatch }) {
-    commit('waiting')
-    return this.$axios.delete('/api/AnnotationType/' + state.selectedId)
-      .then(_ => dispatch('loadData'))
-      .catch(e => {commit('deletingError', e);throw e;})
+    if(!state.loading){
+      commit('waiting')
+      return this.$axios.delete('/api/AnnotationType/' + state.selectedId)
+        .then(_ => dispatch('loadData'))
+        .catch(e => {commit('deletingError', e);throw e;})
+    }
   },
 
   select({ commit }, annotationTypeId) {

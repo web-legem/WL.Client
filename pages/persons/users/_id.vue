@@ -4,6 +4,7 @@
       :obj-select="objSelected"
       :is-new="false"
       :error="error"
+      :is-loading="loading"
       :element-name="'lastName'"
       @wlcancel="cancel"
       @wlupdate="update"
@@ -181,7 +182,8 @@ export default {
   computed: {
     ...mapGetters("persons/users", {
       objSelected: "selected",
-      error: "error"
+      error: "error",
+      loading: "loading",
     }),
     firstName: {
       get() {return this.objSelected.firstName},
