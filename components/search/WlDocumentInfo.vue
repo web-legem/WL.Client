@@ -58,7 +58,7 @@ export default {
   methods: {
     getDocumentTypeName(document) {
       return this.documentTypes
-      .find(x => x.id = document.documentTypeId)
+      .find(x => x.id == document.documentTypeId)
       .name
     },
     determineDirection(annotation){

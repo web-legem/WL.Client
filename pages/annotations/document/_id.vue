@@ -9,7 +9,7 @@
       </div>
 
       <template slot="details">
-        <wl-pdf-viewer :file-id="1" />
+        <wl-pdf-viewer :file-id="id" />
       </template>
     </wl-master-detail-layout>
   </div>
@@ -28,6 +28,7 @@ export default {
     return {
       message: 'Source Found',
       isDocumentOpen: false,
+      id: this.$route.params.id
     }
   },
   computed: {
