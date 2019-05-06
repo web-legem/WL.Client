@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.document-annotations {
+.document-control {
   height: 100%;
   display: flex;
   flex-direction: column;
