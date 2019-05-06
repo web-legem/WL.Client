@@ -90,13 +90,17 @@ export const mutations = {
     state.error = null;
   },
   setRestoreFailure(state,ex){
+    console.log("xx1");
     state.loading = false
+    console.log("xx2");
     if(ex.response && ex.response.data){
-      if(ex.response.data.errorType == "ORA1403"){            
+      console.log("xx3");
+      if(ex.response.data.errorType == "NotFound"){            
         state.error = "Este correo no esta registrado en el sistema";
         return
       }
     }
+    console.log("xx4");
     state.error = "Se presento un error, por favor recarge la pagina."+
                   "\nSi el problema persiste contacte con el administrador";
   },  
