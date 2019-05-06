@@ -155,6 +155,7 @@ export default {
   margin-top: 4px;
   border-top: 1px solid var(--wl_gray);
   padding-top: 16px;
+  overflow: auto;
 }
 
 .bottom-pager {

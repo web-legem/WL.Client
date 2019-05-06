@@ -97,7 +97,7 @@ export const actions = {
       this.$axios.get('/api/Search', {
         params: {
           ...query,
-          pageSize: 1, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
+          pageSize: 5, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
         },
       })
       .then(response => commit('searchSuccessful', response.data))

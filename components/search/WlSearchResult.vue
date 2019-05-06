@@ -31,7 +31,7 @@
 
     <div class="control_tarjeta">
       <a 
-        :href="$axios.defaults.baseURL + 'api/Document/download/' + document.id"
+        :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
         download
         :title="$t('search.search-result.title-down')"
       >

@@ -67,7 +67,7 @@ export default {
     }
   },
   mounted(){
-    this.words = this.$route.query.wordsToSearch || '';
+    this.words = this.$route.query.wordsToSearch ? decodeURI(this.$route.query.wordsToSearch) : ''
   },
   methods: {
     searchWords() {
