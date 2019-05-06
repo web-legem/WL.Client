@@ -1,9 +1,10 @@
 
 export const state = () => ({
-  loading: false
-  , loaded: false
-  , error: null
-  , classifiedFile: null
+  loading: false,
+  loaded: false,
+  error: null,
+  classifiedFile: null,
+  loading: false,
 })
 
 export const getters = {
@@ -30,14 +31,16 @@ export const mutations = {
 }
 
 export const actions = {
-  loadData({commit}, fileId){
-    commit('loading')
-    return this.$axios.get('/api/ClassifiedFile/' + fileId)
-      .then(response => commit('loadingSuccess', response.data))
-      .catch(e => {
-        delete e.response.config
-        delete e.response.request
-        return commit('loadingFailure', e.response)
-      })
+  loadData({commit, state}, fileId){
+    if(!state.loading){
+      commit('loading')
+      return this.$axios.get('/api/ClassifiedFile/' + fileId)
+        .then(response => commit('loadingSuccess', response.data))
+        .catch(e => {
+          delete e.response.config
+          delete e.response.request
+          return commit('loadingFailure', e.response)
+        })
+    }
   }
 }
