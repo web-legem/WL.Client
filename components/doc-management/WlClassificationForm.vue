@@ -109,6 +109,10 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
+      <div 
+        v-if="isLoading" 
+        class="progress-line" 
+      />
     </form>
   </div>
 </template>
@@ -148,6 +152,7 @@ export default {
       uploadPercentage: 0,
       error: null,
       tags: ['test'],
+      isLoading:false,
     }
   },
   computed: {
@@ -187,6 +192,11 @@ export default {
       this.$validator.validate('form1.*').then(valid => {
         this.isSubmit = true
         if(valid){
+
+          if(!this.isLoading){
+          this.isLoading = true;          
+
+
           let formData = new FormData()
           formData.append('files', this.file)
           const form = JSON.stringify({
@@ -194,8 +204,10 @@ export default {
             entityId: this.entityId,
             number: this.number,
             publicationDate: this.date
-          })
-          formData.append('value', form )
+          });
+
+          formData.append('value', form );
+
           this.$axios.post(
             '/api/Document',
             formData,
@@ -206,8 +218,9 @@ export default {
                   Math.round(progressEvent.loaded * 100) / progressEvent.total)
               }
             })
-          .then(console.log)
-          .catch(console.log)
+          .then(x=>{console.log(x); this.isLoading = false;this.clear()})
+          .catch(x=>{console.log(x); this.isLoading = false;this.clear()})
+          }
         }
       })
 
@@ -250,6 +263,10 @@ h3 {
   padding-top: 16px;
   display: flex;
   justify-content: flex-end;
+}
+
+.action-container div:last-child {
+  margin-top: 20px;
 }
 
 .action {

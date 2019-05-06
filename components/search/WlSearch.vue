@@ -122,7 +122,7 @@ export default {
     }),
     navigateTo(query) {
       this.$router.push(this.localePath({ 
-        name: removeLangExtension(this.$oute.name),
+        name: removeLangExtension(this.$route.name),
         query
       }))
     }
