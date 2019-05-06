@@ -135,6 +135,8 @@ export default { components: { WlModal,
   justify-content: space-between;
   overflow-x: auto;
   margin: 16px 0 0 0;
+  min-height: 30px;
+  max-height: 30px;
 }
 
 @media screen and (min-width: 992px) {
