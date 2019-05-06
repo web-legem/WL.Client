@@ -284,4 +284,8 @@ export default {
     background:#ccc;
 }
 
+.btn-submit > div:last-child{
+  margin-top: 20px;
+}
+
 </style>
