@@ -1,7 +1,6 @@
 <template>
   <div class="notifyEntities">
-
-    <wl-title text="Notificar"></wl-title>
+    <wl-title text="Notificar" />
     <form 
       name="form-send-email-to"
       class="form"
@@ -24,7 +23,9 @@
       </div>
 
       <fieldset class="fieldset">
-        <legend class="texto_labels">Entidades</legend>
+        <legend class="texto_labels">
+          Entidades
+        </legend>
         <template v-for="(entity,index) in entities">
           <wl-switch-button 
             :id="index.toString()"
