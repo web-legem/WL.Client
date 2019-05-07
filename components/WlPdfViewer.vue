@@ -52,15 +52,15 @@ export default {
 .pdf-viewer {
   width: 100%;
   height: 100%;
-  background-color: blue;
-  color:white;
+  background-color: var(--wl_form_bg);
+  color:var(--wl_form_primary);
 }
 
 .pdf {
   width: 100%;
   height: 100%;
   display: block;
-  background-color: blue;
-  color:white;
+  background-color: var(--wl_form_bg);
+  color:var(--wl_form_primary);
 }
 </style>

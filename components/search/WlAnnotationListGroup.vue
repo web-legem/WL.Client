@@ -102,7 +102,7 @@ export default {
 
 .group-toggle:hover {
   background: lightgrey;
-  color: red;
+  color: var(--wl_primary);
 }
 
 .toggle-group-icon {
@@ -142,6 +142,6 @@ export default {
 }
 
 .document-info_ul:last-child {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid var(--wl_text);
 }
 </style>

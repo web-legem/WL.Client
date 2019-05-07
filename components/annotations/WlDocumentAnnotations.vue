@@ -111,15 +111,15 @@ export default {
 .document-header {
   flex-grow: 1;
   font-size: 1.4rem;
-  background: blue;
-  color: #00796b;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
   padding: 10px;
 }
 
 .icon {
   font-size: 1.4rem;
   background-color: transparent;
-  color: #00796b;
+  color: var(--wl_primary);
   margin: 10px;
   padding: 5px;
   padding-bottom: 5px;
@@ -133,12 +133,12 @@ export default {
 
 .icon:hover {
   background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
-  color: red;
+  color: var(--wl_primary);
 }
 
 .icon:active {
   background-color: #999;
-  color:blue;
+  color: var(--wl_primary);
   background-size: 100%;
   transition: background 0s;
 }

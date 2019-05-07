@@ -92,6 +92,9 @@ export default {
       'wl-upload-doc': 'Carga de documentos',
       'number-placeholder': 'Por ejemplo: 029',
     },
+    'document': {
+      'document': 'Documentos',
+    },
   },
 
   'persons': {

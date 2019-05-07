@@ -103,8 +103,8 @@ export default {
 
 .document-title {
   flex-grow: 1;
-  background: red;
-  color: #00796b;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
   font-size: 1em;
   display: flex;
   flex-direction: row;
@@ -113,22 +113,22 @@ export default {
 .title-link {
   flex-grow: 1;
   text-decoration: none;
-  background: red;
-  color:#0f745b;
-  text-decoration-color: #0f745b;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
+  text-decoration-color: var(--wl_pimary);
   cursor:pointer;
   font-size: 1em;
 }
 
 .direction-icon {
   font-size: .9em;
-  background: red;
-  color:#555;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
 }
 
 .type {
-  background: red;
-  color: #555;
+  background: var(--wl_form_bg);
+  color: var(--wl_text);
   font-size: .9em;
 }
 
@@ -139,13 +139,13 @@ export default {
 
 .description {
   font-size: .9em;
-  background: red;
-  color: #555;
+  background: var(--wl_form_bg);
+  color: var(--wl_text);
 }
 
 .button-control {
-  color: #0f745b;
-  background: white;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
   cursor: pointer;
 }
 
@@ -157,7 +157,7 @@ export default {
   margin-left: 5px;
   cursor: pointer;
   background: transparent;
-  color: #0f745b;
+  color: var(--wl_primary);
   font-size: 1em;
   padding: 5px;
   border-radius: 50%;
@@ -165,13 +165,12 @@ export default {
 }
 
 .icon:hover {
-  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
-  color:blue;
+  background: var(--wl_tab_shw) radial-gradient(circle, transparent 1%, var(--wl_tab_shw) 1%) center/15000%;
+  color:var(--wl_primary);
 }
 
 .icon:active {
-  background-color: #999;
-  counter-reset: red;
+  background-color: var(--wl_tab_shw);
   background-size: 100%;
   transition: background 0s;
 }

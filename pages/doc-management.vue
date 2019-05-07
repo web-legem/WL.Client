@@ -7,6 +7,12 @@
       >
         {{ $t('doc-management.upload-doc.wl-upload-doc') }}        
       </wl-tab>
+      <wl-tab
+        :to="localePath({ name: 'doc-management-document' })"
+        icon="ico-files-o"
+      >
+        {{ $t('doc-management.document.document') }}
+      </wl-tab>
     </template>
 
     <nuxt-child />

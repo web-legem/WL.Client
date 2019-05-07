@@ -2,7 +2,13 @@
   <div class="wl-document-info">
     <wl-document-controls 
       :document-title="getDocumentTitle(document)"
-    />
+    >
+      <nuxt-link 
+        slot="controls"
+        class="ico-paper-plane icon" 
+        :to="localePath({name: 'search-id-notify'})" 
+      />
+    </wl-document-controls>
     <div class="annotation-list">
       <wl-annotation-list 
         :document-id="document.id"
@@ -100,7 +106,7 @@ export default {
 
 .component-title {
   padding: 16px;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid var(--wl_primary));
 }
 
 .annotation-list {

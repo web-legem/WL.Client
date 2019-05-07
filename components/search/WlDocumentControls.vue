@@ -4,10 +4,6 @@
       <h1 class="document-header">
         {{ documentTitle }} 
       </h1>
-      <nuxt-link 
-        class="ico-paper-plane icon" 
-        :to="localePath({name: 'search-id-notify'})" 
-      />
       <slot name="controls" />
     </div>
   </div>
@@ -42,15 +38,15 @@ export default {
 .document-header {
   flex-grow: 1;
   font-size: 1.4rem;
-  background: blue;
-  color: #00796b;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
   padding: 10px;
 }
 
 .icon {
   font-size: 1.4rem;
   background-color: transparent;
-  color: #00796b;
+  color: var(--wl_primary);
   margin: 10px;
   padding: 5px;
   padding-bottom: 5px;
@@ -63,13 +59,13 @@ export default {
 }
 
 .icon:hover {
-  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
-  color: red;
+  background: var(--wl_tab_shw) radial-gradient(circle, transparent 1%, var(--wl_tab_shw) 1%) center/15000%;
+  color: var(--wl_primary);
 }
 
 .icon:active {
-  background-color: #999;
-  color:blue;
+  background-color: var(--wl_tab_shw);
+  color: var(--wl_primary);
   background-size: 100%;
   transition: background 0s;
 }

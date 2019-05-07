@@ -93,22 +93,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wl-annotation-group {
-}
-
 .group-toggle {
   display: flex;
   width: 100%;
-  background-color: #fff;
-  color: #555;
+  background-color: var(--wl_form_gb);
+  color: var(--wl_primary);
   justify-content: space-between;
   font-size: 1.2rem;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid var(--wl_tab_shw);
 }
 
 .group-toggle:hover {
-  background: lightgrey;
-  color:red;
+  background: var(--wl_tab_shw);
+  color: var(--wl_primary);
 }
 
 .toggle-group-icon {
@@ -138,6 +135,6 @@ export default {
 }
 
 .document-info_ul:last-child {
-  border-bottom: 1px solid #555 !important;
+  border-bottom: 1px solid var(--wl_tab_shw) !important;
 }
 </style>
