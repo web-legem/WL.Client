@@ -15,6 +15,12 @@ export default {
   'show-record': 'Ver registro',
   'go-to-module': 'Ir al contenido del modulo',
   'go-to-record': 'Ir al editar del registro',
+  'notify': {
+    'select-all': 'Marcar todos.',
+    'deselect-all': 'Desmarcar todos.',
+    'notification-sent': 'La notificación ha sido enviada.',
+    'return': 'Regresar al documento',
+  },
 
   'admin': {
     'module-name': 'Administración',

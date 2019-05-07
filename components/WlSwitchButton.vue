@@ -7,11 +7,11 @@
     </span>
     <div 
       class="w-switch"
-      :class="{'disable':disable}"
+      :class="{'disable':disable, 'small': small}"
     >
       <input 
         :id="id" 
-        ref="perro"
+        ref="switch"
         :name="name" 
         :checked="value"
         :disabled="disable == true"
@@ -50,11 +50,12 @@ export default {
     isRequired: { type: Boolean, default: false },    
     disable: { type: Boolean, default: false },
     error: { type: Boolean, default: false },
-    errorMsg: { type: String, default: "" }
+    errorMsg: { type: String, default: "" },
+    small: { type: Boolean, default: false },
   },  
   methods: {
   	trigger () {
-    	this.$refs.perro.click()
+    	this.$refs.switch.click()
     }
   }
 }
@@ -165,6 +166,11 @@ export default {
   display: flex;  
   align-items: center;
   justify-content: center;  
+}
+
+.w-switch.small {
+  padding: 0;
+  margin-bottom: 0;
 }
 
 </style>

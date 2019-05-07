@@ -33,7 +33,7 @@
       />
 
       <fieldset class="fieldset">
-        <legend class="texto_labels">
+        <legend>
           {{ $t('annotations.new.to-doc') }}
         </legend>
         <wl-input

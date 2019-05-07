@@ -15,6 +15,12 @@ export default {
   'show-record': 'Show record',
   'go-to-module': 'Go to module content',
   'go-to-record': 'Go to edit record',
+  'notify': {
+    'select-all': 'Select all',
+    'deselect-all': 'Deselect all',
+    'notification-sent': 'Notification has been sent',
+    'return': 'Return to document',
+  },
 
   'admin': {
     'module-name': 'Administration',

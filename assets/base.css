@@ -328,7 +328,7 @@ button::-moz-focus-inner {
 
 .title{
   background:#131f27;
-  color: white !important;
+  /* color: white !important; */
 }
 
 .error-link:link,
