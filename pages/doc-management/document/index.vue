@@ -1,5 +1,5 @@
 <template>
-    <wl-search route-name="doc-management-document-id" />
+  <wl-search route-name="doc-management-document-id" />
 </template>
 
 <script>

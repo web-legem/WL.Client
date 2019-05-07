@@ -5,7 +5,7 @@
         slot="master" 
         class="overflow"
       >
-        <wl-edit-document></wl-edit-document>
+        <wl-edit-document />
       </div>
 
       <template slot="details">
