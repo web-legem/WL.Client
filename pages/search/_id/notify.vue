@@ -5,7 +5,7 @@
     :document-id="documentId"
     @notify="notify"
     @clean="clean"
-  ></wl-notify-entities>
+  />
 </template>
 
 <script>

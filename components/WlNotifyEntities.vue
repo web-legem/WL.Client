@@ -2,23 +2,23 @@
   <div class="notifyEntities">
     <form 
       name="form-send-email-to"
+      class="form"
       data-vv-scope="form1"
       @submit.prevent
-      class="form"
     >
       <p class="paragraph">
         Selecciona las entidades a las que deseas notificar:
       </p>
 
-      <template v-for="(entity,index) in entities" >
+      <template v-for="(entity,index) in entities">
         <wl-switch-button 
           :id="index.toString()"
+          :key="entity.id"
           v-model="entitiesChecks[index].check"
           :name="'form1.configSystem'"       
           :type="'checkbox'" 
           :disable="false"
           :label="entity.name"
-          :key="entity.id"
         />
       </template>
 
@@ -53,14 +53,6 @@ export default {
     WlSwitchButton,
     WlButton,
   },
-  data() {
-    return {
-      entitiesChecks: this.entities.map(x => {
-        x.check = false
-        return x
-      }),
-    }
-  },
   props: {
     entities: {
       type: Array,
@@ -70,6 +62,14 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  data() {
+    return {
+      entitiesChecks: this.entities.map(x => {
+        x.check = false
+        return x
+      }),
+    }
   },
   methods: {
     notify() {
