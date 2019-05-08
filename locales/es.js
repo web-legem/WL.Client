@@ -94,6 +94,10 @@ export default {
     },
     'document': {
       'document': 'Documentos',
+      'edit-document': 'Editar documento',
+      'doc-legend': 'Documento',
+      'document-issue': 'Asunto del documento',
+      'issue-placeholder': 'Por el cual...',
     },
   },
 

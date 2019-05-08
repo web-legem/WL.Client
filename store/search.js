@@ -99,13 +99,17 @@ export const actions = {
           ...query,
           pageSize: 5, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
         },
-      })
-      .then(response => commit('searchSuccessful', response.data))
-      .catch(e => commit('searchFailure', e)),
+      }),
       this.$axios.get('/api/Search/count', {
         params: { ...query }
-      }).then(result => commit('totalCountSuccessful', result.data))
-      .catch(e => commit('totalCountFailure', e))
-    ])
+      })
+    ]).then( response => {
+      commit('searchSuccessful', response[0].data)
+      commit('totalCountSuccessful', response[1].data)
+    }).catch(e => {
+      console.log(e)
+      commit('searchFailure', e)
+      commit('totalCountFailure', e)
+    });
   },
 }

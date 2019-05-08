@@ -39,4 +39,7 @@ export default {
   height: 100%;
 }
 
+.overflow {
+  height: 100%;
+}
 </style>

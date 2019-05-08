@@ -22,7 +22,6 @@ export default {
 
 <style>
 .document-controls {
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -45,7 +44,7 @@ export default {
 
 .icon {
   font-size: 1.4rem;
-  background-color: transparent;
+  background-color: var(--wl_form_bg);
   color: var(--wl_primary);
   margin: 10px;
   padding: 5px;
@@ -59,7 +58,7 @@ export default {
 }
 
 .icon:hover {
-  background: var(--wl_tab_shw) radial-gradient(circle, transparent 1%, var(--wl_tab_shw) 1%) center/15000%;
+  background: var(--wl_tab_shw) radial-gradient(circle, var(--wl_form_bg) 1%, var(--wl_tab_shw) 1%) center/15000%;
   color: var(--wl_primary);
 }
 
