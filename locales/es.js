@@ -93,11 +93,13 @@ export default {
       'number-placeholder': 'Por ejemplo: 029',
     },
     'document': {
-      'document': 'Documentos',
       'edit-document': 'Editar documento',
       'doc-legend': 'Documento',
       'document-issue': 'Asunto del documento',
       'issue-placeholder': 'Por el cual...',
+    },
+    'pending-docs': {
+      'title': 'Documentos pendientes'
     },
   },
 
