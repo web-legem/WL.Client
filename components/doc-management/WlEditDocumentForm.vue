@@ -7,9 +7,9 @@
       data-vv-scope="form1"
       @submit.prevent
     >
-      <h3>
+      <h1>
         {{ $t('doc-management.document.edit-document') }}
-      </h3>
+      </h1>
 
       <wl-text-area
         v-model="description"
@@ -178,7 +178,8 @@ export default {
   overflow: auto;
 }
 
-h3 {
+h1 {
+  background: transparent;
   color: var(--wl_primary);
   padding-bottom: 5px;
   border-bottom: 1px solid var(--wl_primary);

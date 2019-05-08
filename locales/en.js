@@ -186,6 +186,7 @@ export default {
     'document-create-successfully': { 'label-name': 'Document created successfully' },
     'error-created-document': { 'label-name': 'Error creating document' },
     'upload-document': { 'label-name': 'Upload document' },
+    'upload-file': 'Upload file'
   },
 
   'components': {

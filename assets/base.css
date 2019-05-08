@@ -544,3 +544,12 @@ button::-moz-focus-inner {
 }
 
 /* fin progress bar inderteminado */
+
+.lef-form-title {
+  background: var(--wl_tab_text);
+  color: var(--wl_btn_content);
+  padding: 8px;
+  padding-left: 20px;
+  font-size: 1rem;
+  pointer-events: none;
+}

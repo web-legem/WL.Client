@@ -42,11 +42,10 @@ export default {
 
 .tabs-container {
   display: flex;
-  overflow-y: unset;
+  min-height: 45px;
   overflow-x: auto;
   background-color: var(--wl_tab_bg);
-  color: var(--wl_text);
-  padding-top: 10px;
+  color: var(--wl_text);  
   box-shadow: inset 0 -3px 6px -3px var(--wl_gray);
 }
 

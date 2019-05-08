@@ -3,7 +3,7 @@
     :disabled="disable" 
     :class="[btnStyle, btnInverso, btnDisable, btnRemove]" 
     :title="title"
-    :aria-label="onlyIcon ? title : '' "
+    :aria-label="onlyIcon ? title : title "
     @click="$emit('click', $event)"
   >
     <span :class="[ico,size,icoInverso]" />

@@ -1,22 +1,43 @@
 <template>
-  <div
-    class="form"
-  >
+  <div class="form">
+    <h1 class="lef-form-title">
+      {{ $t('doc-management.upload-doc.form-title') }}
+    </h1>
     <form
       name="classification-form"
       data-vv-scope="form1"
       @submit.prevent
-    >
-      <h3>
-        {{ $t('doc-management.upload-doc.form-title') }}
-      </h3>
-      <label
-        for="file"
-        class="upload-document"
-        :class="{ 'format-error': fileFormatError, 'format-correct': fileFormatCorrect }"
-        @drop.prevent.stop="handleDropFile($event)"
-        @dragover.prevent.stop
-      >
+    >                 
+      <div class="file-container">
+        <label
+          class="upload-document"
+          for="file"
+          :class="{ 'format-error': fileFormatError, 'format-correct': fileFormatCorrect }"
+          @drop.prevent.stop="handleDropFile($event)"
+          @dragover.prevent.stop
+        >          
+          <span
+            class="ico"
+            :class="classIcon"
+            @drop.prevent.stop="handleDropFile($event)"
+            @drop.prevent="handleDropFile($event)"
+          />
+          <p 
+            @drop.prevent.stop="handleDropFile($event)"
+            @drop.prevent="handleDropFile($event)"
+          >
+            <strong v-if="file">{{ file.name }}</strong>
+            <span v-else>
+              <strong>{{ $t('doc-management.upload-doc.p-choose-file') }} </strong>{{ $t('doc-management.upload-doc.p-drag-here') }} 
+            </span>
+            <span 
+              v-if="fileFormatError" 
+              class="file-error"
+            >
+              <strong>{{ $t('doc-management.classify-doc.file-format-error') }} </strong>
+            </span>
+          </p> 
+        </label>
         <input
           id="file"
           ref="file"
@@ -25,28 +46,7 @@
           accept="application/pdf"
           @change="handleFileToUpload"
         >
-        <span
-          class="ico"
-          :class="classIcon"
-          @drop.prevent.stop="handleDropFile($event)"
-          @drop.prevent="handleDropFile($event)"
-        />
-        <p 
-          @drop.prevent.stop="handleDropFile($event)"
-          @drop.prevent="handleDropFile($event)"
-        >
-          <strong v-if="file">{{ file.name }}</strong>
-          <span v-else>
-            <strong>{{ $t('doc-management.upload-doc.p-choose-file') }} </strong>{{ $t('doc-management.upload-doc.p-drag-here') }} 
-          </span>
-          <span 
-            v-if="fileFormatError" 
-            class="file-error"
-          >
-            <strong>{{ $t('doc-management.classify-doc.file-format-error') }} </strong>
-          </span>
-        </p> 
-      </label>
+      </div>
       <wl-input
         v-model="number"
         mode="onlyNumber"
@@ -93,9 +93,10 @@
         class="action-container"
       >
         <wl-button
-          type="button"
+          type="submit"
           class="action"
           ico="ico-check"
+          :title="'aceptar'"
           @click="classify"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
@@ -104,6 +105,7 @@
           type="button"
           class="action"
           ico="ico-times"
+          :title="'cancelar'"
           @click="clear"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
@@ -245,18 +247,13 @@ export default {
 <style lang="scss" scoped>
 .form {
   display: flex;
-  padding: 16px;
   flex-direction: column;
   border: 1px solid var(--wl_gray);
   margin: calc(1em + .5vw);
 }
 
-h3 {
-  background: transparent;
-  color: var(--wl_primary);
-  padding-bottom: 5px;
-  border-bottom: 1px solid  var(--wl_primary);
-  margin-bottom: 8px;
+.form form{
+  padding: 16px;
 }
 
 .action-container {
@@ -281,25 +278,23 @@ h3 {
   height: 100%;
 }
 
+.file-container{
+  padding: 6px;
+  margin-bottom: 4px;
+}
+
 .upload-document {
-  max-width: 650px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
   background: var(--wl_tab_color);
   color: var(--wl_text);
-  max-width: 650px;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
   outline: 2px dashed var(--wl_gray);
   outline-offset: 4px;
   padding: 1rem 0;
-  margin: 16px;
+  // margin: 4px;
   cursor: grab;
   :active {
     cursor: grabbing;
@@ -321,14 +316,17 @@ input[type="file"] {
 .ico {
   display: block;
   font-size: 3rem;
+  background: transparent;
   color:var(--wl_gray);
 }
 
 .ico-times-circle {
+  background: transparent;
   color: var(--wl_text_error)
 }
 
 .ico-check-circle-o {
+  background: transparent;
   color: var(--wl_primary);
 }
 
