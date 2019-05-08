@@ -1,7 +1,4 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'wl.client',
     meta: [
@@ -20,17 +17,8 @@ module.exports = {
     , '@/assets/escudos-legem/style.css'    
     , '@/assets/basic-form.css'
   ],
-  /*
-  ** Customize the progress bar color
-  */
   loading: '~/components/loading.vue',
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** Run ESLint on save
-    */
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -73,7 +61,6 @@ module.exports = {
     }],
     ['cookie-universal-nuxt', { alias: 'cookies' }],
   ],
-
   messages: {
     loading: 'Carganado...',
     error_404: 'Lo sentimos, no encontró la pagina solicitada',
@@ -85,17 +72,13 @@ module.exports = {
     client_error: 'Error',
     client_error_details:
       'An error occurred while rendering the page. Check developer tools console for details.'
-    },
-  
-  // axios: {
-  //   // proxyHeaders: false,
-  //   host: 'localhost'
-  //   , port: '5000'
-  //   , retry: {  retries: 0 }
-  // },
-   axios: {
-     host: '192.168.0.6',
-     port: '54037',
-    retry: { retries: 0 },
-   }
+  },
+  axios: {
+    retry: {  retries: 0 },
+    proxy: true
+  },
+  proxy: {
+    '/api/': 'http://localhost:5000/'
+    // '/api/': 'http://192.168.0.6:54037/'
+  }
 }
