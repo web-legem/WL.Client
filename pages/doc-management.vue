@@ -11,7 +11,13 @@
         :to="localePath({ name: 'doc-management-document' })"
         icon="ico-files-o"
       >
-        {{ $t('doc-management.document.document') }}
+        {{ $t('doc-management.document.edit-document') }}
+      </wl-tab>
+      <wl-tab
+        :to="localePath({ name: 'doc-management-pending-docs' })"
+        icon="ico-files-o"
+      >
+        {{ $t('doc-management.pending-docs.title') }}
       </wl-tab>
     </template>
 
