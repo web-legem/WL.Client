@@ -1,5 +1,8 @@
 <template>
-  <div class="container-form-left">
+  <div 
+    class="container-form-left"
+    :class="isLoading ? 'loading' : '' "
+  >
     <h1 class="left-form-title">
       {{ $t('doc-management.upload-doc.form-title') }}
     </h1>
@@ -118,10 +121,12 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
-      <div class="progress-container">
+      <div 
+        class="progress-container"
+        v-if="isLoading" 
+      >
         <div>
           <div 
-            v-if="isLoading" 
             class="progress-line" 
           />  
           <span>Procesando el documento</span>
@@ -266,7 +271,7 @@ export default {
   position: relative;
 }
 
-.container-form-left::after{
+.container-form-left.loading::after{
   content: '';
   position: absolute;
   background: rgba(0, 0, 0, 0.3);
