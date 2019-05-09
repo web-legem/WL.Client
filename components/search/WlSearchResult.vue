@@ -33,7 +33,7 @@
       <a 
         :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
         download
-        :title="$t('search.search-result.title-down')"
+        :title="$t('search.search-result.title-down') +' '+ documentTypeName +' '+ document.number"
       >
         <span class="ico-download" />{{ $t('search.search-result.download') }}
       </a>
@@ -102,7 +102,6 @@ export default {
   background: transparent;
   color: var(--wl_text_dark);
   font-size: .8rem;
-  text-align:justify;
 }
 
 .subcontenido_tarjeta {

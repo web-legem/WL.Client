@@ -1,16 +1,13 @@
 <template>
-  <div
-    class="form"
-  >
+  <div class="form">
+    <h1 class="left-form-title">    
+      {{ $t('doc-management.document.edit-document') }}
+    </h1>
     <form
       name="form-new-annotation"
       data-vv-scope="form1"
       @submit.prevent
     >
-      <h1>
-        {{ $t('doc-management.document.edit-document') }}
-      </h1>
-
       <wl-text-area
         v-model="description"
         mode=""
@@ -173,7 +170,7 @@ export default {
   display: flex;
   padding: 16px;
   flex-direction: column;
-  border: 1px solid var(--wl_tab_shw);
+  border: 1px solid var(--wl_border);
   margin: calc(1em + .5vw);
   overflow: auto;
 }

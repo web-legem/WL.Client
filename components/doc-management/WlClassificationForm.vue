@@ -1,10 +1,11 @@
 <template>
-  <div class="form">
-    <h1 class="lef-form-title">
+  <div class="container-form-left">
+    <h1 class="left-form-title">
       {{ $t('doc-management.upload-doc.form-title') }}
     </h1>
     <form
       name="classification-form"
+      class="form"
       data-vv-scope="form1"
       @submit.prevent
     >                 
@@ -97,6 +98,7 @@
           class="action"
           ico="ico-check"
           :title="'aceptar'"
+          :disable="isLoading"
           @click="classify"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
@@ -245,15 +247,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container-form-left{
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  flex-direction: column;
+  margin: calc(1em + .5vw);
+}
+
 .form {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--wl_gray);
-  margin: calc(1em + .5vw);
-}
-
-.form form{
   padding: 16px;
+  flex:1;
 }
 
 .action-container {

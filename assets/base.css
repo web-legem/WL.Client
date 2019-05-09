@@ -545,7 +545,7 @@ button::-moz-focus-inner {
 
 /* fin progress bar inderteminado */
 
-.lef-form-title {
+.left-form-title {
   background: var(--wl_tab_text);
   color: var(--wl_btn_content);
   padding: 8px;

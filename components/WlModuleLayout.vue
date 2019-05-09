@@ -53,8 +53,6 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background: var(--wl_form_bg);
-  color: var(--wl_text);
   height: 100%;
 }
 

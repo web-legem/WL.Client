@@ -315,7 +315,7 @@ export default {
       'download': 'Descargar',
       'a-date': 'Fecha:',
       'a-del': 'del',
-      'title-down': '"Descargar',
+      'title-down': 'Descargar',
     },
     'year-filter': {
       'label-year-publ': 'Año de publicación',

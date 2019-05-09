@@ -1,9 +1,9 @@
 <template>
-  <div class="wl-search-filters">
-    <h1>
+  <div>
+    <h1 class="left-form-title">
       {{ $t('search.search-filters.h-search-ava') }}
     </h1> 
-    <div class="active-filters">
+    <div class="wl-search-filterss">
       <wl-select-filter
         v-if="entities"
         id="id_entites"
@@ -134,18 +134,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wl-search-filters {
+.wl-search-filterss {
   background: var(--wl_form_bg);
   color: var(--wl_primary);
   border: 1px solid var(--wl_border);
   padding: 16px;
-}
-
-.wl-search-filters h1 {
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--wl_primary);
-  margin-bottom: 8px;
-  font-size: 1.1rem;
 }
 
 .filter {
