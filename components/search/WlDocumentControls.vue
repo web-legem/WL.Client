@@ -71,5 +71,10 @@ export default {
   color: var(--wl_btn_content);  
 }
 
+.ico_cl:focus{
+  outline: #FF0D99 dotted 2px;
+}
+
+
 /* fin botonera controls left */
 </style>
