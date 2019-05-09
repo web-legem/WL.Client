@@ -18,6 +18,7 @@
         :placeholder="$t('doc-management.document.issue-placeholder')"
         :title="$t('doc-management.document.document-issue')"
         :is-submit="isSubmit"
+        :disable="isLoading"
         lang="es-Co"
       />
 
@@ -33,6 +34,7 @@
           :validate="{ required: true }"
           :title="$t('annotations.new.number')"
           :is-submit="isSubmit"
+          :disable="isLoading"
         />
 
         <wl-input 
@@ -43,6 +45,7 @@
           :placeholer="$t('annotations.new.pub-date-placeholder')"
           :validate="{ required: true }"
           :is-submit="isSubmit"
+          :disable="isLoading"
         />
 
         <wl-select 
@@ -55,6 +58,7 @@
           :list="entities"
           :validate="{ required: true }"
           :is-submit="isSubmit"
+          :disable="isLoading"
         />
 
         <wl-select 
@@ -68,6 +72,7 @@
           :empty-msg="$t('doc-management.classify-doc.please-select-one')"
           :validate="{ required: true }"
           :is-submit="isSubmit"
+          :disable="isLoading"
         />
       </fieldset>
 
@@ -75,9 +80,11 @@
         class="action-container"
       >
         <wl-button
-          type="button"
+          type="submit"
           class="action"
           ico="ico-check"
+          :title="$t('doc-management.classify-doc.butt-accept')"
+          :disable="isLoading"
           @click="create"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
@@ -86,6 +93,8 @@
           type="button"
           class="action"
           ico="ico-times"
+          :title="$t('doc-management.classify-doc.butt-cancel')"
+          :disable="isLoading"
           @click.native="returnToAnnotations"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
@@ -124,6 +133,7 @@ export default {
       documentTypeId: null,
       annotationTypeId: null,
       isSubmit: false,
+      isLoading: false,
     }
   },
   asyncData(context) {
@@ -150,6 +160,7 @@ export default {
       this.$validator.validate('form1.*').then( valid => {
         this.isSubmit = true
         if(valid){
+          this.isLoading = true
           this.$axios.post('/api/Annotation', {
             fromDocumentId: this.$route.params.id,
             toDocumentTypeId: this.documentTypeId,
@@ -160,6 +171,10 @@ export default {
             description: this.description
           }).then(result => {
             this.$router.replace(this.localePath({ name: 'annotations-document-id'}))
+            this.isLoading = false
+          }).catch(e => {
+            console.log(e)
+            this.isLoading = false
           });
         }
       })

@@ -22,6 +22,7 @@
           type="file"
           accept="application/pdf"
           @change="handleFileToUpload"
+          :disabled="isLoading"
         >
         <span
           class="ico"
@@ -50,9 +51,12 @@
         class="action-container"
       >
         <wl-button
-          type="button"
+          type="submit"
           class="action"
           ico="ico-check"
+          :title="$t('doc-management.classify-doc.butt-accept')"
+          :disable="isLoading"
+          @click="classify"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
         </wl-button>
@@ -60,6 +64,8 @@
           type="button"
           class="action"
           ico="ico-times"
+          :title="$t('doc-management.classify-doc.butt-cancel')"
+          :disable="isLoading"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>

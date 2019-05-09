@@ -55,6 +55,7 @@
         :validate="{required: true}"
         :title="$t('doc-management.classify-doc.number')"
         :is-submit="true"
+        :disable="isLoading"
       />
       <wl-input 
         v-model="date"
@@ -75,6 +76,7 @@
         :list="entities"
         :validate="{required: true}"
         :is-submit="true"
+        :disable="isLoading"
       />
       <wl-select 
         v-model="documentTypeId"
@@ -86,6 +88,7 @@
         :list="documentTypes"
         :validate="{required: true}"
         :is-submit="true"
+        :disable="isLoading"
       />
       <!-- :empty-msg="$t('doc-management.classify-doc.please-select-one')" -->
       <!-- <wl-chips v-model="tags" /> -->
@@ -96,7 +99,8 @@
           type="submit"
           class="action"
           ico="ico-check"
-          :title="'aceptar'"
+          :title="$t('doc-management.classify-doc.butt-accept')"
+          :disable="isLoading"
           @click="classify"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
@@ -106,6 +110,7 @@
           class="action"
           ico="ico-times"
           :title="'cancelar'"
+          :disable="isLoading"
           @click="clear"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
