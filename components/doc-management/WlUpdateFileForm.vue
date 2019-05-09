@@ -21,8 +21,8 @@
           name="file"
           type="file"
           accept="application/pdf"
-          @change="handleFileToUpload"
           :disabled="isLoading"
+          @change="handleFileToUpload"
         >
         <span
           class="ico"

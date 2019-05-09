@@ -22,50 +22,54 @@ export default {
 
 <style>
 .document-controls {
-  display: flex;
+  display: flex;  
   flex-direction: column;
+  background: var(--wl_form_bg);
+  color: var(--wl_primary);
 }
 
 .first-line {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid grey;
-  box-shadow: 0 8px 10px -8px grey;
+  border-bottom: 1px solid var(--wl_gray);
+  box-shadow: 0 0px 3px 1px var(--wl_gray);
   z-index: 1;
 }
 
 .document-header {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
   font-size: 1.4rem;
-  background: var(--wl_form_bg);
-  color: var(--wl_primary);
-  padding: 10px;
+  pointer-events: none;
 }
 
-.icon {
+/* botonera controls left */
+
+.ico_cl {
   font-size: 1.4rem;
-  background-color: var(--wl_form_bg);
+  background: var(--wl_gray_light);
   color: var(--wl_primary);
-  margin: 10px;
-  padding: 5px;
-  padding-bottom: 5px;
+  width: 35px;
+  height: 35px;
+  margin: 10px 0px;
+  margin-right: 10px;
   cursor: pointer;
-  margin-left: 5px;
-  border-radius: 50%;
-  background-position: center;
-  transition: background 0.8s;
+  transition: background 0.5s;
   text-decoration: none;
 }
 
-.icon:hover {
-  background: var(--wl_tab_shw) radial-gradient(circle, var(--wl_form_bg) 1%, var(--wl_tab_shw) 1%) center/15000%;
-  color: var(--wl_primary);
+.ico_cl:hover {  
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);  
 }
 
-.icon:active {
-  background-color: var(--wl_tab_shw);
-  color: var(--wl_primary);
-  background-size: 100%;
+.ico_cl:active {
   transition: background 0s;
+  background: var(--wl_dark);
+  color: var(--wl_btn_content);  
 }
+
+/* fin botonera controls left */
 </style>

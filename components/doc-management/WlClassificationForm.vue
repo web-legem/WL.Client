@@ -93,6 +93,7 @@
       />
       <!-- :empty-msg="$t('doc-management.classify-doc.please-select-one')" -->
       <!-- <wl-chips v-model="tags" /> -->
+      <span class="fix-flex" />
       <div
         class="action-container"
       >

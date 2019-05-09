@@ -553,3 +553,8 @@ button::-moz-focus-inner {
   font-size: 1rem;
   pointer-events: none;
 }
+
+.fix-flex{
+  flex: 1;
+  flex-grow: 1;
+}

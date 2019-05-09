@@ -1,5 +1,8 @@
 <template>
-  <div class="wl-page-controls" v-if="numberOfPages > 1">
+  <div 
+    v-if="numberOfPages > 1"
+    class="wl-page-controls" 
+  >
     <wl-button
       :only-icon="true"
       :disable="!hasPrevious"

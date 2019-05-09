@@ -1,10 +1,11 @@
 <template>
-  <div class="form">
+  <div class="container-form-left">
     <h1 class="left-form-title">    
       {{ $t('doc-management.document.edit-document') }}
     </h1>
     <form
       name="form-new-annotation"
+      class="form"
       data-vv-scope="form1"
       @submit.prevent
     >
@@ -181,21 +182,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form {
+.container-form-left{
   display: flex;
-  padding: 16px;
+  flex-grow: 1;
+  height: 100%;
   flex-direction: column;
-  border: 1px solid var(--wl_border);
   margin: calc(1em + .5vw);
-  overflow: auto;
 }
 
-h1 {
-  background: transparent;
-  color: var(--wl_primary);
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--wl_primary);
-  margin-bottom: 8px;
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--wl_gray);
+  padding: 16px;
+  flex:1;
 }
 
 .action-container {
@@ -214,16 +214,6 @@ h1 {
 
 .content {
   height: 100%;
-}
-
-.ico-upload {
-  display: block;
-  font-size: 3rem;
-  color: gray;
-}
-
-.next {
-  align-self: flex-end;
 }
 
 .fieldset {

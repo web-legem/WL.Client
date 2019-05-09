@@ -260,6 +260,10 @@ export default {
     'loading':{
       'loading':'Cargando...'
     },
+    'pdf':{
+      'no-tienes-plugin':'No tienes un plugin de PDF, pero puedes ',
+      'descargar-pdf':'descargar el archivo PDF.',
+    }
   },
 
   'search': {

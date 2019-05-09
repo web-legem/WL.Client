@@ -2,33 +2,32 @@
   <div class="wl-edit-document">
     <wl-document-controls 
       :document-title="'Titulo del documento'"
-      class="document-controls"
-    >
+    >      
       <button
-        slot="controls"
-        class="ico-pencil icon" 
+        slot="controls"    
+        class="ico-pencil ico_cl "     
         :title="$t('doc-management.document.edit')"
         :to="localePath({name: 'search-id-notify'})" 
       />
       <button
         slot="controls"
-        class="ico-trash icon" 
+        class="ico-trash ico_cl" 
         :title="$t('doc-management.document.delete')"
         :to="localePath({name: 'search-id-notify'})" 
       />
       <button
         slot="controls"
-        class="ico-upload icon" 
+        class="ico-upload ico_cl"
         :title="$t('doc-management.document.upload')"
         :to="localePath({name: 'search-id-notify'})" 
         @click="toggleFile"
       />
       <a 
         v-if="$mq == 'sm' || $mq == 'md'"
+        slot="controls"
         :href="$axios.defaults.baseURL + 'api/Search/file/download/' + id"
         :title="$t('search.search-result.title-down')"
         download
-        slot="controls"
         class="ico-download icon"
       >
         <span class="hiden">
@@ -89,33 +88,6 @@ export default {
 
 .forms {
   overflow: auto;
-}
-
-.icon {
-  font-size: 1.4rem;
-  background-color: transparent;
-  color: var(--wl_primary);
-  margin: 10px;
-  padding: 5px;
-  padding-bottom: 5px;
-  cursor: pointer;
-  margin-left: 5px;
-  border-radius: 50%;
-  background-position: center;
-  transition: background 0.8s;
-  text-decoration: none;
-}
-
-.icon:hover {
-  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
-  color: var(--wl_primary);
-}
-
-.icon:active {
-  background-color: #999;
-  color: var(--wl_primary);
-  background-size: 100%;
-  transition: background 0s;
 }
 
 .hiden {

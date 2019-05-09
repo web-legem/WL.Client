@@ -1,10 +1,16 @@
 <template>
   <div class="pdf-viewer">
-    <embed 
-      :src="url"
-      type="application/pdf" 
-      class="pdf"
+    <object 
+      :data="url" 
+      type="application/pdf"
+      class="pdf" 
+      typemustmatch
     >
+      <p>
+        {{ $t('components.pdf.no-tienes-plugin') }}        
+        <a :href="url">{{ $t('components.pdf.descargar-pdf') }}</a>
+      </p>
+    </object>
   </div>
 </template>
 

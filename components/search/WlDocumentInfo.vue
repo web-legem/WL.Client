@@ -7,8 +7,8 @@
         slot="controls"
         class="controls"
       >
-        <nuxt-link 
-          class="ico-paper-plane icon" 
+        <button
+          class="ico-paper-plane ico_cl" 
           :title="$t('search.search-result.notify')"
           :to="localePath({name: 'search-id-notify'})" 
         />
@@ -120,16 +120,10 @@ export default {
   height: 100%;
 }
 
-.component-title {
-  padding: 16px;
-  border-bottom: 1px solid var(--wl_primary);
-}
-
 .annotation-list {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-
 }
 
 .controls {
@@ -142,30 +136,4 @@ export default {
   display: none;
 }
 
-.icon {
-  font-size: 1.4rem;
-  background-color: transparent;
-  color: var(--wl_primary);
-  margin: 10px;
-  padding: 5px;
-  padding-bottom: 5px;
-  cursor: pointer;
-  margin-left: 5px;
-  border-radius: 50%;
-  background-position: center;
-  transition: background 0.8s;
-  text-decoration: none;
-}
-
-.icon:hover {
-  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
-  color: var(--wl_primary);
-}
-
-.icon:active {
-  background-color: #999;
-  color: var(--wl_primary);
-  background-size: 100%;
-  transition: background 0s;
-}
 </style>
