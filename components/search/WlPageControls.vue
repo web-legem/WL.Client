@@ -1,5 +1,5 @@
 <template>
-  <div class="wl-page-controls">
+  <div class="wl-page-controls" v-if="numberOfPages > 1">
     <wl-button
       :only-icon="true"
       :disable="!hasPrevious"
@@ -58,7 +58,6 @@ export default {
       loadingTotalCount: 'loadingTotalCount'
     }),
     numberOfPages() {
-      console.log(this.totalCount)
       return Math.ceil(this.totalCount / (this.$route.query.pageSize || 5)) // TODO - update default page size
     }
   },

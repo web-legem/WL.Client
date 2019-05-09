@@ -18,7 +18,6 @@
             v-if="hasResults"
             class="pager-content"
           >
-            <wl-page-controls />
             <div>
               <div 
                 v-for="document in results"

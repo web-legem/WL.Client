@@ -8,6 +8,17 @@
         class="ico2-plus icon" 
         :to="localePath({name: 'annotations-document-id-new'})" 
       />
+      <a 
+        v-if="$mq == 'sm' || $mq == 'md'"
+        :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
+        :title="$t('search.search-result.title-down')"
+        download
+        class="ico-download icon"
+      >
+        <span class="hiden">
+          {{ $t('search.search-result.download') }}
+        </span>
+      </a>
       <slot name="controls" />
     </div>
     <wl-annotations
@@ -141,5 +152,9 @@ export default {
   color: var(--wl_primary);
   background-size: 100%;
   transition: background 0s;
+}
+
+.hiden {
+  display: none;
 }
 </style>

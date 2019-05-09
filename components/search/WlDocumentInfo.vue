@@ -3,11 +3,27 @@
     <wl-document-controls 
       :document-title="getDocumentTitle(document)"
     >
-      <nuxt-link 
+      <div 
         slot="controls"
-        class="ico-paper-plane icon" 
-        :to="localePath({name: 'search-id-notify'})" 
-      />
+        class="controls"
+      >
+        <nuxt-link 
+          class="ico-paper-plane icon" 
+          :title="$t('search.search-result.notify')"
+          :to="localePath({name: 'search-id-notify'})" 
+        />
+        <a 
+          v-if="$mq == 'sm' || $mq == 'md'"
+          :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
+          :title="$t('search.search-result.title-down')"
+          download
+          class="ico-download icon"
+        >
+          <span class="hiden">
+            {{ $t('search.search-result.download') }}
+          </span>
+        </a>
+      </div>
     </wl-document-controls>
     <div class="annotation-list">
       <wl-annotation-list 
@@ -106,7 +122,7 @@ export default {
 
 .component-title {
   padding: 16px;
-  border-bottom: 1px solid var(--wl_primary));
+  border-bottom: 1px solid var(--wl_primary);
 }
 
 .annotation-list {
@@ -114,5 +130,42 @@ export default {
   flex-direction: column;
   overflow-y: auto;
 
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.hiden {
+  display: none;
+}
+
+.icon {
+  font-size: 1.4rem;
+  background-color: transparent;
+  color: var(--wl_primary);
+  margin: 10px;
+  padding: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+  border-radius: 50%;
+  background-position: center;
+  transition: background 0.8s;
+  text-decoration: none;
+}
+
+.icon:hover {
+  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
+  color: var(--wl_primary);
+}
+
+.icon:active {
+  background-color: #999;
+  color: var(--wl_primary);
+  background-size: 100%;
+  transition: background 0s;
 }
 </style>
