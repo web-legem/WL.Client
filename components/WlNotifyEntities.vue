@@ -17,7 +17,7 @@
           v-model="selectAll"
           :name="'form1.selectAll'"       
           :type="'checkbox'" 
-          :disable="false"
+          :disable="isLoading"
           :label="$t('notify.select-all')"
         />
       </div>
@@ -33,7 +33,7 @@
             v-model="entitiesChecks[index].check"
             :name="'form1.configSystem'"       
             :type="'checkbox'" 
-            :disable="false"
+            :disable="isLoading"
             :small="true"
             :label="entity.name"
           />
@@ -42,9 +42,11 @@
 
       <div class="right">
         <wl-button
-          type="button"
+          type="submit"
           class="action"
           ico="ico-check"
+          :title="$t('doc-management.classify-doc.butt-accept')"
+          :disable="isLoading"
           @click="showConfirmDialog"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
@@ -53,6 +55,8 @@
           type="button"
           class="action"
           ico="ico-times"
+          :disable="isLoading"
+          :title="$t('doc-management.classify-doc.butt-cancel')"
           @click="clear"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
@@ -112,6 +116,7 @@ export default {
         return x
       }),
       showDialog: false,
+      isLoading: false,
     }
   },
   computed: {

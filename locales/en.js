@@ -97,6 +97,9 @@ export default {
       'doc-legend': 'Document',
       'document-issue': 'Asunto del documento',
       'issue-placeholder': 'Por el cual...',
+      'upload': 'Upload file',
+      'delete': 'Delete document',
+      'edit': 'Edit document information',
     },
     'pending-docs': {
       'title': 'Documentos pendientes'
@@ -316,6 +319,7 @@ export default {
       'a-date': 'Date:',
       'a-del': 'of',
       'title-down': '"Download',
+      'notify': 'Enviar correo de notificación',
     },
     'year-filter': {
       'label-year-publ': 'Publication year',

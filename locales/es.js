@@ -97,6 +97,9 @@ export default {
       'doc-legend': 'Documento',
       'document-issue': 'Asunto del documento',
       'issue-placeholder': 'Por el cual...',
+      'upload': 'Cargar archivo',
+      'delete': 'Eliminar documento',
+      'edit': 'Editar información del documento',
     },
     'pending-docs': {
       'title': 'Documentos pendientes'
@@ -315,7 +318,8 @@ export default {
       'download': 'Descargar',
       'a-date': 'Fecha:',
       'a-del': 'del',
-      'title-down': '"Descargar',
+      'title-down': 'Descargar',
+      'notify': 'Enviar correo de notificación',
     },
     'year-filter': {
       'label-year-publ': 'Año de publicación',
