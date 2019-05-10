@@ -311,6 +311,7 @@ export default {
     },
     'search-bar': {
       'title-search-bar': 'Search',
+      'placeholder': 'Search for documents e.g. Acuerdo, Resolución ...',
     },
     'search-filters': {
       'h-search-ava': 'Advanced search',

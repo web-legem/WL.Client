@@ -18,12 +18,10 @@
           v-if="$mq == 'sm' || $mq == 'md'"
           :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
           :title="$t('search.search-result.title-down')"
-          download
-          class="ico-download icon"
+          download       
+          class="ico_cl"   
         >
-          <span class="hiden">
-            {{ $t('search.search-result.download') }}
-          </span>
+          <span class="ico-download" />
         </a>
       </div>
     </wl-document-controls>
@@ -126,12 +124,6 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.controls {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
 }
 
 .hiden {

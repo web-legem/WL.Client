@@ -176,11 +176,8 @@ export default {
 }
 
 .content-modal{  
-  width: 100%;
   padding: 10px;  
   margin-bottom: -10px;
-  background: transparent;
-  color: var(--wl_text);
 }
 
 .content-modal-buttons{

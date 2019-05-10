@@ -1,26 +1,30 @@
 <template>
-  <div class="document-annotations">
-    <div class="first-line">
-      <h1 class="document-header">
-        {{ getDocumentTitle(document) }} 
-      </h1>
-      <nuxt-link 
-        class="ico2-plus icon" 
-        :to="localePath({name: 'annotations-document-id-new'})" 
-      />
-      <a 
-        v-if="$mq == 'sm' || $mq == 'md'"
-        :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
-        :title="$t('search.search-result.title-down')"
-        download
-        class="ico-download icon"
+  <div class="wl-document-info">
+    <wl-document-controls 
+      :document-title="getDocumentTitle(document)"
+    >
+      <div 
+        slot="controls"
+        class="controls"
       >
-        <span class="hiden">
-          {{ $t('search.search-result.download') }}
-        </span>
-      </a>
-      <slot name="controls" />
-    </div>
+        <nuxt-link 
+          class="ico_cl" 
+          :title="'Crear Anotación'"
+          :to="localePath({name: 'annotations-document-id-new'})" 
+        >
+          <span class="ico-plus " />
+        </nuxt-link>
+        <a 
+          v-if="$mq == 'sm' || $mq == 'md'"
+          :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
+          :title="$t('search.search-result.title-down')"
+          download
+          class="ico_cl"
+        >
+          <span class="ico-download" />
+        </a>
+      </div>
+    </wl-document-controls>
     <wl-annotations
       :document-id="document.id"
       :annotations="formatedAnnotations"
@@ -29,10 +33,12 @@
 </template>
 
 <script>
+import WlDocumentControls from '~/components/search/WlDocumentControls.vue'
 import WlAnnotations from '~/components/annotations/WlAnnotations.vue'
 
 export default {
   components: {
+    WlDocumentControls,
     WlAnnotations,
   },
   props: {
@@ -105,56 +111,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.document-control {
+.wl-document-info {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-.first-line {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid grey;
-  box-shadow: 0 8px 10px -8px grey;
-  z-index: 1;
-}
-
-.document-header {
-  flex-grow: 1;
-  font-size: 1.4rem;
-  background: var(--wl_form_bg);
-  color: var(--wl_primary);
-  padding: 10px;
-}
-
-.icon {
-  font-size: 1.4rem;
-  background-color: transparent;
-  color: var(--wl_primary);
-  margin: 10px;
-  padding: 5px;
-  padding-bottom: 5px;
-  cursor: pointer;
-  margin-left: 5px;
-  border-radius: 50%;
-  background-position: center;
-  transition: background 0.8s;
-  text-decoration: none;
-}
-
-.icon:hover {
-  background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
-  color: var(--wl_primary);
-}
-
-.icon:active {
-  background-color: #999;
-  color: var(--wl_primary);
-  background-size: 100%;
-  transition: background 0s;
-}
-
-.hiden {
-  display: none;
-}
 </style>

@@ -57,14 +57,6 @@ export default {
   flex-direction: column;
 }
 
-.title {
-  font-size: 1.4rem;
-  color: #00796b;
-  padding: .5em;
-  box-shadow: 0 0 8px 2px grey;
-  z-index: 1;
-}
-
 .annotation-suggestions {
   flex-grow: 1;
 }

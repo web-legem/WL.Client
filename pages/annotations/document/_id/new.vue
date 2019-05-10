@@ -1,16 +1,17 @@
 <template>
-  <div
-    class="form"
+  <div 
+    class="container-form-left"
+    :class="isLoading ? 'loading' : '' "
   >
+    <h1 class="left-form-title">
+      {{ $t('annotations.create-annotation') }}
+    </h1>
     <form
       name="form-new-annotation"
+      class="form-left"
       data-vv-scope="form1"
       @submit.prevent
-    >
-      <h3>
-        {{ $t('annotations.create-annotation') }}
-      </h3>
-
+    >    
       <wl-select 
         v-model="annotationTypeId"
         name="form1.annotationType" 
@@ -80,8 +81,7 @@
           value-prop-name="id"
           label-prop-name="name"
           class="select"
-          :list="documentTypes"
-          :empty-msg="$t('doc-management.classify-doc.please-select-one')"
+          :list="documentTypes"          
           :validate="{ required: true }"
           :is-submit="isSubmit"
           :disable="isLoading"
@@ -112,6 +112,10 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
+      <wl-left-loading 
+        v-if="isLoading" 
+        label="Procesando..."
+      />
     </form>
   </div>
 </template>
@@ -123,6 +127,7 @@ import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
 import WlTextArea from '~/components/WlTextArea.vue'
+import WlLeftLoading from '~/components/WlLeftLoading.vue'
 
 export default {
   components: {
@@ -130,6 +135,7 @@ export default {
     WlSelect,
     WlButton,
     WlTextArea,
+    WlLeftLoading,
   },
   nuxtI18n: {
     paths: { es: 'nuevo', en: 'new' }
@@ -196,20 +202,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form {
-  display: flex;
-  padding: 16px;
-  flex-direction: column;
-  border: 1px solid gray;
-  margin: calc(1em + .5vw);
-}
-
-h3 {
-  color: #00696b;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #00696b;
-  margin-bottom: 8px;
-}
 
 .action-container {
   padding-top: 16px;
@@ -227,16 +219,6 @@ h3 {
 
 .content {
   height: 100%;
-}
-
-.ico-upload {
-  display: block;
-  font-size: 3rem;
-  color: gray;
-}
-
-.next {
-  align-self: flex-end;
 }
 
 .fieldset {

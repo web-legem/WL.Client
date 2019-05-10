@@ -10,7 +10,7 @@
             class="ico2-group-icon"
             :class="icon"
           />
-          <span class="title">
+          <span class="title-annotation">
             {{ title }}
           </span>
         </div>
@@ -112,7 +112,7 @@ export default {
   padding: .5em 1em;
 }
 
-.title {
+.title-annotation {
   margin-left: 10px;
 }
 

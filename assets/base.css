@@ -574,29 +574,6 @@ button::-moz-focus-inner {
   width: 100%;
 }
 
-.progress-container{
-  position:absolute;
-  width: 100%;
-  top:40%;
-  left:0;
-  background: transparent;
-  color: var(--wl_text);
-  padding: calc(1em + .5vw);
-  z-index: 8888;
-}
-
-.progress-container > div{
-  padding: calc(1em + .5vw);
-  background: var(--wl_form_bg);  
-  color: var(--wl_text);  
-  text-align: center;
-  border: 1px solid var(--wl_gray);  
-}
-
-.progress-container > div > div{
-  margin-bottom: 10px;
-}
-
 .form-left {
   display: flex;
   flex-direction: column;
@@ -606,6 +583,52 @@ button::-moz-focus-inner {
 }
 
 /* fin form left ------------------------- */
+
+/* botonera controls left */
+
+.ico_cl {
+  font-size: 1.4rem;
+  background: var(--wl_gray_light);
+  color: var(--wl_primary);
+  width: 35px;
+  height: 35px;
+  margin: 10px 0px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.5s;
+  text-decoration: none;  
+}
+
+.ico_cl > span {
+  display:inline-block;
+  vertical-align:middle;
+  height: 100%;
+  width: 100%;
+}
+
+.ico_cl > span:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.ico_cl:hover {  
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);  
+}
+
+.ico_cl:active {
+  transition: background 0s;
+  background: var(--wl_dark);
+  color: var(--wl_btn_content);  
+}
+
+.ico_cl:focus{
+  outline: #FF0D99 dotted 2px;
+}
+
 
 .fix-flex{
   flex: 1;

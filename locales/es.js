@@ -311,6 +311,7 @@ export default {
     },
     'search-bar': {
       'title-search-bar': 'Buscar',
+      'placeholder': 'Busqueda de documentos Ej: Acuerdo, Resolución ...',
     },
     'search-filters': {
       'h-search-ava': 'Busqueda avanzada',
@@ -340,7 +341,7 @@ export default {
     'description': 'Descripción',
     'in-annotations': 'Anotaciones entrantes',
     'out-annotations': 'Anotaciones salientes',
-    'create-annotation': 'Crear annotaciones',
+    'create-annotation': 'Nueva anotacion',
     'new': {
       'number': 'Número',
       'number-placeholder': 'Por ejemplo: 029',

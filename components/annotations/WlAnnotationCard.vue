@@ -171,6 +171,7 @@ export default {
 
 .icon:active {
   background-color: var(--wl_tab_shw);
+  color:var(--wl_primary);  
   background-size: 100%;
   transition: background 0s;
 }

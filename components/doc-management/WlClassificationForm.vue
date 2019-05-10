@@ -121,17 +121,10 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
-      <div 
-        v-if="isLoading"
-        class="progress-container"
-      >
-        <div>
-          <div 
-            class="progress-line" 
-          />  
-          <span>Procesando el documento</span>
-        </div>
-      </div>            
+      <wl-left-loading 
+        v-if="isLoading" 
+        label="Procesando el documento..."
+      />           
     </form>
   </div>
 </template>
@@ -142,6 +135,7 @@ import {mapGetters, mapActions} from 'vuex'
 import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
+import WlLeftLoading from '~/components/WlLeftLoading.vue'
 // import WlChips from '~/components/WlChips.vue'
 
 export default {
@@ -150,6 +144,7 @@ export default {
     WlSelect,
     WlButton,
     WlButton,
+    WlLeftLoading,
     // WlChips,
   },
   validate({ params }) {

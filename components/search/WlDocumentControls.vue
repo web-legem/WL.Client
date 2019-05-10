@@ -45,51 +45,11 @@ export default {
   pointer-events: none;
 }
 
-/* botonera controls left */
-
-.ico_cl {
-  font-size: 1.4rem;
-  background: var(--wl_gray_light);
-  color: var(--wl_primary);
-  width: 35px;
-  height: 35px;
-  margin: 10px 0px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background 0.5s;
-  text-decoration: none;  
-}
-
-.ico_cl > span {
-  display:inline-block;
-  vertical-align:middle;
-  height: 100%;
-  width: 100%;
-}
-
-.ico_cl > span:before {
+.controls {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+  flex-direction: row;
+  align-content: center;
 }
-
-.ico_cl:hover {  
-  background: var(--wl_primary);
-  color: var(--wl_btn_content);  
-}
-
-.ico_cl:active {
-  transition: background 0s;
-  background: var(--wl_dark);
-  color: var(--wl_btn_content);  
-}
-
-.ico_cl:focus{
-  outline: #FF0D99 dotted 2px;
-}
-
 
 /* fin botonera controls left */
 </style>

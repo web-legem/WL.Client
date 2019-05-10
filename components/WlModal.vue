@@ -194,4 +194,28 @@
   width: 100%;
 }
 
+@media only screen and (max-width : 320px) {
+  .content-modal{
+    width:95vw;
+  }
+}
+
+@media only screen and (min-width : 320px) {
+  .content-modal{
+    width:90vw;
+  } 
+}
+
+@media only screen and (min-width : 480px) {
+  .content-modal{
+    width:65vw;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .content-modal{
+    width:40vw;
+  }
+}
+
 </style>

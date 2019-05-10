@@ -4,7 +4,7 @@
     name="form-login"
     data-vv-scope="form1"            
     @submit.prevent=""
-  >
+  >  
     <div class="box_input_ico">
       <label 
         for="form1.search"         
@@ -19,6 +19,7 @@
         name="form1.search"
         type="search"     
         title="buscador"
+        :placeholder="$t('search.search-bar.placeholder')"
         :max="100"
         :min="3"
         :hide-label="true"

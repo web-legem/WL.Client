@@ -17,6 +17,7 @@
           type="text"
           aria-label="buscar"
           title="buscar"
+          autocomplete="off"
         >
         <button
           id="search-button"
