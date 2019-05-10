@@ -7,7 +7,7 @@ module.exports = {
       { id: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/faviconv2.ico' }
     ]
   },
   css: [
@@ -78,7 +78,7 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    '/api/': 'http://localhost:5000/'
-    // '/api/': 'http://192.168.0.6:54037/'
+    // '/api/': 'http://localhost:5000/'
+    '/api/': 'http://192.168.0.6:54037/'
   }
 }
