@@ -20,6 +20,7 @@ export default {
     'deselect-all': 'Deselect all',
     'notification-sent': 'Notification has been sent',
     'return': 'Return to document',
+    'title': 'Notify',
   },
 
   'admin': {

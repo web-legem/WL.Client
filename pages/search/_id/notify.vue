@@ -1,7 +1,7 @@
 <template>
   <wl-notify-entities
     v-if="entities && documentId"
-    :entities="entities"
+    :entities="getEntities"
     :document-id="documentId"
     @notify="notify"
     @clean="clean"
@@ -15,9 +15,17 @@ export default {
   components: {
     WlNotifyEntities
   },
+  data(){
+    return{
+      entities:[]
+    }
+  },
   computed: {
     documentId() {
       return Number.parseInt(this.$route.params.id)
+    },
+    getEntities(){                  
+      return this.entities
     }
   },
   asyncData(context) {
@@ -25,9 +33,7 @@ export default {
     return Promise.all([
         entitiesPromise,
       ])
-      .then(response => ({ 
-        entities: response[0].data,
-      }))
+      .then(response => ({ entities: response[0].data,}))
   },
   methods: {
     notify(emails) {
@@ -36,10 +42,6 @@ export default {
     clean() {
       this.$router.replace(this.localePath({name: 'search-id'}))
     },
-  },
+  }
 }
 </script>
-
-<style>
-
-</style>

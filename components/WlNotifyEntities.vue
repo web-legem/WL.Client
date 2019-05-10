@@ -1,45 +1,46 @@
 <template>
-  <div class="notifyEntities">
-    <wl-title text="Notificar" />
+  <div class="container-form-left">    
+    <h1 class="left-form-title">
+      {{ $t('notify.title') }}
+    </h1>
     <form 
       name="form-send-email-to"
-      class="form"
+      class="form-left"
       data-vv-scope="form1"
       @submit.prevent
     >
       <p class="paragraph">
-        Selecciona las entidades a las que deseas notificar:
+        Selecciona las entidades a las que desea notificar:
       </p>
 
-      <div class="select-all-container">
-        <wl-switch-button 
-          id="pick_all"
-          v-model="selectAll"
-          :name="'form1.selectAll'"       
-          :type="'checkbox'" 
-          :disable="isLoading"
-          :label="$t('notify.select-all')"
-        />
-      </div>
+      <wl-switch-button         
+        id="pick_all"
+        v-model="selectAll"
+        :name="'form1.selectAll'"       
+        :type="'checkbox'" 
+        :disable="isLoading"
+        :small="true"
+        :label="$t('notify.select-all')"
+      />
 
       <fieldset class="fieldset">
         <legend class="texto_labels">
           Entidades
         </legend>
-        <template v-for="(entity,index) in entities">
+        <template v-for="( obj, index) in entitiesChecks">
           <wl-switch-button 
-            :id="index.toString()"
-            :key="entity.id"
-            v-model="entitiesChecks[index].check"
-            :name="'form1.configSystem'"       
+            :id="'chk'+index.toString()"
+            :key="obj.entity.id"
+            v-model="obj.check"
+            :name="'form1.configSystem'+index"       
             :type="'checkbox'" 
             :disable="isLoading"
             :small="true"
-            :label="entity.name"
-          />
+            :label="obj.entity.name"
+          />          
         </template>
       </fieldset>
-
+      <span class="fix-flex" />
       <div class="right">
         <wl-button
           type="submit"
@@ -89,14 +90,12 @@
 <script>
 import WlSwitchButton from '~/components/WlSwitchButton.vue'
 import WlButton from '~/components/WlButton.vue'
-import WlTitle from '~/components/WlTitle.vue'
 import WlModal from '~/components/WlModal.vue'
 
 export default {
   components: {
     WlSwitchButton,
     WlButton,
-    WlTitle,
     WlModal,
   },
   props: {
@@ -111,9 +110,8 @@ export default {
   },
   data() {
     return {
-      entitiesChecks: this.entities.map(x => {
-        x.check = false
-        return x
+      entitiesChecks: this.entities.map(x => {                
+        return { entity: x, check: false };
       }),
       showDialog: false,
       isLoading: false,
@@ -156,10 +154,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.notifyEntities {
-  padding: 16px;
-}
-
 .right {
   width: 100%;
   display: flex;
@@ -173,19 +167,7 @@ export default {
 }
 
 .paragraph {
-  margin-bottom: 16px;
-}
-
-.form {
-  border: 1px solid var(--wl_gray);
-  padding: 16px;
-  height: 100%;
-  overflow: hidden;
-}
-
-.select-all-container {
-  display: flex;
-  // justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 .fieldset {
@@ -199,7 +181,6 @@ export default {
   margin-bottom: -10px;
   background: transparent;
   color: var(--wl_text);
-  min-width: 350px;
 }
 
 .content-modal-buttons{

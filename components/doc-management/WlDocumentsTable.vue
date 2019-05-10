@@ -80,10 +80,12 @@ tr > th {
 
 .even {
   background: var(--wl_gray_light);
+  color: var(--wl_text);
 }
 
 .odd {
   background: var(--wl_form_bg);
+  color: var(--wl_text);
 }
 
 .documents-table {

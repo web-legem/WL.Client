@@ -8,7 +8,7 @@
     </h1>
     <form
       name="classification-form"
-      class="form"
+      class="form-left"
       data-vv-scope="form1"
       @submit.prevent
     >                 
@@ -122,8 +122,8 @@
         </wl-button>
       </div>
       <div 
+        v-if="isLoading"
         class="progress-container"
-        v-if="isLoading" 
       >
         <div>
           <div 
@@ -262,55 +262,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container-form-left{
-  display: flex;
-  flex-grow: 1;
-  height: 100%;
-  flex-direction: column;
-  margin: calc(1em + .5vw);
-  position: relative;
-}
-
-.container-form-left.loading::after{
-  content: '';
-  position: absolute;
-  background: rgba(0, 0, 0, 0.3);
-  top:0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.progress-container{
-  position:absolute;
-  width: 100%;
-  top:40%;
-  left:0;
-  background: transparent;
-  padding: calc(1em + .5vw);
-  z-index: 8888;
-}
-
-.progress-container > div{
-  padding: calc(1em + .5vw);
-  background: var(--wl_form_bg);  
-  color: var(--wl_text);  
-  text-align: center;
-  border: 1px solid var(--wl_gray);  
-}
-
-.progress-container > div > div{
-  margin-bottom: 10px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--wl_gray);
-  padding: 16px;
-  flex:1;
-}
-
 .action-container {
   padding-top: 16px;
   display: flex;

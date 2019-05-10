@@ -20,6 +20,7 @@ export default {
     'deselect-all': 'Desmarcar todos.',
     'notification-sent': 'La notificación ha sido enviada.',
     'return': 'Regresar al documento',
+    'title': 'Notificar',
   },
 
   'admin': {

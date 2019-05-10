@@ -21,13 +21,13 @@
       >
       <div>
         <span 
-          v-if="value == undefined || value==false"
-          :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " 
+          v-if="value == true"
+          :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " 
           @click="trigger" 
         />
         <span 
-          v-if="value == true"
-          :class="{'ico-dot-circle-o':(type=='radio'), 'ico-check-square-o':(type=='checkbox'), } " 
+          v-else
+          :class="{'ico-circle-o':(type=='radio'), 'ico-square-o':(type=='checkbox'), } " 
           @click="trigger" 
         />
         <label :for="id"> 
@@ -87,7 +87,7 @@ export default {
 
 .w-switch input[type="checkbox"] { 
   opacity:0; 
-  position: absolute; 
+  position: absolute;
   overflow: hidden; 
   clip: rect(0 0 0 0); 
   height:1px; 

@@ -7,11 +7,13 @@
         slot="controls"
         class="controls"
       >
-        <button
-          class="ico-paper-plane ico_cl" 
+        <nuxt-link
+          class="ico_cl" 
           :title="$t('search.search-result.notify')"
           :to="localePath({name: 'search-id-notify'})" 
-        />
+        >
+          <span class=" ico-paper-plane" />
+        </nuxt-link>
         <a 
           v-if="$mq == 'sm' || $mq == 'md'"
           :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"

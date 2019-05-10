@@ -57,7 +57,22 @@ export default {
   margin-right: 10px;
   cursor: pointer;
   transition: background 0.5s;
-  text-decoration: none;
+  text-decoration: none;  
+}
+
+.ico_cl > span {
+  display:inline-block;
+  vertical-align:middle;
+  height: 100%;
+  width: 100%;
+}
+
+.ico_cl > span:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .ico_cl:hover {  
