@@ -1,27 +1,32 @@
 <template>
   <div class="documents-table">
-    <table>
+    <table class="table">
       <thead>
         <tr>
-          <th>
+          <th class="td">
             <div class="column-title selected">
               <span>{{ $t('search.search-filters.label-doc-type') }}</span>
               <span class="ico ico-sort-alpha-asc" />
             </div>
           </th>
-          <th>
+          <th class="td">
             <div class="column-title">
               <span>{{ $t("admin.entities.module-name") }}</span>
             </div>
           </th>
-          <th>
+          <th class="td">
             <div class="column-title">
-              <span>{{ $t('search.number-filter.label-num-doc') }}</span>
+              <span class="cell-number">{{ $t('search.number-filter.label-num-doc') }}</span>
             </div>
           </th>
-          <th>
-            <div class="column-title">
+          <th class="td">
+            <div class="column-title cell-number">
               <span>{{ $t('search.year-filter.label-year-publ') }}</span>
+            </div>
+          </th>
+          <th class="td">
+            <div class="column-title cell">
+              <span>{{ 'Cargar' }}</span>
             </div>
           </th>
         </tr>
@@ -33,18 +38,40 @@
           class="row"
           :class="[ getRowClass(index) ]"
         >
-          <td><span class="cell">{{ document.documentType.name }}</span></td>
-          <td><span class="cell">{{ document.entity.name }}</span></td>
-          <td><span class="cell number">{{ document.number }}</span></td>
-          <td><span class="cell number">{{ document.publicationYear }}</span></td>
+          <td class="td"><span class="cell">{{ document.documentType.name }}</span></td>
+          <td class="td"><span class="cell">{{ document.entity.name }}</span></td>
+          <td class="td"><span class="cell-number number">{{ document.number }}</span></td>
+          <td class="td"><span class="cell-number number">{{ document.publicationYear }}</span></td>
+          <td class="td-small">
+            <wl-button
+              :only-icon="true"
+              :title="'Subir archivo'"
+              ico="ico-file-pdf-o"
+              class="button-upload table-button"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
+    <div class="table-paginator">
+      <nav class="table-paginator">
+        <span class="page">Anterior</span>
+        <span class="selected">1</span>
+        <span class="page">2</span>
+        <span class="page">3</span>
+        <span class="page">Siguiente</span>
+      </nav>
+    </div>
   </div>
 </template>
 
 <script>
+import WlButton from '~/components/WlButton.vue'
+
 export default {
+  components: {
+    WlButton,
+  },
   data() {
     return {
       results: [
@@ -73,9 +100,15 @@ export default {
 </script>
 
 <style lang="scss">
-.row > td,
-tr > th {
-  padding: .6em .8em;
+.td {
+  padding: .6em ;
+  border: 1px solid var(--wl_gray_light);
+}
+
+.td-small {
+  padding: 0;
+  border: 1px solid var(--wl_gray_light);
+  text-align: center;
 }
 
 .even {
@@ -89,8 +122,9 @@ tr > th {
 }
 
 .documents-table {
-  display: flex;
   justify-content: center;
+  max-width: 100%;
+  padding: 32px;
 }
 
 .cell {
@@ -123,12 +157,40 @@ thead {
   font-size: 1em;
 }
 
-table {
+.table {
+  width: 100%;
   border: 1px solid var(--wl_gray_light);
   border-collapse: collapse;
 }
 
-td {
+.table-paginator {
+  width: 100%;
+  display: flex;
+  margin-top: 8px;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.page {
+  padding: .4em;
+  background: var(--wl_form_bg);
+  color: var(--wl_text);
   border: 1px solid var(--wl_gray_light);
+  display: block;
+}
+
+.selected {
+  padding: .4em;
+  background: var(--wl_primary);
+  color: var(--wl_form_bg);
+  border: 1px solid var(--wl_primary);
+}
+
+.button-upload {
+  margin: 0;
+}
+
+.cell-number {
+  max-width: 100px;
 }
 </style>

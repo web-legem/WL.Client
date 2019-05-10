@@ -215,4 +215,9 @@ export default {
   color:white;
 }
 
+.table-button {
+  color: var(--wl_primary);
+  background: var(--wl_btn_content);
+  border: 1px solid var(--wl_primary);
+}
 </style>
