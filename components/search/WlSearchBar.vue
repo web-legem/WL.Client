@@ -84,6 +84,7 @@ export default {
       return query
     },
     navigateWith(query) {
+      console.log('search bar')
       this.$router.push(this.localePath({
         name: removeLangExtension(this.$route.name),
         query
@@ -93,7 +94,6 @@ export default {
       return { ...this.$route.query, page: 1 }
     },
     clearText() {
-      console.log("hdjasaskjdhaskjdh");
       this.words ="";
     },
   }

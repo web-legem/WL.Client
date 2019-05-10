@@ -305,6 +305,7 @@ export default {
     },
     'co-search': {
       'search': 'Buscando ...',
+      'instructions': 'Ingresa tu busqueda para encontrar documentos',
       'not-found': 'No se encontro',
       'network-error': 'Error de red',
     },

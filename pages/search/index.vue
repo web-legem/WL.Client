@@ -14,7 +14,7 @@ export default {
   fetch({store, params, query}) {
     return Promise.all([
       store.dispatch('search/loadFilterData'),
-      store.dispatch('search/search',{ ...query })
+      // store.dispatch('search/search',{ ...query })
     ])
   }
 }

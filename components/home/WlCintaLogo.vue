@@ -38,7 +38,6 @@
     <div class="contenedor_nombre_escudo">
       <span
         class="escudo-udenar"
-        style=""
       />
     </div>
   </div>

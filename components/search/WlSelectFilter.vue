@@ -120,6 +120,7 @@ export default {
       this.getItem = ""
     },
     navigateWith(query){
+      cosole.log('select Filter')
       this.$router.push(this.localePath({
         name: removeLangExtension(this.$route.name),
         query

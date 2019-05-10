@@ -71,6 +71,7 @@ export default { components: { WlModal,
   },
   mounted() {
     if(this.filters.map(x => x.filter).indexOf(this.orderBy) == -1){
+      console.log('clearing order')
       this.clearOrdering()
     }
   },
@@ -86,12 +87,14 @@ export default { components: { WlModal,
       this.navigateWith(query)
     },
     clearOrdering() {
+      console.log('orderControls')
       let query = { ...this.$route.query, page: 1 }
       delete query.orderBy
       delete query.descend
       this.navigateWith(query)
     },
     navigateWith(query) {
+      console.log('orderControls')
       this.$emit('order', { orderBy: query.orderBy, descend: query.descend })
       this.$router.push(this.localePath({
         name: removeLangExtension(this.$route.name),
@@ -137,6 +140,7 @@ export default { components: { WlModal,
   margin: 16px 0 0 0;
   min-height: 30px;
   max-height: 30px;
+  border-bottom: 1px solid var(--wl_gray);
 }
 
 @media screen and (min-width: 992px) {
