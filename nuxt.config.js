@@ -1,13 +1,13 @@
 module.exports = {
   head: {
-    title: 'wl.client',
+    title: 'Legem',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { id: 'description', name: 'description', content: 'Sistema de Documentación Legal de la Universidad de Nariño' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/faviconv2.ico' }
     ]
   },
   css: [

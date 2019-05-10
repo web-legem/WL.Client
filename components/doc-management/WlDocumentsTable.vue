@@ -91,6 +91,7 @@ tr > th {
 .documents-table {
   display: flex;
   justify-content: center;
+  margin-top: 16px;
 }
 
 .cell {
