@@ -76,7 +76,7 @@ export default {
       this.navigateTo(nextPage)
     },
     navigateTo(page) {
-      this.$emit('go-to-page', page)
+      console.log('PageControls')
       this.$router.push(this.localePath({
         name: removeLangExtension(this.$route.name),
         query: {

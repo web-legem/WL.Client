@@ -122,8 +122,8 @@
         </wl-button>
       </div>
       <div 
-        class="progress-container"
         v-if="isLoading" 
+        class="progress-container"
       >
         <div>
           <div 

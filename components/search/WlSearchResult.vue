@@ -11,6 +11,14 @@
         {{ document.number }}
         {{ $t('search.search-result.a-del') }} {{ document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
       </nuxt-link>
+      <span 
+        v-if="index && (index == 1 || index == 3)" 
+        class="anotated"
+      >
+        <span class="ico ico-bookmark" />
+        Anotado
+      </span>
+      <!-- TODO - eliminar propiedad index -->
     </div>
 
     <div 
@@ -55,6 +63,10 @@ export default {
       type: String,
       default: 'search-id'
     },
+    index: {
+      type: Number,
+      required: false,
+    }
   },
   computed: {
     ...mapGetters('search', {
@@ -88,6 +100,7 @@ export default {
   font-size:.9rem;
   line-height:normal;
   padding-bottom:5px;
+  flex-direction: row;
 }
 
 .titulo_tarjeta a {
@@ -158,6 +171,16 @@ export default {
   font-weight: bold;
   text-decoration: none;
   font-size: 1rem;
+}
+
+.anotated {
+  color: var(--wl_text);
+  background: transparent;
+  font-weight: bold;
+  flex-grow: 1;
+  align-self: flex-end;
+  text-align: right;
+  padding: 0px 16px;
 }
 
 </style>

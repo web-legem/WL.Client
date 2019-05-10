@@ -6,7 +6,7 @@ export const state = () => ({
   loaded: false,
   error: null,
   loadingResults: false,
-  searchResults: [],
+  searchResults: null,
   searchError: null,
   loadingTotalCount: false,
   totalCount: 0,
@@ -21,10 +21,11 @@ export const getters = {
   totalCount: (state) => state.totalCount,
   loadingTotalCount: (state) => state.loadingTotalCount,
   searching: (state) => state.loadingTotalCount || state.loadingResults,
-  hasResults: (state) => state.searchResults.length > 0,
-  showNoResultsPage: (state, getters) => !getters.hasResults && !getters.searching,
-  hasAnyResult: (state) => state.totalCount > 0,
+  hasResults: (state) => state.searchResults ? state.searchResults.length > 0 : false,
+  showNoResultsPage: (state, getters) => !getters.hasResults && (!state.searchError || !state.totalCountError),
+  hasAnyResult: (state) => state.totalCount ? state.totalCount > 0 : false,
   hasSearchError: (state) => state.totalCountError != null || state.searchError != null,
+  showInitial: (state) => state.searchResults == null
 }
 
 export const mutations = {
@@ -73,8 +74,8 @@ export const mutations = {
     state.totalCountError = error
     state.loadingTotalCount = false
   },
-  clear(actualState) {
-    actualState = state()
+  clear(currState) {
+    Object.assign(currState, state())
   }
 }
 

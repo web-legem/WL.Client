@@ -11,21 +11,35 @@
       <template slot="details">
         <div class="layout">
           <wl-search-bar />
+
           <wl-order-controls
             class="wl-order-controls"
           />
+
+    
+          <wl-error-message
+            v-if="showInitial"
+            icon="escudo-udenar"
+          >
+            <div 
+              class="instructions"
+            >
+              {{ $t('search.co-search.instructions') }}
+            </div>
+          </wl-error-message>
           <div
-            v-if="hasResults"
+            v-else-if="hasResults"
             class="pager-content"
           >
             <div>
               <div 
-                v-for="document in results"
+                v-for="(document, index) in results"
                 :key="document.documentId"
               >
                 <wl-search-result
                   :document="document"
                   :route-name="routeName"
+                  :index="index"
                 >
                   <slot :document="document" />
                 </wl-search-result>
@@ -35,21 +49,19 @@
           </div>
 
           <wl-error-message
-            v-if="searching"
+            v-else-if="searching"
             icon="ico-cloud"
           >
             {{ $t('search.co-search.search') }}
           </wl-error-message>
-
           <wl-error-message 
-            v-if="showNoResultsPage && hasSearchError"
-            icon="ico-cloud"
+            v-else-if="showNoResultsPage"
+            icon="ico-frown-o"
           >
             {{ $t('search.co-search.not-found') }}
           </wl-error-message>
-
           <wl-error-message 
-            v-if="showNoResultsPage && !hasSearchError"
+            v-else
             icon="ico-cloud"
           >
             {{ $t('search.co-search.network-error') }}
@@ -96,6 +108,7 @@ export default {
       hasResults: 'hasResults',
       hasAnyResults: 'hasAnyResult',
       hasSearchError: 'hasSearchError',
+      showInitial: 'showInitial'
     }),
     ...mapState('search', {
       loadingResults: 'loadingResults',
@@ -107,19 +120,26 @@ export default {
   },
   watch: {
     '$route'() {
+      console.log('watched')
       this.search({...this.$route.query})
     },
   },
   mounted() {
     if(this.hasAnyResults && !this.hasResults) {
+      console.log('search init')
       this.navigateTo({...this.$route.query, page: 1})
     }
+  },
+  beforeDestroy() {
+    this.clear()
   },
   methods: {
     ...mapActions('search', {
       search: 'search',
+      clear: 'clear'
     }),
     navigateTo(query) {
+      console.log('navigateTo')
       this.$router.push(this.localePath({ 
         name: removeLangExtension(this.$route.name),
         query
@@ -152,7 +172,6 @@ export default {
 .pager-content {
   flex-grow: 1;
   margin-top: 4px;
-  border-top: 1px solid var(--wl_gray);
   padding-top: 16px;
   overflow: auto;
 }
@@ -160,5 +179,42 @@ export default {
 .bottom-pager {
   margin-top: 8px;
   margin-bottom: 16px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-message {
+  background: transparent;
+  color: grey;
+  border: 2px dashed grey;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ico {
+  display: block;
+  font-size: 8rem;
+  margin-bottom: -16px;
+}
+
+.content {
+  font-size: 1.5rem;
+}
+
+.instructions {
+  margin-top: .4em;
+  padding: .4em .1em;
+  max-width: 400px;
+  text-align: center;
 }
 </style>

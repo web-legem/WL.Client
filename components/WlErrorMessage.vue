@@ -5,7 +5,10 @@
         :class="icon"
         class="ico"
       />
-      <p class="content">
+      <p 
+        class="content"
+        :class="[ $mq == 'sm'? 'small': '', $mq == 'md'? 'medium': '' ]" 
+      >
         <slot />
       </p>
     </div>
@@ -52,5 +55,13 @@ export default {
 
 .content {
   font-size: 1.5rem;
+}
+
+.medium {
+  font-size: 1.2rem;
+}
+
+.small {
+  font-size: 1rem;
 }
 </style>

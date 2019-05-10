@@ -97,6 +97,7 @@ export default {
       return {...this.$route.query, page: 1}
     },
     navigateWith(query) {
+      console.log('numberfilter')
       this.$router.push(this.localePath({
         name: removeLangExtension(this.$route.name),
         query
