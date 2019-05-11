@@ -24,11 +24,11 @@ export default {
     }
   },
   asyncData(context) {
-    const documentPromise = context.app.$axios.get(`/api/Document/${context.route.params.id}`)
-    const annotationsPromise = context.app.$axios.get(`/api/Annotation/document/${context.route.params.id}`)
-    const entitiesPromise = context.app.$axios.get(`/api/Annotation/entities`)
-    const documentTypesPromise = context.app.$axios.get(`/api/Annotation/documentTypes`)
-    const annotationTypesPromise = context.app.$axios.get(`/api/Annotation/annotationTypes`)
+    const documentPromise = context.app.$axios.get(`/api/Search/documentInfo/${context.route.params.id}`)
+    const annotationsPromise = context.app.$axios.get(`/api/Search/docAnnotations/${context.route.params.id}`)
+    const entitiesPromise = context.app.$axios.get(`/api/Search/entities`)
+    const documentTypesPromise = context.app.$axios.get(`/api/Search/documentTypes`)
+    const annotationTypesPromise = context.app.$axios.get(`/api/Search/annotationTypes`)
     return Promise.all([
         documentPromise,
         annotationsPromise,

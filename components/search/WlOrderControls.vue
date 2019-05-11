@@ -163,6 +163,12 @@ export default { components: { WlModal,
   font-size: .9rem;
   background: transparent;
   color: var(--wl_text);
+  pointer-events: auto;
+}
+
+.ordering:hover{
+  cursor: pointer;
+  background: var(--wl_gray_light);
 }
 
 .ordering:focus {

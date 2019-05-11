@@ -1,6 +1,8 @@
-export default function (ctx) {
-  ctx.$axios.onRequest((config) => {
+export default function (ctx) {  
+  ctx.$axios.onRequest((config) => {    
     config.headers.common['Authorization'] = getToken(ctx)
+    config.headers.common['AppHost']= process.browser ? 
+      window.location.host : ctx.$axios.defaults.baseURL
   })
 
   ctx.$axios.onError(error => {

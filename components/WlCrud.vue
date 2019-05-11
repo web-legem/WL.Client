@@ -29,7 +29,7 @@
       <div class="controles_box_right down">
         <div
           v-if="isLoading"
-          class="progress-container"
+          class="progress-container-crud" 
         >        
           <div class="progress-line" />            
           <span>
@@ -259,7 +259,7 @@ export default {
   margin-top: 10px;
 }
 
-.progress-container{
+.progress-container-crud{
   flex:1;
   display: flex;
   flex-direction: column;

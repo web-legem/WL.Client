@@ -165,7 +165,7 @@ export default {
     },
     isPathAllow(){
       return this.credential && this.credential.newPasswordRequired || this.isTokenAllow
-    },
+    },    
     ...mapGetters("login/login", {      
       credential: "credential",
       loogedIn: "loogedIn",
@@ -190,6 +190,9 @@ export default {
     if(!this.isPathAllow){    
       this.$router.push(this.localePath({ name: 'index' }))      
     }    
+  },
+  mounted(){
+    return this.clearError()
   },
   //------------------------------
   methods: {    
@@ -249,7 +252,8 @@ export default {
     },
     ...mapActions("login/login", [
       "setPassword",    
-      "verifyToken" 
+      "verifyToken", 
+      "clearError"
     ])
   }
 }

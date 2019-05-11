@@ -204,19 +204,17 @@ input[type="file"] {
 .ico {
   display: block;
   font-size: 3rem;
-  background: red;
+  background: transparent;  
   color:var(--wl_gray);
 }
 
 .ico-times-circle {
-  background: red;
-
+  background: transparent;
   color: var(--wl_text_error)
 }
 
 .ico-check-circle-o {
-  background: red;
-
+  background: transparent;
   color: var(--wl_primary);
 }
 

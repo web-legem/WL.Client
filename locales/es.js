@@ -170,7 +170,7 @@ export default {
     'password':'Contraseña',
     'enter-user':'Ingrese nombre de usuario',
     'enter-password':'Ingrese contraseña',
-    'confirm-password':'Confirmar contrasñea',
+    'confirm-password':'Confirmar contraseña',
     'muy-bajo':'muy bajo',
     'bajo':'bajo',
     'medio':'medio',

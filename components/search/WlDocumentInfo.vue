@@ -25,12 +25,12 @@
         </a>
       </div>
     </wl-document-controls>
-    <div class="annotation-list">
+    <!-- <div class="annotation-list">
       <wl-annotation-list 
         :document-id="document.id"
         :annotations="formatedAnnotations"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -41,7 +41,7 @@ import WlAnnotationList from '~/components/search/WlAnnotationList.vue'
 export default {
   components: {
     WlDocumentControls,
-    WlAnnotationList,
+    // WlAnnotationList,
   },
   props: {
     document: {
