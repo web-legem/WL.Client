@@ -37,6 +37,7 @@
           ref="submodulesContainer"
           :class="{small: $mq == 'sm'}"
           @focusout="checkIfFocusLost($event)"
+          v-if="existCredential"
         >
           <button
             :class="{small: $mq == 'sm'}"
@@ -65,6 +66,7 @@
                 :to="localePath({ name: module.link })"
                 class="sub-module"
                 @click.native="hideSubModulesPanel()"
+                v-if="module.show"
               >
                 <div> 
                   <span
@@ -203,14 +205,14 @@ export default {
         label:this.$t('components.menu.label-serch'),
         icon: 'ico-search',
         link: 'search',
-        show: 'true',
+        show: true,
       }
 
       let home = {
         label: this.$t('components.menu.label-home'),
         icon: 'ico-home',
         link: 'index',
-        show: 'true',
+        show: true,
       }
 
       let login = {
@@ -237,21 +239,25 @@ export default {
           label: this.$t('components.menu.label-admin'),
           icon: 'ico-tasks',
           link: 'admin',
+          show: this.can("configSystem")
         },
         {
           label:  this.$t('components.menu.label-doc-man'),
           icon: 'ico-stack-overflow',
           link: 'doc-management',
+          show: this.can("createDocuments")
         },
         {
           label:this.$t('components.menu.label-annot'),
           icon: 'ico-files-o',
           link: 'annotations',
+          show: this.can("createDocuments")
         },
         {
           label: this.$t('components.menu.label-user'),
           icon: 'ico-users',
           link: 'persons-users',
+          show: this.can("configSystem")
         }
       ]
     },
@@ -266,7 +272,10 @@ export default {
         return this.credential.photo                           
       }
       return'/img/usuario.png';
-    }
+    },
+    existCredential(){
+      return this.credential && this.credential.permissions;
+    },
   },
   watch: {
     '$route'() {
@@ -286,6 +295,15 @@ export default {
     this.$validator.locale = this.$i18n.locale;
   },
   methods: {
+    can(perm){
+      if(this.credential && this.credential.permissions){
+        let perms = this.credential.permissions
+        let obj = perms.find(x => x.name === perm)
+        return obj ? obj.can : false;
+      }
+      return false;
+    },
+
     hideA11yPanelOnBlur(isLastElement) {
       if(isLastElement && !this.mouseDownA11yPanel){
         this.hideA11yPanel()
