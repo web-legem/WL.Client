@@ -131,9 +131,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('search', {
-      clear: 'clear'
-    }),
     ...mapActions('search', {
       search: 'search',
     }),

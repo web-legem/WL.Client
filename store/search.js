@@ -1,7 +1,7 @@
 
 export const state = () => ({
-  entities: [],
-  documentTypes: [],
+  entities: null,
+  documentTypes: null,
   loading: false,
   loaded: false,
   error: null,
