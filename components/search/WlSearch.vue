@@ -159,17 +159,18 @@ export default {
 }
 
 .layout {
-  height: 100%;
   display: flex;
   flex-direction: column;
   margin: calc(1em + .5vw);
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .pager-content {
   flex-grow: 1;
   margin-top: 4px;
   padding-top: 16px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .bottom-pager {

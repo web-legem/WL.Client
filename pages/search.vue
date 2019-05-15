@@ -1,5 +1,7 @@
 <template>
-  <nuxt-child />
+  <div class="main">
+    <nuxt-child />
+  </div>
 </template>
 
 
@@ -15,3 +17,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>

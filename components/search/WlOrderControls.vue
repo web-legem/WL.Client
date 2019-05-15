@@ -1,5 +1,8 @@
 <template>
-  <div class="order-controls">
+  <div 
+    v-if="hasResults"
+    class="order-controls"
+  >
     <button 
       v-for="(filter, index) in filters"
       :key="index"
@@ -68,7 +71,8 @@ export default {
       return this.$route.query.descend == "true"
     },
     ...mapGetters('search', {
-      loadingTotalCount: 'loadingTotalCount'
+      loadingTotalCount: 'loadingTotalCount',
+      hasResults: 'hasResults'
     })
   },
   mounted() {

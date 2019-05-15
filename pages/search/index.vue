@@ -13,7 +13,24 @@ export default {
     WlSearch
   },
   fetch({store, params, query}) {
-    return store.dispatch('search/loadFilterData')
+    var filterData = store.dispatch('search/loadFilterData')
+    var search = () => store.dispatch('search/search', {...query })
+    var promises = [filterData]
+    const isSearchQuery = Object.keys(query).some(x => x == 'page' 
+      || x == 'pageSize' 
+      || x == 'descend'
+      || x == 'wordsToSearch'
+      || x == 'orderBy'
+      || x == 'entityId'  
+      || x == 'documentTypeId'
+      || x == 'number'
+      || x == 'publicationDate'
+    )
+    
+    if(isSearchQuery) {
+      promises.push(search())
+    }
+    return Promise.all(promises)
   },
   beforeRouteLeave (to, from, next) {
     this.clear()
@@ -30,8 +47,9 @@ export default {
 <style>
 .search {
   width: 100%;
-  padding-top: calc(25px + 4.5vh);
   height: 100%;
+  padding-top: calc(25px + 4.5vh);
+  flex-grow: 1;
   position: relative;
 }
 </style>
