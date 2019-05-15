@@ -82,7 +82,7 @@ import WlSearchResult from '~/components/search/WlSearchResult.vue'
 import WlErrorMessage from '~/components/WlErrorMessage.vue'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 
-import {mapActions, mapGetters, mapState} from 'vuex'
+import {mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 
 export default {
   components: {
@@ -130,13 +130,12 @@ export default {
       this.navigateTo({...this.$route.query, page: 1})
     }
   },
-  beforeDestroy() {
-    this.clear()
-  },
   methods: {
+    ...mapMutations('search', {
+      clear: 'clear'
+    }),
     ...mapActions('search', {
       search: 'search',
-      clear: 'clear'
     }),
     navigateTo(query) {
       console.log('navigateTo')

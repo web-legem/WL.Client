@@ -13,8 +13,9 @@ export default {
       , en: '/search'
     }
   },
-  beforeDestroy() {
+  beforeRouteLeave (to, from, next) {
     this.clear()
+    next()
   },
   methods: {
     ...mapMutations('search', [

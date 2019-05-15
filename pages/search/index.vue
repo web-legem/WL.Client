@@ -12,10 +12,7 @@ export default {
     WlSearch
   },
   fetch({store, params, query}) {
-    return Promise.all([
-      store.dispatch('search/loadFilterData'),
-      // store.dispatch('search/search',{ ...query })
-    ])
+    return store.dispatch('search/loadFilterData')
   }
 }
 </script>

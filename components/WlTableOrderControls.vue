@@ -1,62 +1,43 @@
 <template>
-  <div class="order-controls">
-    <button 
+  <tr>
+    <th 
       v-for="(filter, index) in filters"
       :key="index"
-      :class="[getStateClass(filter.filter) ]"
-      class="ordering"
+      :class="[getStateClass(filter.filter)]"
+      class="td" 
       @click="setOrdering(filter.filter)"
-    > 
-      {{ filter.label }}
-      <span
-        v-if="showIcon(filter.filter)"
-        :class="[ getIconClass() ]"
-        class="order-icon"
-      />
-    </button>
-    <no-ssr>
-      <button
-        v-if="$mq != 'lg' && $mq != 'xl'"
-        class="ordering"  
-        @click="showFilters"
-      >
-        {{ $t('search.order-control.butt-show-search-adva') }}
+    >
+      <button class="column-title selected">
+        <span>{{ filter.label }}</span>
+        <span 
+          v-if="showIcon(filter.filter)"
+          class="ico" 
+          :class="getIconClass()" 
+        />
       </button>
-    </no-ssr>
-    <no-ssr>
-      <wl-modal
-        v-if="showModal && $mq != 'lg' && $mq != 'xl'"
-        :title="$t('search.order-control.title-filterl')"
-        @wlclose="hideFilters"
-      >
-        <wl-search-filters slot="wl-content" />
-      </wl-modal>
-    </no-ssr>
-  </div>
+    </th>
+    <th class="td">
+      <div class="column-title cell">
+        <span>{{ 'Cargar' }}</span>
+      </div>
+    </th>
+  </tr>
 </template>
 
 <script>
-import WlModal from '~/components/WlModal.vue'
-import WlSearchFilters from '~/components/search/WlSearchFilters.vue'
 import { mapGetters } from 'vuex'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 
 const buttonState = [ 'DISABLED', 'ENABLED', 'REVERSE' ]
 
-export default { 
-  components: { 
-    WlModal,
-    WlSearchFilters,
-  },
+export default {
   data() {
     return {
-      showModal: false,
       filters: [
-        { label:this.$t('search.order-control.label-entitie'), filter: 'ENTIDAD' },
         { label:this.$t('search.order-control.label-type-doc'), filter: 'TIPO_DOCUMENTO'},
+        { label:this.$t('search.order-control.label-entitie'), filter: 'ENTIDAD' },
         { label:this.$t('search.order-control.label-number'), filter: 'NUMERO' },
         { label:this.$t('search.order-control.label-date'),  filter: 'ANIO_PUBLICACION' },
-        { label:this.$t('search.order-control.label-relevance'), filter: 'DEFAULT' }, // TODO - cambiar label por cadena en ingles o español
       ],
     }
   },
@@ -73,6 +54,7 @@ export default {
   },
   mounted() {
     if(this.filters.map(x => x.filter).indexOf(this.orderBy) == -1){
+      console.log('clearing order')
       this.clearOrdering()
     }
   },
@@ -88,6 +70,7 @@ export default {
       this.navigateWith(query)
     },
     clearOrdering() {
+      console.log('orderControls')
       let query = { ...this.$route.query, page: 1 }
       delete query.orderBy
       delete query.descend
@@ -132,58 +115,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.order-controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  overflow-x: auto;
-  margin: 16px 0 0 0;
-  min-height: 30px;
-  max-height: 30px;
-  border-bottom: 1px solid var(--wl_gray);
-}
 
-@media screen and (min-width: 992px) {
-  .order-controls {
-    justify-content: flex-start;
-  }
-  .ordering {
-    margin: 0 0 0 16px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .order-controls {
-    min-height: 75px;
-  }
-}
-
-.ordering {
-  padding: 0 4px 4px ;
-  font-size: .9rem;
-  background: transparent;
-  color: var(--wl_text);
-  pointer-events: auto;
-}
-
-.ordering:hover{
-  cursor: pointer;
-  background: var(--wl_gray_light);
-}
-
-.ordering:focus {
-  outline: 1px dotted var(--wl_primary);
-  outline-offset: -1px;
-}
-
-.ordering.reverse,
-.ordering.enabled {
-  border-bottom: 2px solid var(--wl_primary);
-}
-
-.order-icon {
-  background: transparent;
-  color: var(--wl_primary);
-  padding: 0;
-}
 </style>
