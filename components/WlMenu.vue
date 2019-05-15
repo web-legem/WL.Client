@@ -250,7 +250,7 @@ export default {
         {
           label:this.$t('components.menu.label-annot'),
           icon: 'ico-files-o',
-          link: 'annotations',
+          link: 'annotations-document',
           show: this.can("createDocuments")
         },
         {
