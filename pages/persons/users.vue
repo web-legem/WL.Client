@@ -79,5 +79,9 @@ export default {
 <style lang="scss" scoped>
 .details {
   padding: calc(1em + .5vw);
+  height: 95%;
+  padding-bottom: 0;
+  overflow-y: scroll;
 }
+
 </style>

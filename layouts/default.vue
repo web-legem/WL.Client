@@ -53,7 +53,7 @@ export default {
   methods: {
     handleScroll (event) {
       if (process.browser) { 
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
           document.getElementById("a_top").style.display = "block";
         } else {
           document.getElementById("a_top").style.display = "none";
