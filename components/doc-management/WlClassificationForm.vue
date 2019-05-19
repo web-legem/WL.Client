@@ -166,7 +166,7 @@ export default {
       uploadPercentage: 0,
       error: null,
       tags: ['test'],
-      isLoading: false,
+      isLoading: true,
     }
   },
   computed: {

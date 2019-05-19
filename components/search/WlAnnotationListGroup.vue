@@ -93,8 +93,8 @@ export default {
 .group-toggle {
   display: flex;
   width: 100%;
-  background-color: #fff;
-  color: #555;
+  background-color: var(--wl_form_gb);
+  color: var(--wl_text);
   justify-content: space-between;
   font-size: 1.2rem;
   border-bottom: 1px solid #555;
@@ -111,6 +111,8 @@ export default {
 
 .title-anotation {
   margin-left: 10px;
+  background: var(wl_form_bg);
+  color: var(wl_primary);
 }
 
 .toggle-group-title {

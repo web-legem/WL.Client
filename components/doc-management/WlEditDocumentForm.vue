@@ -8,7 +8,7 @@
     </h1>
     <form
       name="form-new-annotation"
-      class="form"
+      class="form-left"
       data-vv-scope="form1"
       @submit.prevent
     >
@@ -138,7 +138,7 @@ export default {
       documentTypeId: null,
       annotationTypeId: null,
       isSubmit: false,
-      isLoading: false,
+      isLoading: true,
     }
   },
   asyncData(context) {

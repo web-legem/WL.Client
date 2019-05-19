@@ -1,9 +1,9 @@
 <template>
   <div class="annotation-info">
-    <div class="title">
+    <div class="info-title">
       <h3 class="document-title">
         <nuxt-link
-          :to="localePath({ name: 'search-id', params: { id: 2 }})"
+          :to="localePath({ name: 'search-id', params: { id: annotation.documentId }})"
           class="title-link"
         >
           {{ annotation.document }}
@@ -82,7 +82,7 @@ export default {
   font-size: 1rem;
 }
 
-.title {
+.info-title {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
