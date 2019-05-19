@@ -1,8 +1,5 @@
 <template>
-  <div 
-    v-if="isLoading"
-    class="progress-container"
-  >
+  <div class="progress-container">
     <div>
       <div 
         class="progress-line" 
