@@ -1,6 +1,6 @@
 <template>
   <div class="wl-annotation-group">
-    <h3 class="annotation-group">
+    <h1 class="annotation-group">
       <button 
         class="group-toggle"
         @click="toggle"
@@ -19,7 +19,7 @@
           :class="[iconToggle]"
         />
       </button>
-    </h3>
+    </h1>
     <transition
       name="accordion"
       appear

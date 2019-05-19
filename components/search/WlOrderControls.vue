@@ -173,6 +173,7 @@ export default {
 .ordering:hover{
   cursor: pointer;
   background: var(--wl_gray_light);
+  color: var(--wl_text);
 }
 
 .ordering:focus {
