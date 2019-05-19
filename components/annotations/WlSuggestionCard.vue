@@ -1,7 +1,7 @@
 <template>
   <div class="annotation-info">
     <div class="suggestion my-class">
-      <h3 class="document-title">
+      <h1 class="document-title">
         <nuxt-link
           :to="localePath({ name: 'annotations-document-id', params: { id: annotation.documentId }})"
           class="title-link"
@@ -16,7 +16,7 @@
           class="ico-trash icon" 
           @click="deleteAnnotation"
         />
-      </h3>
+      </h1>
     </div>
     <div 
       class="type"
@@ -160,12 +160,14 @@ export default {
 
 .icon:active {
   background-color: var(--wl_tab_shw);
+  color: var(--wl_text);
   background-size: 100%;
   transition: background 0s;
 }
 
 .suggestion {
   background: var(--wl_form_bg);
+  color: var(--wl_text);
   display: flex;
   flex-direction: row;
   align-items: flex-end;

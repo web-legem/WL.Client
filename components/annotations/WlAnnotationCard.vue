@@ -1,7 +1,7 @@
 <template>
   <div class="annotation-info">
     <div class="title">
-      <h3 class="document-title">
+      <h1 class="document-title">
         <nuxt-link
           :to="localePath({ name: 'annotations-document-id', params: { id: annotation.documentId }})"
           class="title-link"
@@ -13,7 +13,7 @@
           class="ico-trash icon" 
           @click="deleteAnnotation"
         />
-      </h3>
+      </h1>
     </div>
     <div class="type">
       {{ $t('annotations.annotation-type') }}:

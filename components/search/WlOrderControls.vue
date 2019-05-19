@@ -169,6 +169,7 @@ export default { components: { WlModal,
 .ordering:hover{
   cursor: pointer;
   background: var(--wl_gray_light);
+  color: var(--wl_text);
 }
 
 .ordering:focus {
