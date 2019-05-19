@@ -39,6 +39,7 @@
 
     <div class="control_tarjeta">
       <a 
+        v-if="documentTypes && documentTypes.length > 0"
         :href="$axios.defaults.baseURL + 'api/Search/file/download/' + document.id"
         download
         :title="$t('search.search-result.title-down') +' '+ documentTypeName +' '+ document.number"

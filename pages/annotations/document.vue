@@ -14,14 +14,6 @@ export default {
       en: 'document',
     }
   },
-  beforeDestroy() {
-    this.clear()
-  },
-  methods: {
-    ...mapMutations('search', [
-      'clear'
-    ])
-  }
 }
 </script>
 

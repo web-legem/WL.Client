@@ -1,5 +1,7 @@
 <template>
-  <nuxt-child />
+  <div class="main">
+    <nuxt-child />
+  </div>
 </template>
 
 
@@ -13,13 +15,13 @@ export default {
       , en: '/search'
     }
   },
-  beforeDestroy() {
-    this.clear()
-  },
-  methods: {
-    ...mapMutations('search', [
-      'clear'
-    ])
-  }
 }
 </script>
+
+<style lang="scss" scoped>
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>

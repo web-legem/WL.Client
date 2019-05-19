@@ -16,13 +16,14 @@ export default {
       store.dispatch('search/search',{ ...query })
     ])
   },
-  beforeDestroy() {
+  beforeRouteLeave (to, from, next) {
     this.clear()
+    next()
   },
   methods: {
-    ...mapMutations('search', [
-      'clear'
-    ])
+    ...mapMutations('search', {
+      clear: 'clear'
+    })
   }
 }
 </script>

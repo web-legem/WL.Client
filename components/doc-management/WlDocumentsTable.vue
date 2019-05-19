@@ -2,91 +2,97 @@
   <div class="documents-table">
     <table class="table">
       <thead>
-        <tr>
-          <th class="td">
-            <div class="column-title selected">
-              <span>{{ $t('search.search-filters.label-doc-type') }}</span>
-              <span class="ico ico-sort-alpha-asc" />
-            </div>
-          </th>
-          <th class="td">
-            <div class="column-title">
-              <span>{{ $t("admin.entities.module-name") }}</span>
-            </div>
-          </th>
-          <th class="td">
-            <div class="column-title">
-              <span class="cell-number">{{ $t('search.number-filter.label-num-doc') }}</span>
-            </div>
-          </th>
-          <th class="td">
-            <div class="column-title cell-number">
-              <span>{{ $t('search.year-filter.label-year-publ') }}</span>
-            </div>
-          </th>
-          <th class="td">
-            <div class="column-title cell">
-              <span>{{ 'Cargar' }}</span>
-            </div>
-          </th>
-        </tr>
+        <wl-table-order-controls />
       </thead>
       <tbody>
-        <tr 
-          v-for="(document, index) in results"
-          :key="document.id"
-          class="row"
-          :class="[ getRowClass(index) ]"
-        >
-          <td class="td"><span class="cell">{{ document.documentType.name }}</span></td>
-          <td class="td"><span class="cell">{{ document.entity.name }}</span></td>
-          <td class="td"><span class="cell-number number">{{ document.number }}</span></td>
-          <td class="td"><span class="cell-number number">{{ document.publicationYear }}</span></td>
-          <td class="td-small">
-            <wl-button
-              :only-icon="true"
-              :title="'Subir archivo'"
-              ico="ico-file-pdf-o"
-              class="button-upload table-button"
-            />
-          </td>
-        </tr>
+        <template v-if="documentTypes && entities">
+          <tr 
+            v-for="(document, index) in results"
+            :key="document.id"
+            class="row"
+            :class="[ getRowClass(index) ]"
+          >
+            <td class="td"><span class="cell">{{ getDocumentTypeName(document)}}</span></td>
+            <td class="td"><span class="cell">{{ getEntityName(document) }}</span></td>
+            <td class="td"><span class="cell-number number">{{ document.number }}</span></td>
+            <td class="td"><span class="cell-number number">{{ document.publicationYear }}</span></td>
+            <td class="td-small">
+              <wl-button
+                :only-icon="true"
+                :title="'Subir archivo'"
+                ico="ico-file-pdf-o"
+                class="button-upload table-button"
+                @click="launchUploadDocument(document.id)"
+              />
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
     <div class="table-paginator">
-      <nav class="table-paginator">
-        <span class="page">Anterior</span>
-        <span class="selected">1</span>
-        <span class="page">2</span>
-        <span class="page">3</span>
-        <span class="page">Siguiente</span>
-      </nav>
+      <input
+        id="file"
+        ref="file"
+        name="file"
+        type="file"
+        class="file"
+        @change="handleFileToUpload"
+      >
+      <wl-table-page-controls class="bottom-pager" />
     </div>
   </div>
 </template>
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import WlTableOrderControls from '~/components/WlTableOrderControls.vue'
+import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
+import {removeLangExtension} from '~/helpers/routeManipulation'
+import WlTablePageControls from '~/components/WlTablePageControls.vue'
 
 export default {
   components: {
     WlButton,
+    WlTableOrderControls,
+    WlTablePageControls,
   },
   data() {
     return {
-      results: [
-        { id: 1, documentType: { name: 'Acuerdo' }, entity: { name: 'Rectoría' }, number: '027', publicationYear: 2015 },
-        { id: 2, documentType: { name: 'Acuerdo' }, entity: { name: 'Consejo Superior' }, number: '002', publicationYear: 2011 },
-        { id: 3, documentType: { name: 'Acuerdo' }, entity: { name: 'Facultad de Ingeniería de la universidad de nariño' }, number: '058', publicationYear: 2018 },
-        { id: 4, documentType: { name: 'Circular' }, entity: { name: 'Rectoría' }, number: '013', publicationYear: 2019 },
-        { id: 5, documentType: { name: 'Circular' }, entity: { name: 'Rectoría' }, number: '042', publicationYear: 2008 },
-        { id: 6, documentType: { name: 'Circular' }, entity: { name: 'Rectoría' }, number: '036', publicationYear: 2006 },
-        { id: 7, documentType: { name: 'Circular' }, entity: { name: 'Consejo Superior' }, number: '007', publicationYear: 2015 },
-        { id: 8, documentType: { name: 'Circular' }, entity: { name: 'Rectoría' }, number: '014', publicationYear: 2014 },
-        { id: 9, documentType: { name: 'Resolución' }, entity: { name: 'Facultad de Ingeniería' }, number: '023', publicationYear: 2017 },
-        { id: 10, documentType: { name: 'Resolución' }, entity: { name: 'Rectoría' }, number: '185', publicationYear: 2013 },
-      ]
+      file: '',
+      uploadPercentage: 0,
+      documentToUpdate: 0,
     }
+  },
+  computed: {
+    ...mapGetters('table', {
+      entities: 'entities',
+      documentTypes: 'documentTypes',
+      results: 'searchResults',
+      searching: 'searching',
+      showNoResultsPage: 'showNoResultsPage',
+      hasResults: 'hasResults',
+      hasAnyResults: 'hasAnyResult',
+      hasSearchError: 'hasSearchError',
+      showInitial: 'showInitial'
+    }),
+    ...mapState('table', {
+      loadingResults: 'loadingResults',
+      loadingTotalCount: 'loadingTotalCount',
+      error: 'error',
+      totalCountError: 'totalCountError',
+      searchError: 'searchError',
+    }),
+  },
+  watch: {
+    '$route'() {
+      this.search({...this.$route.query})
+    },
+  },
+  mounted() {
+    this.navigateTo({...this.$route.query, page: 1})
+  },
+  beforeDestroy() {
+    this.clear()
   },
   methods: {
     getRowClass(index){
@@ -94,6 +100,51 @@ export default {
     },
     isOdd(index){
       return index % 2 == 0
+    },
+    ...mapMutations('table',{
+      clear: 'clear'
+    }),
+    ...mapActions('table', {
+      search: 'search',
+    }),
+    navigateTo(query) {
+      console.log('navigateTo')
+      this.$router.push(this.localePath({ 
+        name: removeLangExtension(this.$route.name),
+        query
+      }))
+    },
+    launchUploadDocument(documentId){
+      console.log(this.$refs.file)
+      this.documentToUpdate = documentId
+      this.$refs.file.click()
+    },
+    handleFileToUpload(e) {
+      this.file = this.$refs.file.files[0]
+      let formData = new FormData()
+      formData.append('files', this.file)
+      if(this.documentToUpdate > 0){
+        this.$axios.post(`/api/Document/file/${this.documentToUpdate}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+          , onUploadProgress: progressEvent => {
+            this.uploadPercentage = Number.parseInt(
+              Math.round(progressEvent.loaded * 100) / progressEvent.total)
+          }
+        })
+        .then(_ => {
+          location.reload()
+        }) 
+        // todo - gestionar error en la carga del documento
+        .catch(e => console.log('Error', e))
+      }
+    },
+    getEntityName(document){
+      return this.entities.find(x => x.id == document.entityId).name
+    },
+    getDocumentTypeName(document) {
+      return this.documentTypes.find(x => x.id == document.documentTypeId).name
     }
   },
 }
@@ -192,5 +243,9 @@ thead {
 
 .cell-number {
   max-width: 100px;
+}
+
+.file {
+  display: none;
 }
 </style>

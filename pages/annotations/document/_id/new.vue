@@ -184,6 +184,7 @@ export default {
             toDocumentTypeId: this.documentTypeId,
             toEntityId: this.entityId,
             toPublicationYear: moment(this.date, "YYYY-MM-DD").format("YYYY"),
+            toPublicationDate: this.date,
             toNumber: this.number,
             annotationTypeId: this.annotationTypeId,
             description: this.description

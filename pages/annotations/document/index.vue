@@ -6,11 +6,26 @@
 
 <script>
 import WlSearch from '~/components/search/WlSearch.vue'
+import {mapMutations} from 'vuex'
 
 export default {
   components: {
     WlSearch
   },
+  fetch({store, params, query}) {
+    return Promise.all([
+      store.dispatch('search/loadFilterData'),
+    ])
+  },
+  beforeRouteLeave (to, from, next) {
+    this.clear()
+    next()
+  },
+  methods: {
+    ...mapMutations('search', {
+      clear: 'clear'
+    })
+  }
 }
 </script>
 
