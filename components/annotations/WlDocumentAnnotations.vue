@@ -84,8 +84,8 @@ export default {
     },
     determineDirection(annotation){
       return this.currentDocumeentIsDestinyIn(annotation)
-        ? 'OUT' 
-        : 'IN'
+        ? 'IN'
+        : 'OUT' 
     },
     getAnnotationType(annotationTypeId){
       console.log(annotationTypeId)

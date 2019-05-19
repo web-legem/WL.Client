@@ -48,7 +48,7 @@
           name="file"
           type="file"
           accept="application/pdf"
-          @change="handleFileToUpload"
+          @change="handleFileToUpload($event)"
         >
       </div>
       <wl-input
@@ -166,7 +166,7 @@ export default {
       uploadPercentage: 0,
       error: null,
       tags: ['test'],
-      isLoading:false,
+      isLoading: false,
     }
   },
   computed: {
@@ -242,9 +242,18 @@ export default {
     clear(){
       location.reload()
     },
-    handleFileToUpload(){
-      this.file = this.$refs.file.files[0]
-      const url = URL.createObjectURL(this.file)
+    handleFileToUpload(e){
+      let fileInput = this.$refs.file
+      let hasFile = file => fileInput.files.length > 0
+
+      this.file = hasFile(fileInput)
+        ? fileInput.files[0]
+        : null
+
+      const url = hasFile(fileInput)
+        ? URL.createObjectURL(this.file)
+        : ''
+
       this.$emit('fileurl', url)
     },
     handleDropFile(e) {
