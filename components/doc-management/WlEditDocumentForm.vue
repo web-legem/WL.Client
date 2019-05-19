@@ -1,5 +1,8 @@
 <template>
-  <div class="container-form-left">
+  <div 
+    class="container-form-left"
+    :class="isLoading ? 'loading' : '' "
+  >
     <h1 class="left-form-title">    
       {{ $t('doc-management.document.edit-document') }}
     </h1>
@@ -98,6 +101,10 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
+      <wl-left-loading 
+        v-if="isLoading" 
+        label="Procesando el documento..."
+      />
     </form>
   </div>
 </template>
