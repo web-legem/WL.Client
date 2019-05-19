@@ -22,6 +22,7 @@
                 :title="'Subir archivo'"
                 ico="ico-file-pdf-o"
                 class="button-upload table-button"
+                @click="launchUploadDocument(document.id)"
               />
             </td>
           </tr>
@@ -29,6 +30,14 @@
       </tbody>
     </table>
     <div class="table-paginator">
+      <input
+        id="file"
+        ref="file"
+        name="file"
+        type="file"
+        class="file"
+        @change="handleFileToUpload"
+      >
       <wl-table-page-controls class="bottom-pager" />
     </div>
   </div>
@@ -46,6 +55,13 @@ export default {
     WlButton,
     WlTableOrderControls,
     WlTablePageControls,
+  },
+  data() {
+    return {
+      file: '',
+      uploadPercentage: 0,
+      documentToUpdate: 0,
+    }
   },
   computed: {
     ...mapGetters('table', {
@@ -97,6 +113,32 @@ export default {
         name: removeLangExtension(this.$route.name),
         query
       }))
+    },
+    launchUploadDocument(documentId){
+      console.log(this.$refs.file)
+      this.documentToUpdate = documentId
+      this.$refs.file.click()
+    },
+    handleFileToUpload(e) {
+      this.file = this.$refs.file.files[0]
+      let formData = new FormData()
+      formData.append('files', this.file)
+      if(this.documentToUpdate > 0){
+        this.$axios.post(`/api/Document/file/${this.documentToUpdate}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+          , onUploadProgress: progressEvent => {
+            this.uploadPercentage = Number.parseInt(
+              Math.round(progressEvent.loaded * 100) / progressEvent.total)
+          }
+        })
+        .then(_ => {
+          location.reload()
+        }) 
+        // todo - gestionar error en la carga del documento
+        .catch(e => console.log('Error', e))
+      }
     },
     getEntityName(document){
       return this.entities.find(x => x.id == document.entityId).name
@@ -201,5 +243,9 @@ thead {
 
 .cell-number {
   max-width: 100px;
+}
+
+.file {
+  display: none;
 }
 </style>

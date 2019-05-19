@@ -12,6 +12,7 @@
       class="details"
     >
       <wl-documents-table />
+        
     </div>
   </wl-master-detail-layout>
 </template>
@@ -76,8 +77,8 @@ export default {
         name: removeLangExtension(this.$route.name),
         query
       }))
-    }
-  },
+    },
+ },
   fetch({store, params, query}) {
     return Promise.all([
       store.dispatch('table/loadFilterData'),
@@ -91,4 +92,5 @@ export default {
 .wl-search-filters {
   margin: calc(1em + .5vw);
 }
+
 </style>
