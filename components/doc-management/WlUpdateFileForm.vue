@@ -56,7 +56,7 @@
           ico="ico-check"
           :title="$t('doc-management.classify-doc.butt-accept')"
           :disable="isLoading"
-          @click="classify"
+          @click="showConfirmationDialog"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
         </wl-button>
@@ -66,6 +66,7 @@
           ico="ico-times"
           :title="$t('doc-management.classify-doc.butt-cancel')"
           :disable="isLoading"
+          @click="finish"
         >
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
@@ -75,20 +76,75 @@
         class="progress-line" 
       />
     </form>
+
+    <wl-modal
+        slot="controls"
+        v-if="showConfirm"
+        :title="$t('components.crud.title-confirm')"
+        @wlclose="closeConfirmationDialog"
+      >
+        <template slot="wl-content">
+          <div class="generic-box-vertical content-modal">
+            <div>{{ 'Estas seguro de que quieres cambiar el archivo del documento: ' }} "{{ id }}"?</div>
+          </div>
+          <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+            <wl-button 
+              class="green"
+              ico="ico-trash"             
+              @click.native="confirmReplacement"            
+            >
+              {{ $t('components.crud.butt-accept') }}
+            </wl-button>          
+            <wl-button 
+              ico="ico-times"
+              @click.native="closeConfirmationDialog"
+            >
+              {{ $t('components.crud.butt-cancel') }}
+            </wl-button>
+          </div>
+        </template>
+      </wl-modal>
+
+      <wl-modal
+        v-if="showSuccess"
+        slot="controls"
+        :title="$t('components.crud.title-info')"
+        @wlclose="finish"
+      >
+        <template slot="wl-content">
+          <div class="generic-box-vertical content-modal">
+            <div>{{ 'Se ha actualizado el archivo exitosamente!' }}</div>
+          </div>
+          <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+            <wl-button 
+              class="green"
+              ico="ico-trash"             
+              @click="finish"            
+            >
+              {{ $t('components.crud.butt-accept') }}
+            </wl-button>          
+          </div>
+        </template>
+      </wl-modal>
   </div>
 </template>
 
 <script>
 import WlButton from '~/components/WlButton.vue'
+import WlModal from '~/components/WlModal.vue'
 
 export default {
   components: {
     WlButton,
+    WlModal,
   },
   data() {
     return {
       file: null,
       isLoading: false,
+      showConfirm: false,
+      uploadPercentage: 0,
+      showSuccess: false,
     }
   },
   computed: {
@@ -97,6 +153,9 @@ export default {
     },
     fileFormatCorrect() {
       return this.file ? this.file.name.endsWith('pdf') : false
+    },
+    id() {
+      return this.$route.params.id
     },
     icon() {
       return this.fileFormatError
@@ -113,12 +172,46 @@ export default {
     handleFileToUpload(){
       this.file = this.$refs.file.files[0]
       const url = URL.createObjectURL(this.file)
-      this.$emit('fileurl', url)
     },
     handleDropFile(e) {
       this.file = e.dataTransfer.files[0]
       const url = URL.createObjectURL(this.file)
-      this.$emit('fileurl', url)
+    },
+    showConfirmationDialog(){
+      this.showConfirm = true
+    },
+    closeConfirmationDialog() {
+      this.showConfirm = false
+    },
+    confirmReplacement(){
+      this.showConfirm = false
+      this.file = this.$refs.file.files[0]
+      let formData = new FormData()
+      formData.append('files', this.file)
+      this.$axios.post(`/api/Document/file/${this.id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+          , onUploadProgress: progressEvent => {
+            this.uploadPercentage = Number.parseInt(
+              Math.round(progressEvent.loaded * 100) / progressEvent.total)
+          }
+        })
+        .then(_ => {
+          this.showSuccessDialog()
+        }) 
+        .catch(e => console.log('Error', e))
+    },
+    showSuccessDialog(){
+      this.showSuccess = true
+    },
+    hideSuccessDialog() {
+      this.showSuccess = false
+    },
+    finish(){
+      this.showConfirm = false
+      this.showSuccess = false
+      location.reload()
     },
   },
 }

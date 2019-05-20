@@ -138,7 +138,7 @@ export default {
       documentTypeId: null,
       annotationTypeId: null,
       isSubmit: false,
-      isLoading: true,
+      isLoading: false,
     }
   },
   asyncData(context) {
