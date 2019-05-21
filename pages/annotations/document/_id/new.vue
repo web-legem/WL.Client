@@ -87,7 +87,7 @@
           :disable="isLoading"
         />
       </fieldset>
-
+      <span class="fix-flex" />
       <div
         class="action-container"
       >

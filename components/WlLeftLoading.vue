@@ -29,7 +29,7 @@ export default {
   background: transparent;
   color: var(--wl_text);
   padding: calc(1em + .5vw);
-  z-index: 8888;
+  z-index: 1111;
 }
 
 .progress-container > div{

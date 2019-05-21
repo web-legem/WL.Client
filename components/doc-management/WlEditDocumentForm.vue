@@ -8,7 +8,7 @@
     </h1>
     <form
       name="form-new-annotation"
-      class="form"
+      class="form-left"
       data-vv-scope="form1"
       @submit.prevent
     >
@@ -116,6 +116,7 @@ import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
 import WlTextArea from '~/components/WlTextArea.vue'
+import WlLeftLoading from '~/components/WlLeftLoading.vue'
 
 export default {
   components: {
@@ -123,6 +124,7 @@ export default {
     WlSelect,
     WlButton,
     WlTextArea,
+    WlLeftLoading,
   },
   nuxtI18n: {
     paths: { es: 'nuevo', en: 'new' }
@@ -138,7 +140,7 @@ export default {
       documentTypeId: null,
       annotationTypeId: null,
       isSubmit: false,
-      isLoading: false,
+      isLoading: true,
     }
   },
   asyncData(context) {

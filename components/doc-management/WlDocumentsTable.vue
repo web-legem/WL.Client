@@ -1,6 +1,9 @@
 <template>
   <div class="documents-table">
-    <table class="table">
+    <table 
+      class="table"
+      :class="documentLoading ? 'loading' : '' "
+    >
       <thead>
         <wl-table-order-controls />
       </thead>
@@ -28,7 +31,12 @@
           </tr>
         </template>
       </tbody>
+      <wl-left-loading 
+        v-if="documentLoading" 
+        label="Procesando el documento..."
+      />
     </table>
+    
     <div class="table-paginator">
       <input
         id="file"
@@ -39,7 +47,7 @@
         @change="handleFileToUpload"
       >
       <wl-table-page-controls class="bottom-pager" />
-    </div>
+    </div>      
   </div>
 </template>
 
@@ -49,18 +57,21 @@ import WlTableOrderControls from '~/components/WlTableOrderControls.vue'
 import { mapActions, mapGetters, mapState, mapMutations} from 'vuex'
 import {removeLangExtension} from '~/helpers/routeManipulation'
 import WlTablePageControls from '~/components/WlTablePageControls.vue'
+import WlLeftLoading from '~/components/WlLeftLoading.vue'
 
 export default {
   components: {
     WlButton,
     WlTableOrderControls,
     WlTablePageControls,
+    WlLeftLoading,
   },
   data() {
     return {
       file: '',
       uploadPercentage: 0,
       documentToUpdate: 0,
+      documentLoading: false,
     }
   },
   computed: {
@@ -124,6 +135,7 @@ export default {
       let formData = new FormData()
       formData.append('files', this.file)
       if(this.documentToUpdate > 0){
+        this.documentLoading = true;
         this.$axios.post(`/api/Document/file/${this.documentToUpdate}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -134,10 +146,11 @@ export default {
           }
         })
         .then(_ => {
-          location.reload()
+          this.documentLoading = false;
+          location.reload();
         }) 
-        // todo - gestionar error en la carga del documento
-        .catch(e => console.log('Error', e))
+        // todo - gestionar error en la carga del documento        
+        .catch(e => {this.documentLoading = false;console.log('Error', e)})
       }
     },
     getEntityName(document){
@@ -212,6 +225,18 @@ thead {
   width: 100%;
   border: 1px solid var(--wl_gray_light);
   border-collapse: collapse;
+  position: relative;
+}
+
+.table.loading::after{
+  content: '';
+  position: absolute;
+  background: var(--wl_form_sha1);
+  color: var(--wl_text);
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .table-paginator {
