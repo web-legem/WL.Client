@@ -12,7 +12,7 @@
         {{ $t('search.search-result.a-del') }} {{ document.publicationDate | date($store.state.i18n.locale, 'YYYY') }}
       </nuxt-link>
       <span 
-        v-if="index && (index == 1 || index == 3)" 
+        v-if="document.isAnnotated" 
         class="anotated"
       >
         <span class="ico ico-bookmark" />
@@ -64,11 +64,6 @@ export default {
       type: String,
       default: 'search-id'
     },
-    index: {
-      type: Number,
-      required: false,
-      default: null,
-    }
   },
   computed: {
     ...mapGetters('search', {
