@@ -566,7 +566,7 @@ button::-moz-focus-inner {
 .container-form-left.loading::after{
   content: '';
   position: absolute;
-  background: rgba(0, 0, 0, 0.3);
+  background:  var(--wl_form_sha1);
   color: var(--wl_text);
   top:0;
   left: 0;
