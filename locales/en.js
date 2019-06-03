@@ -1,6 +1,10 @@
 export default {
   'home': 'Home',
   'changeTheme': 'Change Theme',
+  'documentUploadSuccess': 'The document has been upload successfuly',
+  'uploadNewDocument': 'Upload another document?',
+  'viewDocument': 'View document?',
+  'wantToSendNotification': 'Do you want to send notificatioon email to interested parties?',
 
   'normalMode': 'Normal mode',
   'highContrastMode': 'High contrast mode',

@@ -1,12 +1,12 @@
 <template>
   <div class="annotations">
-    <wl-suggestion-group
+    <!-- <wl-suggestion-group
       v-if="suggestions.length > 0"
       :annotations="suggestions"
       icon="ico-lightbulb-o"
       title="Anotaciones sugeridas"
       @show-annotation="select($event)"
-    />
+    /> -->
     <wl-annotation-group
       v-if="inAnnotations.length > 0"
       :annotations="inAnnotations"
@@ -28,12 +28,12 @@
 
 <script>
 import WlAnnotationGroup from '~/components/annotations/WlAnnotationGroup.vue'
-import WlSuggestionGroup from '~/components/annotations/WlSuggestionGroup.vue'
+// import WlSuggestionGroup from '~/components/annotations/WlSuggestionGroup.vue'
 
 export default {
   components: {
     WlAnnotationGroup,
-    WlSuggestionGroup,
+    // WlSuggestionGroup,
   },
   props: {
     documentId: {
