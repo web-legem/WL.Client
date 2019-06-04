@@ -79,6 +79,6 @@ module.exports = {
   },
   proxy: {
     // '/api/': 'http://localhost:5000/'
-    '/api/': 'http://192.168.0.6:54037/'
+    '/api/': 'http://localhost:54037/'
   }
 }
