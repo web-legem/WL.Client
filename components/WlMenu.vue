@@ -8,7 +8,6 @@
       class="btn-menu"
       mq="md-"
       @click="toggleMenuPanel"
-      @focusout="hideMenuPanel"
     >
       <span
         :class="[ showMenu ? 'ico2-cross' : 'ico-bars' ]"
@@ -22,7 +21,7 @@
     >
       <wl-cinta-logo v-if="showBorder && showSsr" />
     </transition>
-
+      
     <nav
       v-if="$mq !== 'sm' || showMenu"
       :class="{ small: $mq == 'sm' }"
@@ -103,7 +102,7 @@
         <!-- Usuario--------------------------------------- -->        
         <no-ssr>
           <li
-            v-if="loogedIn != undefined && loogedIn == true"          
+            v-if="loogedIn != undefined && loogedIn == true"                      
             ref="userContainer"
             :class="{small: $mq == 'sm'}"
             @focusout="checkIfFocusLostUser($event)"
@@ -163,7 +162,7 @@
       <span class="ico ico2-accessibility" />
       <span class="hide-text">{{ $t('accessibilityOptions') }}</span>
     </button> 
-    <transition name="slide-fade-vertical">
+    <transition name="slide-fade-verticald">
       <wl-a11y-controls
         v-show="$store.state.showA11yPanel"
       />

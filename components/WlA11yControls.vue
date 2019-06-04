@@ -159,6 +159,11 @@ export default {
   transition-duration: .4s;
 }
 
+.btn-a11y:focus{
+  outline: #FF0D99 dotted 2px;
+}
+
+
 .btn-ally:hover {
   cursor: pointer;
 }
