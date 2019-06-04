@@ -5,6 +5,7 @@ export default {
   'uploadNewDocument': 'Upload another document?',
   'viewDocument': 'View document?',
   'wantToSendNotification': 'Do you want to send notificatioon email to interested parties?',
+  'documentHasNoAnotations': 'Document has no anotations.',
 
   'normalMode': 'Normal mode',
   'highContrastMode': 'High contrast mode',
