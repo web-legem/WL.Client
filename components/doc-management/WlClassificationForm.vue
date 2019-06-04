@@ -126,6 +126,32 @@
         label="Procesando el documento..."
       />           
     </form>
+
+    <wl-modal
+      v-if="showDialog"
+      :title="$t('components.crud.title-confirm')"
+      @wlclose="closeDialog"
+    >
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          <div>{{ $t('documentUploadSuccess') }}</div>
+        </div>
+        <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+          <wl-button 
+            ico="ico-arrow-left"
+            @click.native="viewDocument"
+          >
+            {{ $t('viewDocument') }}
+          </wl-button>
+          <wl-button 
+            ico="ico-arrow-left"
+            @click.native="closeDialog"
+          >
+            {{ $t('uploadNewDocument') }}
+          </wl-button>
+        </div>
+      </template>
+    </wl-modal>
   </div>
 </template>
 
@@ -136,6 +162,7 @@ import WlInput from '~/components/WlInput.vue'
 import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
 import WlLeftLoading from '~/components/WlLeftLoading.vue'
+import WlModal from '~/components/WlModal.vue'
 // import WlChips from '~/components/WlChips.vue'
 
 export default {
@@ -145,6 +172,7 @@ export default {
     WlButton,
     WlButton,
     WlLeftLoading,
+    WlModal,
     // WlChips,
   },
   validate({ params }) {
@@ -167,6 +195,7 @@ export default {
       error: null,
       tags: ['test'],
       isLoading: false,
+      showDialog: false,
     }
   },
   computed: {
@@ -232,7 +261,12 @@ export default {
                   Math.round(progressEvent.loaded * 100) / progressEvent.total)
               }
             })
-          .then(x=>{console.log(x); this.isLoading = false;this.clear()})
+          .then(x=>{
+             console.log(x)
+             this.isLoading = false
+             this.showDialog = true
+             this.createdDocumentId = x.data.id
+          })
           .catch(x=>{console.log(x); this.isLoading = false;this.clear()})
           }
         }
@@ -241,6 +275,15 @@ export default {
     },
     clear(){
       location.reload()
+    },
+    closeDialog() {
+      this.clear()
+    },
+    viewDocument(){
+      this.$router.push(this.localePath({
+        name: 'search-id', 
+        params: { id: this.createdDocumentId }
+      }))
     },
     handleFileToUpload(e){
       let fileInput = this.$refs.file
@@ -358,4 +401,13 @@ input[type="file"] {
   display: block;
 }
 
+.content-modal{  
+  padding: 10px;  
+  margin-bottom: -10px;
+}
+
+.content-modal-buttons{
+  padding: 10px;  
+  margin-top: 10px;
+}
 </style>

@@ -6,6 +6,7 @@
     <form 
       name="form-send-email-to"
       class="form-left"
+      :class="isLoading ? 'loading' : '' "
       data-vv-scope="form1"
       @submit.prevent
     >
@@ -48,7 +49,7 @@
           ico="ico-check"
           :title="$t('doc-management.classify-doc.butt-accept')"
           :disable="isLoading"
-          @click="showConfirmDialog"
+          @click="sendNotifications"
         >
           {{ $t('doc-management.classify-doc.butt-accept') }}        
         </wl-button>
@@ -63,6 +64,10 @@
           {{ $t('doc-management.classify-doc.butt-cancel') }}
         </wl-button>
       </div>
+      <wl-left-loading 
+        v-if="isLoading" 
+        label="Enviando notificaciones"
+      />           
     </form>
 
     <wl-modal
@@ -91,12 +96,14 @@
 import WlSwitchButton from '~/components/WlSwitchButton.vue'
 import WlButton from '~/components/WlButton.vue'
 import WlModal from '~/components/WlModal.vue'
+import WlLeftLoading from '~/components/WlLeftLoading.vue'
 
 export default {
   components: {
     WlSwitchButton,
     WlButton,
     WlModal,
+    WlLeftLoading,
   },
   props: {
     entities: {
@@ -133,11 +140,30 @@ export default {
     }
   },
   methods: {
+    sendNotifications(){
+      this.isLoading = true
+      this.$axios.post("/api/Document/notify", {
+        documentId: this.documentId,
+        recipientEntitiesIds: this.entitiesChecks
+          .filter(ec => ec.check )
+          .map(ec => ec.entity.id)
+      })
+      .then(res => {
+        this.showConfirmDialog()
+        this.isLoading = false
+      })
+      .catch(e => {
+        console.log(e)
+        this.showConfirmDialog()
+        this.isLoading = false
+      })
+    },
     showConfirmDialog(){
       this.showDialog = true
     },
     closeDialog() {
       this.showDialog = false
+      this.$router.go(-1);
     },
     notify() {
       this.$emit('notify', this.entitiesChecks

@@ -1,6 +1,11 @@
 export default {
   'home': 'Inicio',
   'changeTheme': 'Cambiar Tema',
+  'documentUploadSuccess': 'El documento ha sido cargado con éxito',
+  'uploadNewDocument': '¿Cargar otro documento?',
+  'viewDocument': '¿Ver el documento?',
+  'wantToSendNotification': '¿Deseas enviar notificaciones?',
+  'documentHasNoAnotations': 'El documento no tiene anotaciones',
 
   'normalMode': 'Modo normal',
   'highContrastMode': 'Modo alto contraste',

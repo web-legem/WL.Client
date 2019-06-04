@@ -27,9 +27,21 @@
     </wl-document-controls>
     <div class="annotation-list">
       <wl-annotation-list 
+        v-if="formatedAnnotations.length > 0"
         :document-id="document.id"
         :annotations="formatedAnnotations"
       />
+      <wl-error-message
+        v-if="formatedAnnotations.length == 0"
+        icon="escudo-udenar"
+        class="error"
+      >
+        <div 
+          class="instructions"
+        >
+          {{ $t('documentHasNoAnotations') }}
+        </div>
+      </wl-error-message>
     </div>
   </div>
 </template>
@@ -37,11 +49,13 @@
 <script>
 import WlDocumentControls from '~/components/search/WlDocumentControls.vue'
 import WlAnnotationList from '~/components/search/WlAnnotationList.vue'
+import WlErrorMessage from '~/components/WlErrorMessage.vue'
 
 export default {
   components: {
     WlDocumentControls,
     WlAnnotationList,
+    WlErrorMessage,
   },
   props: {
     document: {
@@ -130,4 +144,15 @@ export default {
   display: none;
 }
 
+.instructions {
+  margin-top: .4em;
+  padding: .4em .1em;
+  max-width: 400px;
+  text-align: center;
+}
+
+.error {
+  margin-top: 32px;
+  height: 400px;
+}
 </style>
