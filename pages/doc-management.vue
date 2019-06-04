@@ -7,12 +7,12 @@
       >
         {{ $t('doc-management.upload-doc.wl-upload-doc') }}        
       </wl-tab>
-      <wl-tab
+      <!-- <wl-tab
         :to="localePath({ name: 'doc-management-document' })"
         icon="ico-files-o"
       >
         {{ $t('doc-management.document.edit-document') }}
-      </wl-tab>
+      </wl-tab> -->
       <wl-tab
         :to="localePath({ name: 'doc-management-pending-docs' })"
         icon="ico-files-o"

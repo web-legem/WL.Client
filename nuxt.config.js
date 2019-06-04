@@ -28,7 +28,7 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-      // if(isDev) config.devtool = "#sourcemap"
+      if(isDev) config.devtool = isClient ? 'source-map' : 'inline-source-map'
     },
   },
   plugins: [
@@ -78,7 +78,12 @@ module.exports = {
     proxy: true
   },
   proxy: {
+<<<<<<< HEAD
     // '/api/': 'http://localhost:5000/'
     '/api/': 'http://localhost:54037/'
+=======
+    '/api/': 'http://localhost:5000/'
+    // '/api/': 'http://192.168.0.6:54037/'
+>>>>>>> 9e4552147bc030122277dea60c7130b4ee62cf56
   }
 }
