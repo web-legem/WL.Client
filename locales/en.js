@@ -311,7 +311,7 @@ export default {
     'co-search': {
       'search': 'Searching ...',
       'instructions': 'Use the search field to find documents.',
-      'not-found': 'Not Found',
+      'not-found': 'No results found',
       'network-error': 'Network Error',
     },
     'search-bar': {
