@@ -96,6 +96,20 @@
               :is-submit="isSubmit"
             />
           </div>
+          <div>              
+            <wl-select
+              v-model="permId"
+              :name="'form1.select2'"
+              :list="perms"
+              :title="$t('persons.users-s.title-perm')"
+              value-prop-name="id"
+              label-prop-name="name"
+              :validate="{required:false}"
+              :is-submit="isSubmit"
+            />
+          </div>
+        </div>
+        <div class="box_duo_input"> 
           <div>
             <wl-switch-button 
               :id="'chk1'"               
@@ -105,7 +119,8 @@
               :label=" $t('persons.users-s.label-active')"
             />
           </div>
-        </div>
+          <div />
+        </div>  
       </template>
     </wl-crud> 
   </div>
@@ -139,6 +154,7 @@ export default {
       email: "",
       state: true,
       roleId: "",
+      permId: "",
       file: null,
       loadingPhoto: true,  
       photoUrl: '', 
@@ -148,6 +164,7 @@ export default {
       showTrash: false,
       isSubmit: false,
       roles: {},
+      perms: {},
     };
   },
   computed: {
@@ -156,11 +173,15 @@ export default {
       loading: "loading",
     })
   },
-  asyncData(context) {
-    return context.app.$axios
-      .get("/api/Role")
-      .then(response => {return {roles:response.data}})
-      .catch(e => console.log(e));
+  async asyncData(context) {
+    let[res1, res2] = await Promise.all([
+      context.app.$axios.get("/api/Role"),
+      context.app.$axios.get("/api/Entity"),
+    ])
+    return{
+      roles: res1.data,
+      entities: res2.data,
+    }
   },
   created() {
     this.isCreating();

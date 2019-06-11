@@ -114,6 +114,23 @@
             />
           </div>
           <div>
+            <wl-select
+              v-if="objSelected"
+              :id="'select2'"
+              v-model="entityId"
+              :name="'form1.select2'"
+              :disable="!isEdit"
+              :list="entities"
+              :title="$t('persons.users-s.title-perm')"
+              value-prop-name="id"
+              label-prop-name="name"
+              :validate="{required:false}"
+              :is-submit="isSubmit"
+            />
+          </div>          
+        </div>
+        <div class="box_duo_input">     
+          <div>
             <wl-switch-button 
               v-if="objSelected"    
               :id="'chk1'"           
@@ -124,9 +141,7 @@
               :title=" $t('persons.users-s.title-state-user')"
               :label=" $t('persons.users-s.label-active')"
             />
-          </div>
-        </div>
-        <div class="box_duo_input">            
+          </div>       
           <div>
             <wl-switch-button 
               v-if="objSelected"         
@@ -139,7 +154,6 @@
               :label=" $t('persons.users-s.label-restore-password')"
             />
           </div>
-          <div />
         </div>
       </template>
     </wl-crud>    
@@ -226,17 +240,30 @@ export default {
       },
       set(value) {this.changeRoleId(value)}
     },
+    entityId: {
+      get() {
+        if(this.objSelected){
+          return this.objSelected.entityId ? this.objSelected.entityId.toString() : ""
+        }
+        return ""
+      },
+      set(value) {this.changeEntityId(value)}
+    },
   },
   watch: {
     $route() {
       this.select(this.$route.params.id).then(this.getPhoto)
     },
   },
-  asyncData(context) {
-    return context.app.$axios
-      .get("/api/Role")
-      .then(response => ({ roles: response.data }))
-      .catch(e => console.log(e));
+  async asyncData(context) {
+    let[res1, res2] = await Promise.all([
+      context.app.$axios.get("/api/Role"),
+      context.app.$axios.get("/api/Entity"),
+    ])
+    return{
+      roles: res1.data,
+      entities: res2.data,
+    }
   },
   mounted() {
     this.select(this.$route.params.id).then(this.getPhoto);
@@ -314,6 +341,7 @@ export default {
       "changePassword",
       "changeState",
       "changeRoleId",
+      "changeEntityId",
     ])
   },
 }

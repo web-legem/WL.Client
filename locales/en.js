@@ -155,6 +155,7 @@ export default {
       'title-state-user': 'User state',
       'label-active': 'Active',
       'label-restore-password': 'Restore password',
+      'title-perm': 'Entity permission',
     },
   },
 

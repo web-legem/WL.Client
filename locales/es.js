@@ -155,6 +155,7 @@ export default {
       'title-state-user': 'Estado usuario',
       'label-active': 'Activo',
       'label-restore-password': 'Restablecer contraseña',
+      'title-perm': 'Permiso de entidad',
     },
   },
 

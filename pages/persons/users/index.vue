@@ -65,6 +65,19 @@
               label-prop-name="name"
             />
           </div>
+          <div>              
+            <wl-select
+              v-model="permEntityId"          
+              :name="'form1.select2'"
+              :list="emptyList"
+              :disable="true"
+              :title="$t('persons.users-s.title-perm')"
+              value-prop-name="id"
+              label-prop-name="name"
+            />
+          </div>
+        </div>
+        <div class="box_duo_input"> 
           <div>
             <wl-switch-button 
               :id="'chk1'"               
@@ -74,6 +87,7 @@
               :label=" $t('persons.users-s.label-active')"
             />
           </div>
+          <div />
         </div>
       </template>
     </wl-crud> 
@@ -98,7 +112,8 @@ export default {
   data() {
     return {
       emptyList : [{id:"",name:"Seleccione un elemento"}],
-      entityTypeId: ""
+      entityTypeId: "",
+      permEntityId: ""
     }
   },
 }
