@@ -1,6 +1,13 @@
 <template>
   <div class="document-controls">
     <div class="first-line">
+      <button
+        class="go_back" 
+        :title="$t('search.go-back')"
+        @click="$router.back()"      
+      >
+        <span class=" ico-arrow-left" />
+      </button>
       <h1 class="document-header">
         {{ documentTitle }} 
       </h1>
@@ -16,7 +23,7 @@ export default {
       type: String,
       required: true,
     },
-  },
+  }
 }
 </script>
 
@@ -49,6 +56,23 @@ export default {
   display: flex;
   flex-direction: row;
   align-content: center;
+}
+
+.go_back{
+  font-size: 1.3em;
+  background: var(--wl_gray_light);
+  color: var(--wl_primary);
+  height: 100%;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.go_back:hover{
+  background: var(--wl_primary);
+  color: var(--wl_btn_content);
 }
 
 /* fin botonera controls left */
