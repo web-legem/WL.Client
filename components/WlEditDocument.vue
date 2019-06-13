@@ -36,8 +36,8 @@
       </a>
 
       <wl-modal
-        slot="controls"
         v-if="showDialog"
+        slot="controls"
         :title="$t('components.crud.title-confirm')"
         @wlclose="closeModal"
       >

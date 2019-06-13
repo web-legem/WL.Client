@@ -202,6 +202,7 @@ export default {
           email: this.email,
           roleId: this.roleId,
           state: this.state ? 'active' : 'inactive',
+          entityId: this.permId
         };
       
       this.$validator.validate('form1.*').then(valid => {

@@ -12,7 +12,6 @@
       class="details"
     >
       <wl-documents-table />
-        
     </div>
   </wl-master-detail-layout>
 </template>
@@ -59,6 +58,12 @@ export default {
       this.search({...this.$route.query})
     },
   },
+  fetch({store, params, query}) {
+    return Promise.all([
+      store.dispatch('table/loadFilterData'),
+      store.dispatch('table/search', { ...query })
+    ])
+  },
   mounted() {
     if(this.hasAnyResults && !this.hasResults) {
       this.navigateTo({...this.$route.query, page: 1})
@@ -78,13 +83,7 @@ export default {
         query
       }))
     },
- },
-  fetch({store, params, query}) {
-    return Promise.all([
-      store.dispatch('table/loadFilterData'),
-      store.dispatch('table/search', { ...query })
-    ])
-  }
+  },
 }
 </script>
 

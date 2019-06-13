@@ -33,10 +33,10 @@
         class="modules"
       >
         <li 
+          v-if="existCredential"
           ref="submodulesContainer"
           :class="{small: $mq == 'sm'}"
           @focusout="checkIfFocusLost($event)"
-          v-if="existCredential"
         >
           <button
             :class="{small: $mq == 'sm'}"
@@ -62,10 +62,10 @@
               :key="index"
             >
               <nuxt-link
+                v-if="module.show"
                 :to="localePath({ name: module.link })"
                 class="sub-module"
                 @click.native="hideSubModulesPanel()"
-                v-if="module.show"
               >
                 <div> 
                   <span

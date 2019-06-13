@@ -15,10 +15,26 @@
             class="row"
             :class="[ getRowClass(index) ]"
           >
-            <td class="td"><span class="cell">{{ getDocumentTypeName(document)}}</span></td>
-            <td class="td"><span class="cell">{{ getEntityName(document) }}</span></td>
-            <td class="td"><span class="cell-number number">{{ document.number }}</span></td>
-            <td class="td"><span class="cell-number number">{{ document.publicationYear }}</span></td>
+            <td class="td">
+              <span class="cell">
+                {{ getDocumentTypeName(document) }}
+              </span>
+            </td>
+            <td class="td">
+              <span class="cell">
+                {{ getEntityName(document) }}
+              </span>
+            </td>
+            <td class="td">
+              <span class="cell-number number">
+                {{ document.number }}
+              </span>
+            </td>
+            <td class="td">
+              <span class="cell-number number">
+                {{ document.publicationYear }}
+              </span>
+            </td>
             <td class="td-small">
               <wl-button
                 :only-icon="true"
