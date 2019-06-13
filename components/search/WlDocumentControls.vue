@@ -65,9 +65,10 @@ export default {
   height: 100%;
   width: 35px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
-  flex-direction: column;
+  align-items: center;
 }
 
 .go_back:hover{
