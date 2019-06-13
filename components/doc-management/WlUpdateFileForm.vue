@@ -78,54 +78,54 @@
     </form>
 
     <wl-modal
-        slot="controls"
-        v-if="showConfirm"
-        :title="$t('components.crud.title-confirm')"
-        @wlclose="closeConfirmationDialog"
-      >
-        <template slot="wl-content">
-          <div class="generic-box-vertical content-modal">
-            <div>{{ 'Estas seguro de que quieres cambiar el archivo del documento: ' }} "{{ id }}"?</div>
-          </div>
-          <div class="modal-confirmacion confirm-dialog content-modal-buttons">
-            <wl-button 
-              class="green"
-              ico="ico-trash"             
-              @click.native="confirmReplacement"            
-            >
-              {{ $t('components.crud.butt-accept') }}
-            </wl-button>          
-            <wl-button 
-              ico="ico-times"
-              @click.native="closeConfirmationDialog"
-            >
-              {{ $t('components.crud.butt-cancel') }}
-            </wl-button>
-          </div>
-        </template>
-      </wl-modal>
+      v-if="showConfirm"
+      slot="controls"
+      :title="$t('components.crud.title-confirm')"
+      @wlclose="closeConfirmationDialog"
+    >
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          <div>{{ 'Estas seguro de que quieres cambiar el archivo del documento: ' }} "{{ id }}"?</div>
+        </div>
+        <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+          <wl-button 
+            class="green"
+            ico="ico-trash"             
+            @click.native="confirmReplacement"            
+          >
+            {{ $t('components.crud.butt-accept') }}
+          </wl-button>          
+          <wl-button 
+            ico="ico-times"
+            @click.native="closeConfirmationDialog"
+          >
+            {{ $t('components.crud.butt-cancel') }}
+          </wl-button>
+        </div>
+      </template>
+    </wl-modal>
 
-      <wl-modal
-        v-if="showSuccess"
-        slot="controls"
-        :title="$t('components.crud.title-info')"
-        @wlclose="finish"
-      >
-        <template slot="wl-content">
-          <div class="generic-box-vertical content-modal">
-            <div>{{ 'Se ha actualizado el archivo exitosamente!' }}</div>
-          </div>
-          <div class="modal-confirmacion confirm-dialog content-modal-buttons">
-            <wl-button 
-              class="green"
-              ico="ico-trash"             
-              @click="finish"            
-            >
-              {{ $t('components.crud.butt-accept') }}
-            </wl-button>          
-          </div>
-        </template>
-      </wl-modal>
+    <wl-modal
+      v-if="showSuccess"
+      slot="controls"
+      :title="$t('components.crud.title-info')"
+      @wlclose="finish"
+    >
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          <div>{{ 'Se ha actualizado el archivo exitosamente!' }}</div>
+        </div>
+        <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+          <wl-button 
+            class="green"
+            ico="ico-trash"             
+            @click="finish"            
+          >
+            {{ $t('components.crud.butt-accept') }}
+          </wl-button>          
+        </div>
+      </template>
+    </wl-modal>
   </div>
 </template>
 
