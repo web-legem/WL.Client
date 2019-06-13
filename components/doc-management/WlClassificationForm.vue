@@ -138,13 +138,13 @@
         </div>
         <div class="modal-confirmacion confirm-dialog content-modal-buttons">
           <wl-button 
-            ico="ico-arrow-left"
+            ico="ico-file-text-o"
             @click.native="viewDocument"
           >
             {{ $t('viewDocument') }}
           </wl-button>
           <wl-button 
-            ico="ico-arrow-left"
+            ico="ico-upload"
             @click.native="closeDialog"
           >
             {{ $t('uploadNewDocument') }}

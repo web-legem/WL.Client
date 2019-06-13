@@ -2,8 +2,8 @@ export default {
   'home': 'Inicio',
   'changeTheme': 'Cambiar Tema',
   'documentUploadSuccess': 'El documento ha sido cargado con éxito',
-  'uploadNewDocument': '¿Cargar otro documento?',
-  'viewDocument': '¿Ver el documento?',
+  'uploadNewDocument': 'Cargar otro documento',
+  'viewDocument': 'Ver documento',
   'wantToSendNotification': '¿Deseas enviar notificaciones?',
   'documentHasNoAnotations': 'El documento no tiene anotaciones',
 
@@ -338,7 +338,7 @@ export default {
       'label-year-publ': 'Año de publicación',
       'placeholder' : 'Ej: 2010',
     },
-
+    'go-back':'Regresar',
   },
   
   'annotations': {

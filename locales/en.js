@@ -2,8 +2,8 @@ export default {
   'home': 'Home',
   'changeTheme': 'Change Theme',
   'documentUploadSuccess': 'The document has been upload successfuly',
-  'uploadNewDocument': 'Upload another document?',
-  'viewDocument': 'View document?',
+  'uploadNewDocument': 'Upload another document',
+  'viewDocument': 'View document',
   'wantToSendNotification': 'Do you want to send notificatioon email to interested parties?',
   'documentHasNoAnotations': 'Document has no anotations.',
 
@@ -338,7 +338,7 @@ export default {
       'label-year-publ': 'Publication year',
       'placeholder' : 'E.g. 2010',
     },
-
+    'go-back':'Go back',
   },
   
   'annotations': {
