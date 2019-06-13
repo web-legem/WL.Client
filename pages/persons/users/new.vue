@@ -177,10 +177,12 @@ export default {
     let[res1, res2] = await Promise.all([
       context.app.$axios.get("/api/Role"),
       context.app.$axios.get("/api/Entity"),
-    ])
+    ]);
+    let entities = res2.data;
+    entities.unshift({id:"",name:"SIN RESTRICCIÓN"});
     return{
       roles: res1.data,
-      entities: res2.data,
+      entities,
     }
   },
   created() {
