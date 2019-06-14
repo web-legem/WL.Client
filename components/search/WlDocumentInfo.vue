@@ -140,10 +140,6 @@ export default {
   overflow-y: auto;
 }
 
-.hiden {
-  display: none;
-}
-
 .instructions {
   margin-top: .4em;
   padding: .4em .1em;

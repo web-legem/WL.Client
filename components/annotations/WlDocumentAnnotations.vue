@@ -25,11 +25,12 @@
         </a>
       </div>
     </wl-document-controls>
-    <wl-annotations
-      class="document-annotations"
-      :document-id="document.id"
-      :annotations="formatedAnnotations"
-    />
+    <div class="document-annotations"> 
+      <wl-annotations        
+        :document-id="document.id"
+        :annotations="formatedAnnotations"
+      />
+    </div>
   </div>
 </template>
 
@@ -117,12 +118,11 @@ export default {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .document-annotations {
-  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 </style>

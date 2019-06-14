@@ -491,11 +491,11 @@ button.module.small {
   position: absolute;
 }
 
-.sub-modules.small {
-  position: unset;
-  display: flex;
-  position: inherit;
-}
+// .sub-modules.small {
+//   position: unset;
+//   display: flex;
+//   position: inherit;
+// }
 
 .sub-module {
   display: flex;
