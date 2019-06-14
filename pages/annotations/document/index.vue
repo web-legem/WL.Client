@@ -13,11 +13,15 @@ export default {
     WlSearch
   },
   fetch({store, params, query}) {
-    store.commit('search/clear')
-    store.commit('search/changeUrl', '/api/Annotation/search')
-    return Promise.all([
-      store.dispatch('search/loadFilterData'),
-    ])
+    // let prom = store
+    // .dispatch('search/changeUrl', '/api/Annotation/search')
+    // .then(() => {
+    //   store.dispatch('search/loadFilterData')
+    // });
+    
+    // return Promise.all([
+    //   prom
+    // ])
   },
   beforeRouteLeave (to, from, next) {
     this.clear()

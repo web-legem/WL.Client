@@ -13,6 +13,7 @@ export default {
     }
   },
   fetch({store, params, query}) {
+    store.dispatch('search/changeUrl', '/api/Annotation/search')
     return Promise.all([
       store.dispatch('search/loadFilterData'),
       store.dispatch('search/search', { ...query })
