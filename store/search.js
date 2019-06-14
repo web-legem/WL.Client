@@ -11,6 +11,7 @@ export const state = () => ({
   loadingTotalCount: false,
   totalCount: 0,
   totalCountError: null,
+  url: '/api/Search',
 })
 
 export const getters = {
@@ -75,8 +76,10 @@ export const mutations = {
     state.loadingTotalCount = false
   },
   clear(currState) {
-    console.log('clear in search.js')
     Object.assign(currState, state())
+  },
+  changeUrl(currState, url){
+    currState.url = url
   }
 }
 
@@ -92,17 +95,17 @@ export const actions = {
         documentTypes: results[1].data })
     }).catch(e => commit('loadingFailure', e))
   },
-  search({commit}, query) {
+  search({commit, state}, query) {
     commit('loadSearch')
     commit('loadTotalCount')
     return Promise.all([
-      this.$axios.get('/api/Search', {
+      this.$axios.get(state.url, {
         params: {
           ...query,
           pageSize: 5, // TODO - ajustar el tamaño de pagina a 20 o un numero adecuado, o analizar si debe ser configurable
         },
       }),
-      this.$axios.get('/api/Search/count', {
+      this.$axios.get(state.url + '/count', {
         params: { ...query }
       })
     ]).then( response => {
@@ -113,5 +116,8 @@ export const actions = {
       commit('searchFailure', e)
       commit('totalCountFailure', e)
     });
+  },
+  changeUrl({commit}, url){
+    commit('changeUrl', url)
   },
 }

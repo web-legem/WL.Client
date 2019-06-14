@@ -13,6 +13,8 @@ export default {
     WlSearch
   },
   fetch({store, params, query}) {
+    store.commit('search/clear')
+    store.commit('search/changeUrl', '/api/Annotation/search')
     return Promise.all([
       store.dispatch('search/loadFilterData'),
     ])
@@ -24,7 +26,7 @@ export default {
   methods: {
     ...mapMutations('search', {
       clear: 'clear'
-    })
+    }),
   }
 }
 </script>
