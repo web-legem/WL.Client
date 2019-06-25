@@ -545,6 +545,11 @@ button::-moz-focus-inner {
 
 /* fin progress bar inderteminado */
 
+.left-form-title-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .left-form-title {
   background: var(--wl_tab_text);
   color: var(--wl_btn_content);
@@ -552,6 +557,7 @@ button::-moz-focus-inner {
   padding-left: 20px;
   font-size: 1rem;
   pointer-events: none;
+  flex-grow: 1;
 }
 
 .container-form-left{

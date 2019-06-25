@@ -9,11 +9,17 @@ export default function errorHandler(ex) {
   }
   let error = new Error();
 
-  if (ex.response) {
+  if (ex.response) {    
     if (ex.response.data) {
-
       error.name = exception.oracle;
-      error.message = oracle(ex.response.data);
+      if(ex.response.status == 400){
+        error.message = oracle(ex.response.data);
+      }else{
+        if(ex.extra){
+          ex.response.data.extra = ex.extra
+        }
+        error.message = oracle(ex.response.data);
+      }
       return error;
     } else {
       const code = parseInt(ex.response && ex.response.status)

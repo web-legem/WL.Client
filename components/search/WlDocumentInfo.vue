@@ -8,6 +8,7 @@
         class="controls"
       >
         <nuxt-link
+          v-if="can('createDocuments')"
           class="ico_cl" 
           :title="$t('search.search-result.notify')"
           :to="localePath({name: 'search-id-notify'})" 
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
 import WlDocumentControls from '~/components/search/WlDocumentControls.vue'
 import WlAnnotationList from '~/components/search/WlAnnotationList.vue'
 import WlErrorMessage from '~/components/WlErrorMessage.vue'
@@ -89,7 +91,10 @@ export default {
         description: x.description,
         documentId: this.getDocumentId(x)
       }))
-    }
+    },
+    ...mapGetters("login/login", {      
+      credential: "credential",      
+    }), 
   },
   methods: {
     getDocumentTypeName(document) {
@@ -121,7 +126,15 @@ export default {
     },
     currentDocumeentIsDestinyIn(annotation){
       return annotation.to.id == this.document.id
-    }
+    },
+    can(perm){
+      if(this.credential && this.credential.permissions){
+        let perms = this.credential.permissions
+        let obj = perms.find(x => x.name === perm)
+        return obj ? obj.can : false;
+      }
+      return false;
+    },
   },
 }
 </script>

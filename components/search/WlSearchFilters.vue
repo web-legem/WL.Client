@@ -5,14 +5,14 @@
     </h1> 
     <div class="wl-search-filterss">
       <wl-select-filter
-        v-if="entities"
+        v-if="entities && showEntityFilter"
         id="id_entites"
         :list="entities"
         param="entityId"
         :label="$t('search.search-filters.label-entity')"
         value-prop-name="id"
         label-prop-name="name"
-      />
+      />      
       <wl-select-filter
         v-if="documentTypes"
         id="id_documents"
@@ -56,6 +56,9 @@ export default {
       entities: 'entities',
       documentTypes: 'documentTypes',
     }),
+    ...mapGetters("login/login", {
+      credential: "credential",      
+    }), 
     number() {
       return this.$route.query.number || ''
     },
@@ -80,6 +83,13 @@ export default {
     showNumberFilter() {
       return this.$route.query && this.$route.query.number > 0
     },
+    showEntityFilter(){
+      let containtSearch = this.$route.path.includes("search") ||  this.$route.path.includes("busqueda");
+      if(containtSearch){
+        return true;
+      }
+      return this.credential != null && !this.credential.entityId
+    }
   },
   methods: {
     unselectEntityId() {

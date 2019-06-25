@@ -71,6 +71,7 @@
         :is-submit="true"
       />
       <wl-select 
+        v-if="credential != null && !credential.entityId"
         v-model="entityId"
         name="form1.entity" 
         value-prop-name="id"
@@ -152,6 +153,25 @@
         </div>
       </template>
     </wl-modal>
+    <wl-modal
+      v-if="error != null"
+      :title="$t('components.crud.title-info')"
+      @wlclose="closeDialogFromError"
+    >
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          <div>{{ error.message }}</div>
+        </div>
+        <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+          <wl-button 
+            ico="ico-check"            
+            @click.native="closeDialogFromError"
+          >
+            {{ $t('components.crud.butt-accept') }}
+          </wl-button>
+        </div>
+      </template>
+    </wl-modal>
   </div>
 </template>
 
@@ -192,7 +212,6 @@ export default {
         .format('YYYY-MM-DD'),
       file: null,
       uploadPercentage: 0,
-      error: null,
       tags: ['test'],
       isLoading: false,
       showDialog: false,
@@ -200,8 +219,12 @@ export default {
   },
   computed: {
     ...mapGetters('doc-management/classify-document', {
-      isAlreadyClassified: 'isAlreadyClassified'
+      isAlreadyClassified: 'isAlreadyClassified',
+      error: 'error'
     }),
+    ...mapGetters("login/login", {
+      credential: "credential",      
+    }), 
     fileFormatError() {
       return this.file ? !this.file.name.endsWith('.pdf') : false
     },
@@ -229,7 +252,9 @@ export default {
   },
   methods: {
     ...mapActions('doc-management/classify-document', [
-      'loadData'
+      'loadData',
+      'throwError',
+      'clearError',
     ]),
     classify() {
       this.$validator.validate('form1.*').then(valid => {
@@ -244,7 +269,7 @@ export default {
           formData.append('files', this.file)
           const form = JSON.stringify({
             documentTypeId: this.documentTypeId,
-            entityId: this.entityId,
+            entityId: (this.credential.entityId ? this.credential.entityId : this.entityId),
             number: this.number,
             publicationDate: this.date
           });
@@ -262,12 +287,16 @@ export default {
               }
             })
           .then(x=>{
-             console.log(x)
              this.isLoading = false
              this.showDialog = true
              this.createdDocumentId = x.data.id
+             clearError()
           })
-          .catch(x=>{console.log(x); this.isLoading = false;this.clear()})
+          .catch(x=>{
+            this.isLoading = false;
+            this.throwError(x);  
+            throw x;
+          })
           }
         }
       })
@@ -276,9 +305,14 @@ export default {
     clear(){
       location.reload()
     },
-    closeDialog() {
+    closeDialog() {      
+      this.clearError()
       this.clear()
     },
+    closeDialogFromError() {
+      this.clearError()
+    },
+
     viewDocument(){
       this.$router.push(this.localePath({
         name: 'search-id', 

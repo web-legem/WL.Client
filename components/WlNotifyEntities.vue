@@ -1,8 +1,18 @@
 <template>
   <div class="container-form-left">    
-    <h1 class="left-form-title">
-      {{ $t('notify.title') }}
-    </h1>
+    <div class="left-form-title-container">
+      <div>
+        <wl-button
+          :only-icon="true"
+          :title="$t('search.go-back')"          
+          ico="ico-arrow-left"
+          @click.native="$router.back()"
+        />
+      </div>
+      <h1 class="left-form-title">
+        {{ $t('notify.title') }}
+      </h1>
+    </div>
     <form 
       name="form-send-email-to"
       class="form-left"

@@ -117,6 +117,26 @@
         label="Procesando..."
       />
     </form>
+
+    <wl-modal
+      v-if="error != null"
+      :title="$t('components.crud.title-info')"
+      @wlclose="closeDialog"
+    >
+      <template slot="wl-content">
+        <div class="generic-box-vertical content-modal">
+          <div>{{ error.message }}</div>
+        </div>
+        <div class="modal-confirmacion confirm-dialog content-modal-buttons">
+          <wl-button 
+            ico="ico-check"            
+            @click.native="closeDialog"
+          >
+            {{ $t('components.crud.butt-accept') }}
+          </wl-button>
+        </div>
+      </template>
+    </wl-modal>
   </div>
 </template>
 
@@ -128,6 +148,8 @@ import WlSelect from '~/components/WlSelect.vue'
 import WlButton from '~/components/WlButton.vue'
 import WlTextArea from '~/components/WlTextArea.vue'
 import WlLeftLoading from '~/components/WlLeftLoading.vue'
+import errorHandler from '~/helpers/errorHandler'
+import WlModal from '~/components/WlModal.vue'
 
 export default {
   components: {
@@ -136,6 +158,7 @@ export default {
     WlButton,
     WlTextArea,
     WlLeftLoading,
+    WlModal,
   },
   nuxtI18n: {
     paths: { es: 'nuevo', en: 'new' }
@@ -152,6 +175,7 @@ export default {
       annotationTypeId: null,
       isSubmit: false,
       isLoading: false,
+      error: null,
     }
   },
   asyncData(context) {
@@ -192,12 +216,15 @@ export default {
             this.$router.replace(this.localePath({ name: 'annotations-document-id'}))
             this.isLoading = false
           }).catch(e => {
-            console.log(e)
+            this.error = errorHandler(e);            
             this.isLoading = false
           });
         }
       })
-    }
+    },
+    closeDialog() {
+      this.error = null;
+    },
   }
 }
 </script>
@@ -225,5 +252,18 @@ export default {
 .fieldset {
   border: 1px solid var(--wl_gray);
   padding: 16px;
+}
+
+.content-modal{  
+  width: 100%;
+  padding: 10px;  
+  margin-bottom: -10px;
+  background: transparent;
+  color: var(--wl_text);
+}
+
+.content-modal-buttons{
+  padding: 10px;  
+  margin-top: 10px;
 }
 </style>

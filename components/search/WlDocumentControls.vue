@@ -63,6 +63,7 @@ export default {
   background: var(--wl_gray_light);
   color: var(--wl_primary);
   height: 100%;
+  min-height: 40px;
   width: 35px;
   display: flex;
   flex-direction: column;

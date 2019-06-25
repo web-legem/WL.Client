@@ -5,7 +5,7 @@
     </h1> 
     <div class="wl-search-filterss">
       <wl-select-filter
-        v-if="entities"
+        v-if="entities && credential != null && !credential.entityId"
         id="id_entites"
         :list="entities"
         param="entityId"
@@ -56,6 +56,9 @@ export default {
       entities: 'entities',
       documentTypes: 'documentTypes',
     }),
+    ...mapGetters("login/login", {
+      credential: "credential",      
+    }), 
     number() {
       return this.$route.query.number || ''
     },

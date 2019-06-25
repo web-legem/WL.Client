@@ -1,3 +1,4 @@
+import errorHandler from '~/helpers/errorHandler'
 
 export const state = () => ({
   loading: false,
@@ -8,7 +9,9 @@ export const state = () => ({
 })
 
 export const getters = {
-  isAlreadyClassified: (state) => state.classifiedFile != null
+  isAlreadyClassified: (state) => state.classifiedFile != null,
+  error: (state) => state.error,
+  loading: (state) => state.loading,
 }
 
 export const mutations = {
@@ -17,17 +20,31 @@ export const mutations = {
     state.loaded = false
     state.classifiedFile = null
     state.error = null
-  }
-  , loadingSuccess(state, classifiedFile) {
+  },
+  loadingSuccess(state, classifiedFile) {
     state.loading = false
     state.loaded = true
     state.classifiedFile = classifiedFile
-  }
-  , loadingFailure(state, error) {
+  },
+  loadingFailure(state, error) {
     state.loading = false
     state.loaded = false
     state.error = error
-  }
+  },
+  creatingError(state, payload) {
+    state.loading = false
+    if(payload != null && payload != undefined){
+      payload.extra = 'newDocument';
+    }
+    state.error = errorHandler(payload)
+  },
+  deletingError(state, payload) {
+    state.loading = false
+    state.error = errorHandler(payload)
+  },
+  clearError(state) {
+    state.error = null
+  },
 }
 
 export const actions = {
@@ -42,5 +59,13 @@ export const actions = {
           return commit('loadingFailure', e.response)
         })
     }
+  },
+  clearError({commit}) {
+    commit('clearError')
+  },
+
+  throwError({commit}, error){
+    return commit('creatingError',error)
   }
+
 }

@@ -26,6 +26,9 @@ export default function data(data){
     'DS':'Documentos Soportados',
     'ANO':'Anotaciones',
     'USR':'Usarios',
+
+    'toPublicationYear': 'Año de publicación',
+
     '':'empty',
   }
 
@@ -38,12 +41,16 @@ export default function data(data){
     'InvalidId':'Error: No se econtro una petición valida.<br/>Campo: $campo',
     'DateMustHavePassed':'Error: La fecha debe ser menor.<br/>Campo: $campo',
     'DateMustBeAfter':'Error: La fecha debe ser mayor.<br/>Campo: $campo',
-    
+
     'NotFound':'No se encontro el registro',
     'uniqueConstraintViolated':'Error: Ya existe un registro con los mismos datos<br/>Campo: $campo',
     'IntegrityConstraintViolated':'Error: Existen "$campo" asociados a este registro.',
 
     'NotAllowedEdit':'No esta permitido modificar este registro',
+    
+    'MaxValue':'Error: El campo "$campo" excede el valor permitido',    
+    'FunctionReturnedWithoutValue':'Error: no se encontraron datos',
+    'invalidDate':'Error: Fecha no valida',    
   }
 
   if(Array.isArray(data)){
@@ -53,6 +60,11 @@ export default function data(data){
   let type = data.errorType;
   let field = data.fieldNames;
   let msg = data.message;
+
+  if(data.extra){
+    return extraValidations(data.extra,type);
+  }
+
   if(type && field){
     type = typeDic[type];
     if(type){
@@ -69,4 +81,14 @@ export default function data(data){
   }
   
   return "Error en la base de datos, contacte al administrador [1]";
+}
+
+function extraValidations(extra, type) {
+  
+  if(extra == "newDocument"){
+    if(type == 'uniqueConstraintViolated'){
+      return "Ya existe un documento con estos mismos datos"
+    }
+  }
+
 }
