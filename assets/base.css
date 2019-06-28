@@ -557,7 +557,7 @@ button::-moz-focus-inner {
   padding-left: 20px;
   font-size: 1rem;
   pointer-events: none;
-  flex-grow: 1;
+  width: 100%;
 }
 
 .container-form-left{
